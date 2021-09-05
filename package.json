@@ -3,22 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1",
+    "@ethersproject/providers": "^5.4.5",
+    "@ethersproject/units": "^5.4.0",
     "@openzeppelin/cli": "^2.8.2",
     "@openzeppelin/contracts": "^4.3.1",
     "@openzeppelin/contracts-upgradeable": "^4.3.1",
-    "@truffle/hdwallet-provider": "^1.5.0"
+    "@truffle/hdwallet-provider": "^1.5.0",
+    "@web3-react/core": "^6.1.9",
+    "@web3-react/injected-connector": "^6.0.7",
+    "@web3-react/network-connector": "^6.1.9",
+    "add": "^2.0.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "yarn": "^1.22.11"
   },
   "scripts": {
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
+    "gen": "typechain --target=ethers-v4 --out-dir=src/contracts 'build/contracts/*.json'",
     "network:dev": "truffle develop",
     "network:compile": "truffle compile",
     "network:deploy": "truffle migrate",
@@ -44,7 +47,19 @@
   },
   "devDependencies": {
     "@craco/craco": "^6.2.0",
+    "@openzeppelin/truffle-upgrades": "^1.9.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@typechain/ethers-v4": "^5.1.0",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.10",
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.9",
     "craco-esbuild": "^0.3.4",
-    "@openzeppelin/truffle-upgrades": "^1.9.0"
+    "eslint-plugin-truffle": "^0.3.1",
+    "react-scripts": "4.0.3",
+    "typechain": "^5.1.2",
+    "typescript": "^4.4.2"
   }
 }
