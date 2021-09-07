@@ -21,7 +21,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "gen": "typechain --target=ethers-v5 --out-dir=src/contracts 'build/contracts/*.json'",
+    "codegen": "typechain --target=ethers-v5 --out-dir=src/contracts 'build/contracts/*.json'",
     "network:dev": "truffle develop",
     "network:compile": "truffle compile",
     "network:deploy": "truffle migrate",
