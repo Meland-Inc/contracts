@@ -2,19 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer } from "ethers";
-import { Provider } from "ethers/providers";
-
-import { UUPSUpgradeable } from "../UUPSUpgradeable";
-
-export class UUPSUpgradeable__factory {
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): UUPSUpgradeable {
-    return new Contract(address, _abi, signerOrProvider) as UUPSUpgradeable;
-  }
-}
+import { Contract, Signer, utils } from "ethers";
+import { Provider } from "@ethersproject/providers";
+import type {
+  UUPSUpgradeable,
+  UUPSUpgradeableInterface,
+} from "../UUPSUpgradeable";
 
 const _abi = [
   {
@@ -94,3 +87,16 @@ const _abi = [
     type: "function",
   },
 ];
+
+export class UUPSUpgradeable__factory {
+  static readonly abi = _abi;
+  static createInterface(): UUPSUpgradeableInterface {
+    return new utils.Interface(_abi) as UUPSUpgradeableInterface;
+  }
+  static connect(
+    address: string,
+    signerOrProvider: Signer | Provider
+  ): UUPSUpgradeable {
+    return new Contract(address, _abi, signerOrProvider) as UUPSUpgradeable;
+  }
+}

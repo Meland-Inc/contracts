@@ -2,41 +2,80 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, ContractTransaction, EventFilter, Signer } from "ethers";
-import { Listener, Provider } from "ethers/providers";
-import { Arrayish, BigNumber, BigNumberish, Interface } from "ethers/utils";
-import { UnsignedTransaction } from "ethers/utils/transaction";
-import { TypedEventDescription, TypedFunctionDescription } from ".";
+import {
+  ethers,
+  EventFilter,
+  Signer,
+  BigNumber,
+  BigNumberish,
+  PopulatedTransaction,
+  BaseContract,
+  ContractTransaction,
+  CallOverrides,
+} from "ethers";
+import { BytesLike } from "@ethersproject/bytes";
+import { Listener, Provider } from "@ethersproject/providers";
+import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
+import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
-interface PausableUpgradeableInterface extends Interface {
+interface PausableUpgradeableInterface extends ethers.utils.Interface {
   functions: {
-    paused: TypedFunctionDescription<{ encode([]: []): string }>;
+    "paused()": FunctionFragment;
   };
+
+  encodeFunctionData(functionFragment: "paused", values?: undefined): string;
+
+  decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
 
   events: {
-    Paused: TypedEventDescription<{
-      encodeTopics([account]: [null]): string[];
-    }>;
-
-    Unpaused: TypedEventDescription<{
-      encodeTopics([account]: [null]): string[];
-    }>;
+    "Paused(address)": EventFragment;
+    "Unpaused(address)": EventFragment;
   };
+
+  getEvent(nameOrSignatureOrTopic: "Paused"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Unpaused"): EventFragment;
 }
 
-export class PausableUpgradeable extends Contract {
-  connect(signerOrProvider: Signer | Provider | string): PausableUpgradeable;
-  attach(addressOrName: string): PausableUpgradeable;
-  deployed(): Promise<PausableUpgradeable>;
+export class PausableUpgradeable extends BaseContract {
+  connect(signerOrProvider: Signer | Provider | string): this;
+  attach(addressOrName: string): this;
+  deployed(): Promise<this>;
 
-  on(event: EventFilter | string, listener: Listener): PausableUpgradeable;
-  once(event: EventFilter | string, listener: Listener): PausableUpgradeable;
-  addListener(
-    eventName: EventFilter | string,
-    listener: Listener
-  ): PausableUpgradeable;
-  removeAllListeners(eventName: EventFilter | string): PausableUpgradeable;
-  removeListener(eventName: any, listener: Listener): PausableUpgradeable;
+  listeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): Array<TypedListener<EventArgsArray, EventArgsObject>>;
+  off<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  on<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  once<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeListener<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeAllListeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): this;
+
+  listeners(eventName?: string): Array<Listener>;
+  off(eventName: string, listener: Listener): this;
+  on(eventName: string, listener: Listener): this;
+  once(eventName: string, listener: Listener): this;
+  removeListener(eventName: string, listener: Listener): this;
+  removeAllListeners(eventName?: string): this;
+
+  queryFilter<EventArgsArray extends Array<any>, EventArgsObject>(
+    event: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    fromBlockOrBlockhash?: string | number | undefined,
+    toBlock?: string | number | undefined
+  ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
   interface: PausableUpgradeableInterface;
 
@@ -44,39 +83,38 @@ export class PausableUpgradeable extends Contract {
     /**
      * Returns true if the contract is paused, and false otherwise.
      */
-    paused(overrides?: UnsignedTransaction): Promise<boolean>;
-
-    /**
-     * Returns true if the contract is paused, and false otherwise.
-     */
-    "paused()"(overrides?: UnsignedTransaction): Promise<boolean>;
+    paused(overrides?: CallOverrides): Promise<[boolean]>;
   };
 
   /**
    * Returns true if the contract is paused, and false otherwise.
    */
-  paused(overrides?: UnsignedTransaction): Promise<boolean>;
+  paused(overrides?: CallOverrides): Promise<boolean>;
 
-  /**
-   * Returns true if the contract is paused, and false otherwise.
-   */
-  "paused()"(overrides?: UnsignedTransaction): Promise<boolean>;
+  callStatic: {
+    /**
+     * Returns true if the contract is paused, and false otherwise.
+     */
+    paused(overrides?: CallOverrides): Promise<boolean>;
+  };
 
   filters: {
-    Paused(account: null): EventFilter;
+    Paused(account?: null): TypedEventFilter<[string], { account: string }>;
 
-    Unpaused(account: null): EventFilter;
+    Unpaused(account?: null): TypedEventFilter<[string], { account: string }>;
   };
 
-  estimate: {
+  estimateGas: {
     /**
      * Returns true if the contract is paused, and false otherwise.
      */
-    paused(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    paused(overrides?: CallOverrides): Promise<BigNumber>;
+  };
 
+  populateTransaction: {
     /**
      * Returns true if the contract is paused, and false otherwise.
      */
-    "paused()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    paused(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };
 }

@@ -2,156 +2,287 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, ContractTransaction, EventFilter, Signer } from "ethers";
-import { Listener, Provider } from "ethers/providers";
-import { Arrayish, BigNumber, BigNumberish, Interface } from "ethers/utils";
-import { UnsignedTransaction } from "ethers/utils/transaction";
-import { TypedEventDescription, TypedFunctionDescription } from ".";
+import {
+  ethers,
+  EventFilter,
+  Signer,
+  BigNumber,
+  BigNumberish,
+  PopulatedTransaction,
+  BaseContract,
+  ContractTransaction,
+  Overrides,
+  PayableOverrides,
+  CallOverrides,
+} from "ethers";
+import { BytesLike } from "@ethersproject/bytes";
+import { Listener, Provider } from "@ethersproject/providers";
+import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
+import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
-interface MELDInterface extends Interface {
+interface MELDInterface extends ethers.utils.Interface {
   functions: {
-    allowance: TypedFunctionDescription<{
-      encode([owner, spender]: [string, string]): string;
-    }>;
-
-    approve: TypedFunctionDescription<{
-      encode([spender, amount]: [string, BigNumberish]): string;
-    }>;
-
-    balanceOf: TypedFunctionDescription<{
-      encode([account]: [string]): string;
-    }>;
-
-    decimals: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    decreaseAllowance: TypedFunctionDescription<{
-      encode([spender, subtractedValue]: [string, BigNumberish]): string;
-    }>;
-
-    increaseAllowance: TypedFunctionDescription<{
-      encode([spender, addedValue]: [string, BigNumberish]): string;
-    }>;
-
-    name: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    owner: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    paused: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    renounceOwnership: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    symbol: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    totalSupply: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    transfer: TypedFunctionDescription<{
-      encode([recipient, amount]: [string, BigNumberish]): string;
-    }>;
-
-    transferFrom: TypedFunctionDescription<{
-      encode([sender, recipient, amount]: [
-        string,
-        string,
-        BigNumberish
-      ]): string;
-    }>;
-
-    transferOwnership: TypedFunctionDescription<{
-      encode([newOwner]: [string]): string;
-    }>;
-
-    upgradeTo: TypedFunctionDescription<{
-      encode([newImplementation]: [string]): string;
-    }>;
-
-    upgradeToAndCall: TypedFunctionDescription<{
-      encode([newImplementation, data]: [string, Arrayish]): string;
-    }>;
-
-    initialize: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    pause: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    unpause: TypedFunctionDescription<{ encode([]: []): string }>;
+    "DEFAULT_ADMIN_ROLE()": FunctionFragment;
+    "MINTER_ROLE()": FunctionFragment;
+    "allowance(address,address)": FunctionFragment;
+    "approve(address,uint256)": FunctionFragment;
+    "balanceOf(address)": FunctionFragment;
+    "decimals()": FunctionFragment;
+    "decreaseAllowance(address,uint256)": FunctionFragment;
+    "getRoleAdmin(bytes32)": FunctionFragment;
+    "grantRole(bytes32,address)": FunctionFragment;
+    "hasRole(bytes32,address)": FunctionFragment;
+    "increaseAllowance(address,uint256)": FunctionFragment;
+    "name()": FunctionFragment;
+    "paused()": FunctionFragment;
+    "renounceRole(bytes32,address)": FunctionFragment;
+    "revokeRole(bytes32,address)": FunctionFragment;
+    "supportsInterface(bytes4)": FunctionFragment;
+    "symbol()": FunctionFragment;
+    "totalSupply()": FunctionFragment;
+    "transfer(address,uint256)": FunctionFragment;
+    "transferFrom(address,address,uint256)": FunctionFragment;
+    "upgradeTo(address)": FunctionFragment;
+    "upgradeToAndCall(address,bytes)": FunctionFragment;
+    "initialize()": FunctionFragment;
+    "pause()": FunctionFragment;
+    "unpause()": FunctionFragment;
+    "test()": FunctionFragment;
+    "setMinterRole(address)": FunctionFragment;
+    "safeMint(uint256)": FunctionFragment;
   };
+
+  encodeFunctionData(
+    functionFragment: "DEFAULT_ADMIN_ROLE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "MINTER_ROLE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "allowance",
+    values: [string, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "approve",
+    values: [string, BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
+  encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "decreaseAllowance",
+    values: [string, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getRoleAdmin",
+    values: [BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "grantRole",
+    values: [BytesLike, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "hasRole",
+    values: [BytesLike, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "increaseAllowance",
+    values: [string, BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "name", values?: undefined): string;
+  encodeFunctionData(functionFragment: "paused", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "renounceRole",
+    values: [BytesLike, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "revokeRole",
+    values: [BytesLike, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "supportsInterface",
+    values: [BytesLike]
+  ): string;
+  encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "totalSupply",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "transfer",
+    values: [string, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "transferFrom",
+    values: [string, string, BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "upgradeTo", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "upgradeToAndCall",
+    values: [string, BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "initialize",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "pause", values?: undefined): string;
+  encodeFunctionData(functionFragment: "unpause", values?: undefined): string;
+  encodeFunctionData(functionFragment: "test", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "setMinterRole",
+    values: [string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "safeMint",
+    values: [BigNumberish]
+  ): string;
+
+  decodeFunctionResult(
+    functionFragment: "DEFAULT_ADMIN_ROLE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "MINTER_ROLE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "decreaseAllowance",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getRoleAdmin",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "increaseAllowance",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "renounceRole",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "supportsInterface",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "totalSupply",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "transferFrom",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "upgradeTo", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "upgradeToAndCall",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "unpause", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "test", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "setMinterRole",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "safeMint", data: BytesLike): Result;
 
   events: {
-    AdminChanged: TypedEventDescription<{
-      encodeTopics([previousAdmin, newAdmin]: [null, null]): string[];
-    }>;
-
-    Approval: TypedEventDescription<{
-      encodeTopics([owner, spender, value]: [
-        string | null,
-        string | null,
-        null
-      ]): string[];
-    }>;
-
-    BeaconUpgraded: TypedEventDescription<{
-      encodeTopics([beacon]: [string | null]): string[];
-    }>;
-
-    OwnershipTransferred: TypedEventDescription<{
-      encodeTopics([previousOwner, newOwner]: [
-        string | null,
-        string | null
-      ]): string[];
-    }>;
-
-    Paused: TypedEventDescription<{
-      encodeTopics([account]: [null]): string[];
-    }>;
-
-    Transfer: TypedEventDescription<{
-      encodeTopics([from, to, value]: [
-        string | null,
-        string | null,
-        null
-      ]): string[];
-    }>;
-
-    Unpaused: TypedEventDescription<{
-      encodeTopics([account]: [null]): string[];
-    }>;
-
-    Upgraded: TypedEventDescription<{
-      encodeTopics([implementation]: [string | null]): string[];
-    }>;
+    "AdminChanged(address,address)": EventFragment;
+    "Approval(address,address,uint256)": EventFragment;
+    "BeaconUpgraded(address)": EventFragment;
+    "Paused(address)": EventFragment;
+    "RoleAdminChanged(bytes32,bytes32,bytes32)": EventFragment;
+    "RoleGranted(bytes32,address,address)": EventFragment;
+    "RoleRevoked(bytes32,address,address)": EventFragment;
+    "Test(address)": EventFragment;
+    "Transfer(address,address,uint256)": EventFragment;
+    "Unpaused(address)": EventFragment;
+    "Upgraded(address)": EventFragment;
   };
+
+  getEvent(nameOrSignatureOrTopic: "AdminChanged"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "BeaconUpgraded"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Paused"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RoleAdminChanged"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RoleGranted"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RoleRevoked"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Test"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Unpaused"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Upgraded"): EventFragment;
 }
 
-export class MELD extends Contract {
-  connect(signerOrProvider: Signer | Provider | string): MELD;
-  attach(addressOrName: string): MELD;
-  deployed(): Promise<MELD>;
+export class MELD extends BaseContract {
+  connect(signerOrProvider: Signer | Provider | string): this;
+  attach(addressOrName: string): this;
+  deployed(): Promise<this>;
 
-  on(event: EventFilter | string, listener: Listener): MELD;
-  once(event: EventFilter | string, listener: Listener): MELD;
-  addListener(eventName: EventFilter | string, listener: Listener): MELD;
-  removeAllListeners(eventName: EventFilter | string): MELD;
-  removeListener(eventName: any, listener: Listener): MELD;
+  listeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): Array<TypedListener<EventArgsArray, EventArgsObject>>;
+  off<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  on<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  once<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeListener<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeAllListeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): this;
+
+  listeners(eventName?: string): Array<Listener>;
+  off(eventName: string, listener: Listener): this;
+  on(eventName: string, listener: Listener): this;
+  once(eventName: string, listener: Listener): this;
+  removeListener(eventName: string, listener: Listener): this;
+  removeAllListeners(eventName?: string): this;
+
+  queryFilter<EventArgsArray extends Array<any>, EventArgsObject>(
+    event: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    fromBlockOrBlockhash?: string | number | undefined,
+    toBlock?: string | number | undefined
+  ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
   interface: MELDInterface;
 
   functions: {
+    DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<[string]>;
+
+    MINTER_ROLE(overrides?: CallOverrides): Promise<[string]>;
+
     /**
      * See {IERC20-allowance}.
      */
     allowance(
       owner: string,
       spender: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC20-allowance}.
-     */
-    "allowance(address,address)"(
-      owner: string,
-      spender: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
 
     /**
      * See {IERC20-approve}. Requirements: - `spender` cannot be the zero address.
@@ -159,43 +290,18 @@ export class MELD extends Contract {
     approve(
       spender: string,
       amount: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * See {IERC20-approve}. Requirements: - `spender` cannot be the zero address.
-     */
-    "approve(address,uint256)"(
-      spender: string,
-      amount: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
      * See {IERC20-balanceOf}.
      */
-    balanceOf(
-      account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC20-balanceOf}.
-     */
-    "balanceOf(address)"(
-      account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+    balanceOf(account: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
     /**
      * Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless this function is overridden; NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}.
      */
-    decimals(overrides?: UnsignedTransaction): Promise<number>;
-
-    /**
-     * Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless this function is overridden; NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}.
-     */
-    "decimals()"(overrides?: UnsignedTransaction): Promise<number>;
+    decimals(overrides?: CallOverrides): Promise<[number]>;
 
     /**
      * Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`.
@@ -203,17 +309,31 @@ export class MELD extends Contract {
     decreaseAllowance(
       spender: string,
       subtractedValue: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
-     * Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`.
+     * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
      */
-    "decreaseAllowance(address,uint256)"(
-      spender: string,
-      subtractedValue: BigNumberish,
-      overrides?: UnsignedTransaction
+    getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<[string]>;
+
+    /**
+     * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
+     */
+    grantRole(
+      role: BytesLike,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    /**
+     * Returns `true` if `account` has been granted `role`.
+     */
+    hasRole(
+      role: BytesLike,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
 
     /**
      * Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address.
@@ -221,81 +341,54 @@ export class MELD extends Contract {
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address.
-     */
-    "increaseAllowance(address,uint256)"(
-      spender: string,
-      addedValue: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
      * Returns the name of the token.
      */
-    name(overrides?: UnsignedTransaction): Promise<string>;
-
-    /**
-     * Returns the name of the token.
-     */
-    "name()"(overrides?: UnsignedTransaction): Promise<string>;
-
-    /**
-     * Returns the address of the current owner.
-     */
-    owner(overrides?: UnsignedTransaction): Promise<string>;
-
-    /**
-     * Returns the address of the current owner.
-     */
-    "owner()"(overrides?: UnsignedTransaction): Promise<string>;
+    name(overrides?: CallOverrides): Promise<[string]>;
 
     /**
      * Returns true if the contract is paused, and false otherwise.
      */
-    paused(overrides?: UnsignedTransaction): Promise<boolean>;
+    paused(overrides?: CallOverrides): Promise<[boolean]>;
 
     /**
-     * Returns true if the contract is paused, and false otherwise.
+     * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
      */
-    "paused()"(overrides?: UnsignedTransaction): Promise<boolean>;
-
-    /**
-     * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
-     */
-    renounceOwnership(
-      overrides?: UnsignedTransaction
+    renounceRole(
+      role: BytesLike,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
-     * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
+     * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
      */
-    "renounceOwnership()"(
-      overrides?: UnsignedTransaction
+    revokeRole(
+      role: BytesLike,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    /**
+     * See {IERC165-supportsInterface}.
+     */
+    supportsInterface(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
 
     /**
      * Returns the symbol of the token, usually a shorter version of the name.
      */
-    symbol(overrides?: UnsignedTransaction): Promise<string>;
-
-    /**
-     * Returns the symbol of the token, usually a shorter version of the name.
-     */
-    "symbol()"(overrides?: UnsignedTransaction): Promise<string>;
+    symbol(overrides?: CallOverrides): Promise<[string]>;
 
     /**
      * See {IERC20-totalSupply}.
      */
-    totalSupply(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    /**
-     * See {IERC20-totalSupply}.
-     */
-    "totalSupply()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     /**
      * See {IERC20-transfer}. Requirements: - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`.
@@ -303,16 +396,7 @@ export class MELD extends Contract {
     transfer(
       recipient: string,
       amount: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * See {IERC20-transfer}. Requirements: - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`.
-     */
-    "transfer(address,uint256)"(
-      recipient: string,
-      amount: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -322,33 +406,7 @@ export class MELD extends Contract {
       sender: string,
       recipient: string,
       amount: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * See {IERC20-transferFrom}. Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20}. Requirements: - `sender` and `recipient` cannot be the zero address. - `sender` must have a balance of at least `amount`. - the caller must have allowance for ``sender``'s tokens of at least `amount`.
-     */
-    "transferFrom(address,address,uint256)"(
-      sender: string,
-      recipient: string,
-      amount: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
-     */
-    transferOwnership(
-      newOwner: string,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
-     */
-    "transferOwnership(address)"(
-      newOwner: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -356,15 +414,7 @@ export class MELD extends Contract {
      */
     upgradeTo(
       newImplementation: string,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-     */
-    "upgradeTo(address)"(
-      newImplementation: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -372,33 +422,40 @@ export class MELD extends Contract {
      */
     upgradeToAndCall(
       newImplementation: string,
-      data: Arrayish,
-      overrides?: UnsignedTransaction
+      data: BytesLike,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    /**
-     * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-     */
-    "upgradeToAndCall(address,bytes)"(
-      newImplementation: string,
-      data: Arrayish,
-      overrides?: UnsignedTransaction
+    initialize(
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    initialize(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
-
-    "initialize()"(
-      overrides?: UnsignedTransaction
+    pause(
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    pause(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
+    unpause(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
 
-    "pause()"(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
+    test(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
 
-    unpause(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
+    setMinterRole(
+      minter: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
 
-    "unpause()"(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
+    safeMint(
+      amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
   };
+
+  DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
+
+  MINTER_ROLE(overrides?: CallOverrides): Promise<string>;
 
   /**
    * See {IERC20-allowance}.
@@ -406,16 +463,7 @@ export class MELD extends Contract {
   allowance(
     owner: string,
     spender: string,
-    overrides?: UnsignedTransaction
-  ): Promise<BigNumber>;
-
-  /**
-   * See {IERC20-allowance}.
-   */
-  "allowance(address,address)"(
-    owner: string,
-    spender: string,
-    overrides?: UnsignedTransaction
+    overrides?: CallOverrides
   ): Promise<BigNumber>;
 
   /**
@@ -424,43 +472,18 @@ export class MELD extends Contract {
   approve(
     spender: string,
     amount: BigNumberish,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * See {IERC20-approve}. Requirements: - `spender` cannot be the zero address.
-   */
-  "approve(address,uint256)"(
-    spender: string,
-    amount: BigNumberish,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
    * See {IERC20-balanceOf}.
    */
-  balanceOf(
-    account: string,
-    overrides?: UnsignedTransaction
-  ): Promise<BigNumber>;
-
-  /**
-   * See {IERC20-balanceOf}.
-   */
-  "balanceOf(address)"(
-    account: string,
-    overrides?: UnsignedTransaction
-  ): Promise<BigNumber>;
+  balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
   /**
    * Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless this function is overridden; NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}.
    */
-  decimals(overrides?: UnsignedTransaction): Promise<number>;
-
-  /**
-   * Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless this function is overridden; NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}.
-   */
-  "decimals()"(overrides?: UnsignedTransaction): Promise<number>;
+  decimals(overrides?: CallOverrides): Promise<number>;
 
   /**
    * Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`.
@@ -468,17 +491,31 @@ export class MELD extends Contract {
   decreaseAllowance(
     spender: string,
     subtractedValue: BigNumberish,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
-   * Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`.
+   * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
    */
-  "decreaseAllowance(address,uint256)"(
-    spender: string,
-    subtractedValue: BigNumberish,
-    overrides?: UnsignedTransaction
+  getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<string>;
+
+  /**
+   * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
+   */
+  grantRole(
+    role: BytesLike,
+    account: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
+
+  /**
+   * Returns `true` if `account` has been granted `role`.
+   */
+  hasRole(
+    role: BytesLike,
+    account: string,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
 
   /**
    * Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address.
@@ -486,81 +523,54 @@ export class MELD extends Contract {
   increaseAllowance(
     spender: string,
     addedValue: BigNumberish,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address.
-   */
-  "increaseAllowance(address,uint256)"(
-    spender: string,
-    addedValue: BigNumberish,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
    * Returns the name of the token.
    */
-  name(overrides?: UnsignedTransaction): Promise<string>;
-
-  /**
-   * Returns the name of the token.
-   */
-  "name()"(overrides?: UnsignedTransaction): Promise<string>;
-
-  /**
-   * Returns the address of the current owner.
-   */
-  owner(overrides?: UnsignedTransaction): Promise<string>;
-
-  /**
-   * Returns the address of the current owner.
-   */
-  "owner()"(overrides?: UnsignedTransaction): Promise<string>;
+  name(overrides?: CallOverrides): Promise<string>;
 
   /**
    * Returns true if the contract is paused, and false otherwise.
    */
-  paused(overrides?: UnsignedTransaction): Promise<boolean>;
+  paused(overrides?: CallOverrides): Promise<boolean>;
 
   /**
-   * Returns true if the contract is paused, and false otherwise.
+   * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
    */
-  "paused()"(overrides?: UnsignedTransaction): Promise<boolean>;
-
-  /**
-   * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
-   */
-  renounceOwnership(
-    overrides?: UnsignedTransaction
+  renounceRole(
+    role: BytesLike,
+    account: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
-   * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
+   * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
    */
-  "renounceOwnership()"(
-    overrides?: UnsignedTransaction
+  revokeRole(
+    role: BytesLike,
+    account: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
+
+  /**
+   * See {IERC165-supportsInterface}.
+   */
+  supportsInterface(
+    interfaceId: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
 
   /**
    * Returns the symbol of the token, usually a shorter version of the name.
    */
-  symbol(overrides?: UnsignedTransaction): Promise<string>;
-
-  /**
-   * Returns the symbol of the token, usually a shorter version of the name.
-   */
-  "symbol()"(overrides?: UnsignedTransaction): Promise<string>;
+  symbol(overrides?: CallOverrides): Promise<string>;
 
   /**
    * See {IERC20-totalSupply}.
    */
-  totalSupply(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-  /**
-   * See {IERC20-totalSupply}.
-   */
-  "totalSupply()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+  totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
   /**
    * See {IERC20-transfer}. Requirements: - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`.
@@ -568,16 +578,7 @@ export class MELD extends Contract {
   transfer(
     recipient: string,
     amount: BigNumberish,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * See {IERC20-transfer}. Requirements: - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`.
-   */
-  "transfer(address,uint256)"(
-    recipient: string,
-    amount: BigNumberish,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -587,33 +588,7 @@ export class MELD extends Contract {
     sender: string,
     recipient: string,
     amount: BigNumberish,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * See {IERC20-transferFrom}. Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20}. Requirements: - `sender` and `recipient` cannot be the zero address. - `sender` must have a balance of at least `amount`. - the caller must have allowance for ``sender``'s tokens of at least `amount`.
-   */
-  "transferFrom(address,address,uint256)"(
-    sender: string,
-    recipient: string,
-    amount: BigNumberish,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
-   */
-  transferOwnership(
-    newOwner: string,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
-   */
-  "transferOwnership(address)"(
-    newOwner: string,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -621,15 +596,7 @@ export class MELD extends Contract {
    */
   upgradeTo(
     newImplementation: string,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-   */
-  "upgradeTo(address)"(
-    newImplementation: string,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -637,73 +604,48 @@ export class MELD extends Contract {
    */
   upgradeToAndCall(
     newImplementation: string,
-    data: Arrayish,
-    overrides?: UnsignedTransaction
+    data: BytesLike,
+    overrides?: PayableOverrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  /**
-   * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-   */
-  "upgradeToAndCall(address,bytes)"(
-    newImplementation: string,
-    data: Arrayish,
-    overrides?: UnsignedTransaction
+  initialize(
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  initialize(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
+  pause(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
-  "initialize()"(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
+  unpause(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
-  pause(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
+  test(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
-  "pause()"(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
+  setMinterRole(
+    minter: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
-  unpause(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
+  safeMint(
+    amount: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
-  "unpause()"(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
+  callStatic: {
+    DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
 
-  filters: {
-    AdminChanged(previousAdmin: null, newAdmin: null): EventFilter;
+    MINTER_ROLE(overrides?: CallOverrides): Promise<string>;
 
-    Approval(
-      owner: string | null,
-      spender: string | null,
-      value: null
-    ): EventFilter;
-
-    BeaconUpgraded(beacon: string | null): EventFilter;
-
-    OwnershipTransferred(
-      previousOwner: string | null,
-      newOwner: string | null
-    ): EventFilter;
-
-    Paused(account: null): EventFilter;
-
-    Transfer(from: string | null, to: string | null, value: null): EventFilter;
-
-    Unpaused(account: null): EventFilter;
-
-    Upgraded(implementation: string | null): EventFilter;
-  };
-
-  estimate: {
     /**
      * See {IERC20-allowance}.
      */
     allowance(
       owner: string,
       spender: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC20-allowance}.
-     */
-    "allowance(address,address)"(
-      owner: string,
-      spender: string,
-      overrides?: UnsignedTransaction
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     /**
@@ -712,43 +654,18 @@ export class MELD extends Contract {
     approve(
       spender: string,
       amount: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC20-approve}. Requirements: - `spender` cannot be the zero address.
-     */
-    "approve(address,uint256)"(
-      spender: string,
-      amount: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+      overrides?: CallOverrides
+    ): Promise<boolean>;
 
     /**
      * See {IERC20-balanceOf}.
      */
-    balanceOf(
-      account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC20-balanceOf}.
-     */
-    "balanceOf(address)"(
-      account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+    balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     /**
      * Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless this function is overridden; NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}.
      */
-    decimals(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    /**
-     * Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless this function is overridden; NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}.
-     */
-    "decimals()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    decimals(overrides?: CallOverrides): Promise<number>;
 
     /**
      * Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`.
@@ -756,16 +673,271 @@ export class MELD extends Contract {
     decreaseAllowance(
       spender: string,
       subtractedValue: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    /**
+     * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
+     */
+    getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<string>;
+
+    /**
+     * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
+     */
+    grantRole(
+      role: BytesLike,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * Returns `true` if `account` has been granted `role`.
+     */
+    hasRole(
+      role: BytesLike,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    /**
+     * Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address.
+     */
+    increaseAllowance(
+      spender: string,
+      addedValue: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    /**
+     * Returns the name of the token.
+     */
+    name(overrides?: CallOverrides): Promise<string>;
+
+    /**
+     * Returns true if the contract is paused, and false otherwise.
+     */
+    paused(overrides?: CallOverrides): Promise<boolean>;
+
+    /**
+     * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
+     */
+    renounceRole(
+      role: BytesLike,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
+     */
+    revokeRole(
+      role: BytesLike,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * See {IERC165-supportsInterface}.
+     */
+    supportsInterface(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    /**
+     * Returns the symbol of the token, usually a shorter version of the name.
+     */
+    symbol(overrides?: CallOverrides): Promise<string>;
+
+    /**
+     * See {IERC20-totalSupply}.
+     */
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    /**
+     * See {IERC20-transfer}. Requirements: - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`.
+     */
+    transfer(
+      recipient: string,
+      amount: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    /**
+     * See {IERC20-transferFrom}. Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20}. Requirements: - `sender` and `recipient` cannot be the zero address. - `sender` must have a balance of at least `amount`. - the caller must have allowance for ``sender``'s tokens of at least `amount`.
+     */
+    transferFrom(
+      sender: string,
+      recipient: string,
+      amount: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    /**
+     * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
+     */
+    upgradeTo(
+      newImplementation: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
+     */
+    upgradeToAndCall(
+      newImplementation: string,
+      data: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    initialize(overrides?: CallOverrides): Promise<void>;
+
+    pause(overrides?: CallOverrides): Promise<void>;
+
+    unpause(overrides?: CallOverrides): Promise<void>;
+
+    test(overrides?: CallOverrides): Promise<void>;
+
+    setMinterRole(minter: string, overrides?: CallOverrides): Promise<void>;
+
+    safeMint(amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
+  };
+
+  filters: {
+    AdminChanged(
+      previousAdmin?: null,
+      newAdmin?: null
+    ): TypedEventFilter<
+      [string, string],
+      { previousAdmin: string; newAdmin: string }
+    >;
+
+    Approval(
+      owner?: string | null,
+      spender?: string | null,
+      value?: null
+    ): TypedEventFilter<
+      [string, string, BigNumber],
+      { owner: string; spender: string; value: BigNumber }
+    >;
+
+    BeaconUpgraded(
+      beacon?: string | null
+    ): TypedEventFilter<[string], { beacon: string }>;
+
+    Paused(account?: null): TypedEventFilter<[string], { account: string }>;
+
+    RoleAdminChanged(
+      role?: BytesLike | null,
+      previousAdminRole?: BytesLike | null,
+      newAdminRole?: BytesLike | null
+    ): TypedEventFilter<
+      [string, string, string],
+      { role: string; previousAdminRole: string; newAdminRole: string }
+    >;
+
+    RoleGranted(
+      role?: BytesLike | null,
+      account?: string | null,
+      sender?: string | null
+    ): TypedEventFilter<
+      [string, string, string],
+      { role: string; account: string; sender: string }
+    >;
+
+    RoleRevoked(
+      role?: BytesLike | null,
+      account?: string | null,
+      sender?: string | null
+    ): TypedEventFilter<
+      [string, string, string],
+      { role: string; account: string; sender: string }
+    >;
+
+    Test(auther?: null): TypedEventFilter<[string], { auther: string }>;
+
+    Transfer(
+      from?: string | null,
+      to?: string | null,
+      value?: null
+    ): TypedEventFilter<
+      [string, string, BigNumber],
+      { from: string; to: string; value: BigNumber }
+    >;
+
+    Unpaused(account?: null): TypedEventFilter<[string], { account: string }>;
+
+    Upgraded(
+      implementation?: string | null
+    ): TypedEventFilter<[string], { implementation: string }>;
+  };
+
+  estimateGas: {
+    DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
+
+    MINTER_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
+
+    /**
+     * See {IERC20-allowance}.
+     */
+    allowance(
+      owner: string,
+      spender: string,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    /**
+     * See {IERC20-approve}. Requirements: - `spender` cannot be the zero address.
+     */
+    approve(
+      spender: string,
+      amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    /**
+     * See {IERC20-balanceOf}.
+     */
+    balanceOf(account: string, overrides?: CallOverrides): Promise<BigNumber>;
+
+    /**
+     * Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless this function is overridden; NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}.
+     */
+    decimals(overrides?: CallOverrides): Promise<BigNumber>;
 
     /**
      * Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`.
      */
-    "decreaseAllowance(address,uint256)"(
+    decreaseAllowance(
       spender: string,
       subtractedValue: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    /**
+     * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
+     */
+    getRoleAdmin(
+      role: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    /**
+     * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
+     */
+    grantRole(
+      role: BytesLike,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    /**
+     * Returns `true` if `account` has been granted `role`.
+     */
+    hasRole(
+      role: BytesLike,
+      account: string,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     /**
@@ -774,77 +946,54 @@ export class MELD extends Contract {
     increaseAllowance(
       spender: string,
       addedValue: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address.
-     */
-    "increaseAllowance(address,uint256)"(
-      spender: string,
-      addedValue: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
      * Returns the name of the token.
      */
-    name(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    /**
-     * Returns the name of the token.
-     */
-    "name()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    /**
-     * Returns the address of the current owner.
-     */
-    owner(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    /**
-     * Returns the address of the current owner.
-     */
-    "owner()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    name(overrides?: CallOverrides): Promise<BigNumber>;
 
     /**
      * Returns true if the contract is paused, and false otherwise.
      */
-    paused(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    paused(overrides?: CallOverrides): Promise<BigNumber>;
 
     /**
-     * Returns true if the contract is paused, and false otherwise.
+     * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
      */
-    "paused()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    renounceRole(
+      role: BytesLike,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
 
     /**
-     * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
+     * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
      */
-    renounceOwnership(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    revokeRole(
+      role: BytesLike,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
 
     /**
-     * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
+     * See {IERC165-supportsInterface}.
      */
-    "renounceOwnership()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    supportsInterface(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     /**
      * Returns the symbol of the token, usually a shorter version of the name.
      */
-    symbol(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    /**
-     * Returns the symbol of the token, usually a shorter version of the name.
-     */
-    "symbol()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    symbol(overrides?: CallOverrides): Promise<BigNumber>;
 
     /**
      * See {IERC20-totalSupply}.
      */
-    totalSupply(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    /**
-     * See {IERC20-totalSupply}.
-     */
-    "totalSupply()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
     /**
      * See {IERC20-transfer}. Requirements: - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`.
@@ -852,16 +1001,7 @@ export class MELD extends Contract {
     transfer(
       recipient: string,
       amount: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC20-transfer}. Requirements: - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`.
-     */
-    "transfer(address,uint256)"(
-      recipient: string,
-      amount: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -871,33 +1011,7 @@ export class MELD extends Contract {
       sender: string,
       recipient: string,
       amount: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC20-transferFrom}. Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20}. Requirements: - `sender` and `recipient` cannot be the zero address. - `sender` must have a balance of at least `amount`. - the caller must have allowance for ``sender``'s tokens of at least `amount`.
-     */
-    "transferFrom(address,address,uint256)"(
-      sender: string,
-      recipient: string,
-      amount: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
-     */
-    transferOwnership(
-      newOwner: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
-     */
-    "transferOwnership(address)"(
-      newOwner: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -905,15 +1019,7 @@ export class MELD extends Contract {
      */
     upgradeTo(
       newImplementation: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-     */
-    "upgradeTo(address)"(
-      newImplementation: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -921,29 +1027,225 @@ export class MELD extends Contract {
      */
     upgradeToAndCall(
       newImplementation: string,
-      data: Arrayish,
-      overrides?: UnsignedTransaction
+      data: BytesLike,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+
+    initialize(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    pause(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    unpause(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    test(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    setMinterRole(
+      minter: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    safeMint(
+      amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+  };
+
+  populateTransaction: {
+    DEFAULT_ADMIN_ROLE(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    MINTER_ROLE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC20-allowance}.
+     */
+    allowance(
+      owner: string,
+      spender: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC20-approve}. Requirements: - `spender` cannot be the zero address.
+     */
+    approve(
+      spender: string,
+      amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC20-balanceOf}.
+     */
+    balanceOf(
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless this function is overridden; NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}.
+     */
+    decimals(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    /**
+     * Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`.
+     */
+    decreaseAllowance(
+      spender: string,
+      subtractedValue: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
+     */
+    getRoleAdmin(
+      role: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
+     */
+    grantRole(
+      role: BytesLike,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Returns `true` if `account` has been granted `role`.
+     */
+    hasRole(
+      role: BytesLike,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address.
+     */
+    increaseAllowance(
+      spender: string,
+      addedValue: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Returns the name of the token.
+     */
+    name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    /**
+     * Returns true if the contract is paused, and false otherwise.
+     */
+    paused(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    /**
+     * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
+     */
+    renounceRole(
+      role: BytesLike,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
+     */
+    revokeRole(
+      role: BytesLike,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC165-supportsInterface}.
+     */
+    supportsInterface(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Returns the symbol of the token, usually a shorter version of the name.
+     */
+    symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC20-totalSupply}.
+     */
+    totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC20-transfer}. Requirements: - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`.
+     */
+    transfer(
+      recipient: string,
+      amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC20-transferFrom}. Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20}. Requirements: - `sender` and `recipient` cannot be the zero address. - `sender` must have a balance of at least `amount`. - the caller must have allowance for ``sender``'s tokens of at least `amount`.
+     */
+    transferFrom(
+      sender: string,
+      recipient: string,
+      amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
+     */
+    upgradeTo(
+      newImplementation: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
     /**
      * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
      */
-    "upgradeToAndCall(address,bytes)"(
+    upgradeToAndCall(
       newImplementation: string,
-      data: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+      data: BytesLike,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
-    initialize(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    initialize(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
-    "initialize()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    pause(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
-    pause(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    unpause(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
-    "pause()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    test(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
-    unpause(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    setMinterRole(
+      minter: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
-    "unpause()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    safeMint(
+      amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
   };
 }

@@ -2,51 +2,93 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, ContractTransaction, EventFilter, Signer } from "ethers";
-import { Listener, Provider } from "ethers/providers";
-import { Arrayish, BigNumber, BigNumberish, Interface } from "ethers/utils";
-import { UnsignedTransaction } from "ethers/utils/transaction";
-import { TypedEventDescription, TypedFunctionDescription } from ".";
+import {
+  ethers,
+  EventFilter,
+  Signer,
+  BigNumber,
+  BigNumberish,
+  PopulatedTransaction,
+  BaseContract,
+  ContractTransaction,
+  Overrides,
+  PayableOverrides,
+  CallOverrides,
+} from "ethers";
+import { BytesLike } from "@ethersproject/bytes";
+import { Listener, Provider } from "@ethersproject/providers";
+import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
+import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
-interface UUPSUpgradeableInterface extends Interface {
+interface UUPSUpgradeableInterface extends ethers.utils.Interface {
   functions: {
-    upgradeTo: TypedFunctionDescription<{
-      encode([newImplementation]: [string]): string;
-    }>;
-
-    upgradeToAndCall: TypedFunctionDescription<{
-      encode([newImplementation, data]: [string, Arrayish]): string;
-    }>;
+    "upgradeTo(address)": FunctionFragment;
+    "upgradeToAndCall(address,bytes)": FunctionFragment;
   };
+
+  encodeFunctionData(functionFragment: "upgradeTo", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "upgradeToAndCall",
+    values: [string, BytesLike]
+  ): string;
+
+  decodeFunctionResult(functionFragment: "upgradeTo", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "upgradeToAndCall",
+    data: BytesLike
+  ): Result;
 
   events: {
-    AdminChanged: TypedEventDescription<{
-      encodeTopics([previousAdmin, newAdmin]: [null, null]): string[];
-    }>;
-
-    BeaconUpgraded: TypedEventDescription<{
-      encodeTopics([beacon]: [string | null]): string[];
-    }>;
-
-    Upgraded: TypedEventDescription<{
-      encodeTopics([implementation]: [string | null]): string[];
-    }>;
+    "AdminChanged(address,address)": EventFragment;
+    "BeaconUpgraded(address)": EventFragment;
+    "Upgraded(address)": EventFragment;
   };
+
+  getEvent(nameOrSignatureOrTopic: "AdminChanged"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "BeaconUpgraded"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Upgraded"): EventFragment;
 }
 
-export class UUPSUpgradeable extends Contract {
-  connect(signerOrProvider: Signer | Provider | string): UUPSUpgradeable;
-  attach(addressOrName: string): UUPSUpgradeable;
-  deployed(): Promise<UUPSUpgradeable>;
+export class UUPSUpgradeable extends BaseContract {
+  connect(signerOrProvider: Signer | Provider | string): this;
+  attach(addressOrName: string): this;
+  deployed(): Promise<this>;
 
-  on(event: EventFilter | string, listener: Listener): UUPSUpgradeable;
-  once(event: EventFilter | string, listener: Listener): UUPSUpgradeable;
-  addListener(
-    eventName: EventFilter | string,
-    listener: Listener
-  ): UUPSUpgradeable;
-  removeAllListeners(eventName: EventFilter | string): UUPSUpgradeable;
-  removeListener(eventName: any, listener: Listener): UUPSUpgradeable;
+  listeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): Array<TypedListener<EventArgsArray, EventArgsObject>>;
+  off<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  on<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  once<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeListener<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeAllListeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): this;
+
+  listeners(eventName?: string): Array<Listener>;
+  off(eventName: string, listener: Listener): this;
+  on(eventName: string, listener: Listener): this;
+  once(eventName: string, listener: Listener): this;
+  removeListener(eventName: string, listener: Listener): this;
+  removeAllListeners(eventName?: string): this;
+
+  queryFilter<EventArgsArray extends Array<any>, EventArgsObject>(
+    event: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    fromBlockOrBlockhash?: string | number | undefined,
+    toBlock?: string | number | undefined
+  ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
   interface: UUPSUpgradeableInterface;
 
@@ -56,15 +98,7 @@ export class UUPSUpgradeable extends Contract {
      */
     upgradeTo(
       newImplementation: string,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-     */
-    "upgradeTo(address)"(
-      newImplementation: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -72,17 +106,8 @@ export class UUPSUpgradeable extends Contract {
      */
     upgradeToAndCall(
       newImplementation: string,
-      data: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-     */
-    "upgradeToAndCall(address,bytes)"(
-      newImplementation: string,
-      data: Arrayish,
-      overrides?: UnsignedTransaction
+      data: BytesLike,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
   };
 
@@ -91,15 +116,7 @@ export class UUPSUpgradeable extends Contract {
    */
   upgradeTo(
     newImplementation: string,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-   */
-  "upgradeTo(address)"(
-    newImplementation: string,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -107,42 +124,54 @@ export class UUPSUpgradeable extends Contract {
    */
   upgradeToAndCall(
     newImplementation: string,
-    data: Arrayish,
-    overrides?: UnsignedTransaction
+    data: BytesLike,
+    overrides?: PayableOverrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  /**
-   * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-   */
-  "upgradeToAndCall(address,bytes)"(
-    newImplementation: string,
-    data: Arrayish,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  filters: {
-    AdminChanged(previousAdmin: null, newAdmin: null): EventFilter;
-
-    BeaconUpgraded(beacon: string | null): EventFilter;
-
-    Upgraded(implementation: string | null): EventFilter;
-  };
-
-  estimate: {
+  callStatic: {
     /**
      * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
      */
     upgradeTo(
       newImplementation: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+      overrides?: CallOverrides
+    ): Promise<void>;
 
+    /**
+     * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
+     */
+    upgradeToAndCall(
+      newImplementation: string,
+      data: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<void>;
+  };
+
+  filters: {
+    AdminChanged(
+      previousAdmin?: null,
+      newAdmin?: null
+    ): TypedEventFilter<
+      [string, string],
+      { previousAdmin: string; newAdmin: string }
+    >;
+
+    BeaconUpgraded(
+      beacon?: string | null
+    ): TypedEventFilter<[string], { beacon: string }>;
+
+    Upgraded(
+      implementation?: string | null
+    ): TypedEventFilter<[string], { implementation: string }>;
+  };
+
+  estimateGas: {
     /**
      * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
      */
-    "upgradeTo(address)"(
+    upgradeTo(
       newImplementation: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -150,17 +179,27 @@ export class UUPSUpgradeable extends Contract {
      */
     upgradeToAndCall(
       newImplementation: string,
-      data: Arrayish,
-      overrides?: UnsignedTransaction
+      data: BytesLike,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+  };
+
+  populateTransaction: {
+    /**
+     * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
+     */
+    upgradeTo(
+      newImplementation: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
     /**
      * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
      */
-    "upgradeToAndCall(address,bytes)"(
+    upgradeToAndCall(
       newImplementation: string,
-      data: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+      data: BytesLike,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
   };
 }

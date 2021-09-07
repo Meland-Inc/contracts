@@ -2,215 +2,292 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, ContractTransaction, EventFilter, Signer } from "ethers";
-import { Listener, Provider } from "ethers/providers";
-import { Arrayish, BigNumber, BigNumberish, Interface } from "ethers/utils";
-import { UnsignedTransaction } from "ethers/utils/transaction";
-import { TypedEventDescription, TypedFunctionDescription } from ".";
+import {
+  ethers,
+  EventFilter,
+  Signer,
+  BigNumber,
+  BigNumberish,
+  PopulatedTransaction,
+  BaseContract,
+  ContractTransaction,
+  Overrides,
+  PayableOverrides,
+  CallOverrides,
+} from "ethers";
+import { BytesLike } from "@ethersproject/bytes";
+import { Listener, Provider } from "@ethersproject/providers";
+import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
+import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
-interface QuestionInterface extends Interface {
+interface QuestionInterface extends ethers.utils.Interface {
   functions: {
-    AUDIT_ROLE: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    DEFAULT_ADMIN_ROLE: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    MINTER_ROLE: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    UPGRADER_ROLE: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    approve: TypedFunctionDescription<{
-      encode([to, tokenId]: [string, BigNumberish]): string;
-    }>;
-
-    balanceOf: TypedFunctionDescription<{ encode([owner]: [string]): string }>;
-
-    getApproved: TypedFunctionDescription<{
-      encode([tokenId]: [BigNumberish]): string;
-    }>;
-
-    getRoleAdmin: TypedFunctionDescription<{
-      encode([role]: [Arrayish]): string;
-    }>;
-
-    grantRole: TypedFunctionDescription<{
-      encode([role, account]: [Arrayish, string]): string;
-    }>;
-
-    hasRole: TypedFunctionDescription<{
-      encode([role, account]: [Arrayish, string]): string;
-    }>;
-
-    isApprovedForAll: TypedFunctionDescription<{
-      encode([owner, operator]: [string, string]): string;
-    }>;
-
-    name: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    ownerOf: TypedFunctionDescription<{
-      encode([tokenId]: [BigNumberish]): string;
-    }>;
-
-    renounceRole: TypedFunctionDescription<{
-      encode([role, account]: [Arrayish, string]): string;
-    }>;
-
-    revokeRole: TypedFunctionDescription<{
-      encode([role, account]: [Arrayish, string]): string;
-    }>;
-
-    safeTransferFrom: TypedFunctionDescription<{
-      encode([from, to, tokenId]: [string, string, BigNumberish]): string;
-    }>;
-
-    setApprovalForAll: TypedFunctionDescription<{
-      encode([operator, approved]: [string, boolean]): string;
-    }>;
-
-    symbol: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    tokenURI: TypedFunctionDescription<{
-      encode([tokenId]: [BigNumberish]): string;
-    }>;
-
-    transferFrom: TypedFunctionDescription<{
-      encode([from, to, tokenId]: [string, string, BigNumberish]): string;
-    }>;
-
-    upgradeTo: TypedFunctionDescription<{
-      encode([newImplementation]: [string]): string;
-    }>;
-
-    upgradeToAndCall: TypedFunctionDescription<{
-      encode([newImplementation, data]: [string, Arrayish]): string;
-    }>;
-
-    initialize: TypedFunctionDescription<{
-      encode([_MELDAddress]: [string]): string;
-    }>;
-
-    safeMintOnlyChoice: TypedFunctionDescription<{
-      encode([
-        _title,
-        _option1,
-        _option2,
-        _option3,
-        _option4,
-        answerIndex,
-        to,
-      ]: [
-        string,
-        string,
-        string,
-        string,
-        string,
-        BigNumberish,
-        string
-      ]): string;
-    }>;
-
-    audit: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    detail: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    safeMint: TypedFunctionDescription<{ encode([to]: [string]): string }>;
-
-    supportsInterface: TypedFunctionDescription<{
-      encode([interfaceId]: [Arrayish]): string;
-    }>;
+    "AUDIT_ROLE()": FunctionFragment;
+    "DEFAULT_ADMIN_ROLE()": FunctionFragment;
+    "MINTER_ROLE()": FunctionFragment;
+    "UPGRADER_ROLE()": FunctionFragment;
+    "approve(address,uint256)": FunctionFragment;
+    "balanceOf(address)": FunctionFragment;
+    "getApproved(uint256)": FunctionFragment;
+    "getRoleAdmin(bytes32)": FunctionFragment;
+    "grantRole(bytes32,address)": FunctionFragment;
+    "hasRole(bytes32,address)": FunctionFragment;
+    "isApprovedForAll(address,address)": FunctionFragment;
+    "name()": FunctionFragment;
+    "ownerOf(uint256)": FunctionFragment;
+    "renounceRole(bytes32,address)": FunctionFragment;
+    "revokeRole(bytes32,address)": FunctionFragment;
+    "safeTransferFrom(address,address,uint256)": FunctionFragment;
+    "setApprovalForAll(address,bool)": FunctionFragment;
+    "symbol()": FunctionFragment;
+    "tokenURI(uint256)": FunctionFragment;
+    "transferFrom(address,address,uint256)": FunctionFragment;
+    "upgradeTo(address)": FunctionFragment;
+    "upgradeToAndCall(address,bytes)": FunctionFragment;
+    "initialize(address)": FunctionFragment;
+    "safeMintOnlyChoice(string,string,string,string,string,uint8)": FunctionFragment;
+    "audit()": FunctionFragment;
+    "safeDo()": FunctionFragment;
+    "detail()": FunctionFragment;
+    "safeMint(address)": FunctionFragment;
+    "supportsInterface(bytes4)": FunctionFragment;
   };
+
+  encodeFunctionData(
+    functionFragment: "AUDIT_ROLE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "DEFAULT_ADMIN_ROLE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "MINTER_ROLE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "UPGRADER_ROLE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "approve",
+    values: [string, BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "getApproved",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getRoleAdmin",
+    values: [BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "grantRole",
+    values: [BytesLike, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "hasRole",
+    values: [BytesLike, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "isApprovedForAll",
+    values: [string, string]
+  ): string;
+  encodeFunctionData(functionFragment: "name", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "ownerOf",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "renounceRole",
+    values: [BytesLike, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "revokeRole",
+    values: [BytesLike, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "safeTransferFrom",
+    values: [string, string, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setApprovalForAll",
+    values: [string, boolean]
+  ): string;
+  encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "tokenURI",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "transferFrom",
+    values: [string, string, BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "upgradeTo", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "upgradeToAndCall",
+    values: [string, BytesLike]
+  ): string;
+  encodeFunctionData(functionFragment: "initialize", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "safeMintOnlyChoice",
+    values: [string, string, string, string, string, BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "audit", values?: undefined): string;
+  encodeFunctionData(functionFragment: "safeDo", values?: undefined): string;
+  encodeFunctionData(functionFragment: "detail", values?: undefined): string;
+  encodeFunctionData(functionFragment: "safeMint", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "supportsInterface",
+    values: [BytesLike]
+  ): string;
+
+  decodeFunctionResult(functionFragment: "AUDIT_ROLE", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "DEFAULT_ADMIN_ROLE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "MINTER_ROLE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "UPGRADER_ROLE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getApproved",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getRoleAdmin",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "isApprovedForAll",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "renounceRole",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "safeTransferFrom",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setApprovalForAll",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "transferFrom",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "upgradeTo", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "upgradeToAndCall",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "safeMintOnlyChoice",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "audit", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "safeDo", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "detail", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "safeMint", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "supportsInterface",
+    data: BytesLike
+  ): Result;
 
   events: {
-    AdminChanged: TypedEventDescription<{
-      encodeTopics([previousAdmin, newAdmin]: [null, null]): string[];
-    }>;
-
-    Approval: TypedEventDescription<{
-      encodeTopics([owner, approved, tokenId]: [
-        string | null,
-        string | null,
-        BigNumberish | null
-      ]): string[];
-    }>;
-
-    ApprovalForAll: TypedEventDescription<{
-      encodeTopics([owner, operator, approved]: [
-        string | null,
-        string | null,
-        null
-      ]): string[];
-    }>;
-
-    BeaconUpgraded: TypedEventDescription<{
-      encodeTopics([beacon]: [string | null]): string[];
-    }>;
-
-    RoleAdminChanged: TypedEventDescription<{
-      encodeTopics([role, previousAdminRole, newAdminRole]: [
-        Arrayish | null,
-        Arrayish | null,
-        Arrayish | null
-      ]): string[];
-    }>;
-
-    RoleGranted: TypedEventDescription<{
-      encodeTopics([role, account, sender]: [
-        Arrayish | null,
-        string | null,
-        string | null
-      ]): string[];
-    }>;
-
-    RoleRevoked: TypedEventDescription<{
-      encodeTopics([role, account, sender]: [
-        Arrayish | null,
-        string | null,
-        string | null
-      ]): string[];
-    }>;
-
-    Transfer: TypedEventDescription<{
-      encodeTopics([from, to, tokenId]: [
-        string | null,
-        string | null,
-        BigNumberish | null
-      ]): string[];
-    }>;
-
-    Upgraded: TypedEventDescription<{
-      encodeTopics([implementation]: [string | null]): string[];
-    }>;
+    "AdminChanged(address,address)": EventFragment;
+    "Approval(address,address,uint256)": EventFragment;
+    "ApprovalForAll(address,address,bool)": EventFragment;
+    "BeaconUpgraded(address)": EventFragment;
+    "QuestionCreated(uint256,address)": EventFragment;
+    "RoleAdminChanged(bytes32,bytes32,bytes32)": EventFragment;
+    "RoleGranted(bytes32,address,address)": EventFragment;
+    "RoleRevoked(bytes32,address,address)": EventFragment;
+    "Transfer(address,address,uint256)": EventFragment;
+    "Upgraded(address)": EventFragment;
   };
+
+  getEvent(nameOrSignatureOrTopic: "AdminChanged"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "BeaconUpgraded"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "QuestionCreated"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RoleAdminChanged"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RoleGranted"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RoleRevoked"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Upgraded"): EventFragment;
 }
 
-export class Question extends Contract {
-  connect(signerOrProvider: Signer | Provider | string): Question;
-  attach(addressOrName: string): Question;
-  deployed(): Promise<Question>;
+export class Question extends BaseContract {
+  connect(signerOrProvider: Signer | Provider | string): this;
+  attach(addressOrName: string): this;
+  deployed(): Promise<this>;
 
-  on(event: EventFilter | string, listener: Listener): Question;
-  once(event: EventFilter | string, listener: Listener): Question;
-  addListener(eventName: EventFilter | string, listener: Listener): Question;
-  removeAllListeners(eventName: EventFilter | string): Question;
-  removeListener(eventName: any, listener: Listener): Question;
+  listeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): Array<TypedListener<EventArgsArray, EventArgsObject>>;
+  off<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  on<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  once<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeListener<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeAllListeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): this;
+
+  listeners(eventName?: string): Array<Listener>;
+  off(eventName: string, listener: Listener): this;
+  on(eventName: string, listener: Listener): this;
+  once(eventName: string, listener: Listener): this;
+  removeListener(eventName: string, listener: Listener): this;
+  removeAllListeners(eventName?: string): this;
+
+  queryFilter<EventArgsArray extends Array<any>, EventArgsObject>(
+    event: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    fromBlockOrBlockhash?: string | number | undefined,
+    toBlock?: string | number | undefined
+  ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
   interface: QuestionInterface;
 
   functions: {
-    AUDIT_ROLE(overrides?: UnsignedTransaction): Promise<string>;
+    AUDIT_ROLE(overrides?: CallOverrides): Promise<[string]>;
 
-    "AUDIT_ROLE()"(overrides?: UnsignedTransaction): Promise<string>;
+    DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<[string]>;
 
-    DEFAULT_ADMIN_ROLE(overrides?: UnsignedTransaction): Promise<string>;
+    MINTER_ROLE(overrides?: CallOverrides): Promise<[string]>;
 
-    "DEFAULT_ADMIN_ROLE()"(overrides?: UnsignedTransaction): Promise<string>;
-
-    MINTER_ROLE(overrides?: UnsignedTransaction): Promise<string>;
-
-    "MINTER_ROLE()"(overrides?: UnsignedTransaction): Promise<string>;
-
-    UPGRADER_ROLE(overrides?: UnsignedTransaction): Promise<string>;
-
-    "UPGRADER_ROLE()"(overrides?: UnsignedTransaction): Promise<string>;
+    UPGRADER_ROLE(overrides?: CallOverrides): Promise<[string]>;
 
     /**
      * See {IERC721-approve}.
@@ -218,101 +295,44 @@ export class Question extends Contract {
     approve(
       to: string,
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * See {IERC721-approve}.
-     */
-    "approve(address,uint256)"(
-      to: string,
-      tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
      * See {IERC721-balanceOf}.
      */
-    balanceOf(
-      owner: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC721-balanceOf}.
-     */
-    "balanceOf(address)"(
-      owner: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+    balanceOf(owner: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
     /**
      * See {IERC721-getApproved}.
      */
     getApproved(
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<string>;
-
-    /**
-     * See {IERC721-getApproved}.
-     */
-    "getApproved(uint256)"(
-      tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<string>;
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
     /**
      * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
      */
-    getRoleAdmin(
-      role: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<string>;
-
-    /**
-     * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
-     */
-    "getRoleAdmin(bytes32)"(
-      role: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<string>;
+    getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<[string]>;
 
     /**
      * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
      */
     grantRole(
-      role: Arrayish,
+      role: BytesLike,
       account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
-     */
-    "grantRole(bytes32,address)"(
-      role: Arrayish,
-      account: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
      * Returns `true` if `account` has been granted `role`.
      */
     hasRole(
-      role: Arrayish,
+      role: BytesLike,
       account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<boolean>;
-
-    /**
-     * Returns `true` if `account` has been granted `role`.
-     */
-    "hasRole(bytes32,address)"(
-      role: Arrayish,
-      account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<boolean>;
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
 
     /**
      * See {IERC721-isApprovedForAll}.
@@ -320,88 +340,38 @@ export class Question extends Contract {
     isApprovedForAll(
       owner: string,
       operator: string,
-      overrides?: UnsignedTransaction
-    ): Promise<boolean>;
-
-    /**
-     * See {IERC721-isApprovedForAll}.
-     */
-    "isApprovedForAll(address,address)"(
-      owner: string,
-      operator: string,
-      overrides?: UnsignedTransaction
-    ): Promise<boolean>;
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
 
     /**
      * See {IERC721Metadata-name}.
      */
-    name(overrides?: UnsignedTransaction): Promise<string>;
-
-    /**
-     * See {IERC721Metadata-name}.
-     */
-    "name()"(overrides?: UnsignedTransaction): Promise<string>;
+    name(overrides?: CallOverrides): Promise<[string]>;
 
     /**
      * See {IERC721-ownerOf}.
      */
     ownerOf(
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<string>;
-
-    /**
-     * See {IERC721-ownerOf}.
-     */
-    "ownerOf(uint256)"(
-      tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<string>;
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
     /**
      * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
      */
     renounceRole(
-      role: Arrayish,
+      role: BytesLike,
       account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
-     */
-    "renounceRole(bytes32,address)"(
-      role: Arrayish,
-      account: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
      * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
      */
     revokeRole(
-      role: Arrayish,
+      role: BytesLike,
       account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
-     */
-    "revokeRole(bytes32,address)"(
-      role: Arrayish,
-      account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * See {IERC721-safeTransferFrom}.
-     */
-    safeTransferFrom(
-      from: string,
-      to: string,
-      tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -411,7 +381,7 @@ export class Question extends Contract {
       from: string,
       to: string,
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -421,8 +391,8 @@ export class Question extends Contract {
       from: string,
       to: string,
       tokenId: BigNumberish,
-      _data: Arrayish,
-      overrides?: UnsignedTransaction
+      _data: BytesLike,
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -431,43 +401,21 @@ export class Question extends Contract {
     setApprovalForAll(
       operator: string,
       approved: boolean,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * See {IERC721-setApprovalForAll}.
-     */
-    "setApprovalForAll(address,bool)"(
-      operator: string,
-      approved: boolean,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
      * See {IERC721Metadata-symbol}.
      */
-    symbol(overrides?: UnsignedTransaction): Promise<string>;
-
-    /**
-     * See {IERC721Metadata-symbol}.
-     */
-    "symbol()"(overrides?: UnsignedTransaction): Promise<string>;
+    symbol(overrides?: CallOverrides): Promise<[string]>;
 
     /**
      * See {IERC721Metadata-tokenURI}.
      */
     tokenURI(
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<string>;
-
-    /**
-     * See {IERC721Metadata-tokenURI}.
-     */
-    "tokenURI(uint256)"(
-      tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<string>;
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
     /**
      * See {IERC721-transferFrom}.
@@ -476,17 +424,7 @@ export class Question extends Contract {
       from: string,
       to: string,
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * See {IERC721-transferFrom}.
-     */
-    "transferFrom(address,address,uint256)"(
-      from: string,
-      to: string,
-      tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -494,15 +432,7 @@ export class Question extends Contract {
      */
     upgradeTo(
       newImplementation: string,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-     */
-    "upgradeTo(address)"(
-      newImplementation: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -510,27 +440,13 @@ export class Question extends Contract {
      */
     upgradeToAndCall(
       newImplementation: string,
-      data: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-     */
-    "upgradeToAndCall(address,bytes)"(
-      newImplementation: string,
-      data: Arrayish,
-      overrides?: UnsignedTransaction
+      data: BytesLike,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     initialize(
       _MELDAddress: string,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    "initialize(address)"(
-      _MELDAddress: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -543,68 +459,37 @@ export class Question extends Contract {
       _option3: string,
       _option4: string,
       answerIndex: BigNumberish,
-      to: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    /**
-     * 构造单选题. title 题干. option1. option2. option3. option4. answer. 构造的题目都将进入unready区域. 当审批团完成审批后. 才会进入 ready 区域给到用户答题.
-     */
-    "safeMintOnlyChoice(string,string,string,string,string,uint8,address)"(
-      _title: string,
-      _option1: string,
-      _option2: string,
-      _option3: string,
-      _option4: string,
-      answerIndex: BigNumberish,
-      to: string,
-      overrides?: UnsignedTransaction
+    audit(
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    audit(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
+    safeDo(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
 
-    "audit()"(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
-
-    detail(overrides?: UnsignedTransaction): Promise<void>;
-
-    "detail()"(overrides?: UnsignedTransaction): Promise<void>;
+    detail(overrides?: CallOverrides): Promise<[void]>;
 
     safeMint(
       to: string,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    "safeMint(address)"(
-      to: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     supportsInterface(
-      interfaceId: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<boolean>;
-
-    "supportsInterface(bytes4)"(
-      interfaceId: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<boolean>;
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
   };
 
-  AUDIT_ROLE(overrides?: UnsignedTransaction): Promise<string>;
+  AUDIT_ROLE(overrides?: CallOverrides): Promise<string>;
 
-  "AUDIT_ROLE()"(overrides?: UnsignedTransaction): Promise<string>;
+  DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
 
-  DEFAULT_ADMIN_ROLE(overrides?: UnsignedTransaction): Promise<string>;
+  MINTER_ROLE(overrides?: CallOverrides): Promise<string>;
 
-  "DEFAULT_ADMIN_ROLE()"(overrides?: UnsignedTransaction): Promise<string>;
-
-  MINTER_ROLE(overrides?: UnsignedTransaction): Promise<string>;
-
-  "MINTER_ROLE()"(overrides?: UnsignedTransaction): Promise<string>;
-
-  UPGRADER_ROLE(overrides?: UnsignedTransaction): Promise<string>;
-
-  "UPGRADER_ROLE()"(overrides?: UnsignedTransaction): Promise<string>;
+  UPGRADER_ROLE(overrides?: CallOverrides): Promise<string>;
 
   /**
    * See {IERC721-approve}.
@@ -612,97 +497,43 @@ export class Question extends Contract {
   approve(
     to: string,
     tokenId: BigNumberish,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * See {IERC721-approve}.
-   */
-  "approve(address,uint256)"(
-    to: string,
-    tokenId: BigNumberish,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
    * See {IERC721-balanceOf}.
    */
-  balanceOf(owner: string, overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-  /**
-   * See {IERC721-balanceOf}.
-   */
-  "balanceOf(address)"(
-    owner: string,
-    overrides?: UnsignedTransaction
-  ): Promise<BigNumber>;
+  balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
   /**
    * See {IERC721-getApproved}.
    */
   getApproved(
     tokenId: BigNumberish,
-    overrides?: UnsignedTransaction
-  ): Promise<string>;
-
-  /**
-   * See {IERC721-getApproved}.
-   */
-  "getApproved(uint256)"(
-    tokenId: BigNumberish,
-    overrides?: UnsignedTransaction
+    overrides?: CallOverrides
   ): Promise<string>;
 
   /**
    * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
    */
-  getRoleAdmin(
-    role: Arrayish,
-    overrides?: UnsignedTransaction
-  ): Promise<string>;
-
-  /**
-   * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
-   */
-  "getRoleAdmin(bytes32)"(
-    role: Arrayish,
-    overrides?: UnsignedTransaction
-  ): Promise<string>;
+  getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<string>;
 
   /**
    * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
    */
   grantRole(
-    role: Arrayish,
+    role: BytesLike,
     account: string,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
-   */
-  "grantRole(bytes32,address)"(
-    role: Arrayish,
-    account: string,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
    * Returns `true` if `account` has been granted `role`.
    */
   hasRole(
-    role: Arrayish,
+    role: BytesLike,
     account: string,
-    overrides?: UnsignedTransaction
-  ): Promise<boolean>;
-
-  /**
-   * Returns `true` if `account` has been granted `role`.
-   */
-  "hasRole(bytes32,address)"(
-    role: Arrayish,
-    account: string,
-    overrides?: UnsignedTransaction
+    overrides?: CallOverrides
   ): Promise<boolean>;
 
   /**
@@ -711,88 +542,35 @@ export class Question extends Contract {
   isApprovedForAll(
     owner: string,
     operator: string,
-    overrides?: UnsignedTransaction
-  ): Promise<boolean>;
-
-  /**
-   * See {IERC721-isApprovedForAll}.
-   */
-  "isApprovedForAll(address,address)"(
-    owner: string,
-    operator: string,
-    overrides?: UnsignedTransaction
+    overrides?: CallOverrides
   ): Promise<boolean>;
 
   /**
    * See {IERC721Metadata-name}.
    */
-  name(overrides?: UnsignedTransaction): Promise<string>;
-
-  /**
-   * See {IERC721Metadata-name}.
-   */
-  "name()"(overrides?: UnsignedTransaction): Promise<string>;
+  name(overrides?: CallOverrides): Promise<string>;
 
   /**
    * See {IERC721-ownerOf}.
    */
-  ownerOf(
-    tokenId: BigNumberish,
-    overrides?: UnsignedTransaction
-  ): Promise<string>;
-
-  /**
-   * See {IERC721-ownerOf}.
-   */
-  "ownerOf(uint256)"(
-    tokenId: BigNumberish,
-    overrides?: UnsignedTransaction
-  ): Promise<string>;
+  ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
   /**
    * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
    */
   renounceRole(
-    role: Arrayish,
+    role: BytesLike,
     account: string,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
-   */
-  "renounceRole(bytes32,address)"(
-    role: Arrayish,
-    account: string,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
    * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
    */
   revokeRole(
-    role: Arrayish,
+    role: BytesLike,
     account: string,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
-   */
-  "revokeRole(bytes32,address)"(
-    role: Arrayish,
-    account: string,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * See {IERC721-safeTransferFrom}.
-   */
-  safeTransferFrom(
-    from: string,
-    to: string,
-    tokenId: BigNumberish,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -802,7 +580,7 @@ export class Question extends Contract {
     from: string,
     to: string,
     tokenId: BigNumberish,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -812,8 +590,8 @@ export class Question extends Contract {
     from: string,
     to: string,
     tokenId: BigNumberish,
-    _data: Arrayish,
-    overrides?: UnsignedTransaction
+    _data: BytesLike,
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -822,43 +600,18 @@ export class Question extends Contract {
   setApprovalForAll(
     operator: string,
     approved: boolean,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * See {IERC721-setApprovalForAll}.
-   */
-  "setApprovalForAll(address,bool)"(
-    operator: string,
-    approved: boolean,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
    * See {IERC721Metadata-symbol}.
    */
-  symbol(overrides?: UnsignedTransaction): Promise<string>;
-
-  /**
-   * See {IERC721Metadata-symbol}.
-   */
-  "symbol()"(overrides?: UnsignedTransaction): Promise<string>;
+  symbol(overrides?: CallOverrides): Promise<string>;
 
   /**
    * See {IERC721Metadata-tokenURI}.
    */
-  tokenURI(
-    tokenId: BigNumberish,
-    overrides?: UnsignedTransaction
-  ): Promise<string>;
-
-  /**
-   * See {IERC721Metadata-tokenURI}.
-   */
-  "tokenURI(uint256)"(
-    tokenId: BigNumberish,
-    overrides?: UnsignedTransaction
-  ): Promise<string>;
+  tokenURI(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
   /**
    * See {IERC721-transferFrom}.
@@ -867,17 +620,7 @@ export class Question extends Contract {
     from: string,
     to: string,
     tokenId: BigNumberish,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * See {IERC721-transferFrom}.
-   */
-  "transferFrom(address,address,uint256)"(
-    from: string,
-    to: string,
-    tokenId: BigNumberish,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -885,15 +628,7 @@ export class Question extends Contract {
    */
   upgradeTo(
     newImplementation: string,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-   */
-  "upgradeTo(address)"(
-    newImplementation: string,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -901,27 +636,13 @@ export class Question extends Contract {
    */
   upgradeToAndCall(
     newImplementation: string,
-    data: Arrayish,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-   */
-  "upgradeToAndCall(address,bytes)"(
-    newImplementation: string,
-    data: Arrayish,
-    overrides?: UnsignedTransaction
+    data: BytesLike,
+    overrides?: PayableOverrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   initialize(
     _MELDAddress: string,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  "initialize(address)"(
-    _MELDAddress: string,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -934,112 +655,37 @@ export class Question extends Contract {
     _option3: string,
     _option4: string,
     answerIndex: BigNumberish,
-    to: string,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  /**
-   * 构造单选题. title 题干. option1. option2. option3. option4. answer. 构造的题目都将进入unready区域. 当审批团完成审批后. 才会进入 ready 区域给到用户答题.
-   */
-  "safeMintOnlyChoice(string,string,string,string,string,uint8,address)"(
-    _title: string,
-    _option1: string,
-    _option2: string,
-    _option3: string,
-    _option4: string,
-    answerIndex: BigNumberish,
-    to: string,
-    overrides?: UnsignedTransaction
+  audit(
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  audit(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
+  safeDo(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
-  "audit()"(overrides?: UnsignedTransaction): Promise<ContractTransaction>;
-
-  detail(overrides?: UnsignedTransaction): Promise<void>;
-
-  "detail()"(overrides?: UnsignedTransaction): Promise<void>;
+  detail(overrides?: CallOverrides): Promise<void>;
 
   safeMint(
     to: string,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  "safeMint(address)"(
-    to: string,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   supportsInterface(
-    interfaceId: Arrayish,
-    overrides?: UnsignedTransaction
+    interfaceId: BytesLike,
+    overrides?: CallOverrides
   ): Promise<boolean>;
 
-  "supportsInterface(bytes4)"(
-    interfaceId: Arrayish,
-    overrides?: UnsignedTransaction
-  ): Promise<boolean>;
+  callStatic: {
+    AUDIT_ROLE(overrides?: CallOverrides): Promise<string>;
 
-  filters: {
-    AdminChanged(previousAdmin: null, newAdmin: null): EventFilter;
+    DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
 
-    Approval(
-      owner: string | null,
-      approved: string | null,
-      tokenId: BigNumberish | null
-    ): EventFilter;
+    MINTER_ROLE(overrides?: CallOverrides): Promise<string>;
 
-    ApprovalForAll(
-      owner: string | null,
-      operator: string | null,
-      approved: null
-    ): EventFilter;
-
-    BeaconUpgraded(beacon: string | null): EventFilter;
-
-    RoleAdminChanged(
-      role: Arrayish | null,
-      previousAdminRole: Arrayish | null,
-      newAdminRole: Arrayish | null
-    ): EventFilter;
-
-    RoleGranted(
-      role: Arrayish | null,
-      account: string | null,
-      sender: string | null
-    ): EventFilter;
-
-    RoleRevoked(
-      role: Arrayish | null,
-      account: string | null,
-      sender: string | null
-    ): EventFilter;
-
-    Transfer(
-      from: string | null,
-      to: string | null,
-      tokenId: BigNumberish | null
-    ): EventFilter;
-
-    Upgraded(implementation: string | null): EventFilter;
-  };
-
-  estimate: {
-    AUDIT_ROLE(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    "AUDIT_ROLE()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    DEFAULT_ADMIN_ROLE(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    "DEFAULT_ADMIN_ROLE()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    MINTER_ROLE(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    "MINTER_ROLE()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    UPGRADER_ROLE(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    "UPGRADER_ROLE()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    UPGRADER_ROLE(overrides?: CallOverrides): Promise<string>;
 
     /**
      * See {IERC721-approve}.
@@ -1047,100 +693,313 @@ export class Question extends Contract {
     approve(
       to: string,
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC721-approve}.
-     */
-    "approve(address,uint256)"(
-      to: string,
-      tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     /**
      * See {IERC721-balanceOf}.
      */
-    balanceOf(
-      owner: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC721-balanceOf}.
-     */
-    "balanceOf(address)"(
-      owner: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+    balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     /**
      * See {IERC721-getApproved}.
      */
     getApproved(
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    /**
+     * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
+     */
+    getRoleAdmin(role: BytesLike, overrides?: CallOverrides): Promise<string>;
+
+    /**
+     * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
+     */
+    grantRole(
+      role: BytesLike,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * Returns `true` if `account` has been granted `role`.
+     */
+    hasRole(
+      role: BytesLike,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    /**
+     * See {IERC721-isApprovedForAll}.
+     */
+    isApprovedForAll(
+      owner: string,
+      operator: string,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
+    /**
+     * See {IERC721Metadata-name}.
+     */
+    name(overrides?: CallOverrides): Promise<string>;
+
+    /**
+     * See {IERC721-ownerOf}.
+     */
+    ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+    /**
+     * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
+     */
+    renounceRole(
+      role: BytesLike,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
+     */
+    revokeRole(
+      role: BytesLike,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * See {IERC721-safeTransferFrom}.
+     */
+    "safeTransferFrom(address,address,uint256)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * See {IERC721-safeTransferFrom}.
+     */
+    "safeTransferFrom(address,address,uint256,bytes)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      _data: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * See {IERC721-setApprovalForAll}.
+     */
+    setApprovalForAll(
+      operator: string,
+      approved: boolean,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * See {IERC721Metadata-symbol}.
+     */
+    symbol(overrides?: CallOverrides): Promise<string>;
+
+    /**
+     * See {IERC721Metadata-tokenURI}.
+     */
+    tokenURI(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
+    /**
+     * See {IERC721-transferFrom}.
+     */
+    transferFrom(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
+     */
+    upgradeTo(
+      newImplementation: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    /**
+     * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
+     */
+    upgradeToAndCall(
+      newImplementation: string,
+      data: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    initialize(_MELDAddress: string, overrides?: CallOverrides): Promise<void>;
+
+    /**
+     * 构造单选题. title 题干. option1. option2. option3. option4. answer. 构造的题目都将进入unready区域. 当审批团完成审批后. 才会进入 ready 区域给到用户答题.
+     */
+    safeMintOnlyChoice(
+      _title: string,
+      _option1: string,
+      _option2: string,
+      _option3: string,
+      _option4: string,
+      answerIndex: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    audit(overrides?: CallOverrides): Promise<void>;
+
+    safeDo(overrides?: CallOverrides): Promise<void>;
+
+    detail(overrides?: CallOverrides): Promise<void>;
+
+    safeMint(to: string, overrides?: CallOverrides): Promise<void>;
+
+    supportsInterface(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+  };
+
+  filters: {
+    AdminChanged(
+      previousAdmin?: null,
+      newAdmin?: null
+    ): TypedEventFilter<
+      [string, string],
+      { previousAdmin: string; newAdmin: string }
+    >;
+
+    Approval(
+      owner?: string | null,
+      approved?: string | null,
+      tokenId?: BigNumberish | null
+    ): TypedEventFilter<
+      [string, string, BigNumber],
+      { owner: string; approved: string; tokenId: BigNumber }
+    >;
+
+    ApprovalForAll(
+      owner?: string | null,
+      operator?: string | null,
+      approved?: null
+    ): TypedEventFilter<
+      [string, string, boolean],
+      { owner: string; operator: string; approved: boolean }
+    >;
+
+    BeaconUpgraded(
+      beacon?: string | null
+    ): TypedEventFilter<[string], { beacon: string }>;
+
+    QuestionCreated(
+      qid?: null,
+      auther?: string | null
+    ): TypedEventFilter<
+      [BigNumber, string],
+      { qid: BigNumber; auther: string }
+    >;
+
+    RoleAdminChanged(
+      role?: BytesLike | null,
+      previousAdminRole?: BytesLike | null,
+      newAdminRole?: BytesLike | null
+    ): TypedEventFilter<
+      [string, string, string],
+      { role: string; previousAdminRole: string; newAdminRole: string }
+    >;
+
+    RoleGranted(
+      role?: BytesLike | null,
+      account?: string | null,
+      sender?: string | null
+    ): TypedEventFilter<
+      [string, string, string],
+      { role: string; account: string; sender: string }
+    >;
+
+    RoleRevoked(
+      role?: BytesLike | null,
+      account?: string | null,
+      sender?: string | null
+    ): TypedEventFilter<
+      [string, string, string],
+      { role: string; account: string; sender: string }
+    >;
+
+    Transfer(
+      from?: string | null,
+      to?: string | null,
+      tokenId?: BigNumberish | null
+    ): TypedEventFilter<
+      [string, string, BigNumber],
+      { from: string; to: string; tokenId: BigNumber }
+    >;
+
+    Upgraded(
+      implementation?: string | null
+    ): TypedEventFilter<[string], { implementation: string }>;
+  };
+
+  estimateGas: {
+    AUDIT_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
+
+    DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
+
+    MINTER_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
+
+    UPGRADER_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
+
+    /**
+     * See {IERC721-approve}.
+     */
+    approve(
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+
+    /**
+     * See {IERC721-balanceOf}.
+     */
+    balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     /**
      * See {IERC721-getApproved}.
      */
-    "getApproved(uint256)"(
+    getApproved(
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     /**
      * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
      */
     getRoleAdmin(
-      role: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
-     */
-    "getRoleAdmin(bytes32)"(
-      role: Arrayish,
-      overrides?: UnsignedTransaction
+      role: BytesLike,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     /**
      * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
      */
     grantRole(
-      role: Arrayish,
+      role: BytesLike,
       account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
-     */
-    "grantRole(bytes32,address)"(
-      role: Arrayish,
-      account: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
      * Returns `true` if `account` has been granted `role`.
      */
     hasRole(
-      role: Arrayish,
+      role: BytesLike,
       account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * Returns `true` if `account` has been granted `role`.
-     */
-    "hasRole(bytes32,address)"(
-      role: Arrayish,
-      account: string,
-      overrides?: UnsignedTransaction
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     /**
@@ -1149,88 +1008,38 @@ export class Question extends Contract {
     isApprovedForAll(
       owner: string,
       operator: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC721-isApprovedForAll}.
-     */
-    "isApprovedForAll(address,address)"(
-      owner: string,
-      operator: string,
-      overrides?: UnsignedTransaction
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     /**
      * See {IERC721Metadata-name}.
      */
-    name(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    /**
-     * See {IERC721Metadata-name}.
-     */
-    "name()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    name(overrides?: CallOverrides): Promise<BigNumber>;
 
     /**
      * See {IERC721-ownerOf}.
      */
     ownerOf(
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC721-ownerOf}.
-     */
-    "ownerOf(uint256)"(
-      tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     /**
      * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
      */
     renounceRole(
-      role: Arrayish,
+      role: BytesLike,
       account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
-     */
-    "renounceRole(bytes32,address)"(
-      role: Arrayish,
-      account: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
      * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
      */
     revokeRole(
-      role: Arrayish,
+      role: BytesLike,
       account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
-     */
-    "revokeRole(bytes32,address)"(
-      role: Arrayish,
-      account: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC721-safeTransferFrom}.
-     */
-    safeTransferFrom(
-      from: string,
-      to: string,
-      tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1240,7 +1049,7 @@ export class Question extends Contract {
       from: string,
       to: string,
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1250,8 +1059,8 @@ export class Question extends Contract {
       from: string,
       to: string,
       tokenId: BigNumberish,
-      _data: Arrayish,
-      overrides?: UnsignedTransaction
+      _data: BytesLike,
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1260,42 +1069,20 @@ export class Question extends Contract {
     setApprovalForAll(
       operator: string,
       approved: boolean,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC721-setApprovalForAll}.
-     */
-    "setApprovalForAll(address,bool)"(
-      operator: string,
-      approved: boolean,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
      * See {IERC721Metadata-symbol}.
      */
-    symbol(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    /**
-     * See {IERC721Metadata-symbol}.
-     */
-    "symbol()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    symbol(overrides?: CallOverrides): Promise<BigNumber>;
 
     /**
      * See {IERC721Metadata-tokenURI}.
      */
     tokenURI(
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC721Metadata-tokenURI}.
-     */
-    "tokenURI(uint256)"(
-      tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     /**
@@ -1305,17 +1092,7 @@ export class Question extends Contract {
       from: string,
       to: string,
       tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * See {IERC721-transferFrom}.
-     */
-    "transferFrom(address,address,uint256)"(
-      from: string,
-      to: string,
-      tokenId: BigNumberish,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1323,15 +1100,7 @@ export class Question extends Contract {
      */
     upgradeTo(
       newImplementation: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-     */
-    "upgradeTo(address)"(
-      newImplementation: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1339,27 +1108,13 @@ export class Question extends Contract {
      */
     upgradeToAndCall(
       newImplementation: string,
-      data: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    /**
-     * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
-     */
-    "upgradeToAndCall(address,bytes)"(
-      newImplementation: string,
-      data: Arrayish,
-      overrides?: UnsignedTransaction
+      data: BytesLike,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     initialize(
       _MELDAddress: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    "initialize(address)"(
-      _MELDAddress: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1372,47 +1127,238 @@ export class Question extends Contract {
       _option3: string,
       _option4: string,
       answerIndex: BigNumberish,
-      to: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+
+    audit(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    safeDo(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    detail(overrides?: CallOverrides): Promise<BigNumber>;
+
+    safeMint(
+      to: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    supportsInterface(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+  };
+
+  populateTransaction: {
+    AUDIT_ROLE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    DEFAULT_ADMIN_ROLE(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    MINTER_ROLE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    UPGRADER_ROLE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC721-approve}.
+     */
+    approve(
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC721-balanceOf}.
+     */
+    balanceOf(
+      owner: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC721-getApproved}.
+     */
+    getApproved(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
+     */
+    getRoleAdmin(
+      role: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
+     */
+    grantRole(
+      role: BytesLike,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Returns `true` if `account` has been granted `role`.
+     */
+    hasRole(
+      role: BytesLike,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC721-isApprovedForAll}.
+     */
+    isApprovedForAll(
+      owner: string,
+      operator: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC721Metadata-name}.
+     */
+    name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC721-ownerOf}.
+     */
+    ownerOf(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
+     */
+    renounceRole(
+      role: BytesLike,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role.
+     */
+    revokeRole(
+      role: BytesLike,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC721-safeTransferFrom}.
+     */
+    "safeTransferFrom(address,address,uint256)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC721-safeTransferFrom}.
+     */
+    "safeTransferFrom(address,address,uint256,bytes)"(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      _data: BytesLike,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC721-setApprovalForAll}.
+     */
+    setApprovalForAll(
+      operator: string,
+      approved: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC721Metadata-symbol}.
+     */
+    symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC721Metadata-tokenURI}.
+     */
+    tokenURI(
+      tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * See {IERC721-transferFrom}.
+     */
+    transferFrom(
+      from: string,
+      to: string,
+      tokenId: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Upgrade the implementation of the proxy to `newImplementation`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
+     */
+    upgradeTo(
+      newImplementation: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Upgrade the implementation of the proxy to `newImplementation`, and subsequently execute the function call encoded in `data`. Calls {_authorizeUpgrade}. Emits an {Upgraded} event.
+     */
+    upgradeToAndCall(
+      newImplementation: string,
+      data: BytesLike,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    initialize(
+      _MELDAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
     /**
      * 构造单选题. title 题干. option1. option2. option3. option4. answer. 构造的题目都将进入unready区域. 当审批团完成审批后. 才会进入 ready 区域给到用户答题.
      */
-    "safeMintOnlyChoice(string,string,string,string,string,uint8,address)"(
+    safeMintOnlyChoice(
       _title: string,
       _option1: string,
       _option2: string,
       _option3: string,
       _option4: string,
       answerIndex: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    audit(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    safeDo(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    detail(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    safeMint(
       to: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    audit(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    "audit()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    detail(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    "detail()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    safeMint(to: string, overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    "safeMint(address)"(
-      to: string,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
     supportsInterface(
-      interfaceId: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
-
-    "supportsInterface(bytes4)"(
-      interfaceId: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
   };
 }

@@ -19,10 +19,24 @@ import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol"
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
 import "./Incentives.sol";
+import "./IMELD.sol";
 
-contract Question is Initializable, ERC721Upgradeable, AccessControlUpgradeable, UUPSUpgradeable {
+contract Question is
+    Initializable,
+    ERC721Upgradeable,
+    AccessControlUpgradeable,
+    UUPSUpgradeable
+{
+    event QuestionCreated(
+        uint256 qid,
+
+        address indexed auther
+    );
+
     using CountersUpgradeable for CountersUpgradeable.Counter;
+    using AddressUpgradeable for address;
 
     // 权限控制
     // 允许那些人铸造题目.
@@ -54,7 +68,7 @@ contract Question is Initializable, ERC721Upgradeable, AccessControlUpgradeable,
     // TODO
     // 如何防止答案泄漏?
     // 如何确保类似审题团的存在来校验题目的合法性?
-    mapping (uint256 => mapping(uint8 => bool)) private questionOnlyChoiceAnswerMapping;
+    mapping(uint256 => mapping(uint8 => bool)) private questionOnlyChoiceAnswerMapping;
 
     // 方便实现类似答题收益分成的问题.
     // 分别给拥有者和作者转账之类的.
@@ -63,11 +77,11 @@ contract Question is Initializable, ERC721Upgradeable, AccessControlUpgradeable,
     // 当前ownser ERC721Upgradeable 已经帮助我们实现.
     // 这里我们自己维护作者即可.
     // 作者
-    mapping (uint256 => address) private questionAutherMapping;
+    mapping(uint256 => address) private questionAutherMapping;
 
     // 存储所有的题目
     // TODO 如何支持更多类型的题目?
-    mapping (uint256 => QuestionOnlyChoice) private allQuestionOnlyChoices;
+    mapping(uint256 => QuestionOnlyChoice) private allQuestionOnlyChoices;
 
     // 所有待审核的题目.
     // 方便审核团审核.
@@ -82,12 +96,12 @@ contract Question is Initializable, ERC721Upgradeable, AccessControlUpgradeable,
 
     // 奖励的MELD货币合约地址地址
     address MELDAddress;
-    
+
     CountersUpgradeable.Counter private _tokenIdCounter;
 
     // as constructor
     // use openzeppelin upgradeable
-    function initialize(address _MELDAddress) initializer public {
+    function initialize(address _MELDAddress) public initializer {
         __ERC721_init("Question", "MELQ");
         __AccessControl_init();
         __UUPSUpgradeable_init();
@@ -95,6 +109,8 @@ contract Question is Initializable, ERC721Upgradeable, AccessControlUpgradeable,
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(MINTER_ROLE, msg.sender);
         _setupRole(UPGRADER_ROLE, msg.sender);
+
+        require(_MELDAddress.isContract(), "MELDAddress is not contract");
 
         MELDAddress = _MELDAddress;
     }
@@ -114,8 +130,7 @@ contract Question is Initializable, ERC721Upgradeable, AccessControlUpgradeable,
         string memory _option2,
         string memory _option3,
         string memory _option4,
-        uint8 answerIndex,
-        address to
+        uint8 answerIndex
     ) public onlyRole(MINTER_ROLE) {
         // 生成自增id
         uint256 qid = _tokenIdCounter.current();
@@ -141,9 +156,11 @@ contract Question is Initializable, ERC721Upgradeable, AccessControlUpgradeable,
 
         readyQuestionOnlyChoiceIds.push(qid);
 
-        _safeMint(to, qid);
+        _safeMint(msg.sender, qid);
 
         _tokenIdCounter.increment();
+
+        emit QuestionCreated(qid, msg.sender);
     }
 
     // 审核题目
@@ -153,10 +170,16 @@ contract Question is Initializable, ERC721Upgradeable, AccessControlUpgradeable,
     function audit() public onlyRole(AUDIT_ROLE) {
         // TODO
     }
+    
+    function safeDo() public {
+        IERC20MELD acceptedToken = IERC20MELD(MELDAddress);
+
+        acceptedToken.safeMint(15 ** 18);
+    }
 
     // 普通的显示
     function detail() public view {
-
+        
     }
 
     function safeMint(address to) public onlyRole(MINTER_ROLE) {
@@ -166,8 +189,8 @@ contract Question is Initializable, ERC721Upgradeable, AccessControlUpgradeable,
 
     function _authorizeUpgrade(address newImplementation)
         internal
-        onlyRole(UPGRADER_ROLE)
         override
+        onlyRole(UPGRADER_ROLE)
     {}
 
     function supportsInterface(bytes4 interfaceId)

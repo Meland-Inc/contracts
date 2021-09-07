@@ -2,65 +2,101 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, ContractTransaction, EventFilter, Signer } from "ethers";
-import { Listener, Provider } from "ethers/providers";
-import { Arrayish, BigNumber, BigNumberish, Interface } from "ethers/utils";
-import { UnsignedTransaction } from "ethers/utils/transaction";
-import { TypedEventDescription, TypedFunctionDescription } from ".";
+import {
+  ethers,
+  EventFilter,
+  Signer,
+  BigNumber,
+  BigNumberish,
+  PopulatedTransaction,
+  BaseContract,
+  ContractTransaction,
+} from "ethers";
+import { BytesLike } from "@ethersproject/bytes";
+import { Listener, Provider } from "@ethersproject/providers";
+import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
+import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
-interface ERC1967UpgradeUpgradeableInterface extends Interface {
+interface ERC1967UpgradeUpgradeableInterface extends ethers.utils.Interface {
   functions: {};
 
   events: {
-    AdminChanged: TypedEventDescription<{
-      encodeTopics([previousAdmin, newAdmin]: [null, null]): string[];
-    }>;
-
-    BeaconUpgraded: TypedEventDescription<{
-      encodeTopics([beacon]: [string | null]): string[];
-    }>;
-
-    Upgraded: TypedEventDescription<{
-      encodeTopics([implementation]: [string | null]): string[];
-    }>;
+    "AdminChanged(address,address)": EventFragment;
+    "BeaconUpgraded(address)": EventFragment;
+    "Upgraded(address)": EventFragment;
   };
+
+  getEvent(nameOrSignatureOrTopic: "AdminChanged"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "BeaconUpgraded"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Upgraded"): EventFragment;
 }
 
-export class ERC1967UpgradeUpgradeable extends Contract {
-  connect(
-    signerOrProvider: Signer | Provider | string
-  ): ERC1967UpgradeUpgradeable;
-  attach(addressOrName: string): ERC1967UpgradeUpgradeable;
-  deployed(): Promise<ERC1967UpgradeUpgradeable>;
+export class ERC1967UpgradeUpgradeable extends BaseContract {
+  connect(signerOrProvider: Signer | Provider | string): this;
+  attach(addressOrName: string): this;
+  deployed(): Promise<this>;
 
-  on(
-    event: EventFilter | string,
-    listener: Listener
-  ): ERC1967UpgradeUpgradeable;
-  once(
-    event: EventFilter | string,
-    listener: Listener
-  ): ERC1967UpgradeUpgradeable;
-  addListener(
-    eventName: EventFilter | string,
-    listener: Listener
-  ): ERC1967UpgradeUpgradeable;
-  removeAllListeners(
-    eventName: EventFilter | string
-  ): ERC1967UpgradeUpgradeable;
-  removeListener(eventName: any, listener: Listener): ERC1967UpgradeUpgradeable;
+  listeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): Array<TypedListener<EventArgsArray, EventArgsObject>>;
+  off<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  on<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  once<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeListener<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeAllListeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): this;
+
+  listeners(eventName?: string): Array<Listener>;
+  off(eventName: string, listener: Listener): this;
+  on(eventName: string, listener: Listener): this;
+  once(eventName: string, listener: Listener): this;
+  removeListener(eventName: string, listener: Listener): this;
+  removeAllListeners(eventName?: string): this;
+
+  queryFilter<EventArgsArray extends Array<any>, EventArgsObject>(
+    event: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    fromBlockOrBlockhash?: string | number | undefined,
+    toBlock?: string | number | undefined
+  ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
   interface: ERC1967UpgradeUpgradeableInterface;
 
   functions: {};
 
+  callStatic: {};
+
   filters: {
-    AdminChanged(previousAdmin: null, newAdmin: null): EventFilter;
+    AdminChanged(
+      previousAdmin?: null,
+      newAdmin?: null
+    ): TypedEventFilter<
+      [string, string],
+      { previousAdmin: string; newAdmin: string }
+    >;
 
-    BeaconUpgraded(beacon: string | null): EventFilter;
+    BeaconUpgraded(
+      beacon?: string | null
+    ): TypedEventFilter<[string], { beacon: string }>;
 
-    Upgraded(implementation: string | null): EventFilter;
+    Upgraded(
+      implementation?: string | null
+    ): TypedEventFilter<[string], { implementation: string }>;
   };
 
-  estimate: {};
+  estimateGas: {};
+
+  populateTransaction: {};
 }

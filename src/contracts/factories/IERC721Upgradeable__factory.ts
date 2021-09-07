@@ -2,19 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer } from "ethers";
-import { Provider } from "ethers/providers";
-
-import { IERC721Upgradeable } from "../IERC721Upgradeable";
-
-export class IERC721Upgradeable__factory {
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): IERC721Upgradeable {
-    return new Contract(address, _abi, signerOrProvider) as IERC721Upgradeable;
-  }
-}
+import { Contract, Signer, utils } from "ethers";
+import { Provider } from "@ethersproject/providers";
+import type {
+  IERC721Upgradeable,
+  IERC721UpgradeableInterface,
+} from "../IERC721Upgradeable";
 
 const _abi = [
   {
@@ -303,3 +296,16 @@ const _abi = [
     type: "function",
   },
 ];
+
+export class IERC721Upgradeable__factory {
+  static readonly abi = _abi;
+  static createInterface(): IERC721UpgradeableInterface {
+    return new utils.Interface(_abi) as IERC721UpgradeableInterface;
+  }
+  static connect(
+    address: string,
+    signerOrProvider: Signer | Provider
+  ): IERC721Upgradeable {
+    return new Contract(address, _abi, signerOrProvider) as IERC721Upgradeable;
+  }
+}

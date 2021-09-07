@@ -2,35 +2,80 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, ContractTransaction, EventFilter, Signer } from "ethers";
-import { Listener, Provider } from "ethers/providers";
-import { Arrayish, BigNumber, BigNumberish, Interface } from "ethers/utils";
-import { UnsignedTransaction } from "ethers/utils/transaction";
-import { TypedEventDescription, TypedFunctionDescription } from ".";
+import {
+  ethers,
+  EventFilter,
+  Signer,
+  BigNumber,
+  BigNumberish,
+  PopulatedTransaction,
+  BaseContract,
+  ContractTransaction,
+  CallOverrides,
+} from "ethers";
+import { BytesLike } from "@ethersproject/bytes";
+import { Listener, Provider } from "@ethersproject/providers";
+import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
+import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
-interface ERC165UpgradeableInterface extends Interface {
+interface ERC165UpgradeableInterface extends ethers.utils.Interface {
   functions: {
-    supportsInterface: TypedFunctionDescription<{
-      encode([interfaceId]: [Arrayish]): string;
-    }>;
+    "supportsInterface(bytes4)": FunctionFragment;
   };
+
+  encodeFunctionData(
+    functionFragment: "supportsInterface",
+    values: [BytesLike]
+  ): string;
+
+  decodeFunctionResult(
+    functionFragment: "supportsInterface",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
 
-export class ERC165Upgradeable extends Contract {
-  connect(signerOrProvider: Signer | Provider | string): ERC165Upgradeable;
-  attach(addressOrName: string): ERC165Upgradeable;
-  deployed(): Promise<ERC165Upgradeable>;
+export class ERC165Upgradeable extends BaseContract {
+  connect(signerOrProvider: Signer | Provider | string): this;
+  attach(addressOrName: string): this;
+  deployed(): Promise<this>;
 
-  on(event: EventFilter | string, listener: Listener): ERC165Upgradeable;
-  once(event: EventFilter | string, listener: Listener): ERC165Upgradeable;
-  addListener(
-    eventName: EventFilter | string,
-    listener: Listener
-  ): ERC165Upgradeable;
-  removeAllListeners(eventName: EventFilter | string): ERC165Upgradeable;
-  removeListener(eventName: any, listener: Listener): ERC165Upgradeable;
+  listeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): Array<TypedListener<EventArgsArray, EventArgsObject>>;
+  off<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  on<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  once<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeListener<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeAllListeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): this;
+
+  listeners(eventName?: string): Array<Listener>;
+  off(eventName: string, listener: Listener): this;
+  on(eventName: string, listener: Listener): this;
+  once(eventName: string, listener: Listener): this;
+  removeListener(eventName: string, listener: Listener): this;
+  removeAllListeners(eventName?: string): this;
+
+  queryFilter<EventArgsArray extends Array<any>, EventArgsObject>(
+    event: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    fromBlockOrBlockhash?: string | number | undefined,
+    toBlock?: string | number | undefined
+  ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
   interface: ERC165UpgradeableInterface;
 
@@ -39,52 +84,48 @@ export class ERC165Upgradeable extends Contract {
      * See {IERC165-supportsInterface}.
      */
     supportsInterface(
-      interfaceId: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<boolean>;
-
-    /**
-     * See {IERC165-supportsInterface}.
-     */
-    "supportsInterface(bytes4)"(
-      interfaceId: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<boolean>;
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
   };
 
   /**
    * See {IERC165-supportsInterface}.
    */
   supportsInterface(
-    interfaceId: Arrayish,
-    overrides?: UnsignedTransaction
+    interfaceId: BytesLike,
+    overrides?: CallOverrides
   ): Promise<boolean>;
 
-  /**
-   * See {IERC165-supportsInterface}.
-   */
-  "supportsInterface(bytes4)"(
-    interfaceId: Arrayish,
-    overrides?: UnsignedTransaction
-  ): Promise<boolean>;
-
-  filters: {};
-
-  estimate: {
+  callStatic: {
     /**
      * See {IERC165-supportsInterface}.
      */
     supportsInterface(
-      interfaceId: Arrayish,
-      overrides?: UnsignedTransaction
-    ): Promise<BigNumber>;
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+  };
 
+  filters: {};
+
+  estimateGas: {
     /**
      * See {IERC165-supportsInterface}.
      */
-    "supportsInterface(bytes4)"(
-      interfaceId: Arrayish,
-      overrides?: UnsignedTransaction
+    supportsInterface(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
+  };
+
+  populateTransaction: {
+    /**
+     * See {IERC165-supportsInterface}.
+     */
+    supportsInterface(
+      interfaceId: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
   };
 }

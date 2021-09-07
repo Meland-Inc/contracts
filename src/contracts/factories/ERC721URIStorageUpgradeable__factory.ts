@@ -2,23 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer } from "ethers";
-import { Provider } from "ethers/providers";
-
-import { ERC721URIStorageUpgradeable } from "../ERC721URIStorageUpgradeable";
-
-export class ERC721URIStorageUpgradeable__factory {
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): ERC721URIStorageUpgradeable {
-    return new Contract(
-      address,
-      _abi,
-      signerOrProvider
-    ) as ERC721URIStorageUpgradeable;
-  }
-}
+import { Contract, Signer, utils } from "ethers";
+import { Provider } from "@ethersproject/providers";
+import type {
+  ERC721URIStorageUpgradeable,
+  ERC721URIStorageUpgradeableInterface,
+} from "../ERC721URIStorageUpgradeable";
 
 const _abi = [
   {
@@ -352,3 +341,20 @@ const _abi = [
     type: "function",
   },
 ];
+
+export class ERC721URIStorageUpgradeable__factory {
+  static readonly abi = _abi;
+  static createInterface(): ERC721URIStorageUpgradeableInterface {
+    return new utils.Interface(_abi) as ERC721URIStorageUpgradeableInterface;
+  }
+  static connect(
+    address: string,
+    signerOrProvider: Signer | Provider
+  ): ERC721URIStorageUpgradeable {
+    return new Contract(
+      address,
+      _abi,
+      signerOrProvider
+    ) as ERC721URIStorageUpgradeable;
+  }
+}

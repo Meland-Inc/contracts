@@ -2,46 +2,97 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, ContractTransaction, EventFilter, Signer } from "ethers";
-import { Listener, Provider } from "ethers/providers";
-import { Arrayish, BigNumber, BigNumberish, Interface } from "ethers/utils";
-import { UnsignedTransaction } from "ethers/utils/transaction";
-import { TypedEventDescription, TypedFunctionDescription } from ".";
+import {
+  ethers,
+  EventFilter,
+  Signer,
+  BigNumber,
+  BigNumberish,
+  PopulatedTransaction,
+  BaseContract,
+  ContractTransaction,
+  Overrides,
+  CallOverrides,
+} from "ethers";
+import { BytesLike } from "@ethersproject/bytes";
+import { Listener, Provider } from "@ethersproject/providers";
+import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
+import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
-interface OwnableUpgradeableInterface extends Interface {
+interface OwnableUpgradeableInterface extends ethers.utils.Interface {
   functions: {
-    owner: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    renounceOwnership: TypedFunctionDescription<{ encode([]: []): string }>;
-
-    transferOwnership: TypedFunctionDescription<{
-      encode([newOwner]: [string]): string;
-    }>;
+    "owner()": FunctionFragment;
+    "renounceOwnership()": FunctionFragment;
+    "transferOwnership(address)": FunctionFragment;
   };
+
+  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "renounceOwnership",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "transferOwnership",
+    values: [string]
+  ): string;
+
+  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "renounceOwnership",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "transferOwnership",
+    data: BytesLike
+  ): Result;
 
   events: {
-    OwnershipTransferred: TypedEventDescription<{
-      encodeTopics([previousOwner, newOwner]: [
-        string | null,
-        string | null
-      ]): string[];
-    }>;
+    "OwnershipTransferred(address,address)": EventFragment;
   };
+
+  getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
 }
 
-export class OwnableUpgradeable extends Contract {
-  connect(signerOrProvider: Signer | Provider | string): OwnableUpgradeable;
-  attach(addressOrName: string): OwnableUpgradeable;
-  deployed(): Promise<OwnableUpgradeable>;
+export class OwnableUpgradeable extends BaseContract {
+  connect(signerOrProvider: Signer | Provider | string): this;
+  attach(addressOrName: string): this;
+  deployed(): Promise<this>;
 
-  on(event: EventFilter | string, listener: Listener): OwnableUpgradeable;
-  once(event: EventFilter | string, listener: Listener): OwnableUpgradeable;
-  addListener(
-    eventName: EventFilter | string,
-    listener: Listener
-  ): OwnableUpgradeable;
-  removeAllListeners(eventName: EventFilter | string): OwnableUpgradeable;
-  removeListener(eventName: any, listener: Listener): OwnableUpgradeable;
+  listeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): Array<TypedListener<EventArgsArray, EventArgsObject>>;
+  off<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  on<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  once<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeListener<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeAllListeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): this;
+
+  listeners(eventName?: string): Array<Listener>;
+  off(eventName: string, listener: Listener): this;
+  on(eventName: string, listener: Listener): this;
+  once(eventName: string, listener: Listener): this;
+  removeListener(eventName: string, listener: Listener): this;
+  removeAllListeners(eventName?: string): this;
+
+  queryFilter<EventArgsArray extends Array<any>, EventArgsObject>(
+    event: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    fromBlockOrBlockhash?: string | number | undefined,
+    toBlock?: string | number | undefined
+  ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
   interface: OwnableUpgradeableInterface;
 
@@ -49,25 +100,13 @@ export class OwnableUpgradeable extends Contract {
     /**
      * Returns the address of the current owner.
      */
-    owner(overrides?: UnsignedTransaction): Promise<string>;
-
-    /**
-     * Returns the address of the current owner.
-     */
-    "owner()"(overrides?: UnsignedTransaction): Promise<string>;
+    owner(overrides?: CallOverrides): Promise<[string]>;
 
     /**
      * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
      */
     renounceOwnership(
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
-     */
-    "renounceOwnership()"(
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -75,40 +114,20 @@ export class OwnableUpgradeable extends Contract {
      */
     transferOwnership(
       newOwner: string,
-      overrides?: UnsignedTransaction
-    ): Promise<ContractTransaction>;
-
-    /**
-     * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
-     */
-    "transferOwnership(address)"(
-      newOwner: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
   };
 
   /**
    * Returns the address of the current owner.
    */
-  owner(overrides?: UnsignedTransaction): Promise<string>;
-
-  /**
-   * Returns the address of the current owner.
-   */
-  "owner()"(overrides?: UnsignedTransaction): Promise<string>;
+  owner(overrides?: CallOverrides): Promise<string>;
 
   /**
    * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
    */
   renounceOwnership(
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  /**
-   * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
-   */
-  "renounceOwnership()"(
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -116,59 +135,80 @@ export class OwnableUpgradeable extends Contract {
    */
   transferOwnership(
     newOwner: string,
-    overrides?: UnsignedTransaction
+    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  /**
-   * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
-   */
-  "transferOwnership(address)"(
-    newOwner: string,
-    overrides?: UnsignedTransaction
-  ): Promise<ContractTransaction>;
-
-  filters: {
-    OwnershipTransferred(
-      previousOwner: string | null,
-      newOwner: string | null
-    ): EventFilter;
-  };
-
-  estimate: {
+  callStatic: {
     /**
      * Returns the address of the current owner.
      */
-    owner(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    /**
-     * Returns the address of the current owner.
-     */
-    "owner()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    owner(overrides?: CallOverrides): Promise<string>;
 
     /**
      * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
      */
-    renounceOwnership(overrides?: UnsignedTransaction): Promise<BigNumber>;
-
-    /**
-     * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
-     */
-    "renounceOwnership()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
     /**
      * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
      */
     transferOwnership(
       newOwner: string,
-      overrides?: UnsignedTransaction
+      overrides?: CallOverrides
+    ): Promise<void>;
+  };
+
+  filters: {
+    OwnershipTransferred(
+      previousOwner?: string | null,
+      newOwner?: string | null
+    ): TypedEventFilter<
+      [string, string],
+      { previousOwner: string; newOwner: string }
+    >;
+  };
+
+  estimateGas: {
+    /**
+     * Returns the address of the current owner.
+     */
+    owner(overrides?: CallOverrides): Promise<BigNumber>;
+
+    /**
+     * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
+     */
+    renounceOwnership(
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     /**
      * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
      */
-    "transferOwnership(address)"(
+    transferOwnership(
       newOwner: string,
-      overrides?: UnsignedTransaction
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+  };
+
+  populateTransaction: {
+    /**
+     * Returns the address of the current owner.
+     */
+    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    /**
+     * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
+     */
+    renounceOwnership(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    /**
+     * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
+     */
+    transferOwnership(
+      newOwner: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
   };
 }

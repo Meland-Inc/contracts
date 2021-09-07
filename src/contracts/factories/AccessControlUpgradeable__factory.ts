@@ -2,23 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer } from "ethers";
-import { Provider } from "ethers/providers";
-
-import { AccessControlUpgradeable } from "../AccessControlUpgradeable";
-
-export class AccessControlUpgradeable__factory {
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): AccessControlUpgradeable {
-    return new Contract(
-      address,
-      _abi,
-      signerOrProvider
-    ) as AccessControlUpgradeable;
-  }
-}
+import { Contract, Signer, utils } from "ethers";
+import { Provider } from "@ethersproject/providers";
+import type {
+  AccessControlUpgradeable,
+  AccessControlUpgradeableInterface,
+} from "../AccessControlUpgradeable";
 
 const _abi = [
   {
@@ -226,3 +215,20 @@ const _abi = [
     type: "function",
   },
 ];
+
+export class AccessControlUpgradeable__factory {
+  static readonly abi = _abi;
+  static createInterface(): AccessControlUpgradeableInterface {
+    return new utils.Interface(_abi) as AccessControlUpgradeableInterface;
+  }
+  static connect(
+    address: string,
+    signerOrProvider: Signer | Provider
+  ): AccessControlUpgradeable {
+    return new Contract(
+      address,
+      _abi,
+      signerOrProvider
+    ) as AccessControlUpgradeable;
+  }
+}

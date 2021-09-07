@@ -2,33 +2,80 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, ContractTransaction, EventFilter, Signer } from "ethers";
-import { Listener, Provider } from "ethers/providers";
-import { Arrayish, BigNumber, BigNumberish, Interface } from "ethers/utils";
-import { UnsignedTransaction } from "ethers/utils/transaction";
-import { TypedEventDescription, TypedFunctionDescription } from ".";
+import {
+  ethers,
+  EventFilter,
+  Signer,
+  BigNumber,
+  BigNumberish,
+  PopulatedTransaction,
+  BaseContract,
+  ContractTransaction,
+  CallOverrides,
+} from "ethers";
+import { BytesLike } from "@ethersproject/bytes";
+import { Listener, Provider } from "@ethersproject/providers";
+import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
+import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
-interface IBeaconUpgradeableInterface extends Interface {
+interface IBeaconUpgradeableInterface extends ethers.utils.Interface {
   functions: {
-    implementation: TypedFunctionDescription<{ encode([]: []): string }>;
+    "implementation()": FunctionFragment;
   };
+
+  encodeFunctionData(
+    functionFragment: "implementation",
+    values?: undefined
+  ): string;
+
+  decodeFunctionResult(
+    functionFragment: "implementation",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
 
-export class IBeaconUpgradeable extends Contract {
-  connect(signerOrProvider: Signer | Provider | string): IBeaconUpgradeable;
-  attach(addressOrName: string): IBeaconUpgradeable;
-  deployed(): Promise<IBeaconUpgradeable>;
+export class IBeaconUpgradeable extends BaseContract {
+  connect(signerOrProvider: Signer | Provider | string): this;
+  attach(addressOrName: string): this;
+  deployed(): Promise<this>;
 
-  on(event: EventFilter | string, listener: Listener): IBeaconUpgradeable;
-  once(event: EventFilter | string, listener: Listener): IBeaconUpgradeable;
-  addListener(
-    eventName: EventFilter | string,
-    listener: Listener
-  ): IBeaconUpgradeable;
-  removeAllListeners(eventName: EventFilter | string): IBeaconUpgradeable;
-  removeListener(eventName: any, listener: Listener): IBeaconUpgradeable;
+  listeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter?: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): Array<TypedListener<EventArgsArray, EventArgsObject>>;
+  off<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  on<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  once<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeListener<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    listener: TypedListener<EventArgsArray, EventArgsObject>
+  ): this;
+  removeAllListeners<EventArgsArray extends Array<any>, EventArgsObject>(
+    eventFilter: TypedEventFilter<EventArgsArray, EventArgsObject>
+  ): this;
+
+  listeners(eventName?: string): Array<Listener>;
+  off(eventName: string, listener: Listener): this;
+  on(eventName: string, listener: Listener): this;
+  once(eventName: string, listener: Listener): this;
+  removeListener(eventName: string, listener: Listener): this;
+  removeAllListeners(eventName?: string): this;
+
+  queryFilter<EventArgsArray extends Array<any>, EventArgsObject>(
+    event: TypedEventFilter<EventArgsArray, EventArgsObject>,
+    fromBlockOrBlockhash?: string | number | undefined,
+    toBlock?: string | number | undefined
+  ): Promise<Array<TypedEvent<EventArgsArray & EventArgsObject>>>;
 
   interface: IBeaconUpgradeableInterface;
 
@@ -36,35 +83,34 @@ export class IBeaconUpgradeable extends Contract {
     /**
      * Must return an address that can be used as a delegate call target. {BeaconProxy} will check that this address is a contract.
      */
-    implementation(overrides?: UnsignedTransaction): Promise<string>;
-
-    /**
-     * Must return an address that can be used as a delegate call target. {BeaconProxy} will check that this address is a contract.
-     */
-    "implementation()"(overrides?: UnsignedTransaction): Promise<string>;
+    implementation(overrides?: CallOverrides): Promise<[string]>;
   };
 
   /**
    * Must return an address that can be used as a delegate call target. {BeaconProxy} will check that this address is a contract.
    */
-  implementation(overrides?: UnsignedTransaction): Promise<string>;
+  implementation(overrides?: CallOverrides): Promise<string>;
 
-  /**
-   * Must return an address that can be used as a delegate call target. {BeaconProxy} will check that this address is a contract.
-   */
-  "implementation()"(overrides?: UnsignedTransaction): Promise<string>;
+  callStatic: {
+    /**
+     * Must return an address that can be used as a delegate call target. {BeaconProxy} will check that this address is a contract.
+     */
+    implementation(overrides?: CallOverrides): Promise<string>;
+  };
 
   filters: {};
 
-  estimate: {
+  estimateGas: {
     /**
      * Must return an address that can be used as a delegate call target. {BeaconProxy} will check that this address is a contract.
      */
-    implementation(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    implementation(overrides?: CallOverrides): Promise<BigNumber>;
+  };
 
+  populateTransaction: {
     /**
      * Must return an address that can be used as a delegate call target. {BeaconProxy} will check that this address is a contract.
      */
-    "implementation()"(overrides?: UnsignedTransaction): Promise<BigNumber>;
+    implementation(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };
 }

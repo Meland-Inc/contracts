@@ -2,19 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer } from "ethers";
-import { Provider } from "ethers/providers";
-
-import { PausableUpgradeable } from "../PausableUpgradeable";
-
-export class PausableUpgradeable__factory {
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): PausableUpgradeable {
-    return new Contract(address, _abi, signerOrProvider) as PausableUpgradeable;
-  }
-}
+import { Contract, Signer, utils } from "ethers";
+import { Provider } from "@ethersproject/providers";
+import type {
+  PausableUpgradeable,
+  PausableUpgradeableInterface,
+} from "../PausableUpgradeable";
 
 const _abi = [
   {
@@ -57,3 +50,16 @@ const _abi = [
     type: "function",
   },
 ];
+
+export class PausableUpgradeable__factory {
+  static readonly abi = _abi;
+  static createInterface(): PausableUpgradeableInterface {
+    return new utils.Interface(_abi) as PausableUpgradeableInterface;
+  }
+  static connect(
+    address: string,
+    signerOrProvider: Signer | Provider
+  ): PausableUpgradeable {
+    return new Contract(address, _abi, signerOrProvider) as PausableUpgradeable;
+  }
+}

@@ -2,19 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer } from "ethers";
-import { Provider } from "ethers/providers";
-
-import { ERC165Upgradeable } from "../ERC165Upgradeable";
-
-export class ERC165Upgradeable__factory {
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): ERC165Upgradeable {
-    return new Contract(address, _abi, signerOrProvider) as ERC165Upgradeable;
-  }
-}
+import { Contract, Signer, utils } from "ethers";
+import { Provider } from "@ethersproject/providers";
+import type {
+  ERC165Upgradeable,
+  ERC165UpgradeableInterface,
+} from "../ERC165Upgradeable";
 
 const _abi = [
   {
@@ -37,3 +30,16 @@ const _abi = [
     type: "function",
   },
 ];
+
+export class ERC165Upgradeable__factory {
+  static readonly abi = _abi;
+  static createInterface(): ERC165UpgradeableInterface {
+    return new utils.Interface(_abi) as ERC165UpgradeableInterface;
+  }
+  static connect(
+    address: string,
+    signerOrProvider: Signer | Provider
+  ): ERC165Upgradeable {
+    return new Contract(address, _abi, signerOrProvider) as ERC165Upgradeable;
+  }
+}
