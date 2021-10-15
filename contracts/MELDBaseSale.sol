@@ -16,6 +16,8 @@ abstract contract MELDBaseSale is
 {
     using SafeMathUpgradeable for uint256;
 
+    bytes32 public constant ADD_VESTING_ROLE = keccak256("ADD_VESTING_ROLE");
+
     // the token being sold
     ERC20Upgradeable public MELDToken;
 
@@ -42,6 +44,7 @@ abstract contract MELDBaseSale is
         rate = _rate;
         wallet = _wallet;
         MELDVestingContract = _MELDVestingContract;
+        MELDVestingContract.grantRole(ADD_VESTING_ROLE, address(this));
     }
 
     // Remaining purchasable quantity

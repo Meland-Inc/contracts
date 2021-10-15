@@ -16,6 +16,8 @@ abstract contract MELDBasicPool is
 {
     using SafeMathUpgradeable for uint256;
 
+    bytes32 public constant ADD_VESTING_ROLE = keccak256("ADD_VESTING_ROLE");
+
     // the token being sold
     ERC20Upgradeable public MELDToken;
 
@@ -32,6 +34,7 @@ abstract contract MELDBasicPool is
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         MELDToken = token;
         MELDVestingContract = _MELDVestingContract;
+        MELDVestingContract.grantRole(ADD_VESTING_ROLE, address(this));
     }
 
     // Remaining purchasable quantity

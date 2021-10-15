@@ -10,6 +10,8 @@ import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
 
 contract MELDVesting is AccessControlUpgradeable {
+    bytes32 public constant ADD_VESTING_ROLE = keccak256("ADD_VESTING_ROLE");
+
     using SafeMathUpgradeable for uint256;
 
     ERC20Upgradeable private MELDToken;
@@ -41,6 +43,7 @@ contract MELDVesting is AccessControlUpgradeable {
         require(address(_token) != address(0x0), "MELD token address is not valid");
         __AccessControl_init();
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        _setupRole(ADD_VESTING_ROLE, msg.sender);
         MELDToken = _token;
     }
 
@@ -73,7 +76,7 @@ contract MELDVesting is AccessControlUpgradeable {
         address _beneficiary, 
         uint256 _releaseTime, 
         uint256 _amount
-    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+    ) public onlyRole(ADD_VESTING_ROLE) {
         require(_beneficiary != address(0x0), INVALID_BENEFICIARY);
         tokensToVest = tokensToVest.add(_amount);
         vestingId = vestingId.add(1);
