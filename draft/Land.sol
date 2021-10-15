@@ -17,7 +17,6 @@ contract Land is Initializable, ERC721Upgradeable, ERC721URIStorageUpgradeable, 
         __ERC721_init("Land", "LAND");
         __ERC721URIStorage_init();
         __AccessControl_init();
-         
 
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(MINTER_ROLE, msg.sender);
