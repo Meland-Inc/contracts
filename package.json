@@ -22,8 +22,9 @@
     "build": "craco build",
     "test": "craco test",
     "codegen": "typechain --target=ethers-v5 --out-dir=src/contracts 'build/contracts/*.json'",
+    "codegen:const": "truffle exec  ./update_constant.js",
     "network:dev": "truffle develop",
-    "network:compile": "truffle compile",
+    "network:compile": "rm -rf build && truffle compile",
     "network:deploy": "truffle migrate",
     "prepublishOnly": "truffle compile"
   },

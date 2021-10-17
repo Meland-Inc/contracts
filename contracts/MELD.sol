@@ -9,7 +9,13 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
 
-contract MELD is Initializable, ERC20Upgradeable, PausableUpgradeable, AccessControlUpgradeable, UUPSUpgradeable {
+contract MELD is
+    Initializable,
+    ERC20Upgradeable,
+    PausableUpgradeable,
+    AccessControlUpgradeable,
+    UUPSUpgradeable
+{
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
     // MeLand seed sale contracts address
@@ -25,31 +31,21 @@ contract MELD is Initializable, ERC20Upgradeable, PausableUpgradeable, AccessCon
     address public FoundationPoolAddress;
 
     // MeLand liquidity contracts address
-    address public LiquidityAddress;
+    address public LiquidityPoolAddress;
 
     // MeLand advisor contracts address
-    address public AdvisorAddress;
+    address public AdvisorPoolAddress;
 
     // MeLand founders team vesting contracts address
-    address public FoundersTeamVestingAddress;
+    address public FoundersTeamPoolAddress;
+
+    bool public initSale;
+
+    bool public initPool;
 
     using SafeMathUpgradeable for uint256;
 
-    function initialize(
-        address _SeedSaleAddress,
-        
-        address _PrivateSaleAddress,
-        
-        address _PublicSaleAddress,
-        
-        address _FoundationPoolAddress,
-        
-        address _LiquidityAddress,
-        
-        address _AdvisorAddress,
-        
-        address _FoundersTeamVestingAddress
-    ) initializer public {
+    function initialize() public initializer {
         __ERC20_init("MELD", "MELD");
         __Pausable_init();
         __UUPSUpgradeable_init();
@@ -58,23 +54,49 @@ contract MELD is Initializable, ERC20Upgradeable, PausableUpgradeable, AccessCon
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(MINTER_ROLE, msg.sender);
 
+        initSale = false;
+        initPool = false;
+    }
+
+    //
+    function mint2MELDSale(
+        address _SeedSaleAddress,
+        address _PrivateSaleAddress,
+        address _PublicSaleAddress
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(initSale == false);
+
         SeedSaleAddress = _SeedSaleAddress;
         PrivateSaleAddress = _PrivateSaleAddress;
         PublicSaleAddress = _PublicSaleAddress;
-        FoundationPoolAddress = _FoundationPoolAddress;
-        LiquidityAddress = _LiquidityAddress;
-        AdvisorAddress = _AdvisorAddress;
-        FoundersTeamVestingAddress = _FoundersTeamVestingAddress;
-
-        // Reduce gas fee expenses by minting a fixed percentage of tokens into specific vesting contracts during initialization. 
+        // Reduce gas fee expenses by minting a fixed percentage of tokens into specific vesting contracts during initialization.
         // Normal circumstances, no further coinage is allowed
-        _mint(SeedSaleAddress, 10000000 * 10 ** decimals());
-        _mint(PrivateSaleAddress, 32000000 * 10 ** decimals());
-        _mint(PublicSaleAddress, 8000000 * 10 ** decimals());
-        _mint(FoundationPoolAddress, 80000000 * 10 ** decimals());
-        _mint(LiquidityAddress, 10000000 * 10 ** decimals());
-        _mint(AdvisorAddress, 10000000 * 10 ** decimals());
-        _mint(FoundersTeamVestingAddress, 50000000 * 10 ** decimals());
+        _mint(SeedSaleAddress, 10000000 * 10**decimals());
+        _mint(PrivateSaleAddress, 32000000 * 10**decimals());
+        _mint(PublicSaleAddress, 8000000 * 10**decimals());
+
+        initSale = true;
+    }
+
+    function mint2MELDPool(
+        address _FoundationPoolAddress,
+        address _LiquidityPoolAddress,
+        address _AdvisorPoolAddress,
+        address _FoundersTeamPoolAddress
+    ) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(initPool == false);
+
+        FoundationPoolAddress = _FoundationPoolAddress;
+        LiquidityPoolAddress = _LiquidityPoolAddress;
+        AdvisorPoolAddress = _AdvisorPoolAddress;
+        FoundersTeamPoolAddress = _FoundersTeamPoolAddress;
+
+        _mint(FoundationPoolAddress, 80000000 * 10**decimals());
+        _mint(LiquidityPoolAddress, 10000000 * 10**decimals());
+        _mint(AdvisorPoolAddress, 10000000 * 10**decimals());
+        _mint(FoundersTeamPoolAddress, 50000000 * 10**decimals());
+
+        initPool = true;
     }
 
     function pause() public onlyRole(DEFAULT_ADMIN_ROLE) {
@@ -85,11 +107,11 @@ contract MELD is Initializable, ERC20Upgradeable, PausableUpgradeable, AccessCon
         _unpause();
     }
 
-    function _beforeTokenTransfer(address from, address to, uint256 amount)
-        internal
-        whenNotPaused
-        override
-    {
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal override whenNotPaused {
         super._beforeTokenTransfer(from, to, amount);
     }
 
@@ -103,9 +125,7 @@ contract MELD is Initializable, ERC20Upgradeable, PausableUpgradeable, AccessCon
 
     function _authorizeUpgrade(address newImplementation)
         internal
-        onlyRole(DEFAULT_ADMIN_ROLE)
         override
-    {
-        
-    }
+        onlyRole(DEFAULT_ADMIN_ROLE)
+    {}
 }

@@ -192,7 +192,7 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "test",
+    name: "ping",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

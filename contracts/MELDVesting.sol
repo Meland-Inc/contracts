@@ -9,15 +9,15 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
 
-contract MELDVesting is AccessControlUpgradeable {
+contract MELDVesting is AccessControlUpgradeable, UUPSUpgradeable {
     bytes32 public constant ADD_VESTING_ROLE = keccak256("ADD_VESTING_ROLE");
 
     using SafeMathUpgradeable for uint256;
 
     ERC20Upgradeable private MELDToken;
 
-    uint256 private tokensToVest = 0;
-    uint256 private vestingId = 0;
+    uint256 private tokensToVest;
+    uint256 private vestingId;
 
     string private constant INSUFFICIENT_BALANCE = "Insufficient balance";
     string private constant INVALID_VESTING_ID = "Invalid vesting id";
@@ -45,6 +45,8 @@ contract MELDVesting is AccessControlUpgradeable {
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(ADD_VESTING_ROLE, msg.sender);
         MELDToken = _token;
+        vestingId = 0;
+        tokensToVest = 0;
     }
 
     function token() public view returns (ERC20Upgradeable) {
@@ -80,6 +82,10 @@ contract MELDVesting is AccessControlUpgradeable {
         require(_beneficiary != address(0x0), INVALID_BENEFICIARY);
         tokensToVest = tokensToVest.add(_amount);
         vestingId = vestingId.add(1);
+
+        // 测试环境将天改成秒
+        // _releaseTime = _releaseTime.div(3600);
+
         vestings[vestingId] = Vesting({
             beneficiary: _beneficiary,
             releaseTime: _releaseTime,
@@ -105,5 +111,15 @@ contract MELDVesting is AccessControlUpgradeable {
     function retrieveExcessTokens(uint256 _amount) public onlyRole(DEFAULT_ADMIN_ROLE) {
         require(_amount <= MELDToken.balanceOf(address(this)).sub(tokensToVest), INSUFFICIENT_BALANCE);
         MELDToken.transfer(msg.sender, _amount);
+    }
+
+    function _authorizeUpgrade(address newImplementation)
+        internal
+        override
+        onlyRole(DEFAULT_ADMIN_ROLE)
+    {}
+
+    function setupVestingRole(address account) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        _setupRole(ADD_VESTING_ROLE, account);
     }
 }

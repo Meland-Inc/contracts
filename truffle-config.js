@@ -40,6 +40,15 @@ module.exports = {
       confirmations: 0,
       timeoutBlocks: 2000,
       skipDryRun: true
+    },
+
+    goerli: {
+      provider: () => new HDWalletProvider(mnemonic, `wss://goerli.infura.io/ws/v3/c08566eb93d345ff80670a8a60906ef2`),
+      network_id: 5,
+      confirmations: 0,
+      timeoutBlocks: 2000,
+      gasPrice: 50000000000,
+      skipDryRun: true
     }
   },
 

@@ -16,7 +16,7 @@ contract FoundationPool is MELDBasicPool {
         uint256 lockedTokens = tokens;
         uint256 unlockedTokensEveryMonth = lockedTokens.div(vestingMonth);
         for (uint month = 1; month <= vestingMonth; month++) {
-            uint256 releaseTime = vestingPeriod * month;
+            uint256 releaseTime = block.timestamp + vestingPeriod * month;
             MELDVestingContract.addVesting(beneficiary, releaseTime, unlockedTokensEveryMonth);
         }
 

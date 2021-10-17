@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: >-
+    eyJhdXRocyI6eyJpY3ctcmVnaXN0cnkuY24tc2hlbnpoZW4uY3IuYWxpeXVuY3MuY29tIjp7InVzZXJuYW1lIjoidGVuZ3l1MDY3IiwicGFzc3dvcmQiOiJ6SkVxZ0RxN2MySmZHMnlBIiwiYXV0aCI6ImRHVnVaM2wxTURZM09ucEtSWEZuUkhFM1l6Sktaa2N5ZVVFPSJ9fX0=
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-icw-dockerhub
+type: kubernetes.io/dockerconfigjson

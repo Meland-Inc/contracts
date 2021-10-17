@@ -27,7 +27,7 @@ interface IERC20MELDInterface extends ethers.utils.Interface {
     "totalSupply()": FunctionFragment;
     "transfer(address,uint256)": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
-    "test()": FunctionFragment;
+    "ping()": FunctionFragment;
     "safeMint(uint256)": FunctionFragment;
   };
 
@@ -52,7 +52,7 @@ interface IERC20MELDInterface extends ethers.utils.Interface {
     functionFragment: "transferFrom",
     values: [string, string, BigNumberish]
   ): string;
-  encodeFunctionData(functionFragment: "test", values?: undefined): string;
+  encodeFunctionData(functionFragment: "ping", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "safeMint",
     values: [BigNumberish]
@@ -70,7 +70,7 @@ interface IERC20MELDInterface extends ethers.utils.Interface {
     functionFragment: "transferFrom",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "test", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "ping", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "safeMint", data: BytesLike): Result;
 
   events: {
@@ -173,7 +173,7 @@ export class IERC20MELD extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    test(
+    ping(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -230,7 +230,7 @@ export class IERC20MELD extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  test(
+  ping(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -287,7 +287,7 @@ export class IERC20MELD extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    test(overrides?: CallOverrides): Promise<void>;
+    ping(overrides?: CallOverrides): Promise<void>;
 
     safeMint(amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
   };
@@ -360,7 +360,7 @@ export class IERC20MELD extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    test(
+    ping(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -421,7 +421,7 @@ export class IERC20MELD extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    test(
+    ping(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 

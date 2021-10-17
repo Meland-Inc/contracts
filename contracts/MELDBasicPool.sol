@@ -7,12 +7,14 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "./MELDVesting.sol";
 
 abstract contract MELDBasicPool is
     Initializable,
     PausableUpgradeable,
-    AccessControlUpgradeable
+    AccessControlUpgradeable,
+    UUPSUpgradeable
 {
     using SafeMathUpgradeable for uint256;
 
@@ -28,13 +30,13 @@ abstract contract MELDBasicPool is
     function initialize(
         ERC20Upgradeable token,
         MELDVesting _MELDVestingContract
-    ) public {
+    ) public initializer {
         __Pausable_init();
         __AccessControl_init();
+        __UUPSUpgradeable_init();
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         MELDToken = token;
         MELDVestingContract = _MELDVestingContract;
-        MELDVestingContract.grantRole(ADD_VESTING_ROLE, address(this));
     }
 
     // Remaining purchasable quantity
@@ -64,4 +66,10 @@ abstract contract MELDBasicPool is
     function unpause() public onlyRole(DEFAULT_ADMIN_ROLE) {
         _unpause();
     }
+
+    function _authorizeUpgrade(address newImplementation)
+        internal
+        override
+        onlyRole(DEFAULT_ADMIN_ROLE)
+    {}
 }

@@ -22,8 +22,15 @@ import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
 interface MELDInterface extends ethers.utils.Interface {
   functions: {
+    "AdvisorPoolAddress()": FunctionFragment;
     "DEFAULT_ADMIN_ROLE()": FunctionFragment;
+    "FoundationPoolAddress()": FunctionFragment;
+    "FoundersTeamPoolAddress()": FunctionFragment;
+    "LiquidityPoolAddress()": FunctionFragment;
     "MINTER_ROLE()": FunctionFragment;
+    "PrivateSaleAddress()": FunctionFragment;
+    "PublicSaleAddress()": FunctionFragment;
+    "SeedSaleAddress()": FunctionFragment;
     "allowance(address,address)": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
@@ -33,6 +40,8 @@ interface MELDInterface extends ethers.utils.Interface {
     "grantRole(bytes32,address)": FunctionFragment;
     "hasRole(bytes32,address)": FunctionFragment;
     "increaseAllowance(address,uint256)": FunctionFragment;
+    "initPool()": FunctionFragment;
+    "initSale()": FunctionFragment;
     "name()": FunctionFragment;
     "paused()": FunctionFragment;
     "renounceRole(bytes32,address)": FunctionFragment;
@@ -45,19 +54,48 @@ interface MELDInterface extends ethers.utils.Interface {
     "upgradeTo(address)": FunctionFragment;
     "upgradeToAndCall(address,bytes)": FunctionFragment;
     "initialize()": FunctionFragment;
+    "mint2MELDSale(address,address,address)": FunctionFragment;
+    "mint2MELDPool(address,address,address,address)": FunctionFragment;
     "pause()": FunctionFragment;
     "unpause()": FunctionFragment;
-    "test()": FunctionFragment;
     "setMinterRole(address)": FunctionFragment;
     "safeMint(uint256)": FunctionFragment;
   };
 
   encodeFunctionData(
+    functionFragment: "AdvisorPoolAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "DEFAULT_ADMIN_ROLE",
     values?: undefined
   ): string;
   encodeFunctionData(
+    functionFragment: "FoundationPoolAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "FoundersTeamPoolAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "LiquidityPoolAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "MINTER_ROLE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "PrivateSaleAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "PublicSaleAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "SeedSaleAddress",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -90,6 +128,8 @@ interface MELDInterface extends ethers.utils.Interface {
     functionFragment: "increaseAllowance",
     values: [string, BigNumberish]
   ): string;
+  encodeFunctionData(functionFragment: "initPool", values?: undefined): string;
+  encodeFunctionData(functionFragment: "initSale", values?: undefined): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(functionFragment: "paused", values?: undefined): string;
   encodeFunctionData(
@@ -126,9 +166,16 @@ interface MELDInterface extends ethers.utils.Interface {
     functionFragment: "initialize",
     values?: undefined
   ): string;
+  encodeFunctionData(
+    functionFragment: "mint2MELDSale",
+    values: [string, string, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "mint2MELDPool",
+    values: [string, string, string, string]
+  ): string;
   encodeFunctionData(functionFragment: "pause", values?: undefined): string;
   encodeFunctionData(functionFragment: "unpause", values?: undefined): string;
-  encodeFunctionData(functionFragment: "test", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "setMinterRole",
     values: [string]
@@ -139,11 +186,39 @@ interface MELDInterface extends ethers.utils.Interface {
   ): string;
 
   decodeFunctionResult(
+    functionFragment: "AdvisorPoolAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "DEFAULT_ADMIN_ROLE",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "FoundationPoolAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "FoundersTeamPoolAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "LiquidityPoolAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "MINTER_ROLE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "PrivateSaleAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "PublicSaleAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "SeedSaleAddress",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
@@ -164,6 +239,8 @@ interface MELDInterface extends ethers.utils.Interface {
     functionFragment: "increaseAllowance",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "initPool", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "initSale", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "paused", data: BytesLike): Result;
   decodeFunctionResult(
@@ -191,9 +268,16 @@ interface MELDInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "mint2MELDSale",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "mint2MELDPool",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "pause", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "unpause", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "test", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "setMinterRole",
     data: BytesLike
@@ -208,7 +292,6 @@ interface MELDInterface extends ethers.utils.Interface {
     "RoleAdminChanged(bytes32,bytes32,bytes32)": EventFragment;
     "RoleGranted(bytes32,address,address)": EventFragment;
     "RoleRevoked(bytes32,address,address)": EventFragment;
-    "Test(address)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
     "Unpaused(address)": EventFragment;
     "Upgraded(address)": EventFragment;
@@ -221,7 +304,6 @@ interface MELDInterface extends ethers.utils.Interface {
   getEvent(nameOrSignatureOrTopic: "RoleAdminChanged"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "RoleGranted"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "RoleRevoked"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "Test"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Unpaused"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Upgraded"): EventFragment;
@@ -271,9 +353,23 @@ export class MELD extends BaseContract {
   interface: MELDInterface;
 
   functions: {
+    AdvisorPoolAddress(overrides?: CallOverrides): Promise<[string]>;
+
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<[string]>;
 
+    FoundationPoolAddress(overrides?: CallOverrides): Promise<[string]>;
+
+    FoundersTeamPoolAddress(overrides?: CallOverrides): Promise<[string]>;
+
+    LiquidityPoolAddress(overrides?: CallOverrides): Promise<[string]>;
+
     MINTER_ROLE(overrides?: CallOverrides): Promise<[string]>;
+
+    PrivateSaleAddress(overrides?: CallOverrides): Promise<[string]>;
+
+    PublicSaleAddress(overrides?: CallOverrides): Promise<[string]>;
+
+    SeedSaleAddress(overrides?: CallOverrides): Promise<[string]>;
 
     /**
      * See {IERC20-allowance}.
@@ -343,6 +439,10 @@ export class MELD extends BaseContract {
       addedValue: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    initPool(overrides?: CallOverrides): Promise<[boolean]>;
+
+    initSale(overrides?: CallOverrides): Promise<[boolean]>;
 
     /**
      * Returns the name of the token.
@@ -430,15 +530,26 @@ export class MELD extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    mint2MELDSale(
+      _SeedSaleAddress: string,
+      _PrivateSaleAddress: string,
+      _PublicSaleAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    mint2MELDPool(
+      _FoundationPoolAddress: string,
+      _LiquidityPoolAddress: string,
+      _AdvisorPoolAddress: string,
+      _FoundersTeamPoolAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     pause(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     unpause(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    test(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -453,9 +564,23 @@ export class MELD extends BaseContract {
     ): Promise<ContractTransaction>;
   };
 
+  AdvisorPoolAddress(overrides?: CallOverrides): Promise<string>;
+
   DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
 
+  FoundationPoolAddress(overrides?: CallOverrides): Promise<string>;
+
+  FoundersTeamPoolAddress(overrides?: CallOverrides): Promise<string>;
+
+  LiquidityPoolAddress(overrides?: CallOverrides): Promise<string>;
+
   MINTER_ROLE(overrides?: CallOverrides): Promise<string>;
+
+  PrivateSaleAddress(overrides?: CallOverrides): Promise<string>;
+
+  PublicSaleAddress(overrides?: CallOverrides): Promise<string>;
+
+  SeedSaleAddress(overrides?: CallOverrides): Promise<string>;
 
   /**
    * See {IERC20-allowance}.
@@ -525,6 +650,10 @@ export class MELD extends BaseContract {
     addedValue: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
+
+  initPool(overrides?: CallOverrides): Promise<boolean>;
+
+  initSale(overrides?: CallOverrides): Promise<boolean>;
 
   /**
    * Returns the name of the token.
@@ -612,15 +741,26 @@ export class MELD extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  mint2MELDSale(
+    _SeedSaleAddress: string,
+    _PrivateSaleAddress: string,
+    _PublicSaleAddress: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  mint2MELDPool(
+    _FoundationPoolAddress: string,
+    _LiquidityPoolAddress: string,
+    _AdvisorPoolAddress: string,
+    _FoundersTeamPoolAddress: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   pause(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   unpause(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  test(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -635,9 +775,23 @@ export class MELD extends BaseContract {
   ): Promise<ContractTransaction>;
 
   callStatic: {
+    AdvisorPoolAddress(overrides?: CallOverrides): Promise<string>;
+
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<string>;
 
+    FoundationPoolAddress(overrides?: CallOverrides): Promise<string>;
+
+    FoundersTeamPoolAddress(overrides?: CallOverrides): Promise<string>;
+
+    LiquidityPoolAddress(overrides?: CallOverrides): Promise<string>;
+
     MINTER_ROLE(overrides?: CallOverrides): Promise<string>;
+
+    PrivateSaleAddress(overrides?: CallOverrides): Promise<string>;
+
+    PublicSaleAddress(overrides?: CallOverrides): Promise<string>;
+
+    SeedSaleAddress(overrides?: CallOverrides): Promise<string>;
 
     /**
      * See {IERC20-allowance}.
@@ -707,6 +861,10 @@ export class MELD extends BaseContract {
       addedValue: BigNumberish,
       overrides?: CallOverrides
     ): Promise<boolean>;
+
+    initPool(overrides?: CallOverrides): Promise<boolean>;
+
+    initSale(overrides?: CallOverrides): Promise<boolean>;
 
     /**
      * Returns the name of the token.
@@ -792,11 +950,24 @@ export class MELD extends BaseContract {
 
     initialize(overrides?: CallOverrides): Promise<void>;
 
+    mint2MELDSale(
+      _SeedSaleAddress: string,
+      _PrivateSaleAddress: string,
+      _PublicSaleAddress: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    mint2MELDPool(
+      _FoundationPoolAddress: string,
+      _LiquidityPoolAddress: string,
+      _AdvisorPoolAddress: string,
+      _FoundersTeamPoolAddress: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     pause(overrides?: CallOverrides): Promise<void>;
 
     unpause(overrides?: CallOverrides): Promise<void>;
-
-    test(overrides?: CallOverrides): Promise<void>;
 
     setMinterRole(minter: string, overrides?: CallOverrides): Promise<void>;
 
@@ -854,8 +1025,6 @@ export class MELD extends BaseContract {
       { role: string; account: string; sender: string }
     >;
 
-    Test(auther?: null): TypedEventFilter<[string], { auther: string }>;
-
     Transfer(
       from?: string | null,
       to?: string | null,
@@ -873,9 +1042,23 @@ export class MELD extends BaseContract {
   };
 
   estimateGas: {
+    AdvisorPoolAddress(overrides?: CallOverrides): Promise<BigNumber>;
+
     DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
 
+    FoundationPoolAddress(overrides?: CallOverrides): Promise<BigNumber>;
+
+    FoundersTeamPoolAddress(overrides?: CallOverrides): Promise<BigNumber>;
+
+    LiquidityPoolAddress(overrides?: CallOverrides): Promise<BigNumber>;
+
     MINTER_ROLE(overrides?: CallOverrides): Promise<BigNumber>;
+
+    PrivateSaleAddress(overrides?: CallOverrides): Promise<BigNumber>;
+
+    PublicSaleAddress(overrides?: CallOverrides): Promise<BigNumber>;
+
+    SeedSaleAddress(overrides?: CallOverrides): Promise<BigNumber>;
 
     /**
      * See {IERC20-allowance}.
@@ -948,6 +1131,10 @@ export class MELD extends BaseContract {
       addedValue: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+
+    initPool(overrides?: CallOverrides): Promise<BigNumber>;
+
+    initSale(overrides?: CallOverrides): Promise<BigNumber>;
 
     /**
      * Returns the name of the token.
@@ -1035,15 +1222,26 @@ export class MELD extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    mint2MELDSale(
+      _SeedSaleAddress: string,
+      _PrivateSaleAddress: string,
+      _PublicSaleAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    mint2MELDPool(
+      _FoundationPoolAddress: string,
+      _LiquidityPoolAddress: string,
+      _AdvisorPoolAddress: string,
+      _FoundersTeamPoolAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     pause(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     unpause(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    test(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -1059,11 +1257,35 @@ export class MELD extends BaseContract {
   };
 
   populateTransaction: {
+    AdvisorPoolAddress(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     DEFAULT_ADMIN_ROLE(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    FoundationPoolAddress(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    FoundersTeamPoolAddress(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    LiquidityPoolAddress(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     MINTER_ROLE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    PrivateSaleAddress(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    PublicSaleAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    SeedSaleAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     /**
      * See {IERC20-allowance}.
@@ -1139,6 +1361,10 @@ export class MELD extends BaseContract {
       addedValue: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
+
+    initPool(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    initSale(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     /**
      * Returns the name of the token.
@@ -1226,15 +1452,26 @@ export class MELD extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    mint2MELDSale(
+      _SeedSaleAddress: string,
+      _PrivateSaleAddress: string,
+      _PublicSaleAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    mint2MELDPool(
+      _FoundationPoolAddress: string,
+      _LiquidityPoolAddress: string,
+      _AdvisorPoolAddress: string,
+      _FoundersTeamPoolAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     pause(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
     unpause(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    test(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 

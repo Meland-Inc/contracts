@@ -2,11 +2,17 @@
 // 自动更新constanst.ts
 const fs = require('fs');
 const path = require('path');
+const { exit } = require('process');
 
 const MELD = artifacts.require("MELD");
-const Question = artifacts.require("Question");
-const Land = artifacts.require("Land");
-const Marketplace = artifacts.require("Marketplace");
+const MELDSeedSale = artifacts.require("MELDSeedSale");
+const MELDPrivateSale = artifacts.require("MELDPrivateSale");
+const MELDPublicSale = artifacts.require("MELDPublicSale");
+const FoundationPool = artifacts.require("FoundationPool");
+const LiquidityPool = artifacts.require("LiquidityPool");
+const AdvisorPool = artifacts.require("AdvisorPool");
+const FounderTeamPool = artifacts.require("FounderTeamPool");
+const MELDVesting = artifacts.require("MELDVesting");
 
 
 const promiseOpen = (filePath, mode = 'w') => {
@@ -24,14 +30,24 @@ const configPath = path.join(process.cwd(), "src", "constant.ts");
 
 module.exports = async function () {
     const existsMELD = await MELD.deployed();
-    const existsQuestion = await Question.deployed();
-    const existsLand = await Land.deployed();
-    const existsMarketplace = await Marketplace.deployed();
+    const existsMELDSeedSale = await MELDSeedSale.deployed();
+    const existsMELDPrivateSale = await MELDPrivateSale.deployed();
+    const existsMELDPublicSale = await MELDPublicSale.deployed();
+    const existsFoundationPool = await FoundationPool.deployed();
+    const existsLiquidityPool = await LiquidityPool.deployed();
+    const existsAdvisorPool = await AdvisorPool.deployed();
+    const existsFounderTeamPool = await FounderTeamPool.deployed();
+    const existsMELDVesting = await MELDVesting.deployed();
 
     if (!existsMELD
-        || !existsQuestion
-        || !existsLand
-        || !existsMarketplace
+        || !existsMELDSeedSale
+        || !existsMELDVesting
+        || !existsFounderTeamPool
+        || !existsMELDPrivateSale
+        || !existsMELDPublicSale
+        || !existsFoundationPool
+        || !existsLiquidityPool
+        || !existsAdvisorPool
     ) {
         throw new Error("请先部署");
     }
@@ -42,20 +58,36 @@ module.exports = async function () {
 // 通过 turffle deploy 的时候生成.
     
 // MELD token address
-export const MELDAddress = '${existsMELD.address}';
+export const MELD = '${existsMELD.address}';
     
-export const QuestionAddress = '${existsQuestion.address}';
+export const MELDSeedSale = '${existsMELDSeedSale.address}';
 
-export const LandAddress = '${existsLand.address}';
+export const MELDPrivateSale = '${existsMELDPrivateSale.address}';
 
-export const MarketplaceAddress = '${existsMarketplace.address}';
+export const MELDPublicSale = '${existsMELDPublicSale.address}';
+
+export const FoundationPool = '${existsFoundationPool.address}';
+
+export const LiquidityPool = '${existsLiquidityPool.address}';
+
+export const AdvisorPool = '${existsAdvisorPool.address}';
+
+export const FounderTeamPool = '${existsFounderTeamPool.address}';
+
+export const MELDVesting = '${existsMELDVesting.address}';
+
 `;
 
-    fs.write(fd, Buffer.from(code), (error) => {
-        if (error) {
-            throw error;
-        }
+    await new Promise((resolve) => {
+        fs.write(fd, Buffer.from(code), (error) => {
+            if (error) {
+                throw error;
+            }
 
-        console.debug("updated");
+            resolve();
+        });
     });
+
+    console.debug("updated");
+    exit(0);
 };

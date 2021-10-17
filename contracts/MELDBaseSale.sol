@@ -6,13 +6,16 @@ import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "./MELDVesting.sol";
 
 abstract contract MELDBaseSale is
     Initializable,
     PausableUpgradeable,
-    AccessControlUpgradeable
+    AccessControlUpgradeable,
+    UUPSUpgradeable
 {
     using SafeMathUpgradeable for uint256;
 
@@ -36,15 +39,15 @@ abstract contract MELDBaseSale is
         MELDVesting _MELDVestingContract,
         address _wallet,
         uint256 _rate
-    ) public {
+    ) public initializer {
         __Pausable_init();
         __AccessControl_init();
+        __UUPSUpgradeable_init();
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         MELDToken = token;
         rate = _rate;
         wallet = _wallet;
         MELDVestingContract = _MELDVestingContract;
-        MELDVestingContract.grantRole(ADD_VESTING_ROLE, address(this));
     }
 
     // Remaining purchasable quantity
@@ -94,4 +97,10 @@ abstract contract MELDBaseSale is
     function forwardFunds() internal {
         payable(wallet).transfer(msg.value);
     }
+
+    function _authorizeUpgrade(address newImplementation)
+        internal
+        override
+        onlyRole(DEFAULT_ADMIN_ROLE)
+    {}
 }
