@@ -29,6 +29,12 @@ function App() {
     )
   }
 
+  if (subPage === 'Vesting') {
+    return (
+      <Vesting />
+    )
+  }
+
   if (subPage === 'Profile') {
     return (
       <Profile />

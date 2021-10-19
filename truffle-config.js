@@ -12,7 +12,8 @@ module.exports = {
   networks: {
     develop: {
       host: "127.0.0.1",
-      port: 8545,           
+      port: 8545,          
+      gasPrice: 55000000000, 
       network_id: "*",
     },
 
@@ -34,20 +35,12 @@ module.exports = {
       skipDryRun: true
     },
 
-    rinkeby: {
-      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/692f82659c8941269cb7fd7b12bb70af`),
-      network_id: 4,
-      confirmations: 0,
-      timeoutBlocks: 2000,
-      skipDryRun: true
-    },
-
     goerli: {
       provider: () => new HDWalletProvider(mnemonic, `wss://goerli.infura.io/ws/v3/c08566eb93d345ff80670a8a60906ef2`),
       network_id: 5,
       confirmations: 0,
       timeoutBlocks: 2000,
-      gasPrice: 50000000000,
+      gasPrice: 55000000000,
       skipDryRun: true
     }
   },
