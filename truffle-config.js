@@ -13,7 +13,8 @@ module.exports = {
     develop: {
       host: "127.0.0.1",
       port: 8545,          
-      gasPrice: 55000000000, 
+      gasPrice: 55000000000,
+      confirmations: 0,
       network_id: "*",
     },
 
@@ -64,6 +65,11 @@ module.exports = {
     solc: {
       version: "^0.8.0"
     }
+  },
+
+  plugins: [ 'truffle-plugin-verify' ],
+  api_keys: {
+    etherscan: 'G346MADBZS299Y7G5HJMQRX87UGPAF7RXB'
   },
 
   // Truffle DB is currently disabled by default; to enable it, change enabled:
