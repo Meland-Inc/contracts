@@ -82,8 +82,7 @@ contract MELDVesting is AccessControlUpgradeable, UUPSUpgradeable {
         require(_beneficiary != address(0x0), INVALID_BENEFICIARY);
         tokensToVest = tokensToVest.add(_amount);
         vestingId = vestingId.add(1);
-
-        // 测试环境将天改成秒
+        
         // _releaseTime = _releaseTime.div(3600);
 
         vestings[vestingId] = Vesting({

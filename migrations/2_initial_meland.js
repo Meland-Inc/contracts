@@ -3,7 +3,7 @@ const { deployProxy } = require('@openzeppelin/truffle-upgrades');
 
 const MELD = artifacts.require("MELD");
 
-module.exports = async function (deployer) {
+module.exports = async function (deployer, network) {
   const MELDInstance = await deployProxy(MELD, [], { deployer, kind: 'uups' });
   console.log('Deployed MELD', MELDInstance.address);
 };
