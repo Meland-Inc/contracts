@@ -2,6 +2,9 @@
   "name": "meland",
   "version": "0.1.0",
   "private": true,
+  "files": [
+    "./contracts"
+  ],
   "dependencies": {
     "@ethersproject/providers": "^5.4.5",
     "@ethersproject/units": "^5.4.0",
@@ -21,12 +24,12 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
+    "test": "export $(cat .test_env | xargs) && truffle test --compile-all",
     "codegen": "typechain --target=ethers-v5 --out-dir=src/contracts 'build/contracts/*.json'",
     "codegen:const": "truffle exec  ./update_constant.js",
-    "network:dev": "truffle develop",
-    "network:compile": "rm -rf build && truffle compile",
-    "network:deploy": "truffle migrate",
+    "network:dev": "export $(cat .env | xargs) && truffle develop",
+    "network:compile": "export $(cat .env | xargs) && rm -rf build && truffle compile",
+    "network:deploy": "export $(cat .env | xargs) && truffle migrate",
     "prepublishOnly": "truffle compile"
   },
   "eslintConfig": {

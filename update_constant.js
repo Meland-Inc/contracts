@@ -28,7 +28,7 @@ const promiseOpen = (filePath, mode = 'w') => {
 
 const configPath = path.join(process.cwd(), "src", "constant.ts");
 
-module.exports = async function () {
+module.exports = async function (network) {
     const existsMELD = await MELD.deployed();
     const existsMELDSeedSale = await MELDSeedSale.deployed();
     const existsMELDPrivateSale = await MELDPrivateSale.deployed();

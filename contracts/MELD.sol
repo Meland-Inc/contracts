@@ -23,12 +23,15 @@ contract MELD is
         mint(getMaxMints());
     }
 
-    function getMaxMints() public view returns(uint256) {
-        return 200000000 * 10 ** decimals();
+    function getMaxMints() public view returns (uint256) {
+        return 200000000 * 10**decimals();
     }
 
     function mint(uint256 amount) public onlyOwner {
-        require(amount + totalSupply() <= getMaxMints(), 'Exceeds the maximum number of mintable');
+        require(
+            amount + totalSupply() <= getMaxMints(),
+            "Exceeds the maximum number of mintable"
+        );
         _mint(msg.sender, amount);
     }
 
