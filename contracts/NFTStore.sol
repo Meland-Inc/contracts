@@ -42,7 +42,6 @@ contract NFTStore is
         acceptedToken = _acceptedToken;
         officialWallet = _officialWallet;
         foundationWallet = _foundationWallet;
-
         ownerCutPerMillion = _ownerCutPerMillion;
     }
 
@@ -57,7 +56,8 @@ contract NFTStore is
         uint32 limit,
         // Whether to turn on restricted token id pool purchase
         // If restricted, the purchase is randomly given to the player from the id pool
-        bool tokenIdPool
+        bool tokenIdPool,
+        string memory description
     ) public {
         require(
             nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender),
@@ -67,6 +67,7 @@ contract NFTStore is
             nft.hasRole(MINTER_ROLE, address(this)),
             "Must authorize contract minter privileges"
         );
+        require(itemByNFT[nft].id == 0, "Already exists");
 
         uint256 itemId = itemIdCounters.current() + 1;
         itemIdCounters.increment();
@@ -75,12 +76,13 @@ contract NFTStore is
             itemId, 
             msg.sender,
             tokenIdPool,
-            priceInWei, 
-            0, 
-            limit
+            priceInWei,
+            0,
+            limit,
+            description
         );
 
-        emit NFTCreated(msg.sender, nft, priceInWei);
+        emit NFTCreated(itemId, msg.sender, nft, priceInWei);
     }
 
     function updateTokenIdPool(IERC721MelandNFT nft, uint256[] memory tokenIds)
@@ -90,16 +92,16 @@ contract NFTStore is
             nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender),
             "Unauthorized user"
         );
+        require(itemByNFT[nft].id > 0, "NFT not found");
         for (uint256 i = 0; i < tokenIds.length; i++) {
-            require(
-                nft.checkExists(tokenIds[i]) == false,
-                "The token id pool exists for ids that have been minted"
-            );
+            try nft.ownerOf(tokenIds[i]) returns(address owner) {
+                require(owner == address(0), "The token id pool exists for ids that have been minted");
+            } catch(bytes memory) {
+                // ok
+            }
         }
-
         tokenIdsByNFT[nft] = tokenIds;
-
-        emit NFTIdPoolUpdate(nft, tokenIds.length);
+        emit NFTIdPoolUpdate(itemByNFT[nft].id, nft, tokenIds.length);
     }
 
     // 下架NFT
@@ -109,12 +111,12 @@ contract NFTStore is
             "Unauthorized user"
         );
         require(itemByNFT[nft].id > 0, "NFT not found");
-
+        Item memory item = itemByNFT[nft];
         // 取消授权
         nft.renounceRole(MINTER_ROLE, address(this));
         delete itemByNFT[nft];
 
-        emit NFTDelete(msg.sender, nft);
+        emit NFTDelete(item.id, msg.sender, nft);
     }
 
     function randomIds(uint256[] memory ids) private view returns (uint256) {
@@ -154,6 +156,8 @@ contract NFTStore is
         ids[tokenIdIndex] = lastTokenId;
         ids.pop();
         tokenIdsByNFT[nft] = ids;
+
+        emit NFTIdPoolUpdate(itemByNFT[nft].id, nft, ids.length);
     }
 
     // 设置抽成
@@ -254,7 +258,7 @@ contract NFTStore is
             popTokenIdPoolByTokenIdIndex(nft, tokenIdIndex);
         }
 
-        emit NFTBuyed(sender, nft, priceInWei);
+        emit NFTBuyed(item.id, sender, nft, priceInWei);
     }
 
     function _authorizeUpgrade(address newImplementation)

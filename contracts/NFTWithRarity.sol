@@ -32,6 +32,7 @@ contract NFTWithRarity is
 
     // game cid
     string private cid;
+    string public rarity;
 
     function _beforeTokenTransfer(
         address from,
@@ -63,22 +64,54 @@ contract NFTWithRarity is
         return baseURI;
     }
 
-    function initialize(string memory name, string memory _cid)
+    function initialize(
+        string memory name, 
+        string memory _symbol,
+        string memory _rarity,
+        string memory _cid
+    )
         public
         initializer
     {
-        __ERC721_init(name, "MELAND-PLACEABLE");
+        __ERC721_init(name, _symbol);
         __ERC721URIStorage_init();
         __AccessControl_init();
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(MINTER_ROLE, msg.sender);
         _setupRole(UPGRADER_ROLE, msg.sender);
-
         cid = _cid;
+        rarity = _rarity;
     }
 
-    function getMintMax() public pure virtual returns (uint256) {
-        return 10000;
+    // safeMint
+    function safeMint(address to, uint256 tokenId) public onlyRole(MINTER_ROLE) {
+        require(
+            totalSupply() < getMintMax(),
+            "Exceeding the maximum supply quantity"
+        );
+
+        require(!_exists(tokenId), "Mint conflicted 1");
+        _safeMint(to, tokenId);
+    }
+
+    function getMintMax() public view virtual returns (uint256) {
+        if (keccak256(abi.encodePacked(rarity)) == keccak256("common")) {
+            return 10000;
+        }
+        if (keccak256(abi.encodePacked(rarity)) == keccak256("rare")) {
+            return 1000;
+        }
+        if (keccak256(abi.encodePacked(rarity)) == keccak256("epic")) {
+            return 100;
+        }
+        if (keccak256(abi.encodePacked(rarity)) == keccak256("mythic")) {
+            return 10;
+        }
+        return 1;
+    }
+
+    function getCid() public view returns(string memory) {
+        return cid;
     }
 
     function _burn(uint256 tokenId)
@@ -87,8 +120,6 @@ contract NFTWithRarity is
     {
         super._burn(tokenId);
     }
-
-    function rarity() external view returns (string memory) {}
 
     // 设置资源基础服务
     function setBaseURI(string memory baseURI_)

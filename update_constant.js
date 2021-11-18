@@ -5,15 +5,11 @@ const path = require('path');
 const { exit } = require('process');
 
 const MELD = artifacts.require("MELD");
-const MELDSeedSale = artifacts.require("MELDSeedSale");
-const MELDPrivateSale = artifacts.require("MELDPrivateSale");
-const MELDPublicSale = artifacts.require("MELDPublicSale");
-const FoundationPool = artifacts.require("FoundationPool");
-const LiquidityPool = artifacts.require("LiquidityPool");
-const AdvisorPool = artifacts.require("AdvisorPool");
-const FounderTeamPool = artifacts.require("FounderTeamPool");
-const MELDVesting = artifacts.require("MELDVesting");
-
+const VipLand = artifacts.require("VipLand");
+const TicketLand = artifacts.require("TicketLand");
+const NFTStore = artifacts.require("NFTStore");
+const Marketplace = artifacts.require("Marketplace");
+const NFTFactory = artifacts.require("NFTFactory");
 
 const promiseOpen = (filePath, mode = 'w') => {
     return new Promise((resolve, reject) => {
@@ -26,56 +22,35 @@ const promiseOpen = (filePath, mode = 'w') => {
     })
 };
 
-const configPath = path.join(process.cwd(), "src", "constant.ts");
+const networkFilenameMap = {
+    'develop': 'local.json',
+    'mumbai': 'mumbai.json'
+};
 
-module.exports = async function (network) {
+module.exports = async function (_) {
+    let network = config.network;
+    const configPath = path.join(process.env.indexerConfigDir || process.cwd(), `${networkFilenameMap[network]}`);
+
     const existsMELD = await MELD.deployed();
-    const existsMELDSeedSale = await MELDSeedSale.deployed();
-    const existsMELDPrivateSale = await MELDPrivateSale.deployed();
-    const existsMELDPublicSale = await MELDPublicSale.deployed();
-    const existsFoundationPool = await FoundationPool.deployed();
-    const existsLiquidityPool = await LiquidityPool.deployed();
-    const existsAdvisorPool = await AdvisorPool.deployed();
-    const existsFounderTeamPool = await FounderTeamPool.deployed();
-    const existsMELDVesting = await MELDVesting.deployed();
-
-    if (!existsMELD
-        || !existsMELDSeedSale
-        || !existsMELDVesting
-        || !existsFounderTeamPool
-        || !existsMELDPrivateSale
-        || !existsMELDPublicSale
-        || !existsFoundationPool
-        || !existsLiquidityPool
-        || !existsAdvisorPool
-    ) {
-        throw new Error("请先部署");
-    }
+    // const existsVipLand = await VipLand.deployed();
+    const existsTicketLand = await TicketLand.deployed();
+    const existsNFTStore = await NFTStore.deployed();
+    const existsMarketplace = await Marketplace.deployed();
+    const existsNFTFactory = await NFTFactory.deployed();
 
     const fd = await promiseOpen(configPath);
 
-    const code = `// 不要改动这个文件.
-// 通过 turffle deploy 的时候生成.
-    
-// MELD token address
-export const MELD = '${existsMELD.address}';
-    
-export const MELDSeedSale = '${existsMELDSeedSale.address}';
-
-export const MELDPrivateSale = '${existsMELDPrivateSale.address}';
-
-export const MELDPublicSale = '${existsMELDPublicSale.address}';
-
-export const FoundationPool = '${existsFoundationPool.address}';
-
-export const LiquidityPool = '${existsLiquidityPool.address}';
-
-export const AdvisorPool = '${existsAdvisorPool.address}';
-
-export const FounderTeamPool = '${existsFounderTeamPool.address}';
-
-export const MELDVesting = '${existsMELDVesting.address}';
-
+    /// 本地开发模拟mumbai链
+    const code = `{
+    "network": "${network == "local" ? "mumbai" : network}",
+    "VipLand_address": "${existsTicketLand.address}",
+    "TicketLand_address": "${existsTicketLand.address}",
+    "NFTStore_address": "${existsNFTStore.address}",
+    "Marketplace_address": "${existsMarketplace.address}",
+    "MELD_address": "${existsMELD.address}",
+    "NFTFactory_address": "${existsNFTFactory.address}",
+    "start_block": "21531031"
+}
 `;
 
     await new Promise((resolve) => {
@@ -88,6 +63,6 @@ export const MELDVesting = '${existsMELDVesting.address}';
         });
     });
 
-    console.debug("updated");
+    console.info("save to", configPath);
     exit(0);
 };

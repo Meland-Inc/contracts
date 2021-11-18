@@ -5,7 +5,7 @@ import "./BaseLand.sol";
 
 contract VipLand is BaseLand {
     function initialize() public initializer {
-        __ERC721_init("VipLand", "VIP-LAND");
+        __ERC721_init("VipLand", "MELD-VIP-Land");
         __AccessControl_init();
         __UUPSUpgradeable_init();
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);

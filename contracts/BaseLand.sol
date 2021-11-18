@@ -38,12 +38,13 @@ contract BaseLand is
             totalSupply() < getMintMax(),
             "Exceeding the maximum supply quantity"
         );
-        require(checkExists(landId) == false, "Mint conflicted 1");
+        require(!_exists(landId), "Mint conflicted 1");
         for (uint8 i = 0; i < otherLands.length; i++) {
-            require(
-                otherLands[i].checkExists(landId) == false,
-                "Mint conflicted 2"
-            );
+            try otherLands[i].ownerOf(landId) returns(address owner) {
+                require(owner == address(0), "Mint conflicted 2");
+            } catch {
+                // ok
+            }
         }
         _safeMint(to, landId);
     }

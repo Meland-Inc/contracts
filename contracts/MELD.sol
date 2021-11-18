@@ -15,11 +15,11 @@ contract MELD is
     UUPSUpgradeable
 {
     function initialize() public initializer {
-        __ERC20_init("MELD", "MELD");
+        __ERC20_init("Meland.ai", "MELD");
         __ERC20Burnable_init();
         __Ownable_init();
         __UUPSUpgradeable_init();
-
+ 
         mint(getMaxMints());
     }
 

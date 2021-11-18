@@ -1,8 +1,7 @@
 /* eslint-disable no-undef */
 const { deployProxy } = require('@openzeppelin/truffle-upgrades');
 
-const NFTStore = artifacts.require("NFTStore");
-const TicketLand = artifacts.require("TicketLand");
+const NFTFactory = artifacts.require("NFTFactory");
 
 module.exports = async function (deployer, network) {
     if (![
@@ -14,7 +13,6 @@ module.exports = async function (deployer, network) {
         console.log("Deploy only on polygon networks");
         return;
     }
-    const ticketLandInstance = await deployProxy(TicketLand, [], { deployer, kind: 'uups' });
-    // 设置baseURI
-    await ticketLandInstance.setBaseURI("https://token-metadata.melandworld.com/ticketland/");
+
+    const instanceOfNFTFactory = await deployProxy(NFTFactory, [], { deployer, kind: 'uups' });
 };

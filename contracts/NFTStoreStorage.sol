@@ -50,25 +50,32 @@ contract NFTStoreStorage {
         // 是否开启限量
         // 如果大于0则开启
         uint32 limit;
+        string description;
     }
 
     // EVENTS
     event NFTCreated(
+        uint256 indexed id,
         address indexed seller,
         IERC721MelandNFT nftAddress,
         uint256 priceInWei
     );
 
     // EVENTS
-    event NFTDelete(address indexed seller, IERC721MelandNFT nftAddress);
+    event NFTDelete(
+        uint256 indexed id,
+        address indexed seller, 
+        IERC721MelandNFT nftAddress
+    );
 
     event NFTBuyed(
+        uint256 indexed id,
         address indexed buyer,
         IERC721MelandNFT nftAddress,
         uint256 priceInWei
     );
 
-    event NFTIdPoolUpdate(IERC721MelandNFT indexed nft, uint256 length);
+    event NFTIdPoolUpdate(uint256 indexed id, IERC721MelandNFT indexed nft, uint256 length);
 
     event ChangedOwnerCutPerMillion(uint256 ownerCutPerMillion);
 }

@@ -5,7 +5,7 @@ import "./BaseLand.sol";
 
 contract TicketLand is BaseLand {
     function initialize() public initializer {
-        __ERC721_init("TicketLand", "TICKET-LAND");
+        __ERC721_init("TicketLand", "MELD-Ticket-Land");
         __AccessControl_init();
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(MINTER_ROLE, msg.sender);

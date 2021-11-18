@@ -28,7 +28,7 @@ module.exports = {
     },
 
     // polygon test network
-    mumbaimatic: {
+    mumbai: {
       provider: () => new HDWalletProvider(mnemonic, `https://matic-mumbai.chainstacklabs.com`),
       network_id: 80001,
       confirmations: 2,
@@ -40,6 +40,22 @@ module.exports = {
     matic: {
       provider: () => new HDWalletProvider(mnemonic, `https://rpc-mainnet.matic.network`),
       network_id: 137,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+
+    bsctest: {
+      provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-1-s1.binance.org:8545`),
+      network_id: 97,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+
+    bsc: {
+      provider: () => new HDWalletProvider(mnemonic, `https://bsc-dataseed1.binance.org:443`),
+      network_id: 56,
       confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true

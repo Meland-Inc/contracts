@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 const { deployProxy } = require('@openzeppelin/truffle-upgrades');
 
+const Marketplace = artifacts.require("Marketplace");
 const MELD = artifacts.require("MELD");
-const NFTStore = artifacts.require("NFTStore");
 
 module.exports = async function (deployer, network) {
     if (![
@@ -19,11 +19,10 @@ module.exports = async function (deployer, network) {
     const foundationWallet = process.env.foundationWallet;
     const ownerCutPerMillion = process.env.ownerCutPerMillion;
     console.debug("deploy nftstore with", existsMELD.address, officialWallet, foundationWallet, ownerCutPerMillion);
-    const NFTStoreInstance = await deployProxy(NFTStore, [
+    const marketplaceInstance = await deployProxy(Marketplace, [
         existsMELD.address,
         officialWallet,
         foundationWallet,
         ownerCutPerMillion
     ], { deployer, kind: 'uups' });
-    console.log('Deployed NFTStore', NFTStoreInstance.address);
 };
