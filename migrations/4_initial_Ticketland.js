@@ -14,7 +14,8 @@ module.exports = async function (deployer, network) {
         console.log("Deploy only on polygon networks");
         return;
     }
+    const env = 'release';
     const ticketLandInstance = await deployProxy(TicketLand, [], { deployer, kind: 'uups' });
     // 设置baseURI
-    await ticketLandInstance.setBaseURI("https://token-metadata.melandworld.com/ticketland/");
+    await ticketLandInstance.setBaseURI(`https://token-metadata-${env}.melandworld.com/ticketland/`);
 };

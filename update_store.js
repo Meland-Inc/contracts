@@ -89,6 +89,7 @@ module.exports = async function (callback) {
                 rarity,
                 cid
             );
+            await instance.setBaseURI(`https://token-metadata-${env}.melandworld.com/placeable/`);
             await instance.grantRole(keccak256("MINTER_ROLE"), existsNFTStore.address);
             const {
                 ticketLandPriceInWei,
