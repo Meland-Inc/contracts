@@ -30,12 +30,23 @@ module.exports = async function (callback) {
             "matic",
             "mumbai",
             "develop",
+            "rinkeby",
             "test"
         ].includes(network)) {
             console.log("Deploy only on polygon networks");
             callback()
             exit(0);
         }
+
+        const MELDInstance = await MELD.deployed();
+
+        const result = await MELDInstance.isPool("0x5832425f794e767e3f890694de5e0fae33bb1bc1");
+        const result2 = await MELDInstance.liquidityAddedBlock();
+
+        console.debug(result.toString(), result2.toString());
+        
+        return;
+
         const existsNFTStore = await NFTStore.deployed();
         const ticketLandInstance = await TicketLand.deployed();
         // const instanceOfNFTWithCidMigration = await NFTWithCidMigration.deployed();

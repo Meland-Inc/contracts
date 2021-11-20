@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity 0.8.9;
 
 // 官方商城合约
 // 与marketplace的区别是. marketplace是用户和用户之间交易的合约.

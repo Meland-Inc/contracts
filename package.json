@@ -26,7 +26,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "export $(cat .test_env | xargs) && truffle test --compile-all",
-    "codegen": "typechain --target=ethers-v5 --out-dir=/Users/alberthuang/code/icw/egret-market-place/src/contracts 'build/contracts/*.json'",
+    "codegen": "typechain --target=ethers-v5 --out-dir=$OUT 'build/contracts/*.json'",
     "confgen": "export $(cat .env | xargs) && truffle exec ./update_constant.js",
     "store": "export $(cat .env | xargs) && truffle exec ./update_store.js",
     "network:dev": "export $(cat .env | xargs) && truffle develop",

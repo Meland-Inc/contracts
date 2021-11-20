@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity 0.8.9;
 
 // 这里提供所有meland.ai支持的NFT合约列表.
 // 只有存在于这个合约的NFT. 游戏背包才会显示并且使用等.

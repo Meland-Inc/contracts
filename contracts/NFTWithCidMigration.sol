@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity 0.8.9;
 
 // 用来判断官方物件表格中.
 // 哪些Cid已经部署了.

@@ -68,6 +68,15 @@ module.exports = {
       timeoutBlocks: 2000,
       gasPrice: 55000000000,
       skipDryRun: true
+    },
+
+    rinkeby: {
+      provider: () => new HDWalletProvider(mnemonic, `wss://speedy-nodes-nyc.moralis.io/036db9847a8d6409b3dbcddc/eth/rinkeby/archive/ws`),
+      network_id: 4,
+      confirmations: 0,
+      gasPrice: 55000000000,
+      timeoutBlocks: 2000,
+      skipDryRun: true
     }
   },
 
@@ -79,7 +88,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "^0.8.0"
+      version: "0.8.9"
     }
   },
 

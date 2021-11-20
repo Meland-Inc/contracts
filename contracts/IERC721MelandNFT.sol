@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity 0.8.9;
 
 // 允许在官方商城上架的NFT
 // 由于NFT标准(ERC721)只规定了转账 资源等
