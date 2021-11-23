@@ -14,5 +14,5 @@ module.exports = async function (deployer, network) {
         return;
     }
 
-    const instanceOfNFTFactory = await deployProxy(NFTFactory, [], { deployer, kind: 'uups' });
+    await deployProxy(NFTFactory, [], { deployer, kind: 'uups' });
 };

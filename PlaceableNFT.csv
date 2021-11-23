@@ -1,14 +1,9 @@
-NFT_ID,物品名称,稀有度,关联物品id,token名,token符号,贴图,描述,核心技能,影响半径,影响数值,可放置land
-NFT_ID,name,rarity,item_id,token_name,token_symbol,Texture,desc,core_Skill,radius,value,placeableLand
-int,string,string,int,string,string,string,string,int,int,string,int[]
-1,commonSentry,common,80000001,commonSentry,MELD-placeable,DSJ_ShiQiSD_1_1_01_ic,test_NFT,Sentry,3,2,0
-2,rareSentry,rare,80000002,rareSentry,MELD-placeable,DSJ_ShiQiSD_1_1_02_ic,test_NFT,Sentry,3,3,"0,1"
-3,epicSentry,epic,80000003,epicSentry,MELD-placeable,DSJ_ShiQiSD_1_1_03_ic,test_NFT,Sentry,3,5,"0,1,2"
-4,mythicSentry,mythic,80000004,mythicSentry,MELD-placeable,DSJ_ShiQiSD_1_1_04_ic,test_NFT,Sentry,3,8,"1,2"
-5,uniqueSentry,unique,80000005,uniqueSentry,MELD-placeable,DSJ_ShiQiSD_1_1_05_ic,test_NFT,Sentry,3,12,2
-6,commonPlunder,common,80000006,commonPlunder,MELD-placeable,DSJ_ShiQiSD_1_1_06_ic,test_NFT,Plunder,3,0.01,0
-7,rarePlunder,rare,80000007,rarePlunder,MELD-placeable,DSJ_ShiQiSD_1_1_07_ic,test_NFT,Plunder,3,0.02,"0,2"
-8,epicPlunder,epic,80000008,epicPlunder,MELD-placeable,DSJ_ShiQiSD_1_1_08_ic,test_NFT,Plunder,3,0.03,1
-9,mythicPlunder,mythic,80000009,mythicPlunder,MELD-placeable,DSJ_ShiQiSD_1_1_06_ic,test_NFT,Plunder,3,0.04,0
-10,uniquePlunder,unique,80000010,uniquePlunder,MELD-placeable,DSJ_ShiQiSD_1_1_07_ic,test_NFT,Plunder,3,0.05,0
-11,noSkill,common,80000011,noSkill,MELD-placeable,DSJ_ShiQiSD_1_1_08_ic,test_NFT,,,,0
+NFT_ID,物品名称,稀有度,价格设置,销售价格（不要改）,关联物品id,token名,token符号,贴图,描述,核心技能id,技能等级,可放置land
+id,name,rarity,null,price,item_id,token_name,token_symbol,Texture,desc,core_Skill_id,skill_level,placeableLand
+int,string,string,null,int,int,string,string,string,string,string,string,string[]
+1,Sentry Lv1,common,10,10000000000000000000 ,80000001,Sentry Lv1,MELD-placeable,Z_mlNFTdj_1_1_01,"A solid guardian of your land, can reduce the answering time when the surrounding land is invaded",1001,1,"occupied,ticket,vip"
+2,Sentry Lv2,rare,50,50000000000000000000 ,80000002,Sentry Lv2,MELD-placeable,Z_mlNFTdj_1_1_02,"A solid guardian of your land, can reduce the answering time when the surrounding land is invaded",1001,2,"occupied,ticket,vip"
+3,Sentry Lv3,epic,100,100000000000000000000 ,80000003,Sentry Lv3,MELD-placeable,Z_mlNFTdj_1_1_03,"A solid guardian of your land, can reduce the answering time when the surrounding land is invaded",1001,3,"occupied,ticket,vip"
+4,Looter Lv1,common,10,10000000000000000000 ,80000004,Looter Lv1,MELD-placeable,Z_mlNFTdj_1_1_04,"Greedy plunderer, can increase the Ditamin obtained when attacking surrounding land",1002,1,"occupied,ticket,vip"
+5,Looter LV2,rare,50,50000000000000000000 ,80000005,Looter LV2,MELD-placeable,Z_mlNFTdj_1_1_05,"Greedy plunderer, can increase the Ditamin obtained when attacking surrounding land",1002,2,"occupied,ticket,vip"
+6,Looter Lv3,epic,100,100000000000000000000 ,80000006,Looter Lv3,MELD-placeable,Z_mlNFTdj_1_1_06,"Greedy plunderer, can increase the Ditamin obtained when attacking surrounding land",1002,3,"occupied,ticket,vip"

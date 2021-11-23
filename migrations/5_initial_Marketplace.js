@@ -19,7 +19,7 @@ module.exports = async function (deployer, network) {
     const foundationWallet = process.env.foundationWallet;
     const ownerCutPerMillion = process.env.ownerCutPerMillion;
     console.debug("deploy nftstore with", existsMELD.address, officialWallet, foundationWallet, ownerCutPerMillion);
-    const marketplaceInstance = await deployProxy(Marketplace, [
+    await deployProxy(Marketplace, [
         existsMELD.address,
         officialWallet,
         foundationWallet,

@@ -31,6 +31,10 @@ contract NFTStoreStorage {
 
     mapping(IERC721MelandNFT => uint256[]) public tokenIdsByNFT;
 
+    // 记录cid
+    // 防止同一个cid重复上架
+    mapping(string => address) public nftByCid;
+
     // 限购池
     // 记录每个NFT当前用户已经购买了多少
     mapping(IERC721MelandNFT => mapping(address => uint256)) public limitPool;
@@ -76,6 +80,8 @@ contract NFTStoreStorage {
     );
 
     event NFTIdPoolUpdate(uint256 indexed id, IERC721MelandNFT indexed nft, uint256 length);
+
+    event NFTItemUpdate(uint256 indexed id, IERC721MelandNFT nftAddress);
 
     event ChangedOwnerCutPerMillion(uint256 ownerCutPerMillion);
 }

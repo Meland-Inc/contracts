@@ -5,15 +5,11 @@ const path = require('path');
 const csvtojson = require('csvtojson');
 const { exit } = require('process');
 const { keccak256 } = require("web3-utils");
-const MELD = artifacts.require("MELD");
-const VipLand = artifacts.require("VipLand");
 const TicketLand = artifacts.require("TicketLand");
 const NFTStore = artifacts.require("NFTStore");
-const Marketplace = artifacts.require("Marketplace");
-const NFTFactory = artifacts.require("NFTFactory");
-const NFTWithCidMigration = artifacts.require("NFTWithCidMigration");
 const NFTWithRarity = artifacts.require("NFTWithRarity");
 const cidCSVPath = path.join(__dirname, 'PlaceableNFT.csv');
+
 
 const promiseTimeout = () => {
     return new Promise(resolve => {
@@ -38,18 +34,8 @@ module.exports = async function (callback) {
             exit(0);
         }
 
-        const MELDInstance = await MELD.deployed();
-
-        const result = await MELDInstance.isPool("0x5832425f794e767e3f890694de5e0fae33bb1bc1");
-        const result2 = await MELDInstance.liquidityAddedBlock();
-
-        console.debug(result.toString(), result2.toString());
-        
-        return;
-
         const existsNFTStore = await NFTStore.deployed();
         const ticketLandInstance = await TicketLand.deployed();
-        // const instanceOfNFTWithCidMigration = await NFTWithCidMigration.deployed();
 
         console.debug("开始上架ticket land");
         const ticketLandInStore = await existsNFTStore.itemByNFT(ticketLandInstance.address);
@@ -67,24 +53,33 @@ module.exports = async function (callback) {
                 ticketLandPriceInWei,
                 ticketLandLimit,
                 tokenIdPool,
-                "这是description"
+                "this is ticket land"
             );
             console.log('上架成功ticket land', result);
         }
 
-        await existsNFTStore.updateTokenIdPool(
-            ticketLandInstance.address,
-            [
-                100001,
-                200001,
-                300001,
-                400001
-            ]
-        );
+       
+        // await existsNFTStore.updateTokenIdPool(
+        //     ticketLandInstance.address,
+        //     [
+        //         5950430,
+        //         5990430,
+        //         6290433,
+        //         6420432,
+        //         6370438,
+        //         6440454,
+        //         6360434,
+        //         6460451,
+        //         6240435,
+        //         6370450,
+        //         6460433,
+        //         6310444,
+        //     ]
+        // );
 
         console.debug("开始上架NFT");
         const cidBuffer = fs.readFileSync(cidCSVPath);
-        const cidList = (await csvtojson({}).fromString(cidBuffer.toString())).slice(2, -1);
+        const cidList = (await csvtojson({}).fromString(cidBuffer.toString())).slice(2);
         for (let i = 0; i < cidList.length; i++) {
             let cidItem = cidList[i];
             const cid = cidItem['关联物品id'];
@@ -92,6 +87,16 @@ module.exports = async function (callback) {
             const tokenS = cidItem['token符号'];
             const description = cidItem['描述'];
             const rarity = cidItem['稀有度'];
+            const priceInWei = cidItem['销售价格（不要改）'];
+            console.debug(cid);
+            const nftAddress = await existsNFTStore.nftByCid(cid);
+            console.debug(nftAddress, 'xxxx');
+            if (nftAddress
+                && nftAddress !== "0x0000000000000000000000000000000000000000"
+            ) {
+                console.debug("nft 已经存在跳过上架", cid);
+                continue;
+            }
             await promiseTimeout();
             const instance = await NFTWithRarity.new();
             await instance.initialize(
@@ -100,24 +105,22 @@ module.exports = async function (callback) {
                 rarity,
                 cid
             );
-            await instance.setBaseURI(`https://token-metadata-${env}.melandworld.com/placeable/`);
+            await instance.setBaseURI(`https://token-metadata-release.melandworld.com/placeable/`);
             await instance.grantRole(keccak256("MINTER_ROLE"), existsNFTStore.address);
             const {
-                ticketLandPriceInWei,
                 nftLimit = 0,
                 nftTokenIdPool = false
             } = process.env;
-            console.debug("create NFT to NFTStore with", ticketLandPriceInWei, nftLimit, nftTokenIdPool);
+            console.debug("create NFT to NFTStore with", priceInWei, nftLimit, nftTokenIdPool);
             const result = await existsNFTStore.createNFT(
                 instance.address,
-                ticketLandPriceInWei,
-                0,
+                priceInWei,
+                nftLimit,
                 nftTokenIdPool,
                 description
             );
             console.info("上架NFT完成 cid:", cid, result);
         }
-        console.debug(cidList);
         callback();
         exit(0);
     } catch (error) {

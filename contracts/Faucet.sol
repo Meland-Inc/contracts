@@ -16,20 +16,32 @@ contract Faucet is OwnableUpgradeable
 
     IERC20MELD public token;
 
-    uint256 reciveTokenEvertimes = 100;
+    address public gmAddress;
+
+    uint256 reciveTokenEvertimes = 100 * 10**18;
 
     mapping(address => uint256) recivedPool;
 
-    function initialize(IERC20MELD _token) public initializer {
+    function initialize(
+        IERC20MELD _token,
+        address _gm
+    ) public initializer {
         __Ownable_init();
         token = _token;
+        gmAddress = _gm;
     }
 
     function recive() public {
         require(token.balanceOf(address(this)) > reciveTokenEvertimes, "Insufficient balance");
-        require(recivedPool[msg.sender] < block.timestamp.add(86400), "Once per account for 24 hours");
+        require(recivedPool[msg.sender] < block.timestamp.sub(86400), "Once per account for 24 hours");
 
         token.transfer(msg.sender, reciveTokenEvertimes);
         recivedPool[msg.sender] = block.timestamp;
+    }
+
+    // 提取所有MELD
+    function reciveAll() public  {
+        require(msg.sender == owner() || msg.sender == gmAddress, "only owner or gm");
+        token.transfer(msg.sender, token.balanceOf(address(this)));
     }
 }

@@ -5,11 +5,11 @@ const path = require('path');
 const { exit } = require('process');
 
 const MELD = artifacts.require("MELD");
-const VipLand = artifacts.require("VipLand");
 const TicketLand = artifacts.require("TicketLand");
 const NFTStore = artifacts.require("NFTStore");
 const Marketplace = artifacts.require("Marketplace");
 const NFTFactory = artifacts.require("NFTFactory");
+const Faucet = artifacts.require("Faucet");
 
 const promiseOpen = (filePath, mode = 'w') => {
     return new Promise((resolve, reject) => {
@@ -38,6 +38,16 @@ module.exports = async function (_) {
     const existsMarketplace = await Marketplace.deployed();
     const existsNFTFactory = await NFTFactory.deployed();
 
+    let faucetAddress = '';
+    if ([
+        "mumbai",
+        "develop",
+        "test"
+    ].includes(network)) {
+        const existsFaucet = await Faucet.deployed();
+        faucetAddress = existsFaucet.address;
+    }
+
     const fd = await promiseOpen(configPath);
 
     /// 本地开发模拟mumbai链
@@ -49,7 +59,8 @@ module.exports = async function (_) {
     "Marketplace_address": "${existsMarketplace.address}",
     "MELD_address": "${existsMELD.address}",
     "NFTFactory_address": "${existsNFTFactory.address}",
-    "start_block": "21531031"
+    "Faucet_address": "${faucetAddress}",
+    "start_block": "21743671"
 }
 `;
 

@@ -14,6 +14,7 @@ module.exports = {
       host: "127.0.0.1",
       port: 8545,          
       gasPrice: 55000000000,
+      gas: 6721975,
       confirmations: 0,
       network_id: "*",
     },
@@ -29,7 +30,7 @@ module.exports = {
 
     // polygon test network
     mumbai: {
-      provider: () => new HDWalletProvider(mnemonic, `https://matic-mumbai.chainstacklabs.com`),
+      provider: () => new HDWalletProvider(mnemonic, `wss://polygon-mumbai.g.alchemy.com/v2/fIbA8DRSTQXPAhcHKiPFo19SPqhHNHam`),
       network_id: 80001,
       confirmations: 2,
       timeoutBlocks: 200,
@@ -88,33 +89,19 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.8.9"
+      version: "0.8.9",
+      settings: {
+        optimizer: {
+          enabled: true, // Default: false
+          runs: 1000, // Default: 200
+        },
+      },
     }
   },
 
   plugins: [ 'truffle-plugin-verify' ],
   api_keys: {
-    etherscan: 'G346MADBZS299Y7G5HJMQRX87UGPAF7RXB'
-  },
-
-  // Truffle DB is currently disabled by default; to enable it, change enabled:
-  // false to enabled: true. The default storage location can also be
-  // overridden by specifying the adapter settings, as shown in the commented code below.
-  //
-  // NOTE: It is not possible to migrate your contracts to truffle DB and you should
-  // make a backup of your artifacts to a safe location before enabling this feature.
-  //
-  // After you backed up your artifacts you can utilize db by running migrate as follows: 
-  // $ truffle migrate --reset --compile-all
-  //
-  // db: {
-    // enabled: false,
-    // host: "127.0.0.1",
-    // adapter: {
-    //   name: "sqlite",
-    //   settings: {
-    //     directory: ".db"
-    //   }
-    // }
-  // }
+    etherscan: 'G346MADBZS299Y7G5HJMQRX87UGPAF7RXB',
+    polygonscan: 'A4HFFESE15HQP8S87RW8I6MNJGI36DQJMA'
+  }
 };

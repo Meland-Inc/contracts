@@ -44,7 +44,7 @@ contract NFTStore is
         foundationWallet = _foundationWallet;
         ownerCutPerMillion = _ownerCutPerMillion;
     }
-
+    
     // 新增NFT售卖
     function createNFT(
         // nft address
@@ -69,6 +69,13 @@ contract NFTStore is
         );
         require(itemByNFT[nft].id == 0, "Already exists");
 
+        (bool success, bytes memory cid)  = address(nft).staticcall(abi.encodeWithSignature("getCid()"));
+        if (success) {
+            string memory cidstr = abi.decode(cid, (string));
+            require(nftByCid[cidstr] == address(0), string(abi.encodePacked("cid Already exists", cidstr)));
+            nftByCid[cidstr] = address(nft);
+        }
+
         uint256 itemId = itemIdCounters.current() + 1;
         itemIdCounters.increment();
 
@@ -85,11 +92,72 @@ contract NFTStore is
         emit NFTCreated(itemId, msg.sender, nft, priceInWei);
     }
 
-    function updateTokenIdPool(IERC721MelandNFT nft, uint256[] memory tokenIds)
-        public
+    function updateItemLimit(
+        // nft address
+        IERC721MelandNFT nft,
+
+        // Limit the number of individual wallet purchases
+        // If 0 means no limit
+        uint32 limit
+    ) public {
+        require(
+            nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender) || hasRole(GM_ROLE, msg.sender),
+            "Unauthorized user"
+        );
+        require(itemByNFT[nft].id > 0, "NFT not found");
+
+        itemByNFT[nft].limit = limit;
+
+        emit NFTItemUpdate(
+            itemByNFT[nft].id,
+            nft
+        );
+    }
+
+    function updateItemPriceInWei(
+        // nft address
+        IERC721MelandNFT nft,
+        // Purchase Price
+        uint256 priceInWei
+    )  public {
+        require(
+            nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender) || hasRole(GM_ROLE, msg.sender),
+            "Unauthorized user"
+        );
+        require(itemByNFT[nft].id > 0, "NFT not found");
+
+        itemByNFT[nft].priceInWei = priceInWei;
+
+        emit NFTItemUpdate(
+            itemByNFT[nft].id,
+            nft
+        );
+    }
+
+    function updateItemDescription(
+        // nft address
+        IERC721MelandNFT nft,
+
+        string memory description
+    )  public {
+        require(
+            nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender) || hasRole(GM_ROLE, msg.sender),
+            "Unauthorized user"
+        );
+        require(itemByNFT[nft].id > 0, "NFT not found");
+
+        itemByNFT[nft].description = description;
+
+        emit NFTItemUpdate(
+            itemByNFT[nft].id,
+            nft
+        );
+    }
+
+    function updateTokenIdPool(IERC721MelandNFT nft, uint256[] memory tokenIds) public
     {
         require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender),
+            nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender) || hasRole(GM_ROLE, msg.sender),
             "Unauthorized user"
         );
         require(itemByNFT[nft].id > 0, "NFT not found");

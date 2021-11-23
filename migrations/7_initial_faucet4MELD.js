@@ -19,7 +19,11 @@ module.exports = async function (deployer, network, accounts) {
         MELDInstance.address
     ]);
 
-    console.debug(accounts);
+    await FaucetInstance.initialize(
+        MELDInstance.address,
+        process.env.gm
+    );
+
     const banlance = await MELDInstance.balanceOf(accounts[0]);
     MELDInstance.transfer(FaucetInstance.address, banlance);
 };
