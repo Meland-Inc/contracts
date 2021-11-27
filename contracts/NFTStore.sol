@@ -35,9 +35,9 @@ contract NFTStore is
     ) public initializer {
         __UUPSUpgradeable_init();
         __AccessControl_init();
-        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        _setupRole(UPGRADER_ROLE, msg.sender);
-        _setupRole(GM_ROLE, msg.sender);
+        _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
+        _setupRole(UPGRADER_ROLE, _msgSender());
+        _setupRole(GM_ROLE, _msgSender());
 
         acceptedToken = _acceptedToken;
         officialWallet = _officialWallet;
@@ -60,7 +60,7 @@ contract NFTStore is
         string memory description
     ) public {
         require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender),
+            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()),
             "Unauthorized user"
         );
         require(
@@ -81,7 +81,7 @@ contract NFTStore is
 
         itemByNFT[nft] = Item(
             itemId, 
-            msg.sender,
+            _msgSender(),
             tokenIdPool,
             priceInWei,
             0,
@@ -89,7 +89,7 @@ contract NFTStore is
             description
         );
 
-        emit NFTCreated(itemId, msg.sender, nft, priceInWei);
+        emit NFTCreated(itemId, _msgSender(), nft, priceInWei);
     }
 
     function updateItemLimit(
@@ -101,7 +101,7 @@ contract NFTStore is
         uint32 limit
     ) public {
         require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender) || hasRole(GM_ROLE, msg.sender),
+            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()) || hasRole(GM_ROLE, _msgSender()),
             "Unauthorized user"
         );
         require(itemByNFT[nft].id > 0, "NFT not found");
@@ -121,7 +121,7 @@ contract NFTStore is
         uint256 priceInWei
     )  public {
         require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender) || hasRole(GM_ROLE, msg.sender),
+            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()) || hasRole(GM_ROLE, _msgSender()),
             "Unauthorized user"
         );
         require(itemByNFT[nft].id > 0, "NFT not found");
@@ -141,7 +141,7 @@ contract NFTStore is
         string memory description
     )  public {
         require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender) || hasRole(GM_ROLE, msg.sender),
+            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()) || hasRole(GM_ROLE, _msgSender()),
             "Unauthorized user"
         );
         require(itemByNFT[nft].id > 0, "NFT not found");
@@ -154,10 +154,44 @@ contract NFTStore is
         );
     }
 
+    function checkIdsExists(IERC721MelandNFT nft, uint256 id) private view returns(bool) {
+        uint256[] memory ids = tokenIdsByNFT[nft];
+        for (uint i=0; i < ids.length; i++) {
+            if (ids[i] == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function addTokenIdPool(IERC721MelandNFT nft, uint256[] memory tokenIds) public 
+    {
+        require(
+            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()) || hasRole(GM_ROLE, _msgSender()),
+            "Unauthorized user"
+        );
+        require(itemByNFT[nft].id > 0, "NFT not found");
+        for (uint256 i = 0; i < tokenIds.length; i++) {
+            if (checkIdsExists(nft, tokenIds[i])) {
+                continue;
+            }
+
+            try nft.ownerOf(tokenIds[i]) returns(address owner) {
+                require(owner == address(0), "The token id pool exists for ids that have been minted");
+            } catch(bytes memory) {
+                // ok
+            }
+
+            tokenIdsByNFT[nft].push(tokenIds[i]);
+        }
+
+        emit NFTIdPoolUpdate(itemByNFT[nft].id, nft, tokenIdsByNFT[nft].length);
+    }
+
     function updateTokenIdPool(IERC721MelandNFT nft, uint256[] memory tokenIds) public
     {
         require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender) || hasRole(GM_ROLE, msg.sender),
+            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()) || hasRole(GM_ROLE, _msgSender()),
             "Unauthorized user"
         );
         require(itemByNFT[nft].id > 0, "NFT not found");
@@ -175,7 +209,7 @@ contract NFTStore is
     // 下架NFT
     function deleteNFT(IERC721MelandNFT nft) public {
         require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, msg.sender),
+            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()),
             "Unauthorized user"
         );
         require(itemByNFT[nft].id > 0, "NFT not found");
@@ -184,7 +218,7 @@ contract NFTStore is
         nft.renounceRole(MINTER_ROLE, address(this));
         delete itemByNFT[nft];
 
-        emit NFTDelete(item.id, msg.sender, nft);
+        emit NFTDelete(item.id, _msgSender(), nft);
     }
 
     function randomIds(uint256[] memory ids) private view returns (uint256) {
@@ -255,8 +289,8 @@ contract NFTStore is
 
         // If the restriction is turned on
         if (item.limit > 0) {
-            require(limitPool[nft][msg.sender] < item.limit, "Trigger restriction");
-            limitPool[nft][msg.sender] = limitPool[nft][msg.sender].add(1);
+            require(limitPool[nft][_msgSender()] < item.limit, "Trigger restriction");
+            limitPool[nft][_msgSender()] = limitPool[nft][_msgSender()].add(1);
         }
 
         address sender = _msgSender();
