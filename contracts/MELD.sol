@@ -58,7 +58,7 @@ contract MELD is
     }
 
     function getMaxMints() public view returns (uint256) {
-        return 2000000000 * 10**decimals();
+        return 2000000000 * 10 ** decimals();
     }
 
     function mint(uint256 amount) public onlyOwner {
@@ -85,7 +85,7 @@ contract MELD is
     }
 
     function setUpgradeDelay(uint _delay) public onlyOwner {
-        require(_delay > 2 days, "Minimum time is 2 days");
+        require(_delay >= 2 days, "Minimum time is 2 days");
         upgradeDelay = _delay;
         emit NewUpgradeDelay(_delay);
     }
