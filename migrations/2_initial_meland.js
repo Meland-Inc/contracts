@@ -17,6 +17,4 @@ module.exports = async function (deployer, network) {
   }
   const MELDInstance = await deployProxy(MELD, [], { deployer, kind: 'uups' });
   console.log('Deployed MELD', MELDInstance.address);
-
-  await MELDInstance.setTrapAmount("2000000000000000000000");
 };
