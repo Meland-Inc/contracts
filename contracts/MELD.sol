@@ -11,19 +11,20 @@ import "./BPContract.sol";
 contract MELD is
     Initializable,
     ERC20Upgradeable,
-    OwnableUpgradeable, 
+    OwnableUpgradeable,
     ERC20BurnableUpgradeable,
     UUPSUpgradeable
 {
     BPContract public BP;
     bool public bpEnabled;
-    bool public BPDisabledForever = false;
+    bool public BPDisabledForever;
 
     function initialize() public initializer {
         __ERC20_init("Meland.ai", "MELD");
         __ERC20Burnable_init();
         __Ownable_init();
         __UUPSUpgradeable_init();
+        BPDisabledForever = false;
     }
 
     function setBPAddrss(address _bp) external onlyOwner {
