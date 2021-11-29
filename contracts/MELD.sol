@@ -22,6 +22,8 @@ contract MELD is
     bool public bpEnabled;
     bool public BPDisabledForever;
 
+    uint upgradeDelay;
+
     PrepareUpgradeImpl prepareUpgradeImpl;
     struct PrepareUpgradeImpl {
         address newImplementation;
@@ -29,6 +31,7 @@ contract MELD is
         uint256 createdAt;
     }
 
+    event NewUpgradeDelay(uint deplay);
     event NewPrepareUpgradeImpl(address _newImplementation, uint256 createdAt);
 
     function initialize() public initializer {
@@ -37,6 +40,7 @@ contract MELD is
         __Ownable_init();
         __UUPSUpgradeable_init();
         BPDisabledForever = false;
+        upgradeDelay = 14 days;
     }
 
     function setBPAddrss(address _bp) external onlyOwner {
@@ -77,8 +81,13 @@ contract MELD is
             _newImplementation,
             block.timestamp
         );
-
         emit NewPrepareUpgradeImpl(_newImplementation, block.timestamp);
+    }
+
+    function setUpgradeDelay(uint _delay) public onlyOwner {
+        require(_delay > 2 days, "Minimum time is 2 days");
+        upgradeDelay = _delay;
+        emit NewUpgradeDelay(_delay);
     }
 
     function _authorizeUpgrade(address _newImplementation)
@@ -88,6 +97,6 @@ contract MELD is
         onlyOwner
     {
         require(_newImplementation == prepareUpgradeImpl.newImplementation, "Upgrade contracts are not in the ready queue");
-        require(block.timestamp.sub(prepareUpgradeImpl.createdAt) > 2 days, "Upgrade contracts must be prepared 2 days in advance");
+        require(block.timestamp.sub(prepareUpgradeImpl.createdAt) > upgradeDelay, "Upgrade contracts must be prepared 2 days in advance");
     }
 }
