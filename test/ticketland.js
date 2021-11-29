@@ -1,5 +1,6 @@
 const NFTStore = artifacts.require("NFTStore");
 const TicketLand = artifacts.require("TicketLand");
+const { keccak256 } = require("web3-utils");
 
 const updateIdsPool = async (ids) => {
     const TicketLandInstance = await TicketLand.deployed();
@@ -11,6 +12,25 @@ const updateIdsPool = async (ids) => {
 }
 
 contract("TicketLand", accounts => {
+    it("上架ticket land", async () => {
+        const TicketLandInstance = await TicketLand.deployed();
+        const NFTStoreInstance = await NFTStore.deployed();
+        await TicketLandInstance.grantRole(keccak256("MINTER_ROLE"), NFTStore.address);
+        const {
+            ticketLandPriceInWei,
+            ticketLandLimit
+        } = process.env;
+        const tokenIdPool = true;
+        console.debug("create NFT to NFTStore with", ticketLandPriceInWei, ticketLandLimit, tokenIdPool);
+        const result = await NFTStoreInstance.createNFT(
+            TicketLandInstance.address,
+            ticketLandPriceInWei,
+            ticketLandLimit,
+            tokenIdPool,
+            "this is ticket land"
+        );
+    })
+
     it("更新id池", async () => {
         await updateIdsPool([
             100001,
@@ -44,7 +64,7 @@ contract("TicketLand", accounts => {
 
         try {
             await NFTStoreInstance.buyNFT(TicketLandInstance.address, process.env.ticketLandPriceInWei, { from: accounts[4] });
-        } catch(error) {
+        } catch (error) {
             assert.equal(error.reason, "Trigger restriction");
         }
 
@@ -74,7 +94,7 @@ contract("TicketLand", accounts => {
         let errmsg = '';
         try {
             await NFTStoreInstance.buyNFT(TicketLandInstance.address, process.env.ticketLandPriceInWei, { from: accounts[5] });
-        } catch(error) {
+        } catch (error) {
             errmsg = error.reason;
         }
         assert.equal(errmsg, "nft Insufficient supply");

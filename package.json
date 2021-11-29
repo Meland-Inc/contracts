@@ -30,6 +30,8 @@
     "codegen": "typechain --target=ethers-v5 --out-dir=$OUT 'build/contracts/*.json'",
     "confgen": "export $(cat .env | xargs) && truffle exec ./update_constant.js",
     "store": "export $(cat .env | xargs) && truffle exec ./update_store.js",
+    "ticketland": "export $(cat .env | xargs) && truffle exec ./up_ticketland.js",
+    "vcs": "export $(cat .env | xargs) && truffle exec ./up_vcs.js",
     "network:dev": "export $(cat .env | xargs) && truffle develop",
     "network:build": "export $(cat .env | xargs) && truffle compile",
     "network:deploy": "export $(cat .env | xargs) && truffle migrate",

@@ -6,6 +6,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20Burnable
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
 import "./BPContract.sol";
 
 contract MELD is
@@ -15,9 +16,20 @@ contract MELD is
     ERC20BurnableUpgradeable,
     UUPSUpgradeable
 {
+    using SafeMathUpgradeable for uint256;
+
     BPContract public BP;
     bool public bpEnabled;
     bool public BPDisabledForever;
+
+    PrepareUpgradeImpl prepareUpgradeImpl;
+    struct PrepareUpgradeImpl {
+        address newImplementation;
+        // Ready to upgrade creation time
+        uint256 createdAt;
+    }
+
+    event NewPrepareUpgradeImpl(address _newImplementation, uint256 createdAt);
 
     function initialize() public initializer {
         __ERC20_init("Meland.ai", "MELD");
@@ -60,9 +72,22 @@ contract MELD is
         super._beforeTokenTransfer(_from, _to, _amount);
     }
 
-    function _authorizeUpgrade(address newImplementation)
+    function setPrepareUpgrade(address _newImplementation) public onlyOwner {
+        prepareUpgradeImpl = PrepareUpgradeImpl(
+            _newImplementation,
+            block.timestamp
+        );
+
+        emit NewPrepareUpgradeImpl(_newImplementation, block.timestamp);
+    }
+
+    function _authorizeUpgrade(address _newImplementation)
         internal
         override
+        view
         onlyOwner
-    {}
+    {
+        require(_newImplementation == prepareUpgradeImpl.newImplementation, "Upgrade contracts are not in the ready queue");
+        require(block.timestamp.sub(prepareUpgradeImpl.createdAt) > 2 days, "Upgrade contracts must be prepared 2 days in advance");
+    }
 }

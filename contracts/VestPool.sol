@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.2;
+pragma solidity 0.8.9;
 
 import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
@@ -21,7 +21,8 @@ contract VestPool is AccessControlUpgradeable, UUPSUpgradeable {
 
     string private constant INSUFFICIENT_BALANCE = "Insufficient balance";
     string private constant INVALID_VESTING_ID = "Invalid vesting id";
-    string private constant VESTING_ALREADY_RELEASED = "Vesting already released";
+    string private constant VESTING_ALREADY_RELEASED =
+        "Vesting already released";
     string private constant INVALID_BENEFICIARY = "Invalid beneficiary address";
     string private constant NOT_VESTED = "Tokens have not vested yet";
 
@@ -44,14 +45,27 @@ contract VestPool is AccessControlUpgradeable, UUPSUpgradeable {
     mapping(address => VC) public vcmap;
 
     event VCAdd(address indexed vcAddress);
-    event TokenVestingReleased(uint256 indexed vestingId, address indexed beneficiary, uint256 amount);
-    event TokenVestingAdded(uint256 indexed vestingId, address indexed beneficiary, uint256 amount);
-    event TokenVestingRemoved(uint256 indexed vestingId, address indexed beneficiary, uint256 amount);
+    event TokenVestingReleased(
+        uint256 indexed vestingId,
+        address indexed beneficiary,
+        uint256 amount
+    );
+    event TokenVestingAdded(
+        uint256 indexed vestingId,
+        address indexed beneficiary,
+        uint256 amount
+    );
+    event TokenVestingRemoved(
+        uint256 indexed vestingId,
+        address indexed beneficiary,
+        uint256 amount
+    );
 
-    function initialize(
-        ERC20Upgradeable _token
-    ) initializer public {
-        require(address(_token) != address(0x0), "MELD token address is not valid");
+    function initialize(ERC20Upgradeable _token) public initializer {
+        require(
+            address(_token) != address(0x0),
+            "MELD token address is not valid"
+        );
         __AccessControl_init();
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(GM_ROLE, msg.sender);
@@ -60,7 +74,7 @@ contract VestPool is AccessControlUpgradeable, UUPSUpgradeable {
         tokensToVest = 0;
     }
 
-    function viewTokenToVest() view public onlyRole(GM_ROLE) returns(uint256) {
+    function viewTokenToVest() public view onlyRole(GM_ROLE) returns (uint256) {
         return tokensToVest;
     }
 
@@ -69,14 +83,19 @@ contract VestPool is AccessControlUpgradeable, UUPSUpgradeable {
     }
 
     // Batch add VC list
-    function addMultipleVC(VC[] memory _vcs) public {
+    function addMultipleVC(VC[] memory _vcs) public onlyRole(GM_ROLE) {
         for (uint8 i = 0; i < _vcs.length; i++) {
             VC memory vc = _vcs[i];
+            require(
+                vcmap[vc.beneficiary].recived == false,
+                "Duplicate Collection"
+            );
+
             vcmap[vc.beneficiary] = vc;
 
-            emit VCAdd(
-                vc.beneficiary
-            );
+            tokensToVest = tokensToVest.add(vc.amount);
+
+            emit VCAdd(vc.beneficiary);
         }
     }
 
@@ -84,7 +103,8 @@ contract VestPool is AccessControlUpgradeable, UUPSUpgradeable {
         VC memory vc = vcmap[msg.sender];
         require(vc.timeOfTGE > 0, "not found vs info");
         require(vc.timeOfTGE < block.timestamp, "Not yet time to pick up");
-
+        require(vc.recived == false, "Duplicate Collection");
+        require(vc.amount > 0, "Insufficient balance");
 
         // Calculate token vesting
         // Unlocked @TGE
@@ -96,17 +116,25 @@ contract VestPool is AccessControlUpgradeable, UUPSUpgradeable {
 
         tokensToVest = tokensToVest.sub(vc.amount);
 
-        for (uint month = 1; month <= vc.vestingMonth; month++) {
-            uint256 releaseTime = block.timestamp.add(vc.cliffMonth * vestingPeriod).add(vestingPeriod * month);
+        for (uint256 month = 1; month <= vc.vestingMonth; month++) {
+            uint256 releaseTime = block
+                .timestamp
+                .add(vc.cliffMonth * vestingPeriod)
+                .add(vestingPeriod * month);
             addVesting(vc.beneficiary, releaseTime, unlockedTokensEveryMonth);
         }
 
         if (unlockedTGETokens > 0) {
-            MELDToken.transfer(vc.beneficiary, unlockedTGETokens);
+            require(
+                MELDToken.transfer(vc.beneficiary, unlockedTGETokens),
+                "transfer failed"
+            );
         }
+
+        vcmap[msg.sender].recived = true;
     }
 
-    function removeVC(address _vcAddress) onlyRole(GM_ROLE) public {
+    function removeVC(address _vcAddress) public onlyRole(GM_ROLE) {
         VC memory vc = vcmap[_vcAddress];
         require(vc.timeOfTGE > 0, "not found vs info");
         require(vc.recived == false, "vc start recived");
@@ -118,7 +146,7 @@ contract VestPool is AccessControlUpgradeable, UUPSUpgradeable {
         address _beneficiary,
         uint256 _releaseTime,
         uint256 _amount
-    ) public onlyRole(GM_ROLE) {
+    ) private {
         require(_beneficiary != address(0x0), INVALID_BENEFICIARY);
         tokensToVest = tokensToVest.add(_amount);
         vestingId = vestingId.add(1);
@@ -134,17 +162,30 @@ contract VestPool is AccessControlUpgradeable, UUPSUpgradeable {
     function release(uint256 _vestingId) public {
         Vesting storage vesting = vestings[_vestingId];
         require(vesting.beneficiary != address(0x0), INVALID_VESTING_ID);
-        require(!vesting.released , VESTING_ALREADY_RELEASED);
+        require(!vesting.released, VESTING_ALREADY_RELEASED);
         require(block.timestamp >= vesting.releaseTime, NOT_VESTED);
-        require(MELDToken.balanceOf(address(this)) >= vesting.amount, INSUFFICIENT_BALANCE);
+        require(
+            MELDToken.balanceOf(address(this)) >= vesting.amount,
+            INSUFFICIENT_BALANCE
+        );
         vesting.released = true;
         tokensToVest = tokensToVest.sub(vesting.amount);
         MELDToken.transfer(vesting.beneficiary, vesting.amount);
-        emit TokenVestingReleased(_vestingId, vesting.beneficiary, vesting.amount);
+        emit TokenVestingReleased(
+            _vestingId,
+            vesting.beneficiary,
+            vesting.amount
+        );
     }
 
-    function retrieveExcessTokens(uint256 _amount) public onlyRole(DEFAULT_ADMIN_ROLE) {
-        require(_amount <= MELDToken.balanceOf(address(this)).sub(tokensToVest), INSUFFICIENT_BALANCE);
+    function retrieveExcessTokens(uint256 _amount)
+        public
+        onlyRole(DEFAULT_ADMIN_ROLE)
+    {
+        require(
+            _amount <= MELDToken.balanceOf(address(this)).sub(tokensToVest),
+            INSUFFICIENT_BALANCE
+        );
         MELDToken.transfer(msg.sender, _amount);
     }
 

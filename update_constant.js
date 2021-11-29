@@ -10,6 +10,7 @@ const NFTStore = artifacts.require("NFTStore");
 const Marketplace = artifacts.require("Marketplace");
 const NFTFactory = artifacts.require("NFTFactory");
 const Faucet = artifacts.require("Faucet");
+const VestPool = artifacts.require("VestPool");
 
 const promiseOpen = (filePath, mode = 'w') => {
     return new Promise((resolve, reject) => {
@@ -48,6 +49,17 @@ module.exports = async function (_) {
         faucetAddress = existsFaucet.address;
     }
 
+    let vestPoolAddress = '';
+    if ([
+        "bsc",
+        "bsctest",
+        "develop",
+        "test"
+    ].includes(network)) {
+        const existsVestPool = await VestPool.deployed();
+        vestPoolAddress = existsVestPool.address;
+    }
+
     const fd = await promiseOpen(configPath);
 
     /// 本地开发模拟mumbai链
@@ -60,6 +72,7 @@ module.exports = async function (_) {
     "MELD_address": "${existsMELD.address}",
     "NFTFactory_address": "${existsNFTFactory.address}",
     "Faucet_address": "${faucetAddress}",
+    "VestPool_address": "${vestPoolAddress}",
     "start_block": "21743671"
 }
 `;
