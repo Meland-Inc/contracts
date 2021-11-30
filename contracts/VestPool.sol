@@ -78,10 +78,6 @@ contract VestPool is AccessControlUpgradeable, UUPSUpgradeable {
         return tokensToVest;
     }
 
-    function beneficiary(uint256 _vestingId) public view returns (address) {
-        return vestings[_vestingId].beneficiary;
-    }
-
     // Batch add VC list
     function addMultipleVC(VC[] memory _vcs) public onlyRole(GM_ROLE) {
         for (uint8 i = 0; i < _vcs.length; i++) {
@@ -148,6 +144,7 @@ contract VestPool is AccessControlUpgradeable, UUPSUpgradeable {
         uint256 _amount
     ) private {
         require(_beneficiary != address(0x0), INVALID_BENEFICIARY);
+        _releaseTime = _releaseTime.div(3600);
         tokensToVest = tokensToVest.add(_amount);
         vestingId = vestingId.add(1);
         vestings[vestingId] = Vesting({

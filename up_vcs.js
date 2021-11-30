@@ -24,17 +24,21 @@ module.exports = async function (callback) {
 
     await MELDI.transfer(VestPoolI.address, BigNumber.from(100000).mul(BigNumber.from(10).pow(18)));
     
-    await VestPoolI.addMultipleVC([
-        {
-            timeOfTGE: parseInt((new Date).getTime() / 1000),
-            amount: BigNumber.from(100000).mul(BigNumber.from(10).pow(18)),
-            cliffMonth: 3,
-            vestingMonth: 12,
-            unlockTGE: 10,
-            beneficiary: "0x17a243f7Dd13BadE0a7001Ad71a7ef4628A75fCB",
-            recived: false
-        }
-    ]);
+    try {
+        await VestPoolI.addMultipleVC([
+            {
+                timeOfTGE: parseInt((new Date).getTime() / 1000 + 50),
+                amount: BigNumber.from(100000).mul(BigNumber.from(10).pow(18)),
+                cliffMonth: 3,
+                vestingMonth: 12,
+                unlockTGE: 10,
+                beneficiary: "0x17a243f7Dd13BadE0a7001Ad71a7ef4628A75fCB",
+                recived: false
+            }
+        ]);
+    } catch(error) {
+        console.error(error);
+    }
 
     callback();
 };

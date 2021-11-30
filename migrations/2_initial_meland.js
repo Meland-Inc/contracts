@@ -4,11 +4,12 @@ const { deployProxy } = require('@openzeppelin/truffle-upgrades');
 const MELD = artifacts.require("MELD");
 
 module.exports = async function (deployer, network) {
-  // 主Token合约只发布于BSC.
   if (![
     "mumbai",
     "develop",
     "bsc",
+    "bsctest",
+    "matic",
     "rinkeby",
     "test"
   ].includes(network)) {

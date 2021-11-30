@@ -6,7 +6,7 @@ const MELD = artifacts.require("MELD");
 const keccak256 = require('keccak256')
 
 module.exports = async function (deployer, network) {
-    // 主Token合约只发布于BSC.
+    // vest 只部署于bsc
     if (![
         "develop",
         "bsc",
