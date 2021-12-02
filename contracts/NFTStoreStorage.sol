@@ -29,6 +29,11 @@ contract NFTStoreStorage {
     // nft address -> (nft token id -> Order)
     mapping(IERC721MelandNFT => Item) public itemByNFT;
 
+    // token id 池
+    // 如果开启了tokenIdPool时
+    // 用户购买则会在这里随机获取一个tokenid给到用户
+    // 开启了这个的nft需要防止id池内的token id已经被mint
+    // 否则会出现用户购买偶发出错的问题
     mapping(IERC721MelandNFT => uint256[]) public tokenIdsByNFT;
 
     // 记录cid
@@ -54,7 +59,6 @@ contract NFTStoreStorage {
         // 是否开启限量
         // 如果大于0则开启
         uint32 limit;
-        string description;
     }
 
     // EVENTS

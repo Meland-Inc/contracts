@@ -16,6 +16,8 @@ contract NFTFactoryV2 is
 {
     mapping(IERC721 => bool) public supportNFTs;
 
+    mapping(IERC721 => RFC) public supportRFCs;
+
     IERC721[] public nfts;
 
     bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
@@ -33,6 +35,15 @@ contract NFTFactoryV2 is
         uint256 operationTime
     );
 
+    event RFCCreated(IERC721 indexed nft, RFC rfc);
+    event RFCApproved(IERC721 indexed nft, RFC rfc);
+
+    struct RFC {
+        address proposer;
+        uint256 proposalTime;
+        bool approved;
+    }
+
     function initialize() public initializer {
         __UUPSUpgradeable_init();
         __AccessControl_init();
@@ -41,12 +52,42 @@ contract NFTFactoryV2 is
         _setupRole(GM_ROLE, msg.sender);
     }
 
-    // 增加新的NFT支持.
-    function newSupport(IERC721 nft) public onlyRole(GM_ROLE) {
+    // 允许用户增加RFC提案
+    // 请求社区增加第三方nft支持
+    // 社区根据当前游戏的支持度来决定是否通过
+    function newRFC(IERC721 nft) public {
+        require(supportRFCs[nft].proposalTime == 0, "Already exists RFC");
+        require(!supportNFTs[nft], "Already support");
+
+        RFC memory rfc = RFC(_msgSender(), block.timestamp, false);
+
+        supportRFCs[nft] = rfc;
+
+        emit RFCCreated(nft, rfc);
+    }
+
+    function approveRFC(IERC721 nft) public {
+        RFC memory rfc = supportRFCs[nft];
+        require(rfc.proposalTime > 0, "Not found RFC");
+        rfc.approved = true;
+
+        supportRFCs[nft] = rfc;
+
+        _newSupport(nft);
+
+        emit RFCApproved(nft, rfc);
+    }
+
+    function _newSupport(IERC721 nft) private {
         require(supportNFTs[nft] == false, "Already supported");
         supportNFTs[nft] = true;
         nfts.push(nft);
         emit NFTSupportCreate(nft, msg.sender, block.timestamp);
+    }
+
+    // 增加新的NFT支持.
+    function newSupport(IERC721 nft) public onlyRole(GM_ROLE) {
+        _newSupport(nft);
     }
 
     function _authorizeUpgrade(address newImplementation)
