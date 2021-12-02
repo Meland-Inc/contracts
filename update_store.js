@@ -62,8 +62,7 @@ module.exports = async function (callback) {
                 ticketLandInstance.address,
                 ticketLandPriceInWei,
                 ticketLandLimit,
-                tokenIdPool,
-                "this is ticket land"
+                tokenIdPool
             );
             console.log('上架成功ticket land', result);
         }
@@ -111,8 +110,7 @@ module.exports = async function (callback) {
                 instance.address,
                 priceInWei,
                 nftLimit,
-                nftTokenIdPool,
-                description
+                nftTokenIdPool
             );
             console.info("上架NFT完成 cid:", cid, result);
         }
