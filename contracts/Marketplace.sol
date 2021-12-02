@@ -53,7 +53,10 @@ contract Marketplace is
     {}
 
     // 设置
-    function setPublicationFee(uint256 _publicationFee) public onlyRole(GM_ROLE) {
+    function setPublicationFee(uint256 _publicationFee)
+        public
+        onlyRole(GM_ROLE)
+    {
         publicationFeeInWei = _publicationFee;
         emit ChangedPublicationFee(publicationFeeInWei);
     }
@@ -108,6 +111,38 @@ contract Marketplace is
         uint256 price
     ) public whenNotPaused {
         _executeOrder(nftAddress, assetId, price);
+    }
+
+    function updateOrder(
+        IERC721 nft,
+        uint256 assetId,
+        uint256 priceInWei,
+        uint256 expiresAt
+    ) public whenNotPaused {
+        _updateOrder(nft, assetId, priceInWei, expiresAt);
+    }
+
+    function _updateOrder(
+        IERC721 nft,
+        uint256 assetId,
+        uint256 priceInWei,
+        uint256 expiresAt
+    ) internal {
+        address sender = _msgSender();
+        address assetOwner = nft.ownerOf(assetId);
+        require(sender == assetOwner, "Only the owner can create orders");
+        require(priceInWei > 0, "Price should be bigger than 0");
+        require(
+            expiresAt > block.timestamp.add(1 minutes),
+            "Publication should be more than 1 minute in the future"
+        );
+
+        Order memory order = orderByAssetId[nft][assetId];
+        order.price = priceInWei;
+        order.expiresAt = expiresAt;
+        orderByAssetId[nft][assetId] = order;
+
+        emit OrderUpdated(order.id, priceInWei, expiresAt);
     }
 
     // 创建订单
@@ -237,7 +272,7 @@ contract Marketplace is
             // Calculate sale share
             saleShareAmount = price.mul(ownerCutPerMillion).div(1000000);
 
-            // 40% burn in handling fee 
+            // 40% burn in handling fee
             uint256 burnAmount = saleShareAmount.mul(40).div(100);
 
             // The other 40% is held by the Foundation
@@ -248,11 +283,19 @@ contract Marketplace is
 
             acceptedToken.burnFrom(sender, burnAmount);
             require(
-                acceptedToken.transferFrom(sender, foundationWallet, foundationAmount),
+                acceptedToken.transferFrom(
+                    sender,
+                    foundationWallet,
+                    foundationAmount
+                ),
                 "Handling fee transfer to foundationWallet failure"
             );
             require(
-                acceptedToken.transferFrom(sender, officialWallet, officialAmount),
+                acceptedToken.transferFrom(
+                    sender,
+                    officialWallet,
+                    officialAmount
+                ),
                 "Handling fee transfer to officialWallet to off failure"
             );
         }

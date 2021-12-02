@@ -72,6 +72,11 @@ contract MarketplaceStorage {
     address indexed seller,
     IERC721 nftAddress
   );
+  event OrderUpdated(
+    bytes32 id,
+    uint256 priceInWei,
+    uint256 expiresAt
+  );
 
   event ChangedPublicationFee(uint256 publicationFee);
   event ChangedOwnerCutPerMillion(uint256 ownerCutPerMillion);
