@@ -9,7 +9,7 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
-contract NFTFactoryV2 is
+contract NFTFactory is
     Initializable,
     AccessControlUpgradeable,
     UUPSUpgradeable
