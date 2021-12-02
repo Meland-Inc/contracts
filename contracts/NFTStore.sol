@@ -363,7 +363,13 @@ contract NFTStore is
             popTokenIdPoolByTokenIdIndex(nft, tokenIdIndex);
         }
 
-        emit NFTBuyed(item.id, sender, nft, priceInWei);
+        emit NFTBuyed(
+            item.id, 
+            sender, 
+            nft, 
+            tokenId,
+            priceInWei
+        );
     }
 
     function _authorizeUpgrade(address newImplementation)

@@ -80,6 +80,7 @@ contract NFTStoreStorage {
         uint256 indexed id,
         address indexed buyer,
         IERC721MelandNFT nftAddress,
+        uint256 tokenId,
         uint256 priceInWei
     );
 
