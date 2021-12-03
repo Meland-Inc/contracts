@@ -53,6 +53,7 @@ module.exports = async function (_) {
     if ([
         "bsc",
         "bsctest",
+        "mumbai",
         "develop",
         "test"
     ].includes(network)) {

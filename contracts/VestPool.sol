@@ -144,7 +144,6 @@ contract VestPool is AccessControlUpgradeable, UUPSUpgradeable {
         uint256 _amount
     ) private {
         require(_beneficiary != address(0x0), INVALID_BENEFICIARY);
-        _releaseTime = _releaseTime.div(3600);
         tokensToVest = tokensToVest.add(_amount);
         vestingId = vestingId.add(1);
         vestings[vestingId] = Vesting({

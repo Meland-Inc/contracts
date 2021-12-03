@@ -10,6 +10,7 @@ module.exports = async function (callback) {
     if (![
         "develop",
         "bsc",
+        "mumbai",
         "bsctest",
         "test"
     ].includes(network)) {
@@ -27,12 +28,12 @@ module.exports = async function (callback) {
     try {
         await VestPoolI.addMultipleVC([
             {
-                timeOfTGE: parseInt((new Date).getTime() / 1000 + 50),
+                timeOfTGE: parseInt((new Date).getTime() / 1000 + 120),
                 amount: BigNumber.from(100000).mul(BigNumber.from(10).pow(18)),
                 cliffMonth: 3,
                 vestingMonth: 12,
                 unlockTGE: 10,
-                beneficiary: "0x17a243f7Dd13BadE0a7001Ad71a7ef4628A75fCB",
+                beneficiary: "0xfCCB9E2AC294c7A6e8B710d9376d7C77c9092a95",
                 recived: false
             }
         ]);

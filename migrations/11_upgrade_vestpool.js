@@ -18,7 +18,10 @@ module.exports = async function (deployer, network) {
         return;
     }
 
-    // 由于发布到bsc上的vest有bug.
-    // 所以使用11重新部署一个.
-    // 这里由于migrate防止reset和乱序所以需要占位.
+    const existsMELD = await MELD.deployed();
+    const vestPoolInstance = await deployProxy(VestPool, [existsMELD.address], { deployer, kind: 'uups' });
+
+    const GMROLE = keccak256('GM_ROLE');
+
+    await vestPoolInstance.grantRole(GMROLE, process.env.gm);
 };
