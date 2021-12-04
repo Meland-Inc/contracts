@@ -107,19 +107,27 @@ contract VestPool is AccessControlUpgradeable, UUPSUpgradeable {
         // The rest are released once a month
         uint256 unlockedTGETokens = vc.amount.mul(vc.unlockTGE).div(100);
         uint256 lockedTokens = vc.amount.sub(unlockedTGETokens);
-        uint256 unlockedTokensEveryMonth = lockedTokens.div(vc.vestingMonth);
-        uint256 vestingPeriod = 30 days;
 
-        tokensToVest = tokensToVest.sub(vc.amount);
+        if (lockedTokens > 0) {
+            uint256 unlockedTokensEveryMonth = lockedTokens.div(
+                vc.vestingMonth
+            );
+            uint256 vestingPeriod = 30 days;
+            tokensToVest = tokensToVest.sub(vc.amount);
 
-        for (uint256 month = 1; month <= vc.vestingMonth; month++) {
-            uint256 releaseTime = block
-                .timestamp
-                .add(vc.cliffMonth * vestingPeriod)
-                .add(vestingPeriod * month);
-            addVesting(vc.beneficiary, releaseTime, unlockedTokensEveryMonth);
+            for (uint256 month = 1; month <= vc.vestingMonth; month++) {
+                uint256 releaseTime = block
+                    .timestamp
+                    .add(vc.cliffMonth * vestingPeriod)
+                    .add(vestingPeriod * month);
+                addVesting(
+                    vc.beneficiary,
+                    releaseTime,
+                    unlockedTokensEveryMonth
+                );
+            }
         }
-
+        
         if (unlockedTGETokens > 0) {
             require(
                 MELDToken.transfer(vc.beneficiary, unlockedTGETokens),
