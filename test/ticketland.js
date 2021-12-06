@@ -26,8 +26,7 @@ contract("TicketLand", accounts => {
             TicketLandInstance.address,
             ticketLandPriceInWei,
             ticketLandLimit,
-            tokenIdPool,
-            "this is ticket land"
+            tokenIdPool
         );
     })
 
