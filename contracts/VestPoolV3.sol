@@ -9,7 +9,7 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
 
-contract VestPoolV2 is AccessControlUpgradeable, UUPSUpgradeable {
+contract VestPoolV3 is AccessControlUpgradeable, UUPSUpgradeable {
     bytes32 public constant GM_ROLE = keccak256("GM_ROLE");
 
     using SafeMathUpgradeable for uint256;

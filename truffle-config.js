@@ -55,7 +55,7 @@ module.exports = {
     },
 
     bsc: {
-      provider: () => new HDWalletProvider(mnemonic, `wss://speedy-nodes-nyc.moralis.io/036db9847a8d6409b3dbcddc/bsc/mainnet/ws`),
+      provider: () => new HDWalletProvider(mnemonic, `https://speedy-nodes-nyc.moralis.io/036db9847a8d6409b3dbcddc/bsc/mainnet`),
       network_id: 56,
       confirmations: 2,
       timeoutBlocks: 200,
@@ -101,6 +101,8 @@ module.exports = {
 
   plugins: [ 'truffle-plugin-verify' ],
   api_keys: {
-    
+    etherscan: 'G346MADBZS299Y7G5HJMQRX87UGPAF7RXB',
+    polygonscan: 'A4HFFESE15HQP8S87RW8I6MNJGI36DQJMA',
+    bscscan: 'HUVV8DK1VECFHERZDGCHJA52K87574QUU2'
   }
 };

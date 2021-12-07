@@ -30,7 +30,7 @@ const networkFilenameMap = {
 
 module.exports = async function (_) {
     let network = config.network;
-    const configPath = path.join(process.env.indexerConfigDir || process.cwd(), `${networkFilenameMap[network]}`);
+    const configPath = path.join(process.cwd(), `${networkFilenameMap[network]}`);
 
     const existsMELD = await MELD.deployed();
     // const existsVipLand = await VipLand.deployed();

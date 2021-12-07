@@ -1,0 +1,517 @@
+{
+  "contractName": "IPancake",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getReserves",
+      "outputs": [
+        {
+          "internalType": "uint112",
+          "name": "_reserve0",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "_reserve1",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint32",
+          "name": "_blockTimestampLast",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.9+commit.e5eed63a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getReserves\",\"outputs\":[{\"internalType\":\"uint112\",\"name\":\"_reserve0\",\"type\":\"uint112\"},{\"internalType\":\"uint112\",\"name\":\"_reserve1\",\"type\":\"uint112\"},{\"internalType\":\"uint32\",\"name\":\"_blockTimestampLast\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/ISwap.sol\":\"IPancake\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/ISwap.sol\":{\"keccak256\":\"0xfb67becde3f2e5429f3a8d4ed22c2b80348aae51c12c04d313511478c790f021\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://742927f569741fc914be4242e763dc971fd1adae4cb25de8ff749c51a6e5cdc4\",\"dweb:/ipfs/QmNSyahqWQPGUUGxP8pM7ysEeMLVeoCzxX6tmeNSrrgVCk\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.9;\n\ninterface IUniswap {\n    function _blockTimestamp() view external returns (uint32);\n}\n\ninterface IPancake {\n    function getReserves() view external returns (uint112 _reserve0, uint112 _reserve1, uint32 _blockTimestampLast);\n}",
+  "sourcePath": "/Users/alberthuang/code/icw/meland/contracts/ISwap.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/ISwap.sol",
+    "exportedSymbols": {
+      "IPancake": [
+        5245
+      ],
+      "IUniswap": [
+        5235
+      ]
+    },
+    "id": 5246,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5229,
+        "literals": [
+          "solidity",
+          "0.8",
+          ".9"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:22:36"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IUniswap",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 5235,
+        "linearizedBaseContracts": [
+          5235
+        ],
+        "name": "IUniswap",
+        "nameLocation": "66:8:36",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "c63aa3e7",
+            "id": 5234,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_blockTimestamp",
+            "nameLocation": "90:15:36",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5230,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "105:2:36"
+            },
+            "returnParameters": {
+              "id": 5233,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5232,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5234,
+                  "src": "131:6:36",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 5231,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "131:6:36",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "130:8:36"
+            },
+            "scope": 5235,
+            "src": "81:58:36",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5246,
+        "src": "56:85:36",
+        "usedErrors": []
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IPancake",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 5245,
+        "linearizedBaseContracts": [
+          5245
+        ],
+        "name": "IPancake",
+        "nameLocation": "153:8:36",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "0902f1ac",
+            "id": 5244,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getReserves",
+            "nameLocation": "177:11:36",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5236,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "188:2:36"
+            },
+            "returnParameters": {
+              "id": 5243,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5238,
+                  "mutability": "mutable",
+                  "name": "_reserve0",
+                  "nameLocation": "222:9:36",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5244,
+                  "src": "214:17:36",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint112",
+                    "typeString": "uint112"
+                  },
+                  "typeName": {
+                    "id": 5237,
+                    "name": "uint112",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "214:7:36",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint112",
+                      "typeString": "uint112"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5240,
+                  "mutability": "mutable",
+                  "name": "_reserve1",
+                  "nameLocation": "241:9:36",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5244,
+                  "src": "233:17:36",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint112",
+                    "typeString": "uint112"
+                  },
+                  "typeName": {
+                    "id": 5239,
+                    "name": "uint112",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "233:7:36",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint112",
+                      "typeString": "uint112"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5242,
+                  "mutability": "mutable",
+                  "name": "_blockTimestampLast",
+                  "nameLocation": "259:19:36",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5244,
+                  "src": "252:26:36",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 5241,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "252:6:36",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "213:66:36"
+            },
+            "scope": 5245,
+            "src": "168:112:36",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5246,
+        "src": "143:139:36",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:250:36"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/ISwap.sol",
+    "exportedSymbols": {
+      "IPancake": [
+        5245
+      ],
+      "IUniswap": [
+        5235
+      ]
+    },
+    "id": 5246,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5229,
+        "literals": [
+          "solidity",
+          "0.8",
+          ".9"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:22:36"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IUniswap",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 5235,
+        "linearizedBaseContracts": [
+          5235
+        ],
+        "name": "IUniswap",
+        "nameLocation": "66:8:36",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "c63aa3e7",
+            "id": 5234,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_blockTimestamp",
+            "nameLocation": "90:15:36",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5230,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "105:2:36"
+            },
+            "returnParameters": {
+              "id": 5233,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5232,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5234,
+                  "src": "131:6:36",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 5231,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "131:6:36",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "130:8:36"
+            },
+            "scope": 5235,
+            "src": "81:58:36",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5246,
+        "src": "56:85:36",
+        "usedErrors": []
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IPancake",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 5245,
+        "linearizedBaseContracts": [
+          5245
+        ],
+        "name": "IPancake",
+        "nameLocation": "153:8:36",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "0902f1ac",
+            "id": 5244,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getReserves",
+            "nameLocation": "177:11:36",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5236,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "188:2:36"
+            },
+            "returnParameters": {
+              "id": 5243,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5238,
+                  "mutability": "mutable",
+                  "name": "_reserve0",
+                  "nameLocation": "222:9:36",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5244,
+                  "src": "214:17:36",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint112",
+                    "typeString": "uint112"
+                  },
+                  "typeName": {
+                    "id": 5237,
+                    "name": "uint112",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "214:7:36",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint112",
+                      "typeString": "uint112"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5240,
+                  "mutability": "mutable",
+                  "name": "_reserve1",
+                  "nameLocation": "241:9:36",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5244,
+                  "src": "233:17:36",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint112",
+                    "typeString": "uint112"
+                  },
+                  "typeName": {
+                    "id": 5239,
+                    "name": "uint112",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "233:7:36",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint112",
+                      "typeString": "uint112"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5242,
+                  "mutability": "mutable",
+                  "name": "_blockTimestampLast",
+                  "nameLocation": "259:19:36",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5244,
+                  "src": "252:26:36",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 5241,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "252:6:36",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "213:66:36"
+            },
+            "scope": 5245,
+            "src": "168:112:36",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5246,
+        "src": "143:139:36",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:250:36"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.9+commit.e5eed63a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-12-07T05:18:47.588Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

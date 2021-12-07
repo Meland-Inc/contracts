@@ -2,10 +2,7 @@
 const { upgradeProxy } = require('@openzeppelin/truffle-upgrades');
 
 const VestPool = artifacts.require("VestPool");
-const VestPoolV2 = artifacts.require("VestPoolV2");
-const MELD = artifacts.require("MELD");
-const keccak256 = require('keccak256')
-const { BigNumber } = require('@ethersproject/bignumber');
+const VestPoolV3 = artifacts.require("VestPoolV3");
 
 module.exports = async function (deployer, network) {
     // vest 只部署于bsc
@@ -21,7 +18,6 @@ module.exports = async function (deployer, network) {
     }
 
     const vestPoolInstance = await VestPool.deployed();
-    const meldi = await MELD.deployed();
 
-    await upgradeProxy(vestPoolInstance, VestPoolV2, { kind: 'uups' });
+    await upgradeProxy(vestPoolInstance, VestPoolV3, { kind: 'uups' });
 };
