@@ -45,19 +45,19 @@ contract MelandTierStorage is ContextUpgradeable {
 
     /// Current tier's remaining must-win prizes
     /// To prevent people from cheating, he is private
-    mapping(uint256 => uint256[]) internal currentNFTPoolFor100PercentById;
+    mapping(uint256 => uint256[]) internal currentNFTPoolFor100PercentByCId;
 
     /// Must-win prizes at the opening of the sale
     /// For the sake of openness and transparency, he is public
-    mapping(uint256 => uint256[]) internal saleNFTPoolFor100PercentById;
+    mapping(uint256 => uint256[]) internal saleNFTPoolFor100PercentByCId;
 
     /// Current tier's remaining probability of winning a prize
     /// To prevent people from cheating, he is private
-    mapping(uint256 => uint256[]) internal currentNFTPoolForOptionById;
+    mapping(uint256 => uint256[]) internal currentNFTPoolForOptionByCId;
 
     /// Probability of winning a prize at the opening of the sale
     /// For the sake of openness and transparency, he is public
-    mapping(uint256 => uint256[]) internal saleNFTPoolForOptionById;
+    mapping(uint256 => uint256[]) internal saleNFTPoolForOptionByCId;
 
     /// Whether the rewards have been transferred, to prevent excessive transfer bugs that lead to insufficient balance
     mapping(uint256 => bool) internal rewardTransferedByRewardId;
@@ -65,21 +65,21 @@ contract MelandTierStorage is ContextUpgradeable {
 
     // EVENTS
     event TierStartSale(
-        uint256 indexed id
+        uint256 indexed cid
     );
 
     event RewaardPoolUpdate(
-        uint256 indexed id
+        uint256 indexed cid
     );
 
-    function _startSale(uint256 id) internal {
-        require(currentNFTPoolFor100PercentById[id].length > 0, "Sales don't seem to be ready(100Percent reward)");
-        require(currentNFTPoolForOptionById[id].length > 0, "Sales don't seem to be ready(option reward)");
+    function _startSale(uint256 cid) internal {
+        require(currentNFTPoolFor100PercentByCId[cid].length > 0, "Sales don't seem to be ready(100Percent reward)");
+        require(currentNFTPoolForOptionByCId[cid].length > 0, "Sales don't seem to be ready(option reward)");
 
-        saleNFTPoolFor100PercentById[id] = currentNFTPoolFor100PercentById[id];
-        saleNFTPoolForOptionById[id] = currentNFTPoolForOptionById[id];
+        saleNFTPoolFor100PercentByCId[cid] = currentNFTPoolFor100PercentByCId[cid];
+        saleNFTPoolForOptionByCId[cid] = currentNFTPoolForOptionByCId[cid];
 
-        emit TierStartSale(id);
+        emit TierStartSale(cid);
     }
 
     // Send the reward to the user, which usually happens when tier is open
@@ -162,34 +162,34 @@ contract MelandTierStorage is ContextUpgradeable {
     // Add bonus items in bulk to save gas fee
     // note: that the token associated with adding the reward must be approved in advance.
     function addOptionReward(
-        uint256 id, 
+        uint256 cid, 
         ERC1155Reward[] memory erc1155rewards,
         ERC721Reward[] memory erc721rewards,
         ERC20Reward[] memory erc20rewards
     ) public {
-        require(saleNFTPoolFor100PercentById[id].length == 0, "Sales have already started and cannot change the content of the reward pool");
-        currentNFTPoolForOptionById[id].push(_createReward(
+        require(saleNFTPoolFor100PercentByCId[cid].length == 0, "Sales have already started and cannot change the content of the reward pool");
+        currentNFTPoolForOptionByCId[cid].push(_createReward(
             erc1155rewards,
             erc721rewards,
             erc20rewards
         ));
-        emit RewaardPoolUpdate(id);
+        emit RewaardPoolUpdate(cid);
     }
 
     // Add bonus items in bulk to save gas fee
     // note: that the token associated with adding the reward must be approved in advance.
     function add100PercentReward(
-        uint256 id, 
+        uint256 cid, 
         ERC1155Reward[] memory erc1155rewards,
         ERC721Reward[] memory erc721rewards,
         ERC20Reward[] memory erc20rewards
     ) public {
-        require(saleNFTPoolFor100PercentById[id].length == 0, "Sales have already started and cannot change the content of the reward pool");
-        currentNFTPoolFor100PercentById[id].push(_createReward(
+        require(saleNFTPoolFor100PercentByCId[cid].length == 0, "Sales have already started and cannot change the content of the reward pool");
+        currentNFTPoolFor100PercentByCId[cid].push(_createReward(
             erc1155rewards,
             erc721rewards,
             erc20rewards
         ));
-        emit RewaardPoolUpdate(id);
+        emit RewaardPoolUpdate(cid);
     }
 }

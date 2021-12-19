@@ -7,7 +7,7 @@ import "./MelandAccessRoles.sol";
 
 contract MelandStakesStorage  {
     using CountersUpgradeable for CountersUpgradeable.Counter;
-    CountersUpgradeable.Counter private _rewardIdCounter;
+    CountersUpgradeable.Counter private _stakeIdCounter;
 
     struct Stake {
         uint256 ditaminLD;

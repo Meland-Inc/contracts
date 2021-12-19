@@ -91,9 +91,11 @@ contract MelandTier is
     {
         require(balanceOf(_msgSender(), id) > 0, "Insufficient balance");
 
+        uint256 cid = getCidByTokenId(id);
+
         // Start lottery, random
-        uint256[] storage rewardIdsFor100Percent = currentNFTPoolFor100PercentById[id];
-        uint256[] storage rewardIdsForOption = currentNFTPoolForOptionById[id];
+        uint256[] storage rewardIdsFor100Percent = currentNFTPoolFor100PercentByCId[cid];
+        uint256[] storage rewardIdsForOption = currentNFTPoolForOptionByCId[cid];
         require(rewardIdsFor100Percent.length > 0, "system failed");
 
         uint256 indexFor100Percent = random(rewardIdsFor100Percent) % rewardIdsFor100Percent.length;
@@ -109,7 +111,7 @@ contract MelandTier is
         uint256 lastRewardId = rewardIdsFor100Percent[lastIndex];
         rewardIdsFor100Percent[indexFor100Percent] = lastRewardId;
         rewardIdsFor100Percent.pop();
-        currentNFTPoolFor100PercentById[id] = rewardIdsFor100Percent;
+        currentNFTPoolFor100PercentByCId[cid] = rewardIdsFor100Percent;
 
         if (rewardIdsForOption.length > 0) {
             uint256 indexForOption = random(rewardIdsForOption) % rewardIdsForOption.length;
@@ -122,23 +124,24 @@ contract MelandTier is
             uint256 lastOpRewardId = rewardIdsForOption[lastOpIndex];
             rewardIdsForOption[indexForOption] = lastOpRewardId;
             rewardIdsForOption.pop();
-            currentNFTPoolForOptionById[id] = rewardIdsForOption;
+            currentNFTPoolForOptionByCId[cid] = rewardIdsForOption;
         }
 
         burn(_msgSender(), id, 1);
     }
 
-    function startSale(uint256 id) public onlyRole(GM_ROLE) {
-        _startSale(id);
+    function startSale(uint256 cid) public onlyRole(GM_ROLE) {
+        _startSale(cid);
     }
 
     function _checkCanSale(uint256 id) internal view {
+        uint256 cid = getCidByTokenId(id);
         require(
-            saleNFTPoolFor100PercentById[id].length > 0,
+            saleNFTPoolFor100PercentByCId[cid].length > 0,
             "Sales don't seem to be ready(100Percent reward)"
         );
         require(
-            saleNFTPoolFor100PercentById[id].length >= totalSupply(id),
+            saleNFTPoolFor100PercentByCId[cid].length >= totalSupply(id),
             "Insufficient reward items"
         );
     }
