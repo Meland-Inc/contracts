@@ -28,9 +28,14 @@ const networkFilenameMap = {
     'mumbai': 'mumbai.json'
 };
 
+const networkStartBlockMap = {
+    'develop': "0",
+    'mumbai': "21743671"
+}
+
 module.exports = async function (_) {
     let network = config.network;
-    const configPath = path.join(process.cwd(), `${networkFilenameMap[network]}`);
+    const configPath = path.join(process.env.indexerConfigDir || process.cwd(), `${networkFilenameMap[network]}`);
 
     const existsMELD = await MELD.deployed();
     // const existsVipLand = await VipLand.deployed();
@@ -74,7 +79,7 @@ module.exports = async function (_) {
     "NFTFactory_address": "${existsNFTFactory.address}",
     "Faucet_address": "${faucetAddress}",
     "VestPool_address": "${vestPoolAddress}",
-    "start_block": "21743671"
+    "start_block": "${networkStartBlockMap[network]}"
 }
 `;
 

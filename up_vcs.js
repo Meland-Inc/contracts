@@ -31,10 +31,20 @@ module.exports = async function (callback) {
         return;
     }
 
-    // const amount = BigNumber.from(79090815).mul(BigNumber.from(10).pow(18));
-    // console.debug(amount.toString());
-    // return;
-    
+    try {
+      const MELDI = await MELD.deployed();
+      const max = await MELDI.getMaxMints();
+      const total = await MELDI.totalSupply();
+      await MELDI.mint(
+        BigNumber.from(max.toString()).sub(BigNumber.from(total.toString()))
+      );
+      console.log("MELDI minted");
+    } catch(error) {
+      console.log(error);
+    }
+    callback();
+    return;
+
     const VestPoolI = await VestPool.deployed();
 
     const vcsBuffer = fs.readFileSync(path.join(__dirname, "vcs.csv"));
@@ -81,7 +91,8 @@ module.exports = async function (callback) {
                 console.debug(`${beneficiary} already has ${vv.amount}`);
                 console.debug(`updated! ${beneficiary}`);
                 continue;
-            } else if (vv.amount > 0) {
+            } 
+            else if (vv.amount > 0) {
                 console.debug(`${beneficiary} already has ${vv.amount}`);
                 console.debug(`amount eq`);
                 continue;
@@ -98,7 +109,7 @@ module.exports = async function (callback) {
                 await VestPoolI.addMultipleVC([
                     vcInfo
                 ]);
-                console.debug(`${beneficiary} ${vcInfo} added`);
+                console.debug(`${beneficiary} ${JSON.stringify(vcInfo)} added`);
             }
         }
 

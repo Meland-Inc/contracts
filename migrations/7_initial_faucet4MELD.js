@@ -8,7 +8,6 @@ module.exports = async function (deployer, network, accounts) {
     if (![
         "mumbai",
         "develop",
-        "test"
     ].includes(network)) {
         console.log("Deploy only on test networks");
         return;
@@ -25,8 +24,8 @@ module.exports = async function (deployer, network, accounts) {
         process.env.gm
     );
 
-    // await MELDInstance.mint(BigNumber.from(1500000000).mul(BigNumber.from(10).pow(18)));
+    await MELDInstance.mint(BigNumber.from(1500000000).mul(BigNumber.from(10).pow(18)));
 
-    // const banlance = await MELDInstance.balanceOf(accounts[0]);
-    // MELDInstance.transfer(FaucetInstance.address, banlance);
+    const banlance = await MELDInstance.balanceOf(accounts[0]);
+    MELDInstance.transfer(FaucetInstance.address, banlance);
 };

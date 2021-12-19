@@ -1,42 +1,46 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.9;
 
-// 这里提供所有meland.ai支持的NFT合约列表.
-// 只有存在于这个合约的NFT. 游戏背包才会显示并且使用等.
-
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
+import "./MelandAccessRoles.sol";
 
 contract NFTFactory is
     Initializable,
-    AccessControlUpgradeable,
+    MelandAccessRoles,
     UUPSUpgradeable
 {
-    mapping(IERC721 => bool) public supportNFTs;
+    struct ERC721Or1155 {
+        IERC1155 erc1155;
+        IERC721 erc721;
+    }
 
-    mapping(IERC721 => RFC) public supportRFCs;
+    struct SupportNFT {
+        ERC721Or1155 erc721or1155;
+        bool support;
+    }
 
-    IERC721[] public nfts;
+    mapping(address => SupportNFT) public supportNFTs;
 
-    bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
-    bytes32 public constant GM_ROLE = keccak256("GM_ROLE");
+    mapping(address => RFC) public supportRFCs;
 
     event NFTSupportRemove(
-        IERC721 nft,
+        ERC721Or1155 nft,
         address operator,
         uint256 operationTime
     );
 
     event NFTSupportCreate(
-        IERC721 nft,
+        ERC721Or1155 nft,
         address operator,
         uint256 operationTime
     );
 
-    event RFCCreated(IERC721 indexed nft, RFC rfc);
-    event RFCApproved(IERC721 indexed nft, RFC rfc);
+    event RFCCreated(address indexed nft, RFC rfc);
+    event RFCApproved(address indexed nft, RFC rfc);
 
     struct RFC {
         address proposer;
@@ -46,18 +50,15 @@ contract NFTFactory is
 
     function initialize() public initializer {
         __UUPSUpgradeable_init();
-        __AccessControl_init();
-        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        _setupRole(UPGRADER_ROLE, msg.sender);
-        _setupRole(GM_ROLE, msg.sender);
+        __MelandAccessRoles_init();
     }
 
     // 允许用户增加RFC提案
     // 请求社区增加第三方nft支持
     // 社区根据当前游戏的支持度来决定是否通过
-    function newRFC(IERC721 nft) public {
+    function newRFC(address nft) public {
         require(supportRFCs[nft].proposalTime == 0, "Already exists RFC");
-        require(!supportNFTs[nft], "Already support");
+        require(!supportNFTs[nft].support, "Already support");
 
         RFC memory rfc = RFC(_msgSender(), block.timestamp, false);
 
@@ -66,7 +67,7 @@ contract NFTFactory is
         emit RFCCreated(nft, rfc);
     }
 
-    function approveRFC(IERC721 nft) public {
+    function approveRFC(address nft) public {
         RFC memory rfc = supportRFCs[nft];
         require(rfc.proposalTime > 0, "Not found RFC");
         rfc.approved = true;
@@ -78,15 +79,31 @@ contract NFTFactory is
         emit RFCApproved(nft, rfc);
     }
 
-    function _newSupport(IERC721 nft) private {
-        require(supportNFTs[nft] == false, "Already supported");
-        supportNFTs[nft] = true;
-        nfts.push(nft);
-        emit NFTSupportCreate(nft, msg.sender, block.timestamp);
+    function _newSupport(address nft) private {
+        require(!supportNFTs[nft].support, "Already supported");
+
+        bytes4 erc1155Interface = type(IERC1155).interfaceId;
+        bytes4 erc721Interface = type(IERC721).interfaceId;
+
+        ERC721Or1155 memory erc721or1155;
+        if (IERC165(nft).supportsInterface(erc1155Interface)) {
+            erc721or1155.erc1155 = IERC1155(nft);
+        } else if (IERC165(nft).supportsInterface(erc721Interface)) {
+            erc721or1155.erc721 = IERC721(nft);
+        } else {
+            revert("Not support type");
+        }
+        
+        supportNFTs[nft] = SupportNFT(
+            erc721or1155,
+            true
+        );
+
+        emit NFTSupportCreate(erc721or1155, msg.sender, block.timestamp);
     }
 
     // 增加新的NFT支持.
-    function newSupport(IERC721 nft) public onlyRole(GM_ROLE) {
+    function newSupport(address nft) public onlyRole(GM_ROLE) {
         _newSupport(nft);
     }
 

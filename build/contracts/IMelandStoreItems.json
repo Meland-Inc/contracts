@@ -1,0 +1,1459 @@
+{
+  "contractName": "IMelandStoreItems",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "melandStoreItems",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "symbols",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "prices",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "symbol",
+          "type": "bytes32"
+        }
+      ],
+      "name": "melandStoreItemsRestrictedPurchase",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "restricted",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "restrictLimit",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "symbol",
+          "type": "bytes32"
+        }
+      ],
+      "name": "melandStoreItemsRestrictPurchaseNFTIds",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "restricted",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "ids",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "symbol",
+          "type": "bytes32"
+        }
+      ],
+      "name": "melandStoreReceipt",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "receipt",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "symbol",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "melandStoreItemsMint",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "symbol",
+          "type": "bytes32"
+        }
+      ],
+      "name": "melandStoreSellStatus",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "isSelling",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.9+commit.e5eed63a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"melandStoreItems\",\"outputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"symbols\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256[]\",\"name\":\"prices\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"symbol\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"melandStoreItemsMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"symbol\",\"type\":\"bytes32\"}],\"name\":\"melandStoreItemsRestrictPurchaseNFTIds\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"restricted\",\"type\":\"bool\"},{\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"symbol\",\"type\":\"bytes32\"}],\"name\":\"melandStoreItemsRestrictedPurchase\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"restricted\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"restrictLimit\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"symbol\",\"type\":\"bytes32\"}],\"name\":\"melandStoreReceipt\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"receipt\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"symbol\",\"type\":\"bytes32\"}],\"name\":\"melandStoreSellStatus\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"isSelling\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/IMelandStoreItems.sol\":\"IMelandStoreItems\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/IMelandStoreItems.sol\":{\"keccak256\":\"0xbb06b8aad6cebb535978466c6ed911d592cc27f9df21e641e15573785809035a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bc884c35ac69d34ca8f8ee0af58037d05c8dc7d310a7a5c84af7cb569f18b657\",\"dweb:/ipfs/QmPdCYHv7T8hNh7jwyCUpxSwLM31ipPGtjZoxP2ys8fyMc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.9;\n\n// Meland.ai official mall Item contract protocol,\n// Only the implementation of the protocol NFT, can be sold in the mall\n// Only support erc1155\n\ninterface IMelandStoreItems {\n    // Returns all supported symbols and prices, \n    // Symbols will be returned by melandStoreItemMint when purchased\n    function melandStoreItems() external view returns(bytes32[] memory symbols, uint256[] memory prices);\n\n    // If return true, it means that each person can only buy a certain amount\n    function melandStoreItemsRestrictedPurchase(bytes32 symbol)\n        external\n        view\n        returns (bool restricted, uint256 restrictLimit);\n\n    // If return ture, means that the mall will only have the specified id\n    // Else otherwise it will be linear mint\n    // The ids Must ensure that you can mint, \n    // If multi-channel sales or mint, you need to filter out the ids that have been minted,\n    // To prevent errors in the sales process\n    function melandStoreItemsRestrictPurchaseNFTIds(bytes32 symbol) external view returns(bool restricted, uint256[] memory ids);\n\n    // Receipt Account Number\n    function melandStoreReceipt(bytes32 symbol) view external returns(address receipt);\n\n    // Store to pay NFT to the selling user by calling this function, \n    // For security reasons, be sure to control the permissions to allow only MelandStore contracts to call\n    // If melandStoreItemsRestrictPurchaseNFTIds return false, the id as zero.\n    function melandStoreItemsMint(bytes32 symbol, uint256 id, address to) external;\n\n    // If return false, Stores will suspend sales.\n    function melandStoreSellStatus(bytes32 symbol) external returns(bool isSelling);\n}\n",
+  "sourcePath": "/Users/alberthuang/code/icw/meland/contracts/IMelandStoreItems.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/IMelandStoreItems.sol",
+    "exportedSymbols": {
+      "IMelandStoreItems": [
+        4145
+      ]
+    },
+    "id": 4146,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4093,
+        "literals": [
+          "solidity",
+          "0.8",
+          ".9"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:22:28"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IMelandStoreItems",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 4145,
+        "linearizedBaseContracts": [
+          4145
+        ],
+        "name": "IMelandStoreItems",
+        "nameLocation": "214:17:28",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "8b31e62d",
+            "id": 4102,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "melandStoreItems",
+            "nameLocation": "367:16:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4094,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "383:2:28"
+            },
+            "returnParameters": {
+              "id": 4101,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4097,
+                  "mutability": "mutable",
+                  "name": "symbols",
+                  "nameLocation": "425:7:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4102,
+                  "src": "408:24:28",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 4095,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "408:7:28",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 4096,
+                    "nodeType": "ArrayTypeName",
+                    "src": "408:9:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4100,
+                  "mutability": "mutable",
+                  "name": "prices",
+                  "nameLocation": "451:6:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4102,
+                  "src": "434:23:28",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 4098,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "434:7:28",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 4099,
+                    "nodeType": "ArrayTypeName",
+                    "src": "434:9:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "407:51:28"
+            },
+            "scope": 4145,
+            "src": "358:101:28",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "e4ba5ba9",
+            "id": 4111,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "melandStoreItemsRestrictedPurchase",
+            "nameLocation": "553:34:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4105,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4104,
+                  "mutability": "mutable",
+                  "name": "symbol",
+                  "nameLocation": "596:6:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4111,
+                  "src": "588:14:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 4103,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "588:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "587:16:28"
+            },
+            "returnParameters": {
+              "id": 4110,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4107,
+                  "mutability": "mutable",
+                  "name": "restricted",
+                  "nameLocation": "656:10:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4111,
+                  "src": "651:15:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 4106,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "651:4:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4109,
+                  "mutability": "mutable",
+                  "name": "restrictLimit",
+                  "nameLocation": "676:13:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4111,
+                  "src": "668:21:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4108,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "668:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "650:40:28"
+            },
+            "scope": 4145,
+            "src": "544:147:28",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "aa24e4bf",
+            "id": 4121,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "melandStoreItemsRestrictPurchaseNFTIds",
+            "nameLocation": "1012:38:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4114,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4113,
+                  "mutability": "mutable",
+                  "name": "symbol",
+                  "nameLocation": "1059:6:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4121,
+                  "src": "1051:14:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 4112,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1051:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1050:16:28"
+            },
+            "returnParameters": {
+              "id": 4120,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4116,
+                  "mutability": "mutable",
+                  "name": "restricted",
+                  "nameLocation": "1094:10:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4121,
+                  "src": "1089:15:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 4115,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1089:4:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4119,
+                  "mutability": "mutable",
+                  "name": "ids",
+                  "nameLocation": "1123:3:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4121,
+                  "src": "1106:20:28",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 4117,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1106:7:28",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 4118,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1106:9:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1088:39:28"
+            },
+            "scope": 4145,
+            "src": "1003:125:28",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "d2f0ffc5",
+            "id": 4128,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "melandStoreReceipt",
+            "nameLocation": "1173:18:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4124,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4123,
+                  "mutability": "mutable",
+                  "name": "symbol",
+                  "nameLocation": "1200:6:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4128,
+                  "src": "1192:14:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 4122,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1192:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1191:16:28"
+            },
+            "returnParameters": {
+              "id": 4127,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4126,
+                  "mutability": "mutable",
+                  "name": "receipt",
+                  "nameLocation": "1238:7:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4128,
+                  "src": "1230:15:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4125,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1230:7:28",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1229:17:28"
+            },
+            "scope": 4145,
+            "src": "1164:83:28",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "20b237ce",
+            "id": 4137,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "melandStoreItemsMint",
+            "nameLocation": "1520:20:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4135,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4130,
+                  "mutability": "mutable",
+                  "name": "symbol",
+                  "nameLocation": "1549:6:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4137,
+                  "src": "1541:14:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 4129,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1541:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4132,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "1565:2:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4137,
+                  "src": "1557:10:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4131,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1557:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4134,
+                  "mutability": "mutable",
+                  "name": "to",
+                  "nameLocation": "1577:2:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4137,
+                  "src": "1569:10:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4133,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1569:7:28",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1540:40:28"
+            },
+            "returnParameters": {
+              "id": 4136,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1589:0:28"
+            },
+            "scope": 4145,
+            "src": "1511:79:28",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "3e9b278d",
+            "id": 4144,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "melandStoreSellStatus",
+            "nameLocation": "1656:21:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4140,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4139,
+                  "mutability": "mutable",
+                  "name": "symbol",
+                  "nameLocation": "1686:6:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4144,
+                  "src": "1678:14:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 4138,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1678:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1677:16:28"
+            },
+            "returnParameters": {
+              "id": 4143,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4142,
+                  "mutability": "mutable",
+                  "name": "isSelling",
+                  "nameLocation": "1716:9:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4144,
+                  "src": "1711:14:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 4141,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1711:4:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1710:16:28"
+            },
+            "scope": 4145,
+            "src": "1647:80:28",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 4146,
+        "src": "204:1525:28",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:1698:28"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/IMelandStoreItems.sol",
+    "exportedSymbols": {
+      "IMelandStoreItems": [
+        4145
+      ]
+    },
+    "id": 4146,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4093,
+        "literals": [
+          "solidity",
+          "0.8",
+          ".9"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:22:28"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IMelandStoreItems",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 4145,
+        "linearizedBaseContracts": [
+          4145
+        ],
+        "name": "IMelandStoreItems",
+        "nameLocation": "214:17:28",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "8b31e62d",
+            "id": 4102,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "melandStoreItems",
+            "nameLocation": "367:16:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4094,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "383:2:28"
+            },
+            "returnParameters": {
+              "id": 4101,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4097,
+                  "mutability": "mutable",
+                  "name": "symbols",
+                  "nameLocation": "425:7:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4102,
+                  "src": "408:24:28",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 4095,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "408:7:28",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 4096,
+                    "nodeType": "ArrayTypeName",
+                    "src": "408:9:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4100,
+                  "mutability": "mutable",
+                  "name": "prices",
+                  "nameLocation": "451:6:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4102,
+                  "src": "434:23:28",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 4098,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "434:7:28",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 4099,
+                    "nodeType": "ArrayTypeName",
+                    "src": "434:9:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "407:51:28"
+            },
+            "scope": 4145,
+            "src": "358:101:28",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "e4ba5ba9",
+            "id": 4111,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "melandStoreItemsRestrictedPurchase",
+            "nameLocation": "553:34:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4105,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4104,
+                  "mutability": "mutable",
+                  "name": "symbol",
+                  "nameLocation": "596:6:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4111,
+                  "src": "588:14:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 4103,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "588:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "587:16:28"
+            },
+            "returnParameters": {
+              "id": 4110,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4107,
+                  "mutability": "mutable",
+                  "name": "restricted",
+                  "nameLocation": "656:10:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4111,
+                  "src": "651:15:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 4106,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "651:4:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4109,
+                  "mutability": "mutable",
+                  "name": "restrictLimit",
+                  "nameLocation": "676:13:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4111,
+                  "src": "668:21:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4108,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "668:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "650:40:28"
+            },
+            "scope": 4145,
+            "src": "544:147:28",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "aa24e4bf",
+            "id": 4121,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "melandStoreItemsRestrictPurchaseNFTIds",
+            "nameLocation": "1012:38:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4114,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4113,
+                  "mutability": "mutable",
+                  "name": "symbol",
+                  "nameLocation": "1059:6:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4121,
+                  "src": "1051:14:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 4112,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1051:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1050:16:28"
+            },
+            "returnParameters": {
+              "id": 4120,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4116,
+                  "mutability": "mutable",
+                  "name": "restricted",
+                  "nameLocation": "1094:10:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4121,
+                  "src": "1089:15:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 4115,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1089:4:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4119,
+                  "mutability": "mutable",
+                  "name": "ids",
+                  "nameLocation": "1123:3:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4121,
+                  "src": "1106:20:28",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 4117,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1106:7:28",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 4118,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1106:9:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1088:39:28"
+            },
+            "scope": 4145,
+            "src": "1003:125:28",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "d2f0ffc5",
+            "id": 4128,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "melandStoreReceipt",
+            "nameLocation": "1173:18:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4124,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4123,
+                  "mutability": "mutable",
+                  "name": "symbol",
+                  "nameLocation": "1200:6:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4128,
+                  "src": "1192:14:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 4122,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1192:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1191:16:28"
+            },
+            "returnParameters": {
+              "id": 4127,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4126,
+                  "mutability": "mutable",
+                  "name": "receipt",
+                  "nameLocation": "1238:7:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4128,
+                  "src": "1230:15:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4125,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1230:7:28",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1229:17:28"
+            },
+            "scope": 4145,
+            "src": "1164:83:28",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "20b237ce",
+            "id": 4137,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "melandStoreItemsMint",
+            "nameLocation": "1520:20:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4135,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4130,
+                  "mutability": "mutable",
+                  "name": "symbol",
+                  "nameLocation": "1549:6:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4137,
+                  "src": "1541:14:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 4129,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1541:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4132,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "1565:2:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4137,
+                  "src": "1557:10:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4131,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1557:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4134,
+                  "mutability": "mutable",
+                  "name": "to",
+                  "nameLocation": "1577:2:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4137,
+                  "src": "1569:10:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4133,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1569:7:28",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1540:40:28"
+            },
+            "returnParameters": {
+              "id": 4136,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1589:0:28"
+            },
+            "scope": 4145,
+            "src": "1511:79:28",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "3e9b278d",
+            "id": 4144,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "melandStoreSellStatus",
+            "nameLocation": "1656:21:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4140,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4139,
+                  "mutability": "mutable",
+                  "name": "symbol",
+                  "nameLocation": "1686:6:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4144,
+                  "src": "1678:14:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 4138,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1678:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1677:16:28"
+            },
+            "returnParameters": {
+              "id": 4143,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4142,
+                  "mutability": "mutable",
+                  "name": "isSelling",
+                  "nameLocation": "1716:9:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4144,
+                  "src": "1711:14:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 4141,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1711:4:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1710:16:28"
+            },
+            "scope": 4145,
+            "src": "1647:80:28",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 4146,
+        "src": "204:1525:28",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:1698:28"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.9+commit.e5eed63a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-12-19T13:18:52.174Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

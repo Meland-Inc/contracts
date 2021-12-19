@@ -39,7 +39,7 @@ module.exports = {
 
     // polygon main network
     matic: {
-      provider: () => new HDWalletProvider(mnemonic, `https://rpc-mainnet.matic.network`),
+      provider: () => new HDWalletProvider(mnemonic, `https://polygon-mainnet.g.alchemy.com/v2/y48IcelCwZwwppoj-CXBEwmIjBOZ2ZLt`),
       network_id: 137,
       confirmations: 2,
       timeoutBlocks: 200,

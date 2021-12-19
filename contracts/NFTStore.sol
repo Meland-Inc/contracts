@@ -8,6 +8,7 @@ import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
 import "./NFTStoreStorage.sol";
+import "./MelandAccessRoles.sol";
 
 // 官方商城合约
 // 与marketplace的区别是. marketplace是用户和用户之间交易的合约.
@@ -17,8 +18,7 @@ import "./NFTStoreStorage.sol";
 
 contract NFTStore is
     Initializable,
-    AccessControlUpgradeable,
-    PausableUpgradeable,
+    MelandAccessRoles,
     UUPSUpgradeable,
     NFTStoreStorage
 {
@@ -34,10 +34,7 @@ contract NFTStore is
         uint256 _ownerCutPerMillion
     ) public initializer {
         __UUPSUpgradeable_init();
-        __AccessControl_init();
-        _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
-        _setupRole(UPGRADER_ROLE, _msgSender());
-        _setupRole(GM_ROLE, _msgSender());
+        __MelandAccessRoles_init();
 
         acceptedToken = _acceptedToken;
         officialWallet = _officialWallet;
@@ -45,221 +42,23 @@ contract NFTStore is
         ownerCutPerMillion = _ownerCutPerMillion;
     }
 
-    // 新增NFT售卖
-    function createNFT(
-        // nft address
-        IERC721MelandNFT nft,
-        // Purchase Price
-        uint256 priceInWei,
-        // Limit the number of individual wallet purchases
-        // If 0 means no limit
-        uint32 limit,
-        // Whether to turn on restricted token id pool purchase
-        // If restricted, the purchase is randomly given to the player from the id pool
-        bool tokenIdPool
-    ) public {
-        require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()),
-            "Unauthorized user"
-        );
-        require(
-            nft.hasRole(MINTER_ROLE, address(this)),
-            "Must authorize contract minter privileges"
-        );
-        require(itemByNFT[nft].id == 0, "Already exists");
-
-        (bool success, bytes memory cid) = address(nft).staticcall(
-            abi.encodeWithSignature("getCid()")
-        );
-        if (success) {
-            string memory cidstr = abi.decode(cid, (string));
-            require(
-                nftByCid[cidstr] == address(0),
-                string(abi.encodePacked("cid Already exists", cidstr))
-            );
-            nftByCid[cidstr] = address(nft);
-        }
-
-        uint256 itemId = itemIdCounters.current() + 1;
-        itemIdCounters.increment();
-
-        itemByNFT[nft] = Item(
-            itemId,
-            _msgSender(),
-            tokenIdPool,
-            priceInWei,
-            0,
-            limit
-        );
-
-        emit NFTCreated(itemId, _msgSender(), nft, priceInWei);
-    }
-
-    function updateItemLimit(
-        // nft address
-        IERC721MelandNFT nft,
-        // Limit the number of individual wallet purchases
-        // If 0 means no limit
-        uint32 limit
-    ) public {
-        require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()) ||
-                hasRole(GM_ROLE, _msgSender()),
-            "Unauthorized user"
-        );
-        require(itemByNFT[nft].id > 0, "NFT not found");
-
-        itemByNFT[nft].limit = limit;
-
-        emit NFTItemUpdate(itemByNFT[nft].id, nft);
-    }
-
-    function updateItemPriceInWei(
-        // nft address
-        IERC721MelandNFT nft,
-        // Purchase Price
-        uint256 priceInWei
-    ) public {
-        require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()) ||
-                hasRole(GM_ROLE, _msgSender()),
-            "Unauthorized user"
-        );
-        require(itemByNFT[nft].id > 0, "NFT not found");
-
-        itemByNFT[nft].priceInWei = priceInWei;
-
-        emit NFTItemUpdate(itemByNFT[nft].id, nft);
-    }
-
-    function checkTokenIdMinted(IERC721MelandNFT nft, uint256 id)
-        private
-        view
-        returns (bool)
-    {
-        try nft.ownerOf(id) returns (address _addrs) {
-            return _addrs != address(0);
-        } catch (bytes memory) {}
-        return false;
-    }
-
-    function checkTokenIdExists(IERC721MelandNFT nft, uint256 id)
-        private
-        view
-        returns (bool)
-    {
-        uint256[] memory ids = tokenIdsByNFT[nft];
-        for (uint256 i = 0; i < ids.length; i++) {
-            if (ids[i] == id) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    function addTokenIdPool(IERC721MelandNFT nft, uint256[] memory tokenIds)
-        public
-        returns (uint8 addCount)
-    {
-        require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()) ||
-                hasRole(GM_ROLE, _msgSender()),
-            "Unauthorized user"
-        );
-        require(itemByNFT[nft].id > 0, "NFT not found");
-        for (uint256 i = 0; i < tokenIds.length; i++) {
-            uint256 tokenId = tokenIds[i];
-            if (checkTokenIdExists(nft, tokenId)) {
-                continue;
-            }
-            require(
-                !checkTokenIdMinted(nft, tokenId),
-                "The token id pool exists for ids that have been minted"
-            );
-            addCount += 1;
-            tokenIdsByNFT[nft].push(tokenIds[i]);
-        }
-        emit NFTIdPoolUpdate(itemByNFT[nft].id, nft, tokenIdsByNFT[nft].length);
-    }
-
-    function updateTokenIdPool(IERC721MelandNFT nft, uint256[] memory tokenIds)
-        public
-    {
-        require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()) ||
-                hasRole(GM_ROLE, _msgSender()),
-            "Unauthorized user"
-        );
-        require(itemByNFT[nft].id > 0, "NFT not found");
-
-        // 如果id池内存在一个被mint的id
-        // 则更新失败.
-        for (uint256 i = 0; i < tokenIds.length; i++) {
-            uint256 tokenId = tokenIds[i];
-            require(
-                !checkTokenIdMinted(nft, tokenId),
-                "The token id pool exists for ids that have been minted"
-            );
-        }
-        tokenIdsByNFT[nft] = tokenIds;
-        emit NFTIdPoolUpdate(itemByNFT[nft].id, nft, tokenIds.length);
+    // Uploaded new NFT sale
+    function createNFT(IMelandStoreItems nft) public {
+        _checkStoreItems(nft);
+        require(!itemUploadedMap[nft], "Already exists");
+        itemUploadedMap[nft] = true;
+        emit NFTCreated(nft);
     }
 
     // 下架NFT
-    function deleteNFT(IERC721MelandNFT nft) public {
-        require(
-            nft.hasRole(DEFAULT_ADMIN_ROLE, _msgSender()),
-            "Unauthorized user"
-        );
-        require(itemByNFT[nft].id > 0, "NFT not found");
-        Item memory item = itemByNFT[nft];
-        // 取消授权
-        nft.renounceRole(MINTER_ROLE, address(this));
-        delete itemByNFT[nft];
-
-        emit NFTDelete(item.id, _msgSender(), nft);
+    function removedNFT(IMelandStoreItems nft) public onlyRole(GM_ROLE) {
+        require(!itemUploadedMap[nft], "NFT not uplaoded");
+        itemUploadedMap[nft] = false;
+        emit NFTDelete(nft);
     }
 
-    function randomIds(uint256[] memory ids) private view returns (uint256) {
-        // sha3 and now have been deprecated
-        return
-            uint256(
-                keccak256(
-                    abi.encodePacked(block.difficulty, block.timestamp, ids)
-                )
-            );
-    }
-
-    // Get a random token id
-    function getTokenIdByIdsPool(IERC721MelandNFT nft)
-        private
-        view
-        returns (uint256, uint256)
-    {
-        require(tokenIdsByNFT[nft].length > 0, "nft Insufficient supply");
-        uint256[] memory ids = tokenIdsByNFT[nft];
-        uint256 tokenIdIndex = randomIds(ids) % ids.length;
-        uint256 tokenId = ids[tokenIdIndex];
-        return (tokenId, tokenIdIndex);
-    }
-
-    function popTokenIdPoolByTokenIdIndex(
-        IERC721MelandNFT nft,
-        uint256 tokenIdIndex
-    ) private {
-        uint256[] storage ids = tokenIdsByNFT[nft];
-
-        // 更加节约gas feeds的方式删除array
-        // 原理. 将需要删除的index用last覆盖
-        // 随后用pop删除last
-        // 这样做的好处是不会导致evm将array重新排序
-        uint256 lastTokenIndex = ids.length - 1;
-        uint256 lastTokenId = ids[lastTokenIndex];
-        ids[tokenIdIndex] = lastTokenId;
-        ids.pop();
-        tokenIdsByNFT[nft] = ids;
-
-        emit NFTIdPoolUpdate(itemByNFT[nft].id, nft, ids.length);
+    function updateNFTItemInfo(IMelandStoreItems nft) public {
+        emit NFTItemUpdate(nft, _tryCheckStoreItems(nft));
     }
 
     // 设置抽成
@@ -278,40 +77,86 @@ contract NFTStore is
         emit ChangedOwnerCutPerMillion(ownerCutPerMillion);
     }
 
-    function buyNFT(IERC721MelandNFT nft, uint256 priceInWei) public {
-        require(
-            nft.totalSupply() < nft.getMintMax(),
-            "Exceeding the maximum supply quantity"
-        );
-        Item memory item = itemByNFT[nft];
-        require(item.id > 0, "NFT not found");
-        require(item.priceInWei == priceInWei, "The price is not correct");
+    function _tryCheckStoreItems(IMelandStoreItems nft)
+        private
+        view
+        returns (bool)
+    {
+        (bytes32[] memory symbols, uint256[] memory prices) = nft
+            .melandStoreItems();
+        return symbols.length == prices.length;
+    }
 
-        // If the restriction is turned on
-        if (item.limit > 0) {
+    function _checkStoreItems(IMelandStoreItems nft) private view {
+        require(_tryCheckStoreItems(nft), "Product calibration error");
+    }
+
+    function buyNFT(
+        IMelandStoreItems nft,
+        bytes32 symbol,
+        uint256 priceInWei
+    ) public {
+        address buyer = _msgSender();
+        require(itemUploadedMap[nft], "NFT not uploaded");
+        _checkStoreItems(nft);
+
+        uint256 buySymbolIndex = 0;
+        {
+            (bytes32[] memory symbols, uint256[] memory prices) = nft
+                .melandStoreItems();
+
+            for (uint256 i = 0; i < symbols.length; i++) {
+                if (symbols[i] == symbol) {
+                    buySymbolIndex = i;
+                    break;
+                }
+            }
+
             require(
-                limitPool[nft][_msgSender()] < item.limit,
-                "Trigger restriction"
+                nft.melandStoreSellStatus(symbol),
+                "Merchandise has been suspended from sale"
             );
-            limitPool[nft][_msgSender()] = limitPool[nft][_msgSender()].add(1);
+
+            require(
+                buySymbolIndex > 0 || symbols[0] == symbol,
+                "symbol is not sale"
+            );
+
+            require(
+                prices[buySymbolIndex] == priceInWei,
+                "The price is not correct"
+            );
         }
 
-        address sender = _msgSender();
-        address seller = item.seller;
+        {
+            (bool restricted, uint256 restrictLimit) = nft
+                .melandStoreItemsRestrictedPurchase(symbol);
+            if (restricted) {
+                require(
+                    _getItemSymbolSales(nft, symbol, buyer) < restrictLimit,
+                    string(
+                        abi.encodePacked(
+                            "Exceeded the maximum limit that each person can purchase (",
+                            restrictLimit
+                        )
+                    )
+                );
 
+                _addItemSymbolSales(nft, symbol, buyer);
+            }
+        }
+
+        address seller = nft.melandStoreReceipt(symbol);
         uint256 tokenId = 0;
-        uint256 tokenIdIndex = 0;
-        bool popTokenIdIndex = false;
-        // token ids pools enable
-        if (item.tokenIdPool) {
-            (tokenId, tokenIdIndex) = getTokenIdByIdsPool(nft);
-            popTokenIdIndex = true;
-        } else {
-            tokenId = nft.totalSupply() + 1;
+        (bool idsRestricted, uint256[] memory ids) = nft
+            .melandStoreItemsRestrictPurchaseNFTIds(symbol);
+        if (idsRestricted) {
+            require(
+                ids.length > 0,
+                "Insufficient quantity of saleable inventory"
+            );
+            tokenId = ids[0];
         }
-
-        item.sellsCount = item.sellsCount.add(1);
-        itemByNFT[nft] = item;
 
         uint256 saleShareAmount = 0;
 
@@ -328,10 +173,10 @@ contract NFTStore is
             // The last 20% are official earnings
             uint256 officialAmount = saleShareAmount.mul(20).div(100);
 
-            acceptedToken.burnFrom(sender, burnAmount);
+            acceptedToken.burnFrom(buyer, burnAmount);
             require(
                 acceptedToken.transferFrom(
-                    sender,
+                    buyer,
                     foundationWallet,
                     foundationAmount
                 ),
@@ -339,7 +184,7 @@ contract NFTStore is
             );
             require(
                 acceptedToken.transferFrom(
-                    sender,
+                    buyer,
                     officialWallet,
                     officialAmount
                 ),
@@ -350,26 +195,16 @@ contract NFTStore is
         // Transfer sale amount to seller
         require(
             acceptedToken.transferFrom(
-                sender,
+                buyer,
                 seller,
                 priceInWei.sub(saleShareAmount)
             ),
             "Transfering the sale amount to the seller failed"
         );
 
-        nft.safeMint(sender, tokenId);
+        nft.melandStoreItemsMint(symbol, tokenId, buyer);
 
-        if (popTokenIdIndex) {
-            popTokenIdPoolByTokenIdIndex(nft, tokenIdIndex);
-        }
-
-        emit NFTBuyed(
-            item.id, 
-            sender, 
-            nft, 
-            tokenId,
-            priceInWei
-        );
+        emit NFTBuyed(buyer, nft, tokenId, priceInWei);
     }
 
     function _authorizeUpgrade(address newImplementation)

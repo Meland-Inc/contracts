@@ -1,0 +1,1396 @@
+{
+  "contractName": "MelandCIdMap",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "cidByTokenId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.9+commit.e5eed63a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"cidByTokenId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Store the association between Meland game prop CID and token id.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/MelandCIDMap.sol\":\"MelandCIdMap\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol\":{\"keccak256\":\"0x6287586f5e4a103c89d4dda41406136cdf283cc625bd1ebfdf1468aae5bfe449\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://30e2e913292e86a9bce50d51882b23ef57ae4c811003ec96cf39b1781f68b202\",\"dweb:/ipfs/QmUXqjyiAHbEMJ4zLfaduWYuVwp1HozqVhtChe9VfdpjoV\"]},\"@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol\":{\"keccak256\":\"0x9722ee87ac04928b3c3b82d2721284861992dbf9ba8cd85408939e0e5d891deb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1c11cf9c20fef7a8020bf71c86059274d0514695ffd0793e70178956c61aa119\",\"dweb:/ipfs/QmadgMUNGsTdvn9GJ7EVqssi4nhWTLoTtt2ZmecdvisEZy\"]},\"@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol\":{\"keccak256\":\"0xb34b8dc5fbc20d8d7e5ed2fd1a0ed87e1fb024d3ae0c61fd4368565ce733aa7e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0ff7fe6e13cf851da3cdc27c7c4c58249ca6a53765f1bb40a5b8ec87b1b84599\",\"dweb:/ipfs/QmZ7JzzhpEMBgk7p9TVzwXDduvJJQtZhQwF3R1vZ9EdgMP\"]},\"@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol\":{\"keccak256\":\"0x5f8d2e5137f7603eeaa0516e5b40dc6e637f179edea8134f1dbef9754c9baf2b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8d0bcb68bd57fa5b393b9a47206bc55b9afce8abd70c87ff3ff9e78aa7f6a891\",\"dweb:/ipfs/QmSVBBwupDnDntQfMEAmjiZr6nbZpyyB453iLsMTQSRMSq\"]},\"@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol\":{\"keccak256\":\"0x0c34de2f75ee9ab06bf9151824be575885d0a9b460c292476a260578fb5a4e1c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2125524ea896700181f25ee543d35a980b9477eaf13fd1878ae24be5dcc3ba75\",\"dweb:/ipfs/QmXw9DTW1t1UiTZanfESSJ6jm2xVSQpsdsdKnBTYeBnwqh\"]},\"@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol\":{\"keccak256\":\"0x704add6904e5156bac4fb870ee851af4c2d004ae0cac22fd030162843fd1d611\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://34e1bf4e8ba4cc1bf12029886c17313076a26afc60622ebeb2c740cf692bbcf0\",\"dweb:/ipfs/QmenGgJyUKHoVPNWehvyTEGcpLc74Xutet3FECVmTG8md6\"]},\"@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol\":{\"keccak256\":\"0x650712f855228b7cdeb90738d99dd33ff3a7c9770914ff03eb93f90218fe164b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5d61d29cfb52a862da981f6688772dd009132757bcb85e4be8be506db1ed71f9\",\"dweb:/ipfs/QmWWHRKr5aTxyU4TRehnU6toBctgi217toZdth6JqYrh5y\"]},\"project:/contracts/MelandCIDMap.sol\":{\"keccak256\":\"0x88ec43eb5bfd78b45d68b518b480ba54f413d58dca526c98d30cf2d9bd8d330a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5ee37b98f5df711a7d22a72a39f62e838ec76a85b05576b9784e2d61f857c73f\",\"dweb:/ipfs/QmQuTjVyRN2hjHhqQx6P58h3qEhWN4JcLoDsqn3WG1BaFS\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060aa8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80636ccf217614602d575b600080fd5b604a6038366004605c565b60016020526000908152604090205481565b60405190815260200160405180910390f35b600060208284031215606d57600080fd5b503591905056fea26469706673582212203bf37da7edcce2892f215feae22a7458c2906c21e627d7e4b92747da5e5be62264736f6c63430008090033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80636ccf217614602d575b600080fd5b604a6038366004605c565b60016020526000908152604090205481565b60405190815260200160405180910390f35b600060208284031215606d57600080fd5b503591905056fea26469706673582212203bf37da7edcce2892f215feae22a7458c2906c21e627d7e4b92747da5e5be62264736f6c63430008090033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [
+    {
+      "ast": {
+        "nodeType": "YulBlock",
+        "src": "0:378:62",
+        "statements": [
+          {
+            "nodeType": "YulBlock",
+            "src": "6:3:62",
+            "statements": []
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "84:110:62",
+              "statements": [
+                {
+                  "body": {
+                    "nodeType": "YulBlock",
+                    "src": "130:16:62",
+                    "statements": [
+                      {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "139:1:62",
+                              "type": "",
+                              "value": "0"
+                            },
+                            {
+                              "kind": "number",
+                              "nodeType": "YulLiteral",
+                              "src": "142:1:62",
+                              "type": "",
+                              "value": "0"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "revert",
+                            "nodeType": "YulIdentifier",
+                            "src": "132:6:62"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "132:12:62"
+                        },
+                        "nodeType": "YulExpressionStatement",
+                        "src": "132:12:62"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "name": "dataEnd",
+                            "nodeType": "YulIdentifier",
+                            "src": "105:7:62"
+                          },
+                          {
+                            "name": "headStart",
+                            "nodeType": "YulIdentifier",
+                            "src": "114:9:62"
+                          }
+                        ],
+                        "functionName": {
+                          "name": "sub",
+                          "nodeType": "YulIdentifier",
+                          "src": "101:3:62"
+                        },
+                        "nodeType": "YulFunctionCall",
+                        "src": "101:23:62"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "126:2:62",
+                        "type": "",
+                        "value": "32"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "slt",
+                      "nodeType": "YulIdentifier",
+                      "src": "97:3:62"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "97:32:62"
+                  },
+                  "nodeType": "YulIf",
+                  "src": "94:52:62"
+                },
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "155:33:62",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "178:9:62"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "calldataload",
+                      "nodeType": "YulIdentifier",
+                      "src": "165:12:62"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "165:23:62"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "value0",
+                      "nodeType": "YulIdentifier",
+                      "src": "155:6:62"
+                    }
+                  ]
+                }
+              ]
+            },
+            "name": "abi_decode_tuple_t_uint256",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "50:9:62",
+                "type": ""
+              },
+              {
+                "name": "dataEnd",
+                "nodeType": "YulTypedName",
+                "src": "61:7:62",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "73:6:62",
+                "type": ""
+              }
+            ],
+            "src": "14:180:62"
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "300:76:62",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "310:26:62",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "322:9:62"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "333:2:62",
+                        "type": "",
+                        "value": "32"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "318:3:62"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "318:18:62"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "tail",
+                      "nodeType": "YulIdentifier",
+                      "src": "310:4:62"
+                    }
+                  ]
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "352:9:62"
+                      },
+                      {
+                        "name": "value0",
+                        "nodeType": "YulIdentifier",
+                        "src": "363:6:62"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "mstore",
+                      "nodeType": "YulIdentifier",
+                      "src": "345:6:62"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "345:25:62"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "345:25:62"
+                }
+              ]
+            },
+            "name": "abi_encode_tuple_t_uint256__to_t_uint256__fromStack_reversed",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "269:9:62",
+                "type": ""
+              },
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "280:6:62",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "tail",
+                "nodeType": "YulTypedName",
+                "src": "291:4:62",
+                "type": ""
+              }
+            ],
+            "src": "199:177:62"
+          }
+        ]
+      },
+      "contents": "{\n    { }\n    function abi_decode_tuple_t_uint256(headStart, dataEnd) -> value0\n    {\n        if slt(sub(dataEnd, headStart), 32) { revert(0, 0) }\n        value0 := calldataload(headStart)\n    }\n    function abi_encode_tuple_t_uint256__to_t_uint256__fromStack_reversed(headStart, value0) -> tail\n    {\n        tail := add(headStart, 32)\n        mstore(headStart, value0)\n    }\n}",
+      "id": 62,
+      "language": "Yul",
+      "name": "#utility.yul"
+    }
+  ],
+  "sourceMap": "524:430:48:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "524:430:48:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;673:47;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;345:25:62;;;333:2;318:18;673:47:48;;;;;;;14:180:62;73:6;126:2;114:9;105:7;101:23;97:32;94:52;;;142:1;139;132:12;94:52;-1:-1:-1;165:23:62;;14:180;-1:-1:-1;14:180:62:o",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.9;\n\nimport \"@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol\";\nimport \"@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol\";\nimport \"@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol\";\nimport \"@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol\";\nimport \"@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol\";\n\n/// Store the association between Meland game prop CID and token id.\n\ncontract MelandCIdMap {\n    using CountersUpgradeable for CountersUpgradeable.Counter;\n    CountersUpgradeable.Counter private _tokenIdCounter;\n\n    mapping(uint256 => uint256) public cidByTokenId;\n\n    function genTokenIdByCid(uint256 cid) internal returns (uint256) {\n        uint256 tokenId = _tokenIdCounter.current();\n        _tokenIdCounter.increment();\n\n        cidByTokenId[tokenId] = cid;\n\n        return tokenId;\n    }\n}\n",
+  "sourcePath": "/Users/alberthuang/code/icw/meland/contracts/MelandCIDMap.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/MelandCIDMap.sol",
+    "exportedSymbols": {
+      "ContextUpgradeable": [
+        5399
+      ],
+      "CountersUpgradeable": [
+        5473
+      ],
+      "IERC1155Upgradeable": [
+        2499
+      ],
+      "IERC165Upgradeable": [
+        5794
+      ],
+      "IERC20Upgradeable": [
+        3423
+      ],
+      "IERC721Upgradeable": [
+        4530
+      ],
+      "Initializable": [
+        989
+      ],
+      "MelandCIdMap": [
+        8392
+      ]
+    },
+    "id": 8393,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8347,
+        "literals": [
+          "solidity",
+          "0.8",
+          ".9"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:22:48"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol",
+        "id": 8348,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 8393,
+        "sourceUnit": 2500,
+        "src": "56:83:48",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol",
+        "id": 8349,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 8393,
+        "sourceUnit": 4531,
+        "src": "140:81:48",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
+        "id": 8350,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 8393,
+        "sourceUnit": 3424,
+        "src": "222:79:48",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
+        "id": 8351,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 8393,
+        "sourceUnit": 5400,
+        "src": "302:74:48",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol",
+        "id": 8352,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 8393,
+        "sourceUnit": 5474,
+        "src": "377:75:48",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "MelandCIdMap",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 8353,
+          "nodeType": "StructuredDocumentation",
+          "src": "454:69:48",
+          "text": "Store the association between Meland game prop CID and token id."
+        },
+        "fullyImplemented": true,
+        "id": 8392,
+        "linearizedBaseContracts": [
+          8392
+        ],
+        "name": "MelandCIdMap",
+        "nameLocation": "533:12:48",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "id": 8357,
+            "libraryName": {
+              "id": 8354,
+              "name": "CountersUpgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 5473,
+              "src": "558:19:48"
+            },
+            "nodeType": "UsingForDirective",
+            "src": "552:58:48",
+            "typeName": {
+              "id": 8356,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 8355,
+                "name": "CountersUpgradeable.Counter",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 5405,
+                "src": "582:27:48"
+              },
+              "referencedDeclaration": 5405,
+              "src": "582:27:48",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Counter_$5405_storage_ptr",
+                "typeString": "struct CountersUpgradeable.Counter"
+              }
+            }
+          },
+          {
+            "constant": false,
+            "id": 8360,
+            "mutability": "mutable",
+            "name": "_tokenIdCounter",
+            "nameLocation": "651:15:48",
+            "nodeType": "VariableDeclaration",
+            "scope": 8392,
+            "src": "615:51:48",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_Counter_$5405_storage",
+              "typeString": "struct CountersUpgradeable.Counter"
+            },
+            "typeName": {
+              "id": 8359,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 8358,
+                "name": "CountersUpgradeable.Counter",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 5405,
+                "src": "615:27:48"
+              },
+              "referencedDeclaration": 5405,
+              "src": "615:27:48",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Counter_$5405_storage_ptr",
+                "typeString": "struct CountersUpgradeable.Counter"
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "constant": false,
+            "functionSelector": "6ccf2176",
+            "id": 8364,
+            "mutability": "mutable",
+            "name": "cidByTokenId",
+            "nameLocation": "708:12:48",
+            "nodeType": "VariableDeclaration",
+            "scope": 8392,
+            "src": "673:47:48",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+              "typeString": "mapping(uint256 => uint256)"
+            },
+            "typeName": {
+              "id": 8363,
+              "keyType": {
+                "id": 8361,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "681:7:48",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "673:27:48",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                "typeString": "mapping(uint256 => uint256)"
+              },
+              "valueType": {
+                "id": 8362,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "692:7:48",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 8390,
+              "nodeType": "Block",
+              "src": "792:160:48",
+              "statements": [
+                {
+                  "assignments": [
+                    8372
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 8372,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "nameLocation": "810:7:48",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 8390,
+                      "src": "802:15:48",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 8371,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "802:7:48",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 8376,
+                  "initialValue": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 8373,
+                        "name": "_tokenIdCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8360,
+                        "src": "820:15:48",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Counter_$5405_storage",
+                          "typeString": "struct CountersUpgradeable.Counter storage ref"
+                        }
+                      },
+                      "id": 8374,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "current",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 5417,
+                      "src": "820:23:48",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_struct$_Counter_$5405_storage_ptr_$returns$_t_uint256_$bound_to$_t_struct$_Counter_$5405_storage_ptr_$",
+                        "typeString": "function (struct CountersUpgradeable.Counter storage pointer) view returns (uint256)"
+                      }
+                    },
+                    "id": 8375,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "820:25:48",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "802:43:48"
+                },
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 8377,
+                        "name": "_tokenIdCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8360,
+                        "src": "855:15:48",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Counter_$5405_storage",
+                          "typeString": "struct CountersUpgradeable.Counter storage ref"
+                        }
+                      },
+                      "id": 8379,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "increment",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 5431,
+                      "src": "855:25:48",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Counter_$5405_storage_ptr_$returns$__$bound_to$_t_struct$_Counter_$5405_storage_ptr_$",
+                        "typeString": "function (struct CountersUpgradeable.Counter storage pointer)"
+                      }
+                    },
+                    "id": 8380,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "855:27:48",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8381,
+                  "nodeType": "ExpressionStatement",
+                  "src": "855:27:48"
+                },
+                {
+                  "expression": {
+                    "id": 8386,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 8382,
+                        "name": "cidByTokenId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8364,
+                        "src": "893:12:48",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                          "typeString": "mapping(uint256 => uint256)"
+                        }
+                      },
+                      "id": 8384,
+                      "indexExpression": {
+                        "id": 8383,
+                        "name": "tokenId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8372,
+                        "src": "906:7:48",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "893:21:48",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 8385,
+                      "name": "cid",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8366,
+                      "src": "917:3:48",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "893:27:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 8387,
+                  "nodeType": "ExpressionStatement",
+                  "src": "893:27:48"
+                },
+                {
+                  "expression": {
+                    "id": 8388,
+                    "name": "tokenId",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 8372,
+                    "src": "938:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 8370,
+                  "id": 8389,
+                  "nodeType": "Return",
+                  "src": "931:14:48"
+                }
+              ]
+            },
+            "id": 8391,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "genTokenIdByCid",
+            "nameLocation": "736:15:48",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8367,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8366,
+                  "mutability": "mutable",
+                  "name": "cid",
+                  "nameLocation": "760:3:48",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8391,
+                  "src": "752:11:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 8365,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "752:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "751:13:48"
+            },
+            "returnParameters": {
+              "id": 8370,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8369,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8391,
+                  "src": "783:7:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 8368,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "783:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "782:9:48"
+            },
+            "scope": 8392,
+            "src": "727:225:48",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 8393,
+        "src": "524:430:48",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:923:48"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/MelandCIDMap.sol",
+    "exportedSymbols": {
+      "ContextUpgradeable": [
+        5399
+      ],
+      "CountersUpgradeable": [
+        5473
+      ],
+      "IERC1155Upgradeable": [
+        2499
+      ],
+      "IERC165Upgradeable": [
+        5794
+      ],
+      "IERC20Upgradeable": [
+        3423
+      ],
+      "IERC721Upgradeable": [
+        4530
+      ],
+      "Initializable": [
+        989
+      ],
+      "MelandCIdMap": [
+        8392
+      ]
+    },
+    "id": 8393,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8347,
+        "literals": [
+          "solidity",
+          "0.8",
+          ".9"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:22:48"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol",
+        "id": 8348,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 8393,
+        "sourceUnit": 2500,
+        "src": "56:83:48",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol",
+        "id": 8349,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 8393,
+        "sourceUnit": 4531,
+        "src": "140:81:48",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
+        "id": 8350,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 8393,
+        "sourceUnit": 3424,
+        "src": "222:79:48",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
+        "id": 8351,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 8393,
+        "sourceUnit": 5400,
+        "src": "302:74:48",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol",
+        "id": 8352,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 8393,
+        "sourceUnit": 5474,
+        "src": "377:75:48",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "MelandCIdMap",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 8353,
+          "nodeType": "StructuredDocumentation",
+          "src": "454:69:48",
+          "text": "Store the association between Meland game prop CID and token id."
+        },
+        "fullyImplemented": true,
+        "id": 8392,
+        "linearizedBaseContracts": [
+          8392
+        ],
+        "name": "MelandCIdMap",
+        "nameLocation": "533:12:48",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "id": 8357,
+            "libraryName": {
+              "id": 8354,
+              "name": "CountersUpgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 5473,
+              "src": "558:19:48"
+            },
+            "nodeType": "UsingForDirective",
+            "src": "552:58:48",
+            "typeName": {
+              "id": 8356,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 8355,
+                "name": "CountersUpgradeable.Counter",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 5405,
+                "src": "582:27:48"
+              },
+              "referencedDeclaration": 5405,
+              "src": "582:27:48",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Counter_$5405_storage_ptr",
+                "typeString": "struct CountersUpgradeable.Counter"
+              }
+            }
+          },
+          {
+            "constant": false,
+            "id": 8360,
+            "mutability": "mutable",
+            "name": "_tokenIdCounter",
+            "nameLocation": "651:15:48",
+            "nodeType": "VariableDeclaration",
+            "scope": 8392,
+            "src": "615:51:48",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_Counter_$5405_storage",
+              "typeString": "struct CountersUpgradeable.Counter"
+            },
+            "typeName": {
+              "id": 8359,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 8358,
+                "name": "CountersUpgradeable.Counter",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 5405,
+                "src": "615:27:48"
+              },
+              "referencedDeclaration": 5405,
+              "src": "615:27:48",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Counter_$5405_storage_ptr",
+                "typeString": "struct CountersUpgradeable.Counter"
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "constant": false,
+            "functionSelector": "6ccf2176",
+            "id": 8364,
+            "mutability": "mutable",
+            "name": "cidByTokenId",
+            "nameLocation": "708:12:48",
+            "nodeType": "VariableDeclaration",
+            "scope": 8392,
+            "src": "673:47:48",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+              "typeString": "mapping(uint256 => uint256)"
+            },
+            "typeName": {
+              "id": 8363,
+              "keyType": {
+                "id": 8361,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "681:7:48",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "673:27:48",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                "typeString": "mapping(uint256 => uint256)"
+              },
+              "valueType": {
+                "id": 8362,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "692:7:48",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 8390,
+              "nodeType": "Block",
+              "src": "792:160:48",
+              "statements": [
+                {
+                  "assignments": [
+                    8372
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 8372,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "nameLocation": "810:7:48",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 8390,
+                      "src": "802:15:48",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 8371,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "802:7:48",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 8376,
+                  "initialValue": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 8373,
+                        "name": "_tokenIdCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8360,
+                        "src": "820:15:48",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Counter_$5405_storage",
+                          "typeString": "struct CountersUpgradeable.Counter storage ref"
+                        }
+                      },
+                      "id": 8374,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "current",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 5417,
+                      "src": "820:23:48",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_struct$_Counter_$5405_storage_ptr_$returns$_t_uint256_$bound_to$_t_struct$_Counter_$5405_storage_ptr_$",
+                        "typeString": "function (struct CountersUpgradeable.Counter storage pointer) view returns (uint256)"
+                      }
+                    },
+                    "id": 8375,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "820:25:48",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "802:43:48"
+                },
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 8377,
+                        "name": "_tokenIdCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8360,
+                        "src": "855:15:48",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Counter_$5405_storage",
+                          "typeString": "struct CountersUpgradeable.Counter storage ref"
+                        }
+                      },
+                      "id": 8379,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "increment",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 5431,
+                      "src": "855:25:48",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Counter_$5405_storage_ptr_$returns$__$bound_to$_t_struct$_Counter_$5405_storage_ptr_$",
+                        "typeString": "function (struct CountersUpgradeable.Counter storage pointer)"
+                      }
+                    },
+                    "id": 8380,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "855:27:48",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8381,
+                  "nodeType": "ExpressionStatement",
+                  "src": "855:27:48"
+                },
+                {
+                  "expression": {
+                    "id": 8386,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 8382,
+                        "name": "cidByTokenId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8364,
+                        "src": "893:12:48",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                          "typeString": "mapping(uint256 => uint256)"
+                        }
+                      },
+                      "id": 8384,
+                      "indexExpression": {
+                        "id": 8383,
+                        "name": "tokenId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8372,
+                        "src": "906:7:48",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "893:21:48",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 8385,
+                      "name": "cid",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8366,
+                      "src": "917:3:48",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "893:27:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 8387,
+                  "nodeType": "ExpressionStatement",
+                  "src": "893:27:48"
+                },
+                {
+                  "expression": {
+                    "id": 8388,
+                    "name": "tokenId",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 8372,
+                    "src": "938:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 8370,
+                  "id": 8389,
+                  "nodeType": "Return",
+                  "src": "931:14:48"
+                }
+              ]
+            },
+            "id": 8391,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "genTokenIdByCid",
+            "nameLocation": "736:15:48",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8367,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8366,
+                  "mutability": "mutable",
+                  "name": "cid",
+                  "nameLocation": "760:3:48",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8391,
+                  "src": "752:11:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 8365,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "752:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "751:13:48"
+            },
+            "returnParameters": {
+              "id": 8370,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8369,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8391,
+                  "src": "783:7:48",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 8368,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "783:7:48",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "782:9:48"
+            },
+            "scope": 8392,
+            "src": "727:225:48",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 8393,
+        "src": "524:430:48",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:923:48"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.9+commit.e5eed63a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-12-16T19:17:15.471Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "Store the association between Meland game prop CID and token id.",
+    "version": 1
+  }
+}
