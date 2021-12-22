@@ -56,6 +56,10 @@ contract MelandStakes is
         _harvestByStaker(_msgSender());
     }
 
+    function claim(uint256 stakePoolId) public {
+        _claim(_buildStakeId(_msgSender(), stakePoolId));
+    }
+
     function getStakerAllEarned() public view returns(uint256) {
         return _getStakerAllEarned(_msgSender(), block.timestamp);
     }

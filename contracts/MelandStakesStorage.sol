@@ -66,7 +66,7 @@ contract MelandStakesStorage {
     }
 
     function _buildStakeId(address staker, uint256 stakePoolId)
-        private
+        internal
         pure
         returns (bytes32)
     {
@@ -193,9 +193,8 @@ contract MelandStakesStorage {
         if (current > max) {
             current = max;
         }
-
-        uint256 totalEarn = stakePool.numberOfMELD * stakePool.stakeApyPercent / 100;
-        uint256 avgEarnAtHours = totalEarn / stakePool.freezeTime / (1 hours);
+        uint256 totalEarnAtSeconds = stakePool.numberOfMELD * stakePool.stakeApyPercent / 100 / 31536000;
+        uint256 avgEarnAtHours = totalEarnAtSeconds * (1 hours);
         return avgEarnAtHours * (current / 1 hours);
     }
 
