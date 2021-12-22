@@ -92,7 +92,7 @@ contract Marketplace is
         _cancelOrder(nftAddress, assetId);
     }
 
-    // 购买
+    // buy
     function safeExecuteOrder(
         IERC721 nftAddress,
         uint256 assetId,
@@ -101,7 +101,7 @@ contract Marketplace is
         _executeOrder(nftAddress, assetId, price);
     }
 
-    // 购买订单
+    // buy
     function executeOrder(
         IERC721 nftAddress,
         uint256 assetId,
@@ -142,7 +142,6 @@ contract Marketplace is
         emit OrderUpdated(order.id, priceInWei, expiresAt);
     }
 
-    // 创建订单
     function _createOrder(
         IERC721 nftAddress,
         uint256 assetId,
@@ -208,7 +207,6 @@ contract Marketplace is
         );
     }
 
-    // 取消订单
     function _cancelOrder(IERC721 nftAddress, uint256 assetId)
         internal
         returns (Order memory)
@@ -218,8 +216,7 @@ contract Marketplace is
 
         require(order.id != 0, "Asset not published");
 
-        // 只允许上架的人
-        // 或者GM才能下架商品
+        // GM or owner
         require(
             order.seller == sender || hasRole(GM_ROLE, sender),
             "Unauthorized user"
@@ -235,7 +232,6 @@ contract Marketplace is
         return order;
     }
 
-    // 购买
     function _executeOrder(
         IERC721 nftAddress,
         uint256 assetId,
