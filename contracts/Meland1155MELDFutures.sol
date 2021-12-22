@@ -39,11 +39,6 @@ contract Meland1155MELDFutures is
     mapping(IERC20Upgradeable => uint256) public totalSupplyByERC20;
     mapping(uint256 => ERC20Future) public futureById;
 
-    // @custom:oz-upgrades-unsafe-allow constructor
-    constructor() initializer {
-
-    }
-
     function initialize(string memory uri) public initializer {
         __ERC1155_init(uri);
         __ERC1155Burnable_init();
@@ -76,7 +71,10 @@ contract Meland1155MELDFutures is
         uint256 allowanceAmount = token.allowance(sender, address(0));
 
         uint256 totalAmount = amount.mul(count);
-        require(allowanceAmount > totalAmount, "The approved amount is less than the required amount");
+        require(
+            allowanceAmount > totalAmount,
+            "The approved amount is less than the required amount"
+        );
         require(count > 0, "Quantity must be greater than 0");
 
         token.transferFrom(sender, address(this), totalAmount);
@@ -84,7 +82,7 @@ contract Meland1155MELDFutures is
         uint256[] memory ids;
         uint256[] memory amounts;
 
-        for(uint8 i = 0; i < count; i++) {
+        for (uint8 i = 0; i < count; i++) {
             uint256 tokenId = _tokenIdCounter.current();
             _tokenIdCounter.increment();
 
@@ -99,7 +97,7 @@ contract Meland1155MELDFutures is
         }
 
         totalSupplyByERC20[token].add(totalAmount);
-        _mintBatch(sender, ids, amounts, '');
+        _mintBatch(sender, ids, amounts, "");
     }
 
     function setMelandTier(MelandTier _tierAddress) public onlyRole(GM_ROLE) {
@@ -157,17 +155,17 @@ contract Meland1155MELDFutures is
             );
         }
 
-        // sub totalSupply when burn token
-        if (to == address(0)) {
-            for (uint256 i = 0; i < ids.length; ++i) {
-                uint256 id = ids[i];
+        for (uint256 i = 0; i < ids.length; ++i) {
+            uint256 id = ids[i];
+            ERC20Future memory future = futureById[id];
 
-                ERC20Future memory future = futureById[id];
-
+            // sub totalSupply when burn token
+            if (to == address(0)) {
                 // clear when burn
                 delete futureById[id];
-
                 totalSupplyByERC20[future.token] -= future.amount;
+            } else {
+                require(future.unlockAt > block.timestamp, "Transfers are not allowed for unlocked futures");
             }
         }
 

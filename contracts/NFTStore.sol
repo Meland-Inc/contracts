@@ -10,12 +10,6 @@ import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
 import "./NFTStoreStorage.sol";
 import "./MelandAccessRoles.sol";
 
-// 官方商城合约
-// 与marketplace的区别是. marketplace是用户和用户之间交易的合约.
-// 交易的NFT是已经mint的.
-// NFTStore 是官方和用户之间交易的合约.
-// 交易的NFT是不存在的.准备mint的.
-
 contract NFTStore is
     Initializable,
     MelandAccessRoles,

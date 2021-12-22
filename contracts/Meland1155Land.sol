@@ -25,9 +25,6 @@ contract Meland1155Land is
     mapping(uint256 => string) public landtypeById;
     mapping(bytes32 => uint256) public totalSupplyByLandtype;
 
-    /// @custom:oz-upgrades-unsafe-allow constructor
-    constructor() initializer {}
-
     function initialize(string memory uri) public initializer {
         __ERC1155_init(uri);
         __ERC1155Burnable_init();

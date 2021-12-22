@@ -16,9 +16,6 @@ contract MelandTier is
     ERC1155HolderUpgradeable,
     UUPSUpgradeable
 {
-    /// @custom:oz-upgrades-unsafe-allow constructor
-    constructor() initializer {}
-
     function initialize(string memory uri) public initializer {
         __UUPSUpgradeable_init();
         __ERC1155MelandCID_init(uri);

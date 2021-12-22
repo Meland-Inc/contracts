@@ -38,9 +38,9 @@ contract MelandTierStorage is ContextUpgradeable {
         uint256 amount;
     }
 
-    mapping(uint256 => ERC721Reward) internal erc721RewardById;
-    mapping(uint256 => ERC20Reward) internal erc20RewardById;
-    mapping(uint256 => ERC1155Reward) internal erc1155RewardById;
+    mapping(uint256 => ERC721Reward) public erc721RewardById;
+    mapping(uint256 => ERC20Reward) public erc20RewardById;
+    mapping(uint256 => ERC1155Reward) public erc1155RewardById;
     mapping(uint256 => Reward) internal rewardById;
 
     /// Current tier's remaining must-win prizes
@@ -70,6 +70,13 @@ contract MelandTierStorage is ContextUpgradeable {
 
     event RewaardPoolUpdate(
         uint256 indexed cid
+    );
+
+    event CreateReward(
+        uint256 indexed rewardId,
+        uint256[] erc1155RewardIds,
+        uint256[] erc721RewardIds,
+        uint256[] erc20RewardIds
     );
 
     function _startSale(uint256 cid) internal {
@@ -157,6 +164,13 @@ contract MelandTierStorage is ContextUpgradeable {
 
             erc20reward.erc20.transferFrom(_msgSender(), address(this), erc20reward.amount);
         }
+
+        emit CreateReward(
+            rewardId,
+            erc1155RewardIds,
+            erc721RewardIds,
+            erc20RewardIds
+        );
     }
 
     // Add bonus items in bulk to save gas fee

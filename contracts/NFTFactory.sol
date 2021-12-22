@@ -53,9 +53,6 @@ contract NFTFactory is
         __MelandAccessRoles_init();
     }
 
-    // 允许用户增加RFC提案
-    // 请求社区增加第三方nft支持
-    // 社区根据当前游戏的支持度来决定是否通过
     function newRFC(address nft) public {
         require(supportRFCs[nft].proposalTime == 0, "Already exists RFC");
         require(!supportNFTs[nft].support, "Already support");
@@ -102,7 +99,6 @@ contract NFTFactory is
         emit NFTSupportCreate(erc721or1155, msg.sender, block.timestamp);
     }
 
-    // 增加新的NFT支持.
     function newSupport(address nft) public onlyRole(GM_ROLE) {
         _newSupport(nft);
     }

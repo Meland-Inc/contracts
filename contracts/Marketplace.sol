@@ -2,7 +2,7 @@
 pragma solidity 0.8.9;
 
 // TODO.
-// 支持ERC1155交易.
+// Support ERC1155.
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
@@ -26,11 +26,9 @@ contract Marketplace is
     using SafeMathUpgradeable for uint256;
 
     function initialize(
-        // MELD 合约地址
         IERC20MELD _acceptedToken,
         address _officialWallet,
         address _foundationWallet,
-        // 抽成
         uint256 _ownerCutPerMillion
     ) public initializer {
         __UUPSUpgradeable_init();
@@ -53,7 +51,6 @@ contract Marketplace is
         onlyRole(UPGRADER_ROLE)
     {}
 
-    // 设置
     function setPublicationFee(uint256 _publicationFee)
         public
         onlyRole(GM_ROLE)
@@ -62,7 +59,6 @@ contract Marketplace is
         emit ChangedPublicationFee(publicationFeeInWei);
     }
 
-    // 设置抽成
     // 50000 = 5%
     // 500000 = 50%
     function setOwnerCutPerMillion(uint256 _ownerCutPerMillion)

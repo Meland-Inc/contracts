@@ -16,9 +16,6 @@ contract Meland1155Placeable is
     MelandAccessRoles,
     UUPSUpgradeable
 {
-    /// @custom:oz-upgrades-unsafe-allow constructor
-    constructor() initializer {}
-
     function initialize(string memory uri) public initializer {
         __UUPSUpgradeable_init();
         __Meland1155Rarity_init(uri);

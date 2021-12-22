@@ -8,9 +8,6 @@ contract MelandAccessRoles is AccessControlUpgradeable
     bytes32 public constant GM_ROLE = keccak256("GM_ROLE");
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
-    
-    /// @custom:oz-upgrades-unsafe-allow constructor
-    constructor() initializer {}
 
     function __MelandAccessRoles_init() internal {
         __AccessControl_init();
