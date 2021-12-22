@@ -39,7 +39,7 @@ contract Faucet is OwnableUpgradeable
         recivedPool[msg.sender] = block.timestamp;
     }
 
-    // 提取所有MELD
+    // 
     function reciveAll() public  {
         require(msg.sender == owner() || msg.sender == gmAddress, "only owner or gm");
         token.transfer(msg.sender, token.balanceOf(address(this)));
