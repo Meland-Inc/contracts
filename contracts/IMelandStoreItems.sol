@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.9;
 
+import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
+
 // Meland.ai official mall Item contract protocol,
 // Only the implementation of the protocol NFT, can be sold in the mall
 // Only support erc1155
 
 interface IMelandStoreItems {
+    // Returns acceptedToken
+    function acceptedToken(bytes32 symbol) view external returns(IERC20Upgradeable); 
+
     // Returns all supported symbols and prices, 
     // Symbols will be returned by melandStoreItemMint when purchased
     function melandStoreItems() external view returns(bytes32[] memory symbols, uint256[] memory prices);

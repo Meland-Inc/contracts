@@ -125,6 +125,8 @@ contract MelandTier is
         }
 
         burn(_msgSender(), id, 1);
+
+        emit OpenTier(returnRewardIds);
     }
 
     function startSale(uint256 cid) public onlyRole(GM_ROLE) {

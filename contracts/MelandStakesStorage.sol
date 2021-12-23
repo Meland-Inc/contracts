@@ -193,9 +193,15 @@ contract MelandStakesStorage {
         if (current > max) {
             current = max;
         }
+        // Because the default division is rounded, 
+        // And we need the exact hour
+        uint256 h = current / 1 hours;
+        if (h * 1 hours > current) {
+            h = h - 1;
+        }
         uint256 totalEarnAtSeconds = stakePool.numberOfMELD * stakePool.stakeApyPercent / 100 / 31536000;
         uint256 avgEarnAtHours = totalEarnAtSeconds * (1 hours);
-        return avgEarnAtHours * (current / 1 hours);
+        return avgEarnAtHours * h;
     }
 
     function _harvestByStakeId(bytes32 stakeId, uint256 timestamp) internal {
@@ -204,7 +210,7 @@ contract MelandStakesStorage {
         if (earn == 0) {
             return;
         }
-        stake.lastRecivedAt = timestamp;
+        stakeById[stakeId].lastRecivedAt = timestamp;
         acceptedToken.transfer(stake.staker, earn);
         emit Harvest(stakeId, earn);
     }

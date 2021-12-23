@@ -79,6 +79,10 @@ contract MelandTierStorage is ContextUpgradeable {
         uint256[] erc20RewardIds
     );
 
+    event OpenTier(
+        uint256[] rewardIds
+    );
+
     function _startSale(uint256 cid) internal {
         require(currentNFTPoolFor100PercentByCId[cid].length > 0, "Sales don't seem to be ready(100Percent reward)");
         require(currentNFTPoolForOptionByCId[cid].length > 0, "Sales don't seem to be ready(option reward)");
