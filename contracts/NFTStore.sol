@@ -6,9 +6,11 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
 import "./NFTStoreStorage.sol";
 import "./MelandAccessRoles.sol";
+import "./IMELD.sol";
 
 contract NFTStore is
     Initializable,
@@ -21,18 +23,16 @@ contract NFTStore is
     CountersUpgradeable.Counter private itemIdCounters;
 
     function initialize(
-        // MELD 合约地址
-        IERC20MELD _acceptedToken,
         address _officialWallet,
         address _foundationWallet,
+        address _bidbackWallet,
         uint256 _ownerCutPerMillion
     ) public initializer {
         __UUPSUpgradeable_init();
         __MelandAccessRoles_init();
-
-        acceptedToken = _acceptedToken;
         officialWallet = _officialWallet;
         foundationWallet = _foundationWallet;
+        bidbackWallet = _bidbackWallet;
         ownerCutPerMillion = _ownerCutPerMillion;
     }
 
@@ -45,14 +45,16 @@ contract NFTStore is
     }
 
     // 下架NFT
-    function removedNFT(IMelandStoreItems nft) public onlyRole(GM_ROLE) {
+    function removedNFT(IMelandStoreItems nft) external onlyRole(GM_ROLE) {
         require(!itemUploadedMap[nft], "NFT not uplaoded");
         itemUploadedMap[nft] = false;
         emit NFTDelete(nft);
     }
 
-    function updateNFTItemInfo(IMelandStoreItems nft) public {
-        emit NFTItemUpdate(nft, _tryCheckStoreItems(nft));
+    function updateNFTItemInfo(IMelandStoreItems nft) external {
+        if (itemUploadedMap[nft]) {
+            emit NFTItemUpdate(nft, _tryCheckStoreItems(nft));
+        }
     }
 
     // 设置抽成
@@ -76,7 +78,7 @@ contract NFTStore is
         view
         returns (bool)
     {
-        (bytes32[] memory symbols, uint256[] memory prices) = nft
+        (string[] memory symbols, uint256[] memory prices) = nft
             .melandStoreItems();
         return symbols.length == prices.length;
     }
@@ -85,9 +87,13 @@ contract NFTStore is
         require(_tryCheckStoreItems(nft), "Product calibration error");
     }
 
+    function stringEq(string memory s1, string memory s2) internal pure returns(bool) {
+        return keccak256(bytes(s1)) == keccak256(bytes(s2));
+    }
+
     function buyNFT(
         IMelandStoreItems nft,
-        bytes32 symbol,
+        string memory symbol,
         uint256 priceInWei
     ) public {
         address buyer = _msgSender();
@@ -96,11 +102,10 @@ contract NFTStore is
 
         uint256 buySymbolIndex = 0;
         {
-            (bytes32[] memory symbols, uint256[] memory prices) = nft
-                .melandStoreItems();
+            (string[] memory symbols, uint256[] memory prices) = nft.melandStoreItems();
 
             for (uint256 i = 0; i < symbols.length; i++) {
-                if (symbols[i] == symbol) {
+                if (stringEq(symbols[i], symbol)) {
                     buySymbolIndex = i;
                     break;
                 }
@@ -112,7 +117,7 @@ contract NFTStore is
             );
 
             require(
-                buySymbolIndex > 0 || symbols[0] == symbol,
+                buySymbolIndex > 0 || stringEq(symbols[0], symbol),
                 "symbol is not sale"
             );
 
@@ -152,6 +157,8 @@ contract NFTStore is
             tokenId = ids[0];
         }
 
+        IERC20Upgradeable acceptedToken = nft.acceptedToken(symbol);
+
         uint256 saleShareAmount = 0;
 
         if (ownerCutPerMillion > 0) {
@@ -167,7 +174,21 @@ contract NFTStore is
             // The last 20% are official earnings
             uint256 officialAmount = saleShareAmount.mul(20).div(100);
 
-            acceptedToken.burnFrom(buyer, burnAmount);
+            {
+                IERC20MELD mabyeMELD = IERC20MELD(address(acceptedToken));
+                try mabyeMELD.burnFrom(buyer, burnAmount) {
+
+                } catch(bytes memory) {
+
+                    // transfer to bidback wallet when burn failed.
+                    acceptedToken.transferFrom(
+                        buyer,
+                        bidbackWallet,
+                        burnAmount
+                    );
+                }
+            }
+
             require(
                 acceptedToken.transferFrom(
                     buyer,
@@ -198,7 +219,7 @@ contract NFTStore is
 
         nft.melandStoreItemsMint(symbol, tokenId, buyer);
 
-        emit NFTBuyed(buyer, nft, tokenId, priceInWei);
+        emit NFTBuyed(buyer, nft, symbol, tokenId, priceInWei);
     }
 
     function _authorizeUpgrade(address newImplementation)

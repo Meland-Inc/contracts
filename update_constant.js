@@ -5,12 +5,14 @@ const path = require('path');
 const { exit } = require('process');
 
 const MELD = artifacts.require("MELD");
-const TicketLand = artifacts.require("TicketLand");
+const Land = artifacts.require("Meland1155Land");
 const NFTStore = artifacts.require("NFTStore");
 const Marketplace = artifacts.require("Marketplace");
 const NFTFactory = artifacts.require("NFTFactory");
 const Faucet = artifacts.require("Faucet");
-const VestPool = artifacts.require("VestPool");
+const Meland1155Wearable = artifacts.require("Meland1155Wearable");
+const Meland1155Placeable = artifacts.require("Meland1155Placeable");
+const MelandTier = artifacts.require("MelandTier");
 
 const promiseOpen = (filePath, mode = 'w') => {
     return new Promise((resolve, reject) => {
@@ -30,7 +32,7 @@ const networkFilenameMap = {
 
 const networkStartBlockMap = {
     'develop': "0",
-    'mumbai': "21743671"
+    'mumbai': "23090652"
 }
 
 module.exports = async function (_) {
@@ -39,15 +41,18 @@ module.exports = async function (_) {
 
     const existsMELD = await MELD.deployed();
     // const existsVipLand = await VipLand.deployed();
-    const existsTicketLand = await TicketLand.deployed();
+    const LandI = await Land.deployed();
     const existsNFTStore = await NFTStore.deployed();
     const existsMarketplace = await Marketplace.deployed();
     const existsNFTFactory = await NFTFactory.deployed();
+    const Meland1155WearableI = await Meland1155Wearable.deployed();
+    // const Meland1155PlaceableI = await Meland1155Placeable.deployed();
+    const MelandTierI = await MelandTier.deployed();
 
     let faucetAddress = '';
     if ([
-        "mumbai",
-        "develop",
+        // "mumbai",
+        // "develop",
         "test"
     ].includes(network)) {
         const existsFaucet = await Faucet.deployed();
@@ -58,8 +63,7 @@ module.exports = async function (_) {
     if ([
         "bsc",
         "bsctest",
-        "mumbai",
-        "develop",
+        // "develop",
         "test"
     ].includes(network)) {
         const existsVestPool = await VestPool.deployed();
@@ -71,14 +75,16 @@ module.exports = async function (_) {
     /// 本地开发模拟mumbai链
     const code = `{
     "network": "${network == "local" ? "mumbai" : network}",
-    "VipLand_address": "${existsTicketLand.address}",
-    "TicketLand_address": "${existsTicketLand.address}",
+    "Land_address": "${LandI.address}",
     "NFTStore_address": "${existsNFTStore.address}",
     "Marketplace_address": "${existsMarketplace.address}",
     "MELD_address": "${existsMELD.address}",
     "NFTFactory_address": "${existsNFTFactory.address}",
     "Faucet_address": "${faucetAddress}",
     "VestPool_address": "${vestPoolAddress}",
+    "Meland1155Wearable_address": "${Meland1155WearableI.address}",
+    "Meland1155Placeable_address": "",
+    "MelandTier_address": "${MelandTierI.address}",
     "start_block": "${networkStartBlockMap[network]}"
 }
 `;

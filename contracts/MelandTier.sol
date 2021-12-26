@@ -84,7 +84,7 @@ contract MelandTier is
     }
 
     //
-    function openTier(uint256 id) public returns(uint256[] memory returnRewardIds)
+    function openTier(uint256 id) public returns(uint256[2] memory returnRewardIds)
     {
         require(balanceOf(_msgSender(), id) > 0, "Insufficient balance");
 

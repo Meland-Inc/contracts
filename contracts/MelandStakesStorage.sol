@@ -76,10 +76,12 @@ contract MelandStakesStorage {
     function _getUserCurrentHighLevelStake(address staker)
         internal
         view
-        returns (Stake memory)
+        returns (Stake memory, uint8)
     {
         uint256 highStakePoolId;
         uint8 gameApyPercent;
+        uint256 totalApy;
+        uint256 totalApyAmount;
         {
             uint256[] memory stakePoolIds = stakePoolIdsByStaker[staker];
             for (uint256 i = 0; i < stakePoolIds.length; i++) {
@@ -91,6 +93,8 @@ contract MelandStakesStorage {
                     continue;
                 }
                 StakePool memory pool = stakePoolById[stakePoolId];
+                totalApy = totalApy + pool.stakeApyPercent * pool.numberOfMELD;
+                totalApyAmount = totalApyAmount + pool.numberOfMELD;
                 if (pool.gameApyPercent > gameApyPercent) {
                     gameApyPercent = pool.gameApyPercent;
                     highStakePoolId = stakePoolIds[i];
@@ -99,7 +103,7 @@ contract MelandStakesStorage {
         }
 
         if (highStakePoolId == 0) {
-            return
+            return (
                 Stake(
                     _defaultStakePoolId,
                     staker,
@@ -107,10 +111,15 @@ contract MelandStakesStorage {
                     block.timestamp,
                     block.timestamp + 365 days,
                     true
-                );
+                ),
+                0
+            );
         }
 
-        return stakeById[_buildStakeId(staker, highStakePoolId)];
+        return (
+            stakeById[_buildStakeId(staker, highStakePoolId)], 
+            uint8(totalApy / totalApyAmount)
+        );
     }
 
     function _createNewStakePool(StakePool memory _stakePool)
@@ -159,9 +168,8 @@ contract MelandStakesStorage {
         acceptedToken.transferFrom(
             staker,
             address(this),
-            stakePool.numberOfMELD
+            stakePool.numberOfMELD - 100
         );
-
         stakePoolIdsByStaker[staker].push(stakePoolId);
 
         Stake memory stake = Stake(

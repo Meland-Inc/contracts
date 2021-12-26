@@ -9,14 +9,14 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
 
 interface IMelandStoreItems {
     // Returns acceptedToken
-    function acceptedToken(bytes32 symbol) view external returns(IERC20Upgradeable); 
+    function acceptedToken(string memory symbol) view external returns(IERC20Upgradeable);
 
     // Returns all supported symbols and prices, 
     // Symbols will be returned by melandStoreItemMint when purchased
-    function melandStoreItems() external view returns(bytes32[] memory symbols, uint256[] memory prices);
+    function melandStoreItems() external view returns(string[] memory symbols, uint256[] memory prices);
 
     // If return true, it means that each person can only buy a certain amount
-    function melandStoreItemsRestrictedPurchase(bytes32 symbol)
+    function melandStoreItemsRestrictedPurchase(string memory symbol)
         external
         view
         returns (bool restricted, uint256 restrictLimit);
@@ -26,16 +26,19 @@ interface IMelandStoreItems {
     // The ids Must ensure that you can mint, 
     // If multi-channel sales or mint, you need to filter out the ids that have been minted,
     // To prevent errors in the sales process
-    function melandStoreItemsRestrictPurchaseNFTIds(bytes32 symbol) external view returns(bool restricted, uint256[] memory ids);
+    function melandStoreItemsRestrictPurchaseNFTIds(string memory symbol) external view returns(bool restricted, uint256[] memory ids);
 
     // Receipt Account Number
-    function melandStoreReceipt(bytes32 symbol) view external returns(address receipt);
+    function melandStoreReceipt(string memory symbol) view external returns(address receipt);
 
     // Store to pay NFT to the selling user by calling this function, 
     // For security reasons, be sure to control the permissions to allow only MelandStore contracts to call
     // If melandStoreItemsRestrictPurchaseNFTIds return false, the id as zero.
-    function melandStoreItemsMint(bytes32 symbol, uint256 id, address to) external;
+    function melandStoreItemsMint(string memory symbol, uint256 id, address to) external;
+
+    // Return Metadata JSON Schema URI
+    function melandStoreItemURI(string memory symbol) view external returns(string memory);
 
     // If return false, Stores will suspend sales.
-    function melandStoreSellStatus(bytes32 symbol) external returns(bool isSelling);
+    function melandStoreSellStatus(string memory symbol) external returns(bool isSelling);
 }

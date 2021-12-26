@@ -1,0 +1,1470 @@
+{
+  "contractName": "ERC1155ReceiverUpgradeable",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "ids",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "values",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "onERC1155BatchReceived",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "onERC1155Received",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.9+commit.e5eed63a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256[]\",\"name\":\"values\",\"type\":\"uint256[]\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onERC1155BatchReceived\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onERC1155Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"_Available since v3.1._\",\"kind\":\"dev\",\"methods\":{\"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)\":{\"details\":\"Handles the receipt of a multiple ERC1155 token types. This function is called at the end of a `safeBatchTransferFrom` after the balances have been updated. To accept the transfer(s), this must return `bytes4(keccak256(\\\"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)\\\"))` (i.e. 0xbc197c81, or its own function selector).\",\"params\":{\"data\":\"Additional data with no specified format\",\"from\":\"The address which previously owned the token\",\"ids\":\"An array containing ids of each token being transferred (order and length must match values array)\",\"operator\":\"The address which initiated the batch transfer (i.e. msg.sender)\",\"values\":\"An array containing amounts of each token being transferred (order and length must match ids array)\"},\"returns\":{\"_0\":\"`bytes4(keccak256(\\\"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)\\\"))` if transfer is allowed\"}},\"onERC1155Received(address,address,uint256,uint256,bytes)\":{\"details\":\"Handles the receipt of a single ERC1155 token type. This function is called at the end of a `safeTransferFrom` after the balance has been updated. To accept the transfer, this must return `bytes4(keccak256(\\\"onERC1155Received(address,address,uint256,uint256,bytes)\\\"))` (i.e. 0xf23a6e61, or its own function selector).\",\"params\":{\"data\":\"Additional data with no specified format\",\"from\":\"The address which previously owned the token\",\"id\":\"The ID of the token being transferred\",\"operator\":\"The address which initiated the transfer (i.e. msg.sender)\",\"value\":\"The amount of tokens being transferred\"},\"returns\":{\"_0\":\"`bytes4(keccak256(\\\"onERC1155Received(address,address,uint256,uint256,bytes)\\\"))` if transfer is allowed\"}},\"supportsInterface(bytes4)\":{\"details\":\"See {IERC165-supportsInterface}.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol\":\"ERC1155ReceiverUpgradeable\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol\":{\"keccak256\":\"0x6287586f5e4a103c89d4dda41406136cdf283cc625bd1ebfdf1468aae5bfe449\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://30e2e913292e86a9bce50d51882b23ef57ae4c811003ec96cf39b1781f68b202\",\"dweb:/ipfs/QmUXqjyiAHbEMJ4zLfaduWYuVwp1HozqVhtChe9VfdpjoV\"]},\"@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol\":{\"keccak256\":\"0x37b81b8e22c10cc5c8df77c059ba2bf623deedc96c37879183d0ce23d4e96010\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9e7a9c6297056102b6d4eb390b536e1439b68f70e1049753c63b7960a54977fc\",\"dweb:/ipfs/QmcvXDtGkd147FN1ousTXvCjcexgCCggcEiFEcsMoyUx95\"]},\"@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol\":{\"keccak256\":\"0xbc81392fb8e158632a8195998f200cbcdc83118e95f32f41cc97340a5d501f51\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f19a563f660eac83a3166e00970e65e99eb291266ec7c52ab5bf22fad1f9a7cb\",\"dweb:/ipfs/QmRTFwrJifpPF8UdifuVBQR7dLjoDcsAdhSo2vCHoNN192\"]},\"@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol\":{\"keccak256\":\"0x8c5737e80521ac5e76c0d9d2cdb67647906fdadeb296644910eeecb31042e1da\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://029725970d69465cca169353fa146f716e557bd974a0e2356b7791095469788c\",\"dweb:/ipfs/QmQjDRaegdUPcwyyzygnBGm68cdLBQ5BHxHqPi8bGW74GX\"]},\"@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol\":{\"keccak256\":\"0x650712f855228b7cdeb90738d99dd33ff3a7c9770914ff03eb93f90218fe164b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5d61d29cfb52a862da981f6688772dd009132757bcb85e4be8be506db1ed71f9\",\"dweb:/ipfs/QmWWHRKr5aTxyU4TRehnU6toBctgi217toZdth6JqYrh5y\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.0 (token/ERC1155/utils/ERC1155Receiver.sol)\n\npragma solidity ^0.8.0;\n\nimport \"../IERC1155ReceiverUpgradeable.sol\";\nimport \"../../../utils/introspection/ERC165Upgradeable.sol\";\nimport \"../../../proxy/utils/Initializable.sol\";\n\n/**\n * @dev _Available since v3.1._\n */\nabstract contract ERC1155ReceiverUpgradeable is Initializable, ERC165Upgradeable, IERC1155ReceiverUpgradeable {\n    function __ERC1155Receiver_init() internal initializer {\n        __ERC165_init_unchained();\n        __ERC1155Receiver_init_unchained();\n    }\n\n    function __ERC1155Receiver_init_unchained() internal initializer {\n    }\n    /**\n     * @dev See {IERC165-supportsInterface}.\n     */\n    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165Upgradeable, IERC165Upgradeable) returns (bool) {\n        return interfaceId == type(IERC1155ReceiverUpgradeable).interfaceId || super.supportsInterface(interfaceId);\n    }\n    uint256[50] private __gap;\n}\n",
+  "sourcePath": "@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol",
+  "ast": {
+    "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol",
+    "exportedSymbols": {
+      "ERC1155ReceiverUpgradeable": [
+        2749
+      ],
+      "ERC165Upgradeable": [
+        4300
+      ],
+      "IERC1155ReceiverUpgradeable": [
+        2377
+      ],
+      "IERC165Upgradeable": [
+        4312
+      ],
+      "Initializable": [
+        989
+      ]
+    },
+    "id": 2750,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2692,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "108:23:14"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol",
+        "file": "../IERC1155ReceiverUpgradeable.sol",
+        "id": 2693,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 2750,
+        "sourceUnit": 2378,
+        "src": "133:44:14",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
+        "file": "../../../utils/introspection/ERC165Upgradeable.sol",
+        "id": 2694,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 2750,
+        "sourceUnit": 4301,
+        "src": "178:60:14",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+        "file": "../../../proxy/utils/Initializable.sol",
+        "id": 2695,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 2750,
+        "sourceUnit": 990,
+        "src": "239:48:14",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 2697,
+              "name": "Initializable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 989,
+              "src": "377:13:14"
+            },
+            "id": 2698,
+            "nodeType": "InheritanceSpecifier",
+            "src": "377:13:14"
+          },
+          {
+            "baseName": {
+              "id": 2699,
+              "name": "ERC165Upgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 4300,
+              "src": "392:17:14"
+            },
+            "id": 2700,
+            "nodeType": "InheritanceSpecifier",
+            "src": "392:17:14"
+          },
+          {
+            "baseName": {
+              "id": 2701,
+              "name": "IERC1155ReceiverUpgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 2377,
+              "src": "411:27:14"
+            },
+            "id": 2702,
+            "nodeType": "InheritanceSpecifier",
+            "src": "411:27:14"
+          }
+        ],
+        "canonicalName": "ERC1155ReceiverUpgradeable",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 2696,
+          "nodeType": "StructuredDocumentation",
+          "src": "289:39:14",
+          "text": " @dev _Available since v3.1._"
+        },
+        "fullyImplemented": false,
+        "id": 2749,
+        "linearizedBaseContracts": [
+          2749,
+          2377,
+          4300,
+          4312,
+          989
+        ],
+        "name": "ERC1155ReceiverUpgradeable",
+        "nameLocation": "347:26:14",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 2713,
+              "nodeType": "Block",
+              "src": "500:86:14",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 2707,
+                      "name": "__ERC165_init_unchained",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4278,
+                      "src": "510:23:14",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
+                        "typeString": "function ()"
+                      }
+                    },
+                    "id": 2708,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "510:25:14",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2709,
+                  "nodeType": "ExpressionStatement",
+                  "src": "510:25:14"
+                },
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 2710,
+                      "name": "__ERC1155Receiver_init_unchained",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2720,
+                      "src": "545:32:14",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
+                        "typeString": "function ()"
+                      }
+                    },
+                    "id": 2711,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "545:34:14",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2712,
+                  "nodeType": "ExpressionStatement",
+                  "src": "545:34:14"
+                }
+              ]
+            },
+            "id": 2714,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 2705,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 2704,
+                  "name": "initializer",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 988,
+                  "src": "488:11:14"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "488:11:14"
+              }
+            ],
+            "name": "__ERC1155Receiver_init",
+            "nameLocation": "454:22:14",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2703,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "476:2:14"
+            },
+            "returnParameters": {
+              "id": 2706,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "500:0:14"
+            },
+            "scope": 2749,
+            "src": "445:141:14",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 2719,
+              "nodeType": "Block",
+              "src": "657:7:14",
+              "statements": []
+            },
+            "id": 2720,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 2717,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 2716,
+                  "name": "initializer",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 988,
+                  "src": "645:11:14"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "645:11:14"
+              }
+            ],
+            "name": "__ERC1155Receiver_init_unchained",
+            "nameLocation": "601:32:14",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2715,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "633:2:14"
+            },
+            "returnParameters": {
+              "id": 2718,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "657:0:14"
+            },
+            "scope": 2749,
+            "src": "592:72:14",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "baseFunctions": [
+              4295,
+              4311
+            ],
+            "body": {
+              "id": 2743,
+              "nodeType": "Block",
+              "src": "860:124:14",
+              "statements": [
+                {
+                  "expression": {
+                    "commonType": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "id": 2741,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "commonType": {
+                        "typeIdentifier": "t_bytes4",
+                        "typeString": "bytes4"
+                      },
+                      "id": 2736,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "id": 2731,
+                        "name": "interfaceId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2723,
+                        "src": "877:11:14",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes4",
+                          "typeString": "bytes4"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "id": 2733,
+                              "name": "IERC1155ReceiverUpgradeable",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2377,
+                              "src": "897:27:14",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_IERC1155ReceiverUpgradeable_$2377_$",
+                                "typeString": "type(contract IERC1155ReceiverUpgradeable)"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_type$_t_contract$_IERC1155ReceiverUpgradeable_$2377_$",
+                                "typeString": "type(contract IERC1155ReceiverUpgradeable)"
+                              }
+                            ],
+                            "id": 2732,
+                            "name": "type",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967269,
+                            "src": "892:4:14",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_metatype_pure$__$returns$__$",
+                              "typeString": "function () pure"
+                            }
+                          },
+                          "id": 2734,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "892:33:14",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_meta_type_t_contract$_IERC1155ReceiverUpgradeable_$2377",
+                            "typeString": "type(contract IERC1155ReceiverUpgradeable)"
+                          }
+                        },
+                        "id": 2735,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "memberName": "interfaceId",
+                        "nodeType": "MemberAccess",
+                        "src": "892:45:14",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes4",
+                          "typeString": "bytes4"
+                        }
+                      },
+                      "src": "877:60:14",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "||",
+                    "rightExpression": {
+                      "arguments": [
+                        {
+                          "id": 2739,
+                          "name": "interfaceId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2723,
+                          "src": "965:11:14",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes4",
+                            "typeString": "bytes4"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_bytes4",
+                            "typeString": "bytes4"
+                          }
+                        ],
+                        "expression": {
+                          "id": 2737,
+                          "name": "super",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967271,
+                          "src": "941:5:14",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_super$_ERC1155ReceiverUpgradeable_$2749_$",
+                            "typeString": "type(contract super ERC1155ReceiverUpgradeable)"
+                          }
+                        },
+                        "id": 2738,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "supportsInterface",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 4295,
+                        "src": "941:23:14",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_view$_t_bytes4_$returns$_t_bool_$",
+                          "typeString": "function (bytes4) view returns (bool)"
+                        }
+                      },
+                      "id": 2740,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "941:36:14",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "877:100:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 2730,
+                  "id": 2742,
+                  "nodeType": "Return",
+                  "src": "870:107:14"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 2721,
+              "nodeType": "StructuredDocumentation",
+              "src": "669:56:14",
+              "text": " @dev See {IERC165-supportsInterface}."
+            },
+            "functionSelector": "01ffc9a7",
+            "id": 2744,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "supportsInterface",
+            "nameLocation": "739:17:14",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 2727,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [
+                {
+                  "id": 2725,
+                  "name": "ERC165Upgradeable",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 4300,
+                  "src": "806:17:14"
+                },
+                {
+                  "id": 2726,
+                  "name": "IERC165Upgradeable",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 4312,
+                  "src": "825:18:14"
+                }
+              ],
+              "src": "797:47:14"
+            },
+            "parameters": {
+              "id": 2724,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2723,
+                  "mutability": "mutable",
+                  "name": "interfaceId",
+                  "nameLocation": "764:11:14",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2744,
+                  "src": "757:18:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes4",
+                    "typeString": "bytes4"
+                  },
+                  "typeName": {
+                    "id": 2722,
+                    "name": "bytes4",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "757:6:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes4",
+                      "typeString": "bytes4"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "756:20:14"
+            },
+            "returnParameters": {
+              "id": 2730,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2729,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2744,
+                  "src": "854:4:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 2728,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "854:4:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "853:6:14"
+            },
+            "scope": 2749,
+            "src": "730:254:14",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2748,
+            "mutability": "mutable",
+            "name": "__gap",
+            "nameLocation": "1009:5:14",
+            "nodeType": "VariableDeclaration",
+            "scope": 2749,
+            "src": "989:25:14",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_uint256_$50_storage",
+              "typeString": "uint256[50]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 2745,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "989:7:14",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "id": 2747,
+              "length": {
+                "hexValue": "3530",
+                "id": 2746,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "kind": "number",
+                "lValueRequested": false,
+                "nodeType": "Literal",
+                "src": "997:2:14",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_rational_50_by_1",
+                  "typeString": "int_const 50"
+                },
+                "value": "50"
+              },
+              "nodeType": "ArrayTypeName",
+              "src": "989:11:14",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_uint256_$50_storage_ptr",
+                "typeString": "uint256[50]"
+              }
+            },
+            "visibility": "private"
+          }
+        ],
+        "scope": 2750,
+        "src": "329:688:14",
+        "usedErrors": []
+      }
+    ],
+    "src": "108:910:14"
+  },
+  "legacyAST": {
+    "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol",
+    "exportedSymbols": {
+      "ERC1155ReceiverUpgradeable": [
+        2749
+      ],
+      "ERC165Upgradeable": [
+        4300
+      ],
+      "IERC1155ReceiverUpgradeable": [
+        2377
+      ],
+      "IERC165Upgradeable": [
+        4312
+      ],
+      "Initializable": [
+        989
+      ]
+    },
+    "id": 2750,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2692,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "108:23:14"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155ReceiverUpgradeable.sol",
+        "file": "../IERC1155ReceiverUpgradeable.sol",
+        "id": 2693,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 2750,
+        "sourceUnit": 2378,
+        "src": "133:44:14",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol",
+        "file": "../../../utils/introspection/ERC165Upgradeable.sol",
+        "id": 2694,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 2750,
+        "sourceUnit": 4301,
+        "src": "178:60:14",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+        "file": "../../../proxy/utils/Initializable.sol",
+        "id": 2695,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 2750,
+        "sourceUnit": 990,
+        "src": "239:48:14",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 2697,
+              "name": "Initializable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 989,
+              "src": "377:13:14"
+            },
+            "id": 2698,
+            "nodeType": "InheritanceSpecifier",
+            "src": "377:13:14"
+          },
+          {
+            "baseName": {
+              "id": 2699,
+              "name": "ERC165Upgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 4300,
+              "src": "392:17:14"
+            },
+            "id": 2700,
+            "nodeType": "InheritanceSpecifier",
+            "src": "392:17:14"
+          },
+          {
+            "baseName": {
+              "id": 2701,
+              "name": "IERC1155ReceiverUpgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 2377,
+              "src": "411:27:14"
+            },
+            "id": 2702,
+            "nodeType": "InheritanceSpecifier",
+            "src": "411:27:14"
+          }
+        ],
+        "canonicalName": "ERC1155ReceiverUpgradeable",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 2696,
+          "nodeType": "StructuredDocumentation",
+          "src": "289:39:14",
+          "text": " @dev _Available since v3.1._"
+        },
+        "fullyImplemented": false,
+        "id": 2749,
+        "linearizedBaseContracts": [
+          2749,
+          2377,
+          4300,
+          4312,
+          989
+        ],
+        "name": "ERC1155ReceiverUpgradeable",
+        "nameLocation": "347:26:14",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 2713,
+              "nodeType": "Block",
+              "src": "500:86:14",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 2707,
+                      "name": "__ERC165_init_unchained",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4278,
+                      "src": "510:23:14",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
+                        "typeString": "function ()"
+                      }
+                    },
+                    "id": 2708,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "510:25:14",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2709,
+                  "nodeType": "ExpressionStatement",
+                  "src": "510:25:14"
+                },
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 2710,
+                      "name": "__ERC1155Receiver_init_unchained",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2720,
+                      "src": "545:32:14",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$__$returns$__$",
+                        "typeString": "function ()"
+                      }
+                    },
+                    "id": 2711,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "545:34:14",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2712,
+                  "nodeType": "ExpressionStatement",
+                  "src": "545:34:14"
+                }
+              ]
+            },
+            "id": 2714,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 2705,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 2704,
+                  "name": "initializer",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 988,
+                  "src": "488:11:14"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "488:11:14"
+              }
+            ],
+            "name": "__ERC1155Receiver_init",
+            "nameLocation": "454:22:14",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2703,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "476:2:14"
+            },
+            "returnParameters": {
+              "id": 2706,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "500:0:14"
+            },
+            "scope": 2749,
+            "src": "445:141:14",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 2719,
+              "nodeType": "Block",
+              "src": "657:7:14",
+              "statements": []
+            },
+            "id": 2720,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 2717,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 2716,
+                  "name": "initializer",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 988,
+                  "src": "645:11:14"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "645:11:14"
+              }
+            ],
+            "name": "__ERC1155Receiver_init_unchained",
+            "nameLocation": "601:32:14",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2715,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "633:2:14"
+            },
+            "returnParameters": {
+              "id": 2718,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "657:0:14"
+            },
+            "scope": 2749,
+            "src": "592:72:14",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "baseFunctions": [
+              4295,
+              4311
+            ],
+            "body": {
+              "id": 2743,
+              "nodeType": "Block",
+              "src": "860:124:14",
+              "statements": [
+                {
+                  "expression": {
+                    "commonType": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "id": 2741,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "commonType": {
+                        "typeIdentifier": "t_bytes4",
+                        "typeString": "bytes4"
+                      },
+                      "id": 2736,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "id": 2731,
+                        "name": "interfaceId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2723,
+                        "src": "877:11:14",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes4",
+                          "typeString": "bytes4"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "expression": {
+                          "arguments": [
+                            {
+                              "id": 2733,
+                              "name": "IERC1155ReceiverUpgradeable",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2377,
+                              "src": "897:27:14",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_IERC1155ReceiverUpgradeable_$2377_$",
+                                "typeString": "type(contract IERC1155ReceiverUpgradeable)"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_type$_t_contract$_IERC1155ReceiverUpgradeable_$2377_$",
+                                "typeString": "type(contract IERC1155ReceiverUpgradeable)"
+                              }
+                            ],
+                            "id": 2732,
+                            "name": "type",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967269,
+                            "src": "892:4:14",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_metatype_pure$__$returns$__$",
+                              "typeString": "function () pure"
+                            }
+                          },
+                          "id": 2734,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "892:33:14",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_meta_type_t_contract$_IERC1155ReceiverUpgradeable_$2377",
+                            "typeString": "type(contract IERC1155ReceiverUpgradeable)"
+                          }
+                        },
+                        "id": 2735,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "memberName": "interfaceId",
+                        "nodeType": "MemberAccess",
+                        "src": "892:45:14",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes4",
+                          "typeString": "bytes4"
+                        }
+                      },
+                      "src": "877:60:14",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "||",
+                    "rightExpression": {
+                      "arguments": [
+                        {
+                          "id": 2739,
+                          "name": "interfaceId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2723,
+                          "src": "965:11:14",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes4",
+                            "typeString": "bytes4"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_bytes4",
+                            "typeString": "bytes4"
+                          }
+                        ],
+                        "expression": {
+                          "id": 2737,
+                          "name": "super",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967271,
+                          "src": "941:5:14",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_super$_ERC1155ReceiverUpgradeable_$2749_$",
+                            "typeString": "type(contract super ERC1155ReceiverUpgradeable)"
+                          }
+                        },
+                        "id": 2738,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "supportsInterface",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 4295,
+                        "src": "941:23:14",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_view$_t_bytes4_$returns$_t_bool_$",
+                          "typeString": "function (bytes4) view returns (bool)"
+                        }
+                      },
+                      "id": 2740,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "941:36:14",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "877:100:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 2730,
+                  "id": 2742,
+                  "nodeType": "Return",
+                  "src": "870:107:14"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 2721,
+              "nodeType": "StructuredDocumentation",
+              "src": "669:56:14",
+              "text": " @dev See {IERC165-supportsInterface}."
+            },
+            "functionSelector": "01ffc9a7",
+            "id": 2744,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "supportsInterface",
+            "nameLocation": "739:17:14",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 2727,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [
+                {
+                  "id": 2725,
+                  "name": "ERC165Upgradeable",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 4300,
+                  "src": "806:17:14"
+                },
+                {
+                  "id": 2726,
+                  "name": "IERC165Upgradeable",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 4312,
+                  "src": "825:18:14"
+                }
+              ],
+              "src": "797:47:14"
+            },
+            "parameters": {
+              "id": 2724,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2723,
+                  "mutability": "mutable",
+                  "name": "interfaceId",
+                  "nameLocation": "764:11:14",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2744,
+                  "src": "757:18:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes4",
+                    "typeString": "bytes4"
+                  },
+                  "typeName": {
+                    "id": 2722,
+                    "name": "bytes4",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "757:6:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes4",
+                      "typeString": "bytes4"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "756:20:14"
+            },
+            "returnParameters": {
+              "id": 2730,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2729,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2744,
+                  "src": "854:4:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 2728,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "854:4:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "853:6:14"
+            },
+            "scope": 2749,
+            "src": "730:254:14",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 2748,
+            "mutability": "mutable",
+            "name": "__gap",
+            "nameLocation": "1009:5:14",
+            "nodeType": "VariableDeclaration",
+            "scope": 2749,
+            "src": "989:25:14",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_uint256_$50_storage",
+              "typeString": "uint256[50]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 2745,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "989:7:14",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "id": 2747,
+              "length": {
+                "hexValue": "3530",
+                "id": 2746,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "kind": "number",
+                "lValueRequested": false,
+                "nodeType": "Literal",
+                "src": "997:2:14",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_rational_50_by_1",
+                  "typeString": "int_const 50"
+                },
+                "value": "50"
+              },
+              "nodeType": "ArrayTypeName",
+              "src": "989:11:14",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_uint256_$50_storage_ptr",
+                "typeString": "uint256[50]"
+              }
+            },
+            "visibility": "private"
+          }
+        ],
+        "scope": 2750,
+        "src": "329:688:14",
+        "usedErrors": []
+      }
+    ],
+    "src": "108:910:14"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.9+commit.e5eed63a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-12-26T08:21:15.821Z",
+  "devdoc": {
+    "details": "_Available since v3.1._",
+    "kind": "dev",
+    "methods": {
+      "onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)": {
+        "details": "Handles the receipt of a multiple ERC1155 token types. This function is called at the end of a `safeBatchTransferFrom` after the balances have been updated. To accept the transfer(s), this must return `bytes4(keccak256(\"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)\"))` (i.e. 0xbc197c81, or its own function selector).",
+        "params": {
+          "data": "Additional data with no specified format",
+          "from": "The address which previously owned the token",
+          "ids": "An array containing ids of each token being transferred (order and length must match values array)",
+          "operator": "The address which initiated the batch transfer (i.e. msg.sender)",
+          "values": "An array containing amounts of each token being transferred (order and length must match ids array)"
+        },
+        "returns": {
+          "_0": "`bytes4(keccak256(\"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)\"))` if transfer is allowed"
+        }
+      },
+      "onERC1155Received(address,address,uint256,uint256,bytes)": {
+        "details": "Handles the receipt of a single ERC1155 token type. This function is called at the end of a `safeTransferFrom` after the balance has been updated. To accept the transfer, this must return `bytes4(keccak256(\"onERC1155Received(address,address,uint256,uint256,bytes)\"))` (i.e. 0xf23a6e61, or its own function selector).",
+        "params": {
+          "data": "Additional data with no specified format",
+          "from": "The address which previously owned the token",
+          "id": "The ID of the token being transferred",
+          "operator": "The address which initiated the transfer (i.e. msg.sender)",
+          "value": "The amount of tokens being transferred"
+        },
+        "returns": {
+          "_0": "`bytes4(keccak256(\"onERC1155Received(address,address,uint256,uint256,bytes)\"))` if transfer is allowed"
+        }
+      },
+      "supportsInterface(bytes4)": {
+        "details": "See {IERC165-supportsInterface}."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

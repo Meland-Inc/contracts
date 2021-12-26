@@ -30,7 +30,7 @@ module.exports = {
 
     // polygon test network
     mumbai: {
-      provider: () => new HDWalletProvider(mnemonic, `wss://polygon-mumbai.g.alchemy.com/v2/fIbA8DRSTQXPAhcHKiPFo19SPqhHNHam`),
+      provider: () => new HDWalletProvider(mnemonic, `wss://withered-wandering-hill.matic-testnet.quiknode.pro/af53b7562a054293ade8a68b54c44c0a325c018b/`),
       network_id: 80001,
       confirmations: 2,
       timeoutBlocks: 200,

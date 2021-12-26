@@ -75,17 +75,27 @@ contract Marketplace is
     }
 
     // 创建订单
-    function createOrder(
+    function createOrderWith721(
         IERC721 nftAddress,
         uint256 assetId,
         uint256 priceInWei,
         uint256 expiresAt
     ) public whenNotPaused {
-        _createOrder(nftAddress, assetId, priceInWei, expiresAt);
+        _createOrderWith721(nftAddress, assetId, priceInWei, expiresAt);
+    }
+
+    // 创建订单
+    function createOrderWith1155(
+        IERC1155 nftAddress,
+        uint256 assetId,
+        uint256 priceInWei,
+        uint256 expiresAt
+    ) public whenNotPaused {
+        _createOrderWith1155(nftAddress, assetId, priceInWei, expiresAt);
     }
 
     // 取消订单
-    function cancelOrder(IERC721 nftAddress, uint256 assetId)
+    function cancelOrder(address nftAddress, uint256 assetId)
         public
         whenNotPaused
     {
@@ -94,7 +104,7 @@ contract Marketplace is
 
     // buy
     function safeExecuteOrder(
-        IERC721 nftAddress,
+        address nftAddress,
         uint256 assetId,
         uint256 price
     ) public whenNotPaused {
@@ -103,7 +113,7 @@ contract Marketplace is
 
     // buy
     function executeOrder(
-        IERC721 nftAddress,
+        address nftAddress,
         uint256 assetId,
         uint256 price
     ) public whenNotPaused {
@@ -111,7 +121,7 @@ contract Marketplace is
     }
 
     function updateOrder(
-        IERC721 nft,
+        address nft,
         uint256 assetId,
         uint256 priceInWei,
         uint256 expiresAt
@@ -120,37 +130,35 @@ contract Marketplace is
     }
 
     function _updateOrder(
+        address nftAddress,
+        uint256 assetId,
+        uint256 priceInWei,
+        uint256 expiresAt
+    ) internal {
+        address sender = _msgSender();
+        require(priceInWei > 0, "Price should be bigger than 0");
+        require(
+            expiresAt > block.timestamp.add(1 minutes),
+            "Publication should be more than 1 minute in the future"
+        );
+        Order memory order = orderByAssetId[nftAddress][assetId];
+        require(sender == order.seller, "Only the owner can create orders");
+        order.price = priceInWei;
+        order.expiresAt = expiresAt;
+        orderByAssetId[nftAddress][assetId] = order;
+
+        emit OrderUpdated(order.id, priceInWei, expiresAt);
+    }
+
+    function _createOrderWith721(
         IERC721 nft,
         uint256 assetId,
         uint256 priceInWei,
         uint256 expiresAt
     ) internal {
         address sender = _msgSender();
-        address assetOwner = nft.ownerOf(assetId);
-        require(sender == assetOwner, "Only the owner can create orders");
-        require(priceInWei > 0, "Price should be bigger than 0");
-        require(
-            expiresAt > block.timestamp.add(1 minutes),
-            "Publication should be more than 1 minute in the future"
-        );
 
-        Order memory order = orderByAssetId[nft][assetId];
-        order.price = priceInWei;
-        order.expiresAt = expiresAt;
-        orderByAssetId[nft][assetId] = order;
-
-        emit OrderUpdated(order.id, priceInWei, expiresAt);
-    }
-
-    function _createOrder(
-        IERC721 nftAddress,
-        uint256 assetId,
-        uint256 priceInWei,
-        uint256 expiresAt
-    ) internal {
-        address sender = _msgSender();
-
-        IERC721 nftRegistry = nftAddress;
+        IERC721 nftRegistry = nft;
         address assetOwner = nftRegistry.ownerOf(assetId);
 
         require(sender == assetOwner, "Only the owner can create orders");
@@ -170,16 +178,20 @@ contract Marketplace is
                 block.timestamp,
                 assetOwner,
                 assetId,
-                nftAddress,
+                address(nft),
                 priceInWei
             )
         );
 
-        orderByAssetId[nftAddress][assetId] = Order({
+        ERC721Or1155 memory erc721Or1155NFT;
+
+        erc721Or1155NFT.erc721 = nft;
+
+        orderByAssetId[address(nft)][assetId] = Order({
             id: orderId,
             seller: assetOwner,
             assetId: assetId,
-            nftAddress: nftAddress,
+            nft: erc721Or1155NFT,
             price: priceInWei,
             expiresAt: expiresAt
         });
@@ -201,13 +213,77 @@ contract Marketplace is
             orderId,
             assetId,
             assetOwner,
-            nftAddress,
+            erc721Or1155NFT,
             priceInWei,
             expiresAt
         );
     }
 
-    function _cancelOrder(IERC721 nftAddress, uint256 assetId)
+    function _createOrderWith1155(
+        IERC1155 nft,
+        uint256 assetId,
+        uint256 priceInWei,
+        uint256 expiresAt
+    ) internal {
+        address sender = _msgSender();
+        require(nft.balanceOf(sender, assetId) > 0, "Only the owner can create orders");
+        require(
+            nft.isApprovedForAll(sender, address(this)),
+            "The contract is not authorized to manage the asset"
+        );
+        require(priceInWei > 0, "Price should be bigger than 0");
+        require(
+            expiresAt > block.timestamp.add(1 minutes),
+            "Publication should be more than 1 minute in the future"
+        );
+
+        bytes32 orderId = keccak256(
+            abi.encodePacked(
+                block.timestamp,
+                sender,
+                assetId,
+                address(nft),
+                priceInWei
+            )
+        );
+
+        ERC721Or1155 memory erc721Or1155NFT;
+
+        erc721Or1155NFT.erc1155 = nft;
+
+        orderByAssetId[address(nft)][assetId] = Order({
+            id: orderId,
+            seller: sender,
+            assetId: assetId,
+            nft: erc721Or1155NFT,
+            price: priceInWei,
+            expiresAt: expiresAt
+        });
+
+        // Check if there's a publication fee and
+        // transfer the amount to marketplace owner
+        if (publicationFeeInWei > 0) {
+            require(
+                acceptedToken.transferFrom(
+                    sender,
+                    officialWallet,
+                    publicationFeeInWei
+                ),
+                "Transfering the publication fee to the Marketplace owner failed"
+            );
+        }
+
+        emit OrderCreated(
+            orderId,
+            assetId,
+            sender,
+            erc721Or1155NFT,
+            priceInWei,
+            expiresAt
+        );
+    }
+
+    function _cancelOrder(address nftAddress, uint256 assetId)
         internal
         returns (Order memory)
     {
@@ -224,37 +300,40 @@ contract Marketplace is
 
         bytes32 orderId = order.id;
         address orderSeller = order.seller;
-        IERC721 orderNftAddress = order.nftAddress;
         delete orderByAssetId[nftAddress][assetId];
 
-        emit OrderCancelled(orderId, assetId, orderSeller, orderNftAddress);
+        emit OrderCancelled(orderId, assetId, orderSeller, order.nft);
 
         return order;
     }
 
     function _executeOrder(
-        IERC721 nftAddress,
+        address nftAddress,
         uint256 assetId,
         uint256 price
     ) internal returns (Order memory) {
         address sender = _msgSender();
 
-        IERC721 nftRegistry = nftAddress;
-
         Order memory order = orderByAssetId[nftAddress][assetId];
-
         require(order.id != 0, "Asset not published");
-
         address seller = order.seller;
-
         require(seller != address(0), "Invalid address");
         require(seller != sender, "Unauthorized user");
         require(order.price == price, "The price is not correct");
         require(block.timestamp < order.expiresAt, "The order expired");
-        require(
-            seller == nftRegistry.ownerOf(assetId),
-            "The seller is no longer the owner"
-        );
+
+        ERC721Or1155 memory erc721Or1155 = order.nft;
+
+        {
+            if (address(erc721Or1155.erc1155) != address(0)) {
+                require(erc721Or1155.erc1155.balanceOf(seller, assetId) > 0, "The seller is no longer the owner");
+            } else {
+                require(
+                    seller == erc721Or1155.erc721.ownerOf(assetId),
+                    "The seller is no longer the owner"
+                );
+            }
+        }
 
         uint256 saleShareAmount = 0;
 
@@ -304,13 +383,20 @@ contract Marketplace is
         );
 
         // Transfer asset owner
-        nftRegistry.safeTransferFrom(seller, sender, assetId);
+        {
+            if (address(erc721Or1155.erc1155) != address(0)) {
+                erc721Or1155.erc1155.safeTransferFrom(seller, sender, assetId, 1, '');
+                require(erc721Or1155.erc1155.balanceOf(seller, assetId) > 0, "The seller is no longer the owner");
+            } else {
+                erc721Or1155.erc721.safeTransferFrom(seller, sender, assetId);
+            }
+        }
 
         emit OrderSuccessful(
             orderId,
             assetId,
             seller,
-            nftAddress,
+            erc721Or1155,
             price,
             sender
         );

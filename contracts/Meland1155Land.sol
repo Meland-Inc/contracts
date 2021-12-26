@@ -10,40 +10,63 @@ import "./MelandNFTFreeze.sol";
 import "./MelandTierAddressStore.sol";
 import "./MelandAccessRoles.sol";
 import "./MelandTier.sol";
+import "./Meland1155StoreItem.sol";
 
 contract Meland1155Land is
     Initializable,
-    ERC1155Upgradeable,
     MelandTierAddressStore,
     MelandAccessRoles,
     ERC1155BurnableUpgradeable,
     MelandNFTFreeze,
+    Meland1155StoreItem,
     UUPSUpgradeable
 {
-
-    mapping(string => bool) public supportLandtypes;
+    bytes public constant ticketland = "ticketland";
+    bytes public constant vipland = "vipland";
+    mapping(bytes => bool) public supportLandtypes;
     mapping(uint256 => string) public landtypeById;
     mapping(bytes32 => uint256) public totalSupplyByLandtype;
 
-    function initialize(string memory uri) public initializer {
-        __ERC1155_init(uri);
+    uint256[100] public ticketlandIds;
+
+    function initialize(string memory _uri) public initializer {
+        __ERC1155_init(_uri);
         __ERC1155Burnable_init();
         __UUPSUpgradeable_init();
         __MelandNFTFreeze_init();
         __MelandAccessRoles_init();
 
-        supportLandtypes["vipland"] = true;
-        supportLandtypes["ticketland"] = true;
+        supportLandtypes[vipland] = true;
+        supportLandtypes[ticketland] = true;
     }
 
     function setURI(string memory newuri) public onlyRole(GM_ROLE) {
         _setURI(newuri);
     }
 
+    function uri(uint256 id)
+        public
+        view
+        virtual
+        override
+        returns (string memory)
+    {
+        string memory landtype = landtypeById[id];
+        return string(abi.encodePacked(super.uri(id), "/", landtype, "/", id));
+    }
+
+    function melandStoreItemURI(string memory symbol)
+        external
+        view
+        returns (string memory)
+    {
+        return string(abi.encodePacked(ERC1155Upgradeable.uri(0), "/", symbol, "/"));
+    }
+
     function isApprovedForAll(address _owner, address _operator)
         public
         view
-        override(ERC1155Upgradeable, MelandTierAddressStore)
+        override(MelandTierAddressStore, ERC1155Upgradeable)
         returns (bool isOperator)
     {
         return super.isApprovedForAll(_owner, _operator);
@@ -59,16 +82,19 @@ contract Meland1155Land is
     }
 
     // Add or cancel freeze white list
-    function setFreezeWhiteList(address _account, bool _bool) onlyRole(GM_ROLE) public {
+    function setFreezeWhiteList(address _account, bool _bool)
+        public
+        onlyRole(GM_ROLE)
+    {
         _setFreezeWhite(_account, _bool);
     }
 
     function setMelandTier(MelandTier _tierAddress) public onlyRole(GM_ROLE) {
         _setMelandTier(_tierAddress);
     }
-    
+
     // Enable or Disable Freeze feature.
-    function setFreezeEnabled(bool _bool) onlyRole(GM_ROLE) public {
+    function setFreezeEnabled(bool _bool) public onlyRole(GM_ROLE) {
         _setFreezeEnabled(_bool);
     }
 
@@ -131,7 +157,6 @@ contract Meland1155Land is
 
             // sub totalSupply when burn token
             if (to == address(0)) {
-
                 // clear lantyoe when burn
                 delete landtypeById[id];
                 totalSupplyByLandtype[keccak256(bytes(landtype))] -= 1;
@@ -142,7 +167,7 @@ contract Meland1155Land is
         // check land type is support
         if (from == address(0)) {
             require(
-                supportLandtypes[string(maybelandtype)],
+                supportLandtypes[maybelandtype],
                 string(abi.encodePacked(maybelandtype, "is not support"))
             );
 
@@ -157,6 +182,87 @@ contract Meland1155Land is
             totalSupplyByLandtype[keccak256(maybelandtype)] += ids.length;
         }
 
-        super._beforeTokenTransfer(operator, from, to, ids, amounts, maybelandtype);
+        super._beforeTokenTransfer(
+            operator,
+            from,
+            to,
+            ids,
+            amounts,
+            maybelandtype
+        );
+    }
+
+    // store item impl ----
+    function setAcceptedToken(IERC20Upgradeable token)
+        external
+        onlyRole(GM_ROLE)
+    {
+        _setAcceptedToken(token);
+    }
+
+    function setStore(NFTStore s) external onlyRole(GM_ROLE) {
+        _setStore(s);
+    }
+
+    function setStoreItem(string memory symbol, uint256 p)
+        external
+        onlyRole(GM_ROLE)
+    {
+        _setStoreItem(symbol, p);
+    }
+
+    function delStoreItem(string memory symbol) external onlyRole(GM_ROLE) {
+        _delStoreItem(symbol);
+    }
+
+    // If return ture, means that the mall will only have the specified id
+    // Else otherwise it will be linear mint
+    // The ids Must ensure that you can mint
+    // If multi-channel sales or mint, you need to filter out the ids that have been minted
+    // To prevent errors in the sales process
+    function melandStoreItemsRestrictPurchaseNFTIds(string memory)
+        external
+        view
+        returns (bool, uint256[] memory)
+    {
+        uint256[] memory ids;
+        for (uint256 i = 0; i < ticketlandIds.length; i++) {
+            ids[i] = ticketlandIds[i];
+        }
+        return (false, ids);
+    }
+
+    // Store to pay NFT to the selling user by calling this function,
+    // For security reasons, be sure to control the permissions to allow only MelandStore contracts to call
+    // If melandStoreItemsRestrictPurchaseNFTIds return false, the id as zero.
+    function melandStoreItemsMint(
+        string memory symbol,
+        uint256 id,
+        address to
+    ) external override {
+        super.checkMelandStoreItemsMint(symbol, id, to);
+        _mint(to, id, 1, bytes(symbol));
+        _dispatchItemInfoUpdate();
+    }
+
+    // If return false, Stores will suspend sales.
+    function melandStoreSellStatus(string memory symbol)
+        external
+        view
+        returns (bool)
+    {
+        return
+            keccak256(bytes(symbol)) == keccak256(ticketland) &&
+            ticketlandIds.length > 0;
+    }
+
+    // If return true, it means that each person can only buy a certain amount
+    function melandStoreItemsRestrictedPurchase(string memory)
+        external
+        pure
+        returns (bool restricted, uint256 restrictLimit)
+    {
+        restricted = true;
+        restrictLimit = 1;
     }
 }

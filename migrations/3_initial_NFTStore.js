@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 const { deployProxy } = require('@openzeppelin/truffle-upgrades');
 
-const MELD = artifacts.require("MELD");
 const NFTStore = artifacts.require("NFTStore");
 
 module.exports = async function (deployer, network) {
@@ -14,15 +13,15 @@ module.exports = async function (deployer, network) {
         console.log("Deploy only on polygon networks");
         return;
     }
-    const existsMELD = await MELD.deployed();
     const officialWallet = process.env.officialWallet;
     const foundationWallet = process.env.foundationWallet;
+    const bidbackWallet = process.env.bidbackWallet;
     const ownerCutPerMillion = process.env.ownerCutPerMillion;
-    console.debug("deploy nftstore with", existsMELD.address, officialWallet, foundationWallet, ownerCutPerMillion);
+    console.debug("deploy nftstore with", bidbackWallet, officialWallet, foundationWallet, ownerCutPerMillion);
     const NFTStoreInstance = await deployProxy(NFTStore, [
-        existsMELD.address,
         officialWallet,
         foundationWallet,
+        bidbackWallet,
         ownerCutPerMillion
     ], { deployer, kind: 'uups' });
     console.log('Deployed NFTStore', NFTStoreInstance.address);

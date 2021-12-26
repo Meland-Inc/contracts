@@ -38,10 +38,10 @@ contract MelandStakes is
         uint256,
         uint8
     ) {
-        Stake memory ustake = _getUserCurrentHighLevelStake(staker);
+        (Stake memory ustake, uint8 stakeApy) = _getUserCurrentHighLevelStake(staker);
         StakePool memory pool = stakePoolById[ustake.stakePoolId];
         return (
-            pool.stakeApyPercent,
+            stakeApy,
             pool.ditaminLD,
             pool.ditaminC,
             pool.landC

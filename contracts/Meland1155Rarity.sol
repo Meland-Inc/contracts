@@ -20,16 +20,11 @@ abstract contract Meland1155Rarity is Meland1155CID, MelandTierAddressStore {
     // Maximum supply per rarity supported
     mapping(bytes32 => uint256) public mintMaxByRaritykeccak256;
 
-    mapping(uint256 => bytes) private _rarityById;
+    mapping(uint256 => bytes) private _rarityByCId;
 
-    event RarityUpdate(
-        bytes indexed rarity,
-        uint256 mintMax
-    );
+    event RarityUpdate(bytes indexed rarity, uint256 mintMax);
 
-    event FreezeEnabledUpdate(
-        bool _freezeEnabled
-    );
+    event FreezeEnabledUpdate(bool _freezeEnabled);
 
     function _mint(
         address to,
@@ -40,18 +35,49 @@ abstract contract Meland1155Rarity is Meland1155CID, MelandTierAddressStore {
         return Meland1155CID._mint(to, cid, amount, data);
     }
 
-    function __Meland1155Rarity_init(string memory uri) internal {
+    function __Meland1155Rarity_init(string memory _uri) internal {
         _setRarity("unique", 1);
         _setRarity("mythic", 10);
         _setRarity("epic", 100);
         _setRarity("rare", 1000);
         _setRarity("common", 10000);
-
-        __ERC1155MelandCID_init(uri);
+        __ERC1155MelandCID_init(_uri);
     }
 
-    function getRarityById(uint256 id) public view returns(string memory) {
-        return string(_rarityById[id]);
+    function _getMintMaxByRarity(bytes memory _rarity)
+        internal
+        view
+        returns (uint256)
+    {
+        return mintMaxByRaritykeccak256[keccak256(_rarity)];
+    }
+
+    function uri(uint256 id)
+        public
+        view
+        virtual
+        override(Meland1155CID, ERC1155Upgradeable)
+        returns (string memory)
+    {
+        return super.uri(id);
+    }
+
+    function _getMintMaxByCId(uint256 cid) view internal returns(uint256) {
+        bytes memory rarity = _rarityByCId[cid];
+        return _getMintMaxByRarity(rarity);
+    }
+
+    function getRarityById(uint256 id) public view returns (string memory) {
+        uint256 cid = getCidByTokenId(id);
+        return string(_rarityByCId[cid]);
+    }
+
+    function getRarityByCId(uint256 cid) public view returns (string memory) {
+        return string(_rarityByCId[cid]);
+    }
+
+    function _setCIDRarity(uint256 cid, bytes memory rarity) internal {
+        _rarityByCId[cid] = rarity;
     }
 
     function _setRarity(bytes memory rarity, uint256 mintMax) internal {
@@ -82,12 +108,20 @@ abstract contract Meland1155Rarity is Meland1155CID, MelandTierAddressStore {
         if (from == address(0)) {
             for (uint256 i = 0; i < ids.length; i++) {
                 uint256 id = ids[i];
-                bytes memory rarity = data;
-                uint256 mintMax = mintMaxByRaritykeccak256[keccak256(rarity)];
+                uint256 cid = getCidByTokenId(id);
+                bytes memory rarity = _rarityByCId[cid];
+                uint256 mintMax = _getMintMaxByCId(cid);
                 // When mint, the rarity must be passed to
-                require(totalSupply(id) < mintMax, string(abi.encodePacked(rarity, "rarity only totalSupply", mintMax)));
-
-                _rarityById[id] = rarity;
+                require(
+                    totalSupply(id) < mintMax,
+                    string(
+                        abi.encodePacked(
+                            rarity,
+                            "rarity only totalSupply",
+                            mintMax
+                        )
+                    )
+                );
             }
         }
 

@@ -92,7 +92,7 @@
     "absolutePath": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
     "exportedSymbols": {
       "AddressUpgradeable": [
-        5355
+        3873
       ],
       "ERC1967UpgradeUpgradeable": [
         933
@@ -104,7 +104,7 @@
         989
       ],
       "StorageSlotUpgradeable": [
-        5533
+        4051
       ],
       "UUPSUpgradeable": [
         1100
@@ -1410,7 +1410,7 @@
     "absolutePath": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
     "exportedSymbols": {
       "AddressUpgradeable": [
-        5355
+        3873
       ],
       "ERC1967UpgradeUpgradeable": [
         933
@@ -1422,7 +1422,7 @@
         989
       ],
       "StorageSlotUpgradeable": [
-        5533
+        4051
       ],
       "UUPSUpgradeable": [
         1100
@@ -2730,7 +2730,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-12-16T19:17:15.228Z",
+  "updatedAt": "2021-12-26T08:21:15.803Z",
   "devdoc": {
     "details": "An upgradeability mechanism designed for UUPS proxies. The functions included here can perform an upgrade of an {ERC1967Proxy}, when this contract is set as the implementation behind such a proxy. A security mechanism ensures that an upgrade does not turn off upgradeability accidentally, although this risk is reinstated if the upgrade retains upgradeability but removes the security mechanism, e.g. by replacing `UUPSUpgradeable` with a custom implementation of upgrades. The {_authorizeUpgrade} function must be overridden to include access restriction to the upgrade mechanism. _Available since v4.1._",
     "kind": "dev",

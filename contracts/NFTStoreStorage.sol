@@ -5,12 +5,16 @@ import "./IMELD.sol";
 import "./IMelandStoreItems.sol";
 
 contract NFTStoreStorage {
-    // MELD Token.
-    IERC20MELD public acceptedToken;
-
+    // 40% ownerCutPerMillion
     address public foundationWallet;
 
+    // 20% ownerCutPerMillion
     address public officialWallet;
+
+    // If the acceptedToken is a MELD, We will burn 40% of it, 
+    // Else it is another token, 
+    // We will credit it to the bidback account, and then periodically buy back and burn it.
+    address public bidbackWallet;
 
     uint256 public ownerCutPerMillion;
 
@@ -31,6 +35,7 @@ contract NFTStoreStorage {
     event NFTBuyed(
         address indexed buyer,
         IMelandStoreItems indexed nftAddress,
+        string symbol, 
         uint256 tokenId,
         uint256 priceInWei
     );
@@ -40,16 +45,16 @@ contract NFTStoreStorage {
 
     event ChangedOwnerCutPerMillion(uint256 ownerCutPerMillion);
 
-    function _genItemSymbolBuyerKey(IMelandStoreItems nft, bytes32 symbol, address buyer) pure internal returns(bytes32) {
+    function _genItemSymbolBuyerKey(IMelandStoreItems nft, string memory symbol, address buyer) pure internal returns(bytes32) {
         return keccak256(abi.encodePacked(address(nft), symbol, buyer));
     }
 
-    function _getItemSymbolSales(IMelandStoreItems nft, bytes32 symbol, address buyer) view internal returns(uint256) {
+    function _getItemSymbolSales(IMelandStoreItems nft, string memory symbol, address buyer) view internal returns(uint256) {
         bytes32 key = _genItemSymbolBuyerKey(nft, symbol, buyer);
         return itemSymbolSales[key];
     }
 
-    function _addItemSymbolSales(IMelandStoreItems nft, bytes32 symbol, address buyer) internal {
+    function _addItemSymbolSales(IMelandStoreItems nft, string memory symbol, address buyer) internal {
         bytes32 key = _genItemSymbolBuyerKey(nft, symbol, buyer);
         itemSymbolSales[key] += 1;
     }

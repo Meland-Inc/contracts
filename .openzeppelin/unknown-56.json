@@ -20,6 +20,11 @@
       "address": "0xb4939DDfd7425FaE040A42BBb5220756973Fc329",
       "txHash": "0xae37840a1de4cd2bd3fd104878dc20753641424d0f9d61989e82a05727307373",
       "kind": "uups"
+    },
+    {
+      "address": "0x0777106D55CF0f3E3B8D25fe6A16ccb0276841d6",
+      "txHash": "0x605b9f50a5349a3a3cca9a82d97d8d606e4c1abc4faaa08947f860954a31c4e9",
+      "kind": "uups"
     }
   ],
   "impls": {
@@ -919,6 +924,486 @@
           },
           "t_bytes32": {
             "label": "bytes32"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          }
+        }
+      }
+    },
+    "1ff4e123f85ec975f8cff4d8a83747ad17bb0d0003d49bb61c14dbd6b7f0009b": {
+      "address": "0x88C5ef82aF20A68184e3526D039a16a344637795",
+      "txHash": "0x4f05a172b503392268ff2532de3291ad68966fbfb45641557d0f30548e08f279",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:42"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "_stakePoolIdCounter",
+            "type": "t_struct(Counter)3923_storage",
+            "src": "../project:/contracts/MelandStakesStorage.sol:11"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3400",
+            "src": "../project:/contracts/MelandStakesStorage.sol:14"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "_defaultStakePoolId",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandStakesStorage.sol:17"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "stakePoolById",
+            "type": "t_mapping(t_uint256,t_struct(StakePool)10747_storage)",
+            "src": "../project:/contracts/MelandStakesStorage.sol:19"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "stakePoolSaleCountByStakePoolId",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandStakesStorage.sol:23"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "stakeById",
+            "type": "t_mapping(t_bytes32,t_struct(Stake)10760_storage)",
+            "src": "../project:/contracts/MelandStakesStorage.sol:25"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "stakePoolIdsByStaker",
+            "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)",
+            "src": "../project:/contracts/MelandStakesStorage.sol:27"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          }
+        ],
+        "types": {
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_struct(Counter)3923_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_contract(IERC20Upgradeable)3400": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_mapping(t_uint256,t_struct(StakePool)10747_storage)": {
+            "label": "mapping(uint256 => struct MelandStakesStorage.StakePool)"
+          },
+          "t_struct(StakePool)10747_storage": {
+            "label": "struct MelandStakesStorage.StakePool",
+            "members": [
+              {
+                "label": "ditaminLD",
+                "type": "t_uint256"
+              },
+              {
+                "label": "ditaminC",
+                "type": "t_uint256"
+              },
+              {
+                "label": "numberOfMELD",
+                "type": "t_uint256"
+              },
+              {
+                "label": "landC",
+                "type": "t_uint8"
+              },
+              {
+                "label": "vipname",
+                "type": "t_bytes_storage"
+              },
+              {
+                "label": "stakeApyPercent",
+                "type": "t_uint8"
+              },
+              {
+                "label": "gameApyPercent",
+                "type": "t_uint8"
+              },
+              {
+                "label": "freezeTime",
+                "type": "t_uint256"
+              },
+              {
+                "label": "totalVolume",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_uint8": {
+            "label": "uint8"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(Stake)10760_storage)": {
+            "label": "mapping(bytes32 => struct MelandStakesStorage.Stake)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_struct(Stake)10760_storage": {
+            "label": "struct MelandStakesStorage.Stake",
+            "members": [
+              {
+                "label": "stakePoolId",
+                "type": "t_uint256"
+              },
+              {
+                "label": "staker",
+                "type": "t_address"
+              },
+              {
+                "label": "lastRecivedAt",
+                "type": "t_uint256"
+              },
+              {
+                "label": "stakedAt",
+                "type": "t_uint256"
+              },
+              {
+                "label": "expiredAt",
+                "type": "t_uint256"
+              },
+              {
+                "label": "claimed",
+                "type": "t_bool"
+              }
+            ]
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_address,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(address => uint256[])"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          }
+        }
+      }
+    },
+    "c7ccfd28a660c3719eb181c0769a91b4521e3aa85c142e381d5dd561246ce037": {
+      "address": "0x55f3697eB9dE387b3a4E88c0046bEa2322B65902",
+      "txHash": "0x99262fa51d4528d084c4cf6af71c1633bd215a9e98b69a30fcd8c663081b3dec",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:42"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "_stakePoolIdCounter",
+            "type": "t_struct(Counter)3923_storage",
+            "src": "../project:/contracts/MelandStakesStorage.sol:11"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3400",
+            "src": "../project:/contracts/MelandStakesStorage.sol:14"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "_defaultStakePoolId",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandStakesStorage.sol:17"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "stakePoolById",
+            "type": "t_mapping(t_uint256,t_struct(StakePool)10970_storage)",
+            "src": "../project:/contracts/MelandStakesStorage.sol:19"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "stakePoolSaleCountByStakePoolId",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandStakesStorage.sol:23"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "stakeById",
+            "type": "t_mapping(t_bytes32,t_struct(Stake)10983_storage)",
+            "src": "../project:/contracts/MelandStakesStorage.sol:25"
+          },
+          {
+            "contract": "MelandStakesStorage",
+            "label": "stakePoolIdsByStaker",
+            "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)",
+            "src": "../project:/contracts/MelandStakesStorage.sol:27"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          }
+        ],
+        "types": {
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_struct(Counter)3923_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_contract(IERC20Upgradeable)3400": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_mapping(t_uint256,t_struct(StakePool)10970_storage)": {
+            "label": "mapping(uint256 => struct MelandStakesStorage.StakePool)"
+          },
+          "t_struct(StakePool)10970_storage": {
+            "label": "struct MelandStakesStorage.StakePool",
+            "members": [
+              {
+                "label": "ditaminLD",
+                "type": "t_uint256"
+              },
+              {
+                "label": "ditaminC",
+                "type": "t_uint256"
+              },
+              {
+                "label": "numberOfMELD",
+                "type": "t_uint256"
+              },
+              {
+                "label": "landC",
+                "type": "t_uint8"
+              },
+              {
+                "label": "vipname",
+                "type": "t_bytes_storage"
+              },
+              {
+                "label": "stakeApyPercent",
+                "type": "t_uint8"
+              },
+              {
+                "label": "gameApyPercent",
+                "type": "t_uint8"
+              },
+              {
+                "label": "freezeTime",
+                "type": "t_uint256"
+              },
+              {
+                "label": "totalVolume",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_uint8": {
+            "label": "uint8"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(Stake)10983_storage)": {
+            "label": "mapping(bytes32 => struct MelandStakesStorage.Stake)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_struct(Stake)10983_storage": {
+            "label": "struct MelandStakesStorage.Stake",
+            "members": [
+              {
+                "label": "stakePoolId",
+                "type": "t_uint256"
+              },
+              {
+                "label": "staker",
+                "type": "t_address"
+              },
+              {
+                "label": "lastRecivedAt",
+                "type": "t_uint256"
+              },
+              {
+                "label": "stakedAt",
+                "type": "t_uint256"
+              },
+              {
+                "label": "expiredAt",
+                "type": "t_uint256"
+              },
+              {
+                "label": "claimed",
+                "type": "t_bool"
+              }
+            ]
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_address,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(address => uint256[])"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
           },
           "t_struct(RoleData)43_storage": {
             "label": "struct AccessControlUpgradeable.RoleData",
