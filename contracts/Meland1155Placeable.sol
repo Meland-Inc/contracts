@@ -43,10 +43,9 @@ contract Meland1155Placeable is
     function mint(
         address account,
         uint256 cid,
-        uint256 amount,
-        bytes memory _rarity
+        uint256 amount
     ) public onlyRole(MINTER_ROLE) returns(uint256[] memory) {
-        return _mintReturnTokenIds(account, cid, amount, _rarity);
+        return _mintReturnTokenIds(account, cid, amount, '');
     }
 
     function setRarity(string memory _rarity, uint256 mintMax) onlyRole(GM_ROLE) public {
@@ -116,11 +115,12 @@ contract Meland1155Placeable is
         string memory symbol,
         uint256 id,
         address to
-    ) external override {
+    ) external override returns(uint256) {
         super.checkMelandStoreItemsMint(symbol, id, to);
         uint256 cid = _bytestoUint256(symbol);
-        _mint(to, cid, 1, "");
+        uint256[] memory ids = mint(to, cid, 1);
         _dispatchItemInfoUpdate();
+        return ids[0];
     }
 
     // If return false, Stores will suspend sales.

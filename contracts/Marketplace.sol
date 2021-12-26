@@ -386,7 +386,6 @@ contract Marketplace is
         {
             if (address(erc721Or1155.erc1155) != address(0)) {
                 erc721Or1155.erc1155.safeTransferFrom(seller, sender, assetId, 1, '');
-                require(erc721Or1155.erc1155.balanceOf(seller, assetId) > 0, "The seller is no longer the owner");
             } else {
                 erc721Or1155.erc721.safeTransferFrom(seller, sender, assetId);
             }

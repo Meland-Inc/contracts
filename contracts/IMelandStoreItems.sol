@@ -34,7 +34,7 @@ interface IMelandStoreItems {
     // Store to pay NFT to the selling user by calling this function, 
     // For security reasons, be sure to control the permissions to allow only MelandStore contracts to call
     // If melandStoreItemsRestrictPurchaseNFTIds return false, the id as zero.
-    function melandStoreItemsMint(string memory symbol, uint256 id, address to) external;
+    function melandStoreItemsMint(string memory symbol, uint256 id, address to) external returns(uint256 tokenId);
 
     // Return Metadata JSON Schema URI
     function melandStoreItemURI(string memory symbol) view external returns(string memory);

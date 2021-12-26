@@ -173,6 +173,10 @@ contract Meland1155Land is
 
             for (uint256 i = 0; i < ids.length; i++) {
                 require(
+                    ids[i] >= 10001 && ids[i] <= 10000001000,
+                    "Coordinates are not legal"
+                );
+                require(
                     bytes(landtypeById[ids[i]]).length == 0,
                     "Make sure each land is unique"
                 );
@@ -239,10 +243,11 @@ contract Meland1155Land is
         string memory symbol,
         uint256 id,
         address to
-    ) external override {
+    ) external override returns(uint256) {
         super.checkMelandStoreItemsMint(symbol, id, to);
         _mint(to, id, 1, bytes(symbol));
         _dispatchItemInfoUpdate();
+        return id;
     }
 
     // If return false, Stores will suspend sales.

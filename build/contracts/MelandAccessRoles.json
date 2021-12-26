@@ -3340,18 +3340,18 @@
         989
       ],
       "MelandAccessRoles": [
-        11171
+        11183
       ],
       "StringsUpgradeable": [
         4254
       ]
     },
-    "id": 11172,
+    "id": 11184,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 11121,
+        "id": 11133,
         "literals": [
           "solidity",
           "0.8",
@@ -3363,10 +3363,10 @@
       {
         "absolutePath": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
         "file": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
-        "id": 11122,
+        "id": 11134,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 11172,
+        "scope": 11184,
         "sourceUnit": 337,
         "src": "56:81:52",
         "symbolAliases": [],
@@ -3377,13 +3377,13 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 11123,
+              "id": 11135,
               "name": "AccessControlUpgradeable",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 336,
               "src": "169:24:52"
             },
-            "id": 11124,
+            "id": 11136,
             "nodeType": "InheritanceSpecifier",
             "src": "169:24:52"
           }
@@ -3392,9 +3392,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 11171,
+        "id": 11183,
         "linearizedBaseContracts": [
-          11171,
+          11183,
           336,
           4300,
           4312,
@@ -3409,12 +3409,12 @@
           {
             "constant": true,
             "functionSelector": "30c7be2c",
-            "id": 11129,
+            "id": 11141,
             "mutability": "constant",
             "name": "GM_ROLE",
             "nameLocation": "224:7:52",
             "nodeType": "VariableDeclaration",
-            "scope": 11171,
+            "scope": 11183,
             "src": "200:54:52",
             "stateVariable": true,
             "storageLocation": "default",
@@ -3423,7 +3423,7 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 11125,
+              "id": 11137,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
               "src": "200:7:52",
@@ -3436,7 +3436,7 @@
               "arguments": [
                 {
                   "hexValue": "474d5f524f4c45",
-                  "id": 11127,
+                  "id": 11139,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -3458,7 +3458,7 @@
                     "typeString": "literal_string \"GM_ROLE\""
                   }
                 ],
-                "id": 11126,
+                "id": 11138,
                 "name": "keccak256",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
@@ -3469,7 +3469,7 @@
                   "typeString": "function (bytes memory) pure returns (bytes32)"
                 }
               },
-              "id": 11128,
+              "id": 11140,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -3489,12 +3489,12 @@
           {
             "constant": true,
             "functionSelector": "d5391393",
-            "id": 11134,
+            "id": 11146,
             "mutability": "constant",
             "name": "MINTER_ROLE",
             "nameLocation": "284:11:52",
             "nodeType": "VariableDeclaration",
-            "scope": 11171,
+            "scope": 11183,
             "src": "260:62:52",
             "stateVariable": true,
             "storageLocation": "default",
@@ -3503,7 +3503,7 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 11130,
+              "id": 11142,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
               "src": "260:7:52",
@@ -3516,7 +3516,7 @@
               "arguments": [
                 {
                   "hexValue": "4d494e5445525f524f4c45",
-                  "id": 11132,
+                  "id": 11144,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -3538,7 +3538,7 @@
                     "typeString": "literal_string \"MINTER_ROLE\""
                   }
                 ],
-                "id": 11131,
+                "id": 11143,
                 "name": "keccak256",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
@@ -3549,7 +3549,7 @@
                   "typeString": "function (bytes memory) pure returns (bytes32)"
                 }
               },
-              "id": 11133,
+              "id": 11145,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -3569,12 +3569,12 @@
           {
             "constant": true,
             "functionSelector": "f72c0d8b",
-            "id": 11139,
+            "id": 11151,
             "mutability": "constant",
             "name": "UPGRADER_ROLE",
             "nameLocation": "352:13:52",
             "nodeType": "VariableDeclaration",
-            "scope": 11171,
+            "scope": 11183,
             "src": "328:66:52",
             "stateVariable": true,
             "storageLocation": "default",
@@ -3583,7 +3583,7 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 11135,
+              "id": 11147,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
               "src": "328:7:52",
@@ -3596,7 +3596,7 @@
               "arguments": [
                 {
                   "hexValue": "55504752414445525f524f4c45",
-                  "id": 11137,
+                  "id": 11149,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -3618,7 +3618,7 @@
                     "typeString": "literal_string \"UPGRADER_ROLE\""
                   }
                 ],
-                "id": 11136,
+                "id": 11148,
                 "name": "keccak256",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
@@ -3629,7 +3629,7 @@
                   "typeString": "function (bytes memory) pure returns (bytes32)"
                 }
               },
-              "id": 11138,
+              "id": 11150,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -3648,7 +3648,7 @@
           },
           {
             "body": {
-              "id": 11169,
+              "id": 11181,
               "nodeType": "Block",
               "src": "446:224:52",
               "statements": [
@@ -3657,7 +3657,7 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 11142,
+                      "id": 11154,
                       "name": "__AccessControl_init",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -3668,7 +3668,7 @@
                         "typeString": "function ()"
                       }
                     },
-                    "id": 11143,
+                    "id": 11155,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3683,7 +3683,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 11144,
+                  "id": 11156,
                   "nodeType": "ExpressionStatement",
                   "src": "456:22:52"
                 },
@@ -3691,7 +3691,7 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 11146,
+                        "id": 11158,
                         "name": "DEFAULT_ADMIN_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -3704,7 +3704,7 @@
                       },
                       {
                         "expression": {
-                          "id": 11147,
+                          "id": 11159,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -3715,7 +3715,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 11148,
+                        "id": 11160,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -3740,7 +3740,7 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 11145,
+                      "id": 11157,
                       "name": "_grantRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -3751,7 +3751,7 @@
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 11149,
+                    "id": 11161,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3766,7 +3766,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 11150,
+                  "id": 11162,
                   "nodeType": "ExpressionStatement",
                   "src": "488:42:52"
                 },
@@ -3774,11 +3774,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 11152,
+                        "id": 11164,
                         "name": "GM_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 11129,
+                        "referencedDeclaration": 11141,
                         "src": "551:7:52",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -3787,7 +3787,7 @@
                       },
                       {
                         "expression": {
-                          "id": 11153,
+                          "id": 11165,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -3798,7 +3798,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 11154,
+                        "id": 11166,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -3823,7 +3823,7 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 11151,
+                      "id": 11163,
                       "name": "_grantRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -3834,7 +3834,7 @@
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 11155,
+                    "id": 11167,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3849,7 +3849,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 11156,
+                  "id": 11168,
                   "nodeType": "ExpressionStatement",
                   "src": "540:31:52"
                 },
@@ -3857,11 +3857,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 11158,
+                        "id": 11170,
                         "name": "MINTER_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 11134,
+                        "referencedDeclaration": 11146,
                         "src": "592:11:52",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -3870,7 +3870,7 @@
                       },
                       {
                         "expression": {
-                          "id": 11159,
+                          "id": 11171,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -3881,7 +3881,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 11160,
+                        "id": 11172,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -3906,7 +3906,7 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 11157,
+                      "id": 11169,
                       "name": "_grantRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -3917,7 +3917,7 @@
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 11161,
+                    "id": 11173,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3932,7 +3932,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 11162,
+                  "id": 11174,
                   "nodeType": "ExpressionStatement",
                   "src": "581:35:52"
                 },
@@ -3940,11 +3940,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 11164,
+                        "id": 11176,
                         "name": "UPGRADER_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 11139,
+                        "referencedDeclaration": 11151,
                         "src": "637:13:52",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -3953,7 +3953,7 @@
                       },
                       {
                         "expression": {
-                          "id": 11165,
+                          "id": 11177,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -3964,7 +3964,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 11166,
+                        "id": 11178,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -3989,7 +3989,7 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 11163,
+                      "id": 11175,
                       "name": "_grantRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -4000,7 +4000,7 @@
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 11167,
+                    "id": 11179,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4015,13 +4015,13 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 11168,
+                  "id": 11180,
                   "nodeType": "ExpressionStatement",
                   "src": "626:37:52"
                 }
               ]
             },
-            "id": 11170,
+            "id": 11182,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -4029,25 +4029,25 @@
             "nameLocation": "410:24:52",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 11140,
+              "id": 11152,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "434:2:52"
             },
             "returnParameters": {
-              "id": 11141,
+              "id": 11153,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "446:0:52"
             },
-            "scope": 11171,
+            "scope": 11183,
             "src": "401:269:52",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 11172,
+        "scope": 11184,
         "src": "139:533:52",
         "usedErrors": []
       }
@@ -4076,18 +4076,18 @@
         989
       ],
       "MelandAccessRoles": [
-        11171
+        11183
       ],
       "StringsUpgradeable": [
         4254
       ]
     },
-    "id": 11172,
+    "id": 11184,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 11121,
+        "id": 11133,
         "literals": [
           "solidity",
           "0.8",
@@ -4099,10 +4099,10 @@
       {
         "absolutePath": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
         "file": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol",
-        "id": 11122,
+        "id": 11134,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 11172,
+        "scope": 11184,
         "sourceUnit": 337,
         "src": "56:81:52",
         "symbolAliases": [],
@@ -4113,13 +4113,13 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 11123,
+              "id": 11135,
               "name": "AccessControlUpgradeable",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 336,
               "src": "169:24:52"
             },
-            "id": 11124,
+            "id": 11136,
             "nodeType": "InheritanceSpecifier",
             "src": "169:24:52"
           }
@@ -4128,9 +4128,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 11171,
+        "id": 11183,
         "linearizedBaseContracts": [
-          11171,
+          11183,
           336,
           4300,
           4312,
@@ -4145,12 +4145,12 @@
           {
             "constant": true,
             "functionSelector": "30c7be2c",
-            "id": 11129,
+            "id": 11141,
             "mutability": "constant",
             "name": "GM_ROLE",
             "nameLocation": "224:7:52",
             "nodeType": "VariableDeclaration",
-            "scope": 11171,
+            "scope": 11183,
             "src": "200:54:52",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4159,7 +4159,7 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 11125,
+              "id": 11137,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
               "src": "200:7:52",
@@ -4172,7 +4172,7 @@
               "arguments": [
                 {
                   "hexValue": "474d5f524f4c45",
-                  "id": 11127,
+                  "id": 11139,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -4194,7 +4194,7 @@
                     "typeString": "literal_string \"GM_ROLE\""
                   }
                 ],
-                "id": 11126,
+                "id": 11138,
                 "name": "keccak256",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
@@ -4205,7 +4205,7 @@
                   "typeString": "function (bytes memory) pure returns (bytes32)"
                 }
               },
-              "id": 11128,
+              "id": 11140,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -4225,12 +4225,12 @@
           {
             "constant": true,
             "functionSelector": "d5391393",
-            "id": 11134,
+            "id": 11146,
             "mutability": "constant",
             "name": "MINTER_ROLE",
             "nameLocation": "284:11:52",
             "nodeType": "VariableDeclaration",
-            "scope": 11171,
+            "scope": 11183,
             "src": "260:62:52",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4239,7 +4239,7 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 11130,
+              "id": 11142,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
               "src": "260:7:52",
@@ -4252,7 +4252,7 @@
               "arguments": [
                 {
                   "hexValue": "4d494e5445525f524f4c45",
-                  "id": 11132,
+                  "id": 11144,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -4274,7 +4274,7 @@
                     "typeString": "literal_string \"MINTER_ROLE\""
                   }
                 ],
-                "id": 11131,
+                "id": 11143,
                 "name": "keccak256",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
@@ -4285,7 +4285,7 @@
                   "typeString": "function (bytes memory) pure returns (bytes32)"
                 }
               },
-              "id": 11133,
+              "id": 11145,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -4305,12 +4305,12 @@
           {
             "constant": true,
             "functionSelector": "f72c0d8b",
-            "id": 11139,
+            "id": 11151,
             "mutability": "constant",
             "name": "UPGRADER_ROLE",
             "nameLocation": "352:13:52",
             "nodeType": "VariableDeclaration",
-            "scope": 11171,
+            "scope": 11183,
             "src": "328:66:52",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4319,7 +4319,7 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 11135,
+              "id": 11147,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
               "src": "328:7:52",
@@ -4332,7 +4332,7 @@
               "arguments": [
                 {
                   "hexValue": "55504752414445525f524f4c45",
-                  "id": 11137,
+                  "id": 11149,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -4354,7 +4354,7 @@
                     "typeString": "literal_string \"UPGRADER_ROLE\""
                   }
                 ],
-                "id": 11136,
+                "id": 11148,
                 "name": "keccak256",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
@@ -4365,7 +4365,7 @@
                   "typeString": "function (bytes memory) pure returns (bytes32)"
                 }
               },
-              "id": 11138,
+              "id": 11150,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -4384,7 +4384,7 @@
           },
           {
             "body": {
-              "id": 11169,
+              "id": 11181,
               "nodeType": "Block",
               "src": "446:224:52",
               "statements": [
@@ -4393,7 +4393,7 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 11142,
+                      "id": 11154,
                       "name": "__AccessControl_init",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -4404,7 +4404,7 @@
                         "typeString": "function ()"
                       }
                     },
-                    "id": 11143,
+                    "id": 11155,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4419,7 +4419,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 11144,
+                  "id": 11156,
                   "nodeType": "ExpressionStatement",
                   "src": "456:22:52"
                 },
@@ -4427,7 +4427,7 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 11146,
+                        "id": 11158,
                         "name": "DEFAULT_ADMIN_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -4440,7 +4440,7 @@
                       },
                       {
                         "expression": {
-                          "id": 11147,
+                          "id": 11159,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -4451,7 +4451,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 11148,
+                        "id": 11160,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4476,7 +4476,7 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 11145,
+                      "id": 11157,
                       "name": "_grantRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -4487,7 +4487,7 @@
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 11149,
+                    "id": 11161,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4502,7 +4502,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 11150,
+                  "id": 11162,
                   "nodeType": "ExpressionStatement",
                   "src": "488:42:52"
                 },
@@ -4510,11 +4510,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 11152,
+                        "id": 11164,
                         "name": "GM_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 11129,
+                        "referencedDeclaration": 11141,
                         "src": "551:7:52",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -4523,7 +4523,7 @@
                       },
                       {
                         "expression": {
-                          "id": 11153,
+                          "id": 11165,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -4534,7 +4534,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 11154,
+                        "id": 11166,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4559,7 +4559,7 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 11151,
+                      "id": 11163,
                       "name": "_grantRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -4570,7 +4570,7 @@
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 11155,
+                    "id": 11167,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4585,7 +4585,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 11156,
+                  "id": 11168,
                   "nodeType": "ExpressionStatement",
                   "src": "540:31:52"
                 },
@@ -4593,11 +4593,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 11158,
+                        "id": 11170,
                         "name": "MINTER_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 11134,
+                        "referencedDeclaration": 11146,
                         "src": "592:11:52",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -4606,7 +4606,7 @@
                       },
                       {
                         "expression": {
-                          "id": 11159,
+                          "id": 11171,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -4617,7 +4617,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 11160,
+                        "id": 11172,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4642,7 +4642,7 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 11157,
+                      "id": 11169,
                       "name": "_grantRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -4653,7 +4653,7 @@
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 11161,
+                    "id": 11173,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4668,7 +4668,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 11162,
+                  "id": 11174,
                   "nodeType": "ExpressionStatement",
                   "src": "581:35:52"
                 },
@@ -4676,11 +4676,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 11164,
+                        "id": 11176,
                         "name": "UPGRADER_ROLE",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 11139,
+                        "referencedDeclaration": 11151,
                         "src": "637:13:52",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -4689,7 +4689,7 @@
                       },
                       {
                         "expression": {
-                          "id": 11165,
+                          "id": 11177,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -4700,7 +4700,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 11166,
+                        "id": 11178,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4725,7 +4725,7 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 11163,
+                      "id": 11175,
                       "name": "_grantRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -4736,7 +4736,7 @@
                         "typeString": "function (bytes32,address)"
                       }
                     },
-                    "id": 11167,
+                    "id": 11179,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4751,13 +4751,13 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 11168,
+                  "id": 11180,
                   "nodeType": "ExpressionStatement",
                   "src": "626:37:52"
                 }
               ]
             },
-            "id": 11170,
+            "id": 11182,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -4765,25 +4765,25 @@
             "nameLocation": "410:24:52",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 11140,
+              "id": 11152,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "434:2:52"
             },
             "returnParameters": {
-              "id": 11141,
+              "id": 11153,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "446:0:52"
             },
-            "scope": 11171,
+            "scope": 11183,
             "src": "401:269:52",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 11172,
+        "scope": 11184,
         "src": "139:533:52",
         "usedErrors": []
       }
@@ -4796,7 +4796,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-12-26T08:21:15.950Z",
+  "updatedAt": "2021-12-26T23:24:40.744Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

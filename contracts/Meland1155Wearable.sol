@@ -131,11 +131,12 @@ contract Meland1155Wearable is
         string memory symbol,
         uint256 id,
         address to
-    ) external override {
+    ) external override returns(uint256) {
         super.checkMelandStoreItemsMint(symbol, id, to);
         uint256 cid = _bytestoUint256(symbol);
-        _mint(to, cid, 1, "");
+        uint256[] memory ids = mint(to, cid, 1);
         _dispatchItemInfoUpdate();
+        return ids[0];
     }
 
     function test(string memory symbol) public pure returns(uint256) {

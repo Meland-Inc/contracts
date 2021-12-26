@@ -217,7 +217,7 @@ contract NFTStore is
             "Transfering the sale amount to the seller failed"
         );
 
-        nft.melandStoreItemsMint(symbol, tokenId, buyer);
+        tokenId = nft.melandStoreItemsMint(symbol, tokenId, buyer);
 
         emit NFTBuyed(buyer, nft, symbol, tokenId, priceInWei);
     }
