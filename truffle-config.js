@@ -39,7 +39,7 @@ module.exports = {
 
     // polygon main network
     matic: {
-      provider: () => new HDWalletProvider(mnemonic, `https://polygon-mainnet.g.alchemy.com/v2/y48IcelCwZwwppoj-CXBEwmIjBOZ2ZLt`),
+      provider: () => new HDWalletProvider(mnemonic, `wss://hidden-hidden-dew.matic.quiknode.pro/320f34c61dd7ff8e73083de2c90f4159844990b6`),
       network_id: 137,
       confirmations: 2,
       timeoutBlocks: 200,
