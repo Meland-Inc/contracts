@@ -13,6 +13,7 @@ const Faucet = artifacts.require("Faucet");
 const Meland1155Wearable = artifacts.require("Meland1155Wearable");
 const Meland1155Placeable = artifacts.require("Meland1155Placeable");
 const MelandTier = artifacts.require("MelandTier");
+const Meland1155LandFuture = artifacts.require("Meland1155LandFuture");
 
 const promiseOpen = (filePath, mode = 'w') => {
     return new Promise((resolve, reject) => {
@@ -48,6 +49,7 @@ module.exports = async function (_) {
     const Meland1155WearableI = await Meland1155Wearable.deployed();
     // const Meland1155PlaceableI = await Meland1155Placeable.deployed();
     const MelandTierI = await MelandTier.deployed();
+    const Meland1155LandFutureI = await Meland1155LandFuture.deployed();
 
     let faucetAddress = '';
     if ([
@@ -84,6 +86,7 @@ module.exports = async function (_) {
     "VestPool_address": "${vestPoolAddress}",
     "Meland1155Wearable_address": "${Meland1155WearableI.address}",
     "Meland1155Placeable_address": "",
+    "Meland1155LandFuture_address": "${Meland1155LandFutureI.address}",
     "MelandTier_address": "${MelandTierI.address}",
     "start_block": "${networkStartBlockMap[network]}"
 }

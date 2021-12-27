@@ -118,7 +118,7 @@ contract Meland1155Placeable is
     ) external override returns(uint256) {
         super.checkMelandStoreItemsMint(symbol, id, to);
         uint256 cid = _bytestoUint256(symbol);
-        uint256[] memory ids = mint(to, cid, 1);
+        uint256[] memory ids = _mintReturnTokenIds(to, cid, 1, "");
         _dispatchItemInfoUpdate();
         return ids[0];
     }

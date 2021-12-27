@@ -9,7 +9,6 @@ module.exports = async function (deployer, network) {
     "develop",
     "bsc",
     "bsctest",
-    "matic",
     "rinkeby",
     "test"
   ].includes(network)) {

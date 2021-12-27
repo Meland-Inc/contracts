@@ -880,6 +880,86 @@
       "address": "0xAf6812608fb48126Eaf1818E745e67cf002f09f5",
       "txHash": "0x19ef07cbca8f4879a66581a09e37e25e0d360e73c243314015b238db0cd78dc7",
       "kind": "uups"
+    },
+    {
+      "address": "0x0B10cB28d95245980d2539d8313Ac7A2304f0e93",
+      "txHash": "0x958f02e8417aa1fe89c66387344545a1ec1c19a684f3b9c80722b4287b30e6e8",
+      "kind": "uups"
+    },
+    {
+      "address": "0x4D7E89d03b005E12288de332FED63C9f3e94649e",
+      "txHash": "0xe700272e6037ee32634fbab9fdc8338d7fc7596d74478c40c3a728e805db84c9",
+      "kind": "uups"
+    },
+    {
+      "address": "0x85e1867C89beA99b351f9e388c585b40f594EF48",
+      "txHash": "0x4acd2110dc429423421257b44c3dbb0c4b8e871eca23e6fc34e1ff061dceb73e",
+      "kind": "uups"
+    },
+    {
+      "address": "0x8AcC4f6A03B8CCfe4fe025f337C3641A0A04039B",
+      "txHash": "0x3a06d6ac74c458f5fa9173d447954649f11565aacfee09c1c467b8e905943bf9",
+      "kind": "uups"
+    },
+    {
+      "address": "0xB26De07AB877510Fc2e35B672f660277B210323c",
+      "txHash": "0x9ad228039dcefff0b0372a90c70fd236da4bfd5482f0740b34171601cdb1357a",
+      "kind": "uups"
+    },
+    {
+      "address": "0xB5381d49Defdd61Ab01f895d74EF5a4477beBE75",
+      "txHash": "0x941c7d0a7382e9da37f3dd812071e2a6e015568d2ac05e47717da114920b0e46",
+      "kind": "uups"
+    },
+    {
+      "address": "0xFFF03d6003F670795F8279874Db1F0dce977a8Eb",
+      "txHash": "0x8de260ecd754c177fbe3643f1436163274f092c73c3c31ac73e1653d14e66ec0",
+      "kind": "uups"
+    },
+    {
+      "address": "0x98809d0eA2A020d59e03138Fb2068588A0B7090a",
+      "txHash": "0x2e5f9098e6692f699f1b3083a933fdac6fb358159a95f082129da738036fa015",
+      "kind": "uups"
+    },
+    {
+      "address": "0xd9e9652BE7eB0455884bE8b56A25c9c67297e810",
+      "txHash": "0x91d32930100e5338dc709a842071badb10f1b8568168d38a93b7b8a6c53b9d93",
+      "kind": "uups"
+    },
+    {
+      "address": "0x3b917FC9B952f9639215E9C6C5DE9BE70426Dc52",
+      "txHash": "0xe89fd9363262fd0f6473536dddf9e3cfcdf155d70da73b7c7007b6cfbc90dd42",
+      "kind": "uups"
+    },
+    {
+      "address": "0x166d1B74ac3eE94aC8638C6b040b6d1aC42c81E6",
+      "txHash": "0xe17bd3ed4a2e6f54d9d36b7a1ca584581ac70f02add20fc2eb2d8aa88984c415",
+      "kind": "uups"
+    },
+    {
+      "address": "0x407094e035ff8dC5817f81d78C671d89BfF39Fa0",
+      "txHash": "0x4801ac0bee70255693e387345cb3b2f53a82175f17333cd4113642d9a51138b7",
+      "kind": "uups"
+    },
+    {
+      "address": "0x6F6c65387DeBd2293c111373d54fb927F0b41F27",
+      "txHash": "0xa25a186acc1274370a3a0f7fbc68932c56fc12459b82c4f6903fc689cdef8653",
+      "kind": "uups"
+    },
+    {
+      "address": "0x7863a968b9ECf0f239eB4008Cba39fD63425323C",
+      "txHash": "0x7a5054216b47671fe10923d56b314810ce4f3ec56073ab8c71a594b2b1cd3f24",
+      "kind": "uups"
+    },
+    {
+      "address": "0xe48c7307d8684707B1f42c858fbc1d5E2C7e4ddB",
+      "txHash": "0x91836b7b82134a48d62376e5abd3c8cbb3e2243f98d98b0c22c19c7a5ccb4a26",
+      "kind": "uups"
+    },
+    {
+      "address": "0x7934e0e3AC2841B8B66A56676E1D4e887cC0e6b0",
+      "txHash": "0xc7541d6cc1d85c61281ec7e611553e44e48beb826801933a4744b37138bcb778",
+      "kind": "uups"
     }
   ],
   "impls": {
@@ -16717,6 +16797,4064 @@
           },
           "t_mapping(t_address,t_bool)": {
             "label": "mapping(address => bool)"
+          }
+        }
+      }
+    },
+    "3590158eee294eab8d1c26963d3a6565d9932ac16081b4739a56065e43e77406": {
+      "address": "0xc4cD58c2Da5cC12d49D0fbAE49466522afa6310D",
+      "txHash": "0x99c989cb1f6162f41e48ad807a33675ce1a0570a61b7b182e43a34814b7cf236",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:42"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "NFTStoreStorage",
+            "label": "foundationWallet",
+            "type": "t_address",
+            "src": "../project:/contracts/NFTStoreStorage.sol:9"
+          },
+          {
+            "contract": "NFTStoreStorage",
+            "label": "officialWallet",
+            "type": "t_address",
+            "src": "../project:/contracts/NFTStoreStorage.sol:12"
+          },
+          {
+            "contract": "NFTStoreStorage",
+            "label": "bidbackWallet",
+            "type": "t_address",
+            "src": "../project:/contracts/NFTStoreStorage.sol:17"
+          },
+          {
+            "contract": "NFTStoreStorage",
+            "label": "ownerCutPerMillion",
+            "type": "t_uint256",
+            "src": "../project:/contracts/NFTStoreStorage.sol:19"
+          },
+          {
+            "contract": "NFTStoreStorage",
+            "label": "itemUploadedMap",
+            "type": "t_mapping(t_contract(IMelandStoreItems)6539,t_bool)",
+            "src": "../project:/contracts/NFTStoreStorage.sol:21"
+          },
+          {
+            "contract": "NFTStoreStorage",
+            "label": "itemSymbolSales",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/NFTStoreStorage.sol:23"
+          },
+          {
+            "contract": "NFTStore",
+            "label": "itemIdCounters",
+            "type": "t_struct(Counter)3923_storage",
+            "src": "../project:/contracts/NFTStore.sol:23"
+          }
+        ],
+        "types": {
+          "t_struct(Counter)3923_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_contract(IMelandStoreItems)6539,t_bool)": {
+            "label": "mapping(contract IMelandStoreItems => bool)"
+          },
+          "t_contract(IMelandStoreItems)6539": {
+            "label": "contract IMelandStoreItems"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          }
+        }
+      }
+    },
+    "50343e501c5d0a66b0e11747015962d956955c733b0e1dd258f645998b9aa697": {
+      "address": "0x344FB80F7BddF1f815d90436984AB856bfBd4ac3",
+      "txHash": "0xf531bb2efea31f8db34e80a484a468e53a21382f309ec88bb3c0ac63026cbecd",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:42"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13614",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeEnabled",
+            "type": "t_bool",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:18"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeTime",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:20"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeWhiteList",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:22"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "ereezeExpiredAtMapById",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:24"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15247",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3400",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "supportLandtypes",
+            "type": "t_mapping(t_bytes_memory_ptr,t_bool)",
+            "src": "../project:/contracts/Meland1155Land.sol:26"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "landtypeById",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "src": "../project:/contracts/Meland1155Land.sol:27"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "totalSupplyByLandtype",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155Land.sol:28"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "ticketlandIds",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155Land.sol:30"
+          }
+        ],
+        "types": {
+          "t_mapping(t_bytes_memory_ptr,t_bool)": {
+            "label": "mapping(bytes => bool)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_contract(NFTStore)15247": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3400": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_contract(MelandTier)13614": {
+            "label": "contract MelandTier"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "fad81c6a3507b49d02919ce7963ee4a0fde9c911028117c54ec782d7db14b3b6": {
+      "address": "0x7E5aae0dC45cAA1D8b4c6F8e6233929a0B957860",
+      "txHash": "0x1188902cd013c08002033034aaf8dc1e6809733778fb2f0648e15ab776cbf742",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:42"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13614",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeEnabled",
+            "type": "t_bool",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:18"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeTime",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:20"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeWhiteList",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:22"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "ereezeExpiredAtMapById",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:24"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15247",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3400",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "_tokenIdCounter",
+            "type": "t_struct(Counter)3923_storage",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:27"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "supportLandtypes",
+            "type": "t_mapping(t_bytes_memory_ptr,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:31"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "landtypeById",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:32"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "totalSupplyByLandtype",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:33"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "canBuyListByAddress",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:34"
+          }
+        ],
+        "types": {
+          "t_struct(Counter)3923_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_bytes_memory_ptr,t_bool)": {
+            "label": "mapping(bytes => bool)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_contract(NFTStore)15247": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3400": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_contract(MelandTier)13614": {
+            "label": "contract MelandTier"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "7c37401b3c37759f2f010204ac8c577458262b6c4d555c3eefe372b66490f34e": {
+      "address": "0x061DBb07a944938da339829d35b8B6c8Eb588851",
+      "txHash": "0xb73a82091be4b8dcb2939cd492bee9d0f9e01ed18f1e6d1eac67013bbfb41dfc",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:42"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "Meland1155CID",
+            "label": "_tokenIdCounter",
+            "type": "t_struct(Counter)3923_storage",
+            "src": "../project:/contracts/Meland1155CID.sol:17"
+          },
+          {
+            "contract": "Meland1155CID",
+            "label": "cidByTokenId",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/Meland1155CID.sol:19"
+          },
+          {
+            "contract": "Meland1155CID",
+            "label": "_totalSupplyByCid",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/Meland1155CID.sol:21"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13614",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "Meland1155Rarity",
+            "label": "mintMaxByRaritykeccak256",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155Rarity.sol:21"
+          },
+          {
+            "contract": "Meland1155Rarity",
+            "label": "_rarityByCId",
+            "type": "t_mapping(t_uint256,t_bytes_storage)",
+            "src": "../project:/contracts/Meland1155Rarity.sol:23"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15247",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3400",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          }
+        ],
+        "types": {
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_contract(NFTStore)15247": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3400": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_mapping(t_uint256,t_bytes_storage)": {
+            "label": "mapping(uint256 => bytes)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_contract(MelandTier)13614": {
+            "label": "contract MelandTier"
+          },
+          "t_struct(Counter)3923_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "10ee2c4ec6a75c2f9b809041a186827c65fdaa4edfd4ac1af20fbf3d69e62ded": {
+      "address": "0x4897f3A1fdA475b742ebE7C9FFF3129730f55785",
+      "txHash": "0x7a76a5a80506499846f09d28e396622a6a84809bf7d267a321943652321aa6e9",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:42"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "_rewardIdCounter",
+            "type": "t_struct(Counter)3923_storage",
+            "src": "../project:/contracts/MelandTierStorage.sol:14"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "_erc1155RewardIdCounter",
+            "type": "t_struct(Counter)3923_storage",
+            "src": "../project:/contracts/MelandTierStorage.sol:15"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "_erc721RewardIdCounter",
+            "type": "t_struct(Counter)3923_storage",
+            "src": "../project:/contracts/MelandTierStorage.sol:16"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "_erc20RewardIdCounter",
+            "type": "t_struct(Counter)3923_storage",
+            "src": "../project:/contracts/MelandTierStorage.sol:17"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "erc721RewardById",
+            "type": "t_mapping(t_uint256,t_struct(ERC721Reward)13735_storage)",
+            "src": "../project:/contracts/MelandTierStorage.sol:41"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "erc20RewardById",
+            "type": "t_mapping(t_uint256,t_struct(ERC20Reward)13741_storage)",
+            "src": "../project:/contracts/MelandTierStorage.sol:42"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "erc1155RewardById",
+            "type": "t_mapping(t_uint256,t_struct(ERC1155Reward)13729_storage)",
+            "src": "../project:/contracts/MelandTierStorage.sol:43"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "rewardById",
+            "type": "t_mapping(t_uint256,t_struct(Reward)13719_storage)",
+            "src": "../project:/contracts/MelandTierStorage.sol:44"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "currentNFTPoolFor100PercentByCId",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "src": "../project:/contracts/MelandTierStorage.sol:48"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "saleNFTPoolFor100PercentByCId",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "src": "../project:/contracts/MelandTierStorage.sol:52"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "currentNFTPoolForOptionByCId",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "src": "../project:/contracts/MelandTierStorage.sol:56"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "saleNFTPoolForOptionByCId",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "src": "../project:/contracts/MelandTierStorage.sol:60"
+          },
+          {
+            "contract": "MelandTierStorage",
+            "label": "rewardTransferedByRewardId",
+            "type": "t_mapping(t_uint256,t_bool)",
+            "src": "../project:/contracts/MelandTierStorage.sol:63"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "Meland1155CID",
+            "label": "_tokenIdCounter",
+            "type": "t_struct(Counter)3923_storage",
+            "src": "../project:/contracts/Meland1155CID.sol:17"
+          },
+          {
+            "contract": "Meland1155CID",
+            "label": "cidByTokenId",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/Meland1155CID.sol:19"
+          },
+          {
+            "contract": "Meland1155CID",
+            "label": "_totalSupplyByCid",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/Meland1155CID.sol:21"
+          },
+          {
+            "contract": "ERC1155ReceiverUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol:27"
+          },
+          {
+            "contract": "ERC1155HolderUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol:40"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          }
+        ],
+        "types": {
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_struct(Counter)3923_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          },
+          "t_mapping(t_uint256,t_struct(ERC721Reward)13735_storage)": {
+            "label": "mapping(uint256 => struct MelandTierStorage.ERC721Reward)"
+          },
+          "t_struct(ERC721Reward)13735_storage": {
+            "label": "struct MelandTierStorage.ERC721Reward",
+            "members": [
+              {
+                "label": "erc721",
+                "type": "t_contract(IERC721Upgradeable)3628"
+              },
+              {
+                "label": "tokenId",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_contract(IERC721Upgradeable)3628": {
+            "label": "contract IERC721Upgradeable"
+          },
+          "t_mapping(t_uint256,t_struct(ERC20Reward)13741_storage)": {
+            "label": "mapping(uint256 => struct MelandTierStorage.ERC20Reward)"
+          },
+          "t_struct(ERC20Reward)13741_storage": {
+            "label": "struct MelandTierStorage.ERC20Reward",
+            "members": [
+              {
+                "label": "erc20",
+                "type": "t_contract(IERC20Upgradeable)3400"
+              },
+              {
+                "label": "amount",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_contract(IERC20Upgradeable)3400": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_mapping(t_uint256,t_struct(ERC1155Reward)13729_storage)": {
+            "label": "mapping(uint256 => struct MelandTierStorage.ERC1155Reward)"
+          },
+          "t_struct(ERC1155Reward)13729_storage": {
+            "label": "struct MelandTierStorage.ERC1155Reward",
+            "members": [
+              {
+                "label": "erc1155",
+                "type": "t_contract(IERC1155Upgradeable)2499"
+              },
+              {
+                "label": "tokenIds",
+                "type": "t_array(t_uint256)dyn_storage"
+              },
+              {
+                "label": "amounts",
+                "type": "t_array(t_uint256)dyn_storage"
+              }
+            ]
+          },
+          "t_contract(IERC1155Upgradeable)2499": {
+            "label": "contract IERC1155Upgradeable"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_mapping(t_uint256,t_struct(Reward)13719_storage)": {
+            "label": "mapping(uint256 => struct MelandTierStorage.Reward)"
+          },
+          "t_struct(Reward)13719_storage": {
+            "label": "struct MelandTierStorage.Reward",
+            "members": [
+              {
+                "label": "erc1155RewardIds",
+                "type": "t_array(t_uint256)dyn_storage"
+              },
+              {
+                "label": "erc721RewardIds",
+                "type": "t_array(t_uint256)dyn_storage"
+              },
+              {
+                "label": "erc20RewardIds",
+                "type": "t_array(t_uint256)dyn_storage"
+              }
+            ]
+          },
+          "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(uint256 => uint256[])"
+          },
+          "t_mapping(t_uint256,t_bool)": {
+            "label": "mapping(uint256 => bool)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          }
+        }
+      }
+    },
+    "f593eeab14f4fab42b0a09196edfc469084b484d974638a223f3e3985931545d": {
+      "address": "0xA2fA01D5f4b0D3ff8cE9D557785859A6Ff26B0D5",
+      "txHash": "0x9a8f0d1a93bbb692898ca757c6aafb633b0f1d857a53bfdc7ac80ccaafac9f53",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:42"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13808",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeEnabled",
+            "type": "t_bool",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:18"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeTime",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:20"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeWhiteList",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:22"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "ereezeExpiredAtMapById",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:24"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15441",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3400",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "supportLandtypes",
+            "type": "t_mapping(t_bytes_memory_ptr,t_bool)",
+            "src": "../project:/contracts/Meland1155Land.sol:26"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "landtypeById",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "src": "../project:/contracts/Meland1155Land.sol:27"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "totalSupplyByLandtype",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155Land.sol:28"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "ticketlandIds",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155Land.sol:30"
+          }
+        ],
+        "types": {
+          "t_mapping(t_bytes_memory_ptr,t_bool)": {
+            "label": "mapping(bytes => bool)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_contract(NFTStore)15441": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3400": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_contract(MelandTier)13808": {
+            "label": "contract MelandTier"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "b3a1923eac793510e6fbe758276a7dfc060be7d07fbf2835c0a5df6e8fa8d905": {
+      "address": "0xDbE19a102e4088E733B173BbaD982F3d4A2Bd177",
+      "txHash": "0xf55d33998b0041f7ec0ecc5e77dd8103098cab37667e62d5b3c30c676e600cd7",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:37"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:42"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13808",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeEnabled",
+            "type": "t_bool",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:18"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeTime",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:20"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeWhiteList",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:22"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "ereezeExpiredAtMapById",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:24"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15441",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3400",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "_tokenIdCounter",
+            "type": "t_struct(Counter)3923_storage",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:27"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "supportLandtypes",
+            "type": "t_mapping(t_bytes_memory_ptr,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:31"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "landtypeById",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:32"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "totalSupplyByLandtype",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:33"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "canBuyListByAddress",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:34"
+          }
+        ],
+        "types": {
+          "t_struct(Counter)3923_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_bytes_memory_ptr,t_bool)": {
+            "label": "mapping(bytes => bool)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_contract(NFTStore)15441": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3400": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_contract(MelandTier)13808": {
+            "label": "contract MelandTier"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "b952d6c561b5427262aa62cbf2da8e51b837279784631f0d8e49f654696b534d": {
+      "address": "0x7958C505D52cC22786F08697D3c0Cff9477B6653",
+      "txHash": "0x36c259102c8e1640ad87efef7141c65d5b52f7889799628bebcbda50b3da5078",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "Meland1155CID",
+            "label": "_tokenIdCounter",
+            "type": "t_struct(Counter)3951_storage",
+            "src": "../project:/contracts/Meland1155CID.sol:17"
+          },
+          {
+            "contract": "Meland1155CID",
+            "label": "cidByTokenId",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/Meland1155CID.sol:19"
+          },
+          {
+            "contract": "Meland1155CID",
+            "label": "_totalSupplyByCid",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/Meland1155CID.sol:21"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13838",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "Meland1155Rarity",
+            "label": "mintMaxByRaritykeccak256",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155Rarity.sol:21"
+          },
+          {
+            "contract": "Meland1155Rarity",
+            "label": "_rarityByCId",
+            "type": "t_mapping(t_uint256,t_bytes_storage)",
+            "src": "../project:/contracts/Meland1155Rarity.sol:23"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15471",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3428",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          }
+        ],
+        "types": {
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_contract(NFTStore)15471": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3428": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_mapping(t_uint256,t_bytes_storage)": {
+            "label": "mapping(uint256 => bytes)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_contract(MelandTier)13838": {
+            "label": "contract MelandTier"
+          },
+          "t_struct(Counter)3951_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "9388d9c6a08b3a6cdf930400c4f25e769409c730b3e51089be239d7b251a8ac7": {
+      "address": "0xA26B83408B4e94D9729f97F3497cef1563218dE1",
+      "txHash": "0x15414d626729ebb9f8d8fe5b31bcf9da5c5fdfb025913f570c66773db44af617",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13839",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeEnabled",
+            "type": "t_bool",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:18"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeTime",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:20"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeWhiteList",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:22"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "ereezeExpiredAtMapById",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:24"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15472",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3428",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "supportLandtypes",
+            "type": "t_mapping(t_bytes_memory_ptr,t_bool)",
+            "src": "../project:/contracts/Meland1155Land.sol:26"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "landtypeById",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "src": "../project:/contracts/Meland1155Land.sol:27"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "totalSupplyByLandtype",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155Land.sol:28"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "ticketlandIds",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155Land.sol:30"
+          }
+        ],
+        "types": {
+          "t_mapping(t_bytes_memory_ptr,t_bool)": {
+            "label": "mapping(bytes => bool)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_contract(NFTStore)15472": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3428": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_contract(MelandTier)13839": {
+            "label": "contract MelandTier"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "86852c11472870e6b875b8b097d9cbd517676007e7e8b446d887118e4143319b": {
+      "address": "0x5D0A0CD9ABcfCd6A3CbB8e080e7a5c4f111EDcEb",
+      "txHash": "0x81091ac01ed640ac50608baba499da12740572ceec6bc1dc42f990f83ea0a624",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13827",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeEnabled",
+            "type": "t_bool",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:18"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeTime",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:20"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeWhiteList",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:22"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "ereezeExpiredAtMapById",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:24"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15460",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3428",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "_tokenIdCounter",
+            "type": "t_struct(Counter)3951_storage",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:27"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "supportLandtypes",
+            "type": "t_mapping(t_bytes_memory_ptr,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:31"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "landtypeById",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:32"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "totalSupplyByLandtype",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:33"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "canBuyListByAddress",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:34"
+          }
+        ],
+        "types": {
+          "t_struct(Counter)3951_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_bytes_memory_ptr,t_bool)": {
+            "label": "mapping(bytes => bool)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_contract(NFTStore)15460": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3428": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_contract(MelandTier)13827": {
+            "label": "contract MelandTier"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "25db864c60e7d516a80794bda4c5b5b3f5720e096ffaa76e2b7d1f6466bb57f6": {
+      "address": "0xde3D0F9C8Bd8F9a913Ddd2Cb43530b43511e35B8",
+      "txHash": "0x7144ad637571323f1db79b514b8468f8342b916ddc4f5e7a3294dc6b9e7793be",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13839",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeEnabled",
+            "type": "t_bool",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:18"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeTime",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:20"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeWhiteList",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:22"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "ereezeExpiredAtMapById",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:24"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15472",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3428",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "_tokenIdCounter",
+            "type": "t_struct(Counter)3951_storage",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:27"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "supportLandtypes",
+            "type": "t_mapping(t_bytes_memory_ptr,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:31"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "landtypeById",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:32"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "totalSupplyByLandtype",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:33"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "canBuyListByAddress",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:34"
+          }
+        ],
+        "types": {
+          "t_struct(Counter)3951_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_bytes_memory_ptr,t_bool)": {
+            "label": "mapping(bytes => bool)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_contract(NFTStore)15472": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3428": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_contract(MelandTier)13839": {
+            "label": "contract MelandTier"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "dab828966939fe0d372018184a4eed6e474b5c5a0a402441afb4155b4d22bd13": {
+      "address": "0xb4A4A24a608Db796459675006ef451d075Cf8c02",
+      "txHash": "0x1877f4be97ca65e311f541393c112c594c7c873d3cbfeff25cbadc9272d48b93",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13832",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeEnabled",
+            "type": "t_bool",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:18"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeTime",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:20"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeWhiteList",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:22"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "ereezeExpiredAtMapById",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:24"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15465",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3428",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "supportLandtypes",
+            "type": "t_mapping(t_bytes_memory_ptr,t_bool)",
+            "src": "../project:/contracts/Meland1155Land.sol:26"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "landtypeById",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "src": "../project:/contracts/Meland1155Land.sol:27"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "totalSupplyByLandtype",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155Land.sol:28"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "ticketlandIds",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155Land.sol:30"
+          }
+        ],
+        "types": {
+          "t_mapping(t_bytes_memory_ptr,t_bool)": {
+            "label": "mapping(bytes => bool)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_contract(NFTStore)15465": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3428": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_contract(MelandTier)13832": {
+            "label": "contract MelandTier"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "c8ba667e4c608b5a63007f5c645bd4986e4d1ef3ab5543f6fb9dd39d684911e9": {
+      "address": "0x141db3efb8BbD1aCB9c773C9F021bAf30C985907",
+      "txHash": "0xef75110d5548b76524627a403848f052679fc3ecb53743eeae8a55b3eec2dc60",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13879",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeEnabled",
+            "type": "t_bool",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:18"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeTime",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:20"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeWhiteList",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:22"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "ereezeExpiredAtMapById",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:24"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15512",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3428",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "_tokenIdCounter",
+            "type": "t_struct(Counter)3951_storage",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:27"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "supportLandtypes",
+            "type": "t_mapping(t_bytes_memory_ptr,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:31"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "landtypeById",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:32"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "totalSupplyByLandtype",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:33"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "canBuyListByAddress",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:34"
+          }
+        ],
+        "types": {
+          "t_struct(Counter)3951_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_bytes_memory_ptr,t_bool)": {
+            "label": "mapping(bytes => bool)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_contract(NFTStore)15512": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3428": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_contract(MelandTier)13879": {
+            "label": "contract MelandTier"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "e84f063bf8c238f26ea8ebf7aaa0f1144812452c7b369daff2e470580948166a": {
+      "address": "0xeaE2d9CB410abF5a2a2E6aE4EaaFE93Fc36F8C26",
+      "txHash": "0x9c4f47752bb39e49573dce2924fd9ae8dc43c3576ebe730494f9c2dbeb0a69c4",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13886",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeEnabled",
+            "type": "t_bool",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:18"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeTime",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:20"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeWhiteList",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:22"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "ereezeExpiredAtMapById",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:24"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15519",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3428",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "supportLandtypes",
+            "type": "t_mapping(t_bytes_memory_ptr,t_bool)",
+            "src": "../project:/contracts/Meland1155Land.sol:26"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "landtypeById",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "src": "../project:/contracts/Meland1155Land.sol:27"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "totalSupplyByLandtype",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155Land.sol:28"
+          },
+          {
+            "contract": "Meland1155Land",
+            "label": "ticketlandIds",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155Land.sol:30"
+          }
+        ],
+        "types": {
+          "t_mapping(t_bytes_memory_ptr,t_bool)": {
+            "label": "mapping(bytes => bool)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_contract(NFTStore)15519": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3428": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_contract(MelandTier)13886": {
+            "label": "contract MelandTier"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "89696e24bc52d3f5490a04668ec709c25c9ae151b578e4164daed992a4f72041": {
+      "address": "0xE592a2ef7c61Ca665D454A33DAf86a60eB6fdf43",
+      "txHash": "0xfade4af24ae93a58ae543809481b3eeacefd59d14a1777ffa8e4101aba91a565",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13886",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeEnabled",
+            "type": "t_bool",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:18"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeTime",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:20"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeWhiteList",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:22"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "ereezeExpiredAtMapById",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:24"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15519",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3428",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "_tokenIdCounter",
+            "type": "t_struct(Counter)3951_storage",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:27"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "supportLandtypes",
+            "type": "t_mapping(t_bytes_memory_ptr,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:31"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "landtypeById",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:32"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "totalSupplyByLandtype",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:33"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "canBuyListByAddress",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:34"
+          }
+        ],
+        "types": {
+          "t_struct(Counter)3951_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_bytes_memory_ptr,t_bool)": {
+            "label": "mapping(bytes => bool)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_contract(NFTStore)15519": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3428": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_contract(MelandTier)13886": {
+            "label": "contract MelandTier"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
+          }
+        }
+      }
+    },
+    "b5ce3d0357019ca64f81bf68d57bd7535f513ab0966c7d101f7d8cae2f9037f0": {
+      "address": "0x457C8eDdC713901ae6CBDd314E774C75470Dc615",
+      "txHash": "0x765c82138893132ecce45ab67049e80ba840808687b2e807f556e8b64f7f8319",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "ERC165Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_uint256,t_mapping(t_address,t_uint256))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:25"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_operatorApprovals",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:28"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "_uri",
+            "type": "t_string_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:31"
+          },
+          {
+            "contract": "ERC1155Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)47_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol:471"
+          },
+          {
+            "contract": "MelandTierAddressStore",
+            "label": "_melandTier",
+            "type": "t_contract(MelandTier)13886",
+            "src": "../project:/contracts/MelandTierAddressStore.sol:18"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "_roles",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "contract": "AccessControlUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "contract": "ERC1155BurnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol:49"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeEnabled",
+            "type": "t_bool",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:18"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeTime",
+            "type": "t_uint256",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:20"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "freezeWhiteList",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:22"
+          },
+          {
+            "contract": "MelandNFTFreeze",
+            "label": "ereezeExpiredAtMapById",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "../project:/contracts/MelandNFTFreeze.sol:24"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_store",
+            "type": "t_contract(NFTStore)15519",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:19"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_acceptedToken",
+            "type": "t_contract(IERC20Upgradeable)3428",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:20"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_storeSymbols",
+            "type": "t_array(t_string_storage)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:22"
+          },
+          {
+            "contract": "Meland1155StoreItem",
+            "label": "_prices",
+            "type": "t_array(t_uint256)dyn_storage",
+            "src": "../project:/contracts/Meland1155StoreItem.sol:23"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:215"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:81"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "_tokenIdCounter",
+            "type": "t_struct(Counter)3951_storage",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:27"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "supportLandtypes",
+            "type": "t_mapping(t_bytes_memory_ptr,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:31"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "landtypeById",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:32"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "totalSupplyByLandtype",
+            "type": "t_mapping(t_bytes32,t_uint256)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:33"
+          },
+          {
+            "contract": "Meland1155LandFuture",
+            "label": "canBuyListByAddress",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "../project:/contracts/Meland1155LandFuture.sol:34"
+          }
+        ],
+        "types": {
+          "t_struct(Counter)3951_storage": {
+            "label": "struct CountersUpgradeable.Counter",
+            "members": [
+              {
+                "label": "_value",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_bytes_memory_ptr,t_bool)": {
+            "label": "mapping(bytes => bool)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)"
+          },
+          "t_bytes32": {
+            "label": "bytes32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_contract(NFTStore)15519": {
+            "label": "contract NFTStore"
+          },
+          "t_contract(IERC20Upgradeable)3428": {
+            "label": "contract IERC20Upgradeable"
+          },
+          "t_array(t_string_storage)dyn_storage": {
+            "label": "string[]"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_contract(MelandTier)13886": {
+            "label": "contract MelandTier"
+          },
+          "t_mapping(t_uint256,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(uint256 => mapping(address => uint256))"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))"
+          },
+          "t_array(t_uint256)47_storage": {
+            "label": "uint256[47]"
           }
         }
       }

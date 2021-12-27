@@ -136,11 +136,15 @@ abstract contract Meland1155StoreItem is IMelandStoreItems, ContextUpgradeable {
                 index = i;
             }
         }
+
+        string memory lastS = _storeSymbols[_storeSymbols.length - 1];
+        uint256 lastP = _prices[_storeSymbols.length - 1];
+
         // save gas
-        _storeSymbols[index] = _storeSymbols[_storeSymbols.length - 1];
+        _storeSymbols[index] = lastS;
         _storeSymbols.pop();
 
-        _prices[index] = _prices[_storeSymbols.length - 1];
+        _prices[index] = lastP;
         _prices.pop();
 
         _dispatchItemInfoUpdate();

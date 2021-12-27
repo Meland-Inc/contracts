@@ -6,13 +6,14 @@ import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol"
 import "@openzeppelin/contracts-upgradeable/token/ERC1155/extensions/ERC1155BurnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 import "./MelandNFTFreeze.sol";
 import "./MelandTierAddressStore.sol";
 import "./MelandAccessRoles.sol";
 import "./MelandTier.sol";
 import "./Meland1155StoreItem.sol";
 
-contract Meland1155Land is
+contract Meland1155LandFuture is
     Initializable,
     MelandTierAddressStore,
     MelandAccessRoles,
@@ -21,13 +22,16 @@ contract Meland1155Land is
     Meland1155StoreItem,
     UUPSUpgradeable
 {
-    bytes public constant ticketland = "ticketland";
-    bytes public constant vipland = "vipland";
+    using CountersUpgradeable for CountersUpgradeable.Counter;
+
+    CountersUpgradeable.Counter private _tokenIdCounter;
+    bytes public constant vipland1x1 = "vipland1x1";
+    bytes public constant vipland2x2 = "vipland2x2";
+    bytes public constant vipland4x4 = "vipland4x4";
     mapping(bytes => bool) public supportLandtypes;
     mapping(uint256 => string) public landtypeById;
     mapping(bytes32 => uint256) public totalSupplyByLandtype;
-
-    uint256[] public ticketlandIds;
+    mapping(address => bool) public canBuyListByAddress;
 
     function initialize(string memory _uri) public initializer {
         __ERC1155_init(_uri);
@@ -36,8 +40,9 @@ contract Meland1155Land is
         __MelandNFTFreeze_init();
         __MelandAccessRoles_init();
 
-        supportLandtypes[vipland] = true;
-        supportLandtypes[ticketland] = true;
+        supportLandtypes[vipland1x1] = true;
+        supportLandtypes[vipland2x2] = true;
+        supportLandtypes[vipland4x4] = true;
     }
 
     function setURI(string memory newuri) public onlyRole(GM_ROLE) {
@@ -81,15 +86,8 @@ contract Meland1155Land is
         return string(abi.encodePacked(super.uri(id), "/", landtype, "/", uint2str(id)));
     }
 
-    function addticketlandIds(uint256[] memory ids) external onlyRole(GM_ROLE) {
-        for (uint256 i = 0; i < ids.length; i ++) {
-            ticketlandIds.push(ids[i]);
-        }
-    }
-
-    function claerticketlandIds() external onlyRole(GM_ROLE) {
-        uint256[] memory ids;
-        ticketlandIds = ids;
+    function setCanBuyListByAddress(address _address, bool _b) public onlyRole(GM_ROLE) {
+        canBuyListByAddress[_address] = _b;
     }
 
     function melandStoreItemURI(string memory symbol)
@@ -111,10 +109,12 @@ contract Meland1155Land is
 
     function mint(
         address account,
-        uint256 id,
         uint256 amount,
         bytes memory landtype
     ) public onlyRole(MINTER_ROLE) {
+        require(canBuyListByAddress[account], "Not eligible to buy");
+        _tokenIdCounter.increment();
+        uint256 id = _tokenIdCounter.current();
         _mint(account, id, amount, landtype);
     }
 
@@ -133,15 +133,6 @@ contract Meland1155Land is
     // Enable or Disable Freeze feature.
     function setFreezeEnabled(bool _bool) public onlyRole(GM_ROLE) {
         _setFreezeEnabled(_bool);
-    }
-
-    function mintBatch(
-        address to,
-        uint256[] memory ids,
-        uint256[] memory amounts,
-        bytes memory landtype
-    ) public onlyRole(MINTER_ROLE) {
-        _mintBatch(to, ids, amounts, landtype);
     }
 
     function _authorizeUpgrade(address newImplementation)
@@ -210,10 +201,6 @@ contract Meland1155Land is
 
             for (uint256 i = 0; i < ids.length; i++) {
                 require(
-                    ids[i] >= 10001 && ids[i] <= 10000001000,
-                    "Coordinates are not legal"
-                );
-                require(
                     bytes(landtypeById[ids[i]]).length == 0,
                     "Make sure each land is unique"
                 );
@@ -263,14 +250,11 @@ contract Meland1155Land is
     // To prevent errors in the sales process
     function melandStoreItemsRestrictPurchaseNFTIds(string memory)
         external
-        view
+        pure
         returns (bool, uint256[] memory)
     {
-        uint256[] memory ids = new uint256[](ticketlandIds.length);
-        for (uint256 i = 0; i < ticketlandIds.length; i++) {
-            ids[i] = ticketlandIds[i];
-        }
-        return (true, ids);
+        uint256[] memory ids;
+        return (false, ids);
     }
 
     // Store to pay NFT to the selling user by calling this function,
@@ -281,32 +265,22 @@ contract Meland1155Land is
         uint256 id,
         address to
     ) external override returns(uint256) {
+        require(canBuyListByAddress[to], "Not eligible to buy");
         super.checkMelandStoreItemsMint(symbol, id, to);
+        _tokenIdCounter.increment();
+        id = _tokenIdCounter.current();
         _mint(to, id, 1, bytes(symbol));
         _dispatchItemInfoUpdate();
-
-        uint256 index;
-        for (uint256 i = 0; i < ticketlandIds.length; i ++) {
-            if (ticketlandIds[i] == id) {
-                index = i;
-            }
-        }
-        
-        uint256 last = ticketlandIds[ticketlandIds.length - 1];
-        ticketlandIds[index] = last;
-        ticketlandIds.pop();
-
         return id;
     }
 
     // If return false, Stores will suspend sales.
-    function melandStoreSellStatus(string memory symbol)
+    function melandStoreSellStatus(string memory)
         external
-        view
+        pure
         returns (bool)
     {
-        return
-            ticketlandIds.length > 0;
+        return true;
     }
 
     // If return true, it means that each person can only buy a certain amount
@@ -315,7 +289,7 @@ contract Meland1155Land is
         pure
         returns (bool restricted, uint256 restrictLimit)
     {
-        restricted = true;
+        restricted = false;
         restrictLimit = 1;
     }
 }
