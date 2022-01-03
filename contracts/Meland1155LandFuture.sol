@@ -28,6 +28,7 @@ contract Meland1155LandFuture is
     bytes public constant vipland1x1 = "vipland1x1";
     bytes public constant vipland2x2 = "vipland2x2";
     bytes public constant vipland4x4 = "vipland4x4";
+    bytes public constant vipland4x4fixed = "vipland4x4-fixed";
     mapping(bytes => bool) public supportLandtypes;
     mapping(uint256 => string) public landtypeById;
     mapping(bytes32 => uint256) public totalSupplyByLandtype;
@@ -49,30 +50,8 @@ contract Meland1155LandFuture is
         _setURI(newuri);
     }
 
-    function uint2str(uint256 _i)
-        internal
-        pure
-        returns (string memory _uintAsString)
-    {
-        if (_i == 0) {
-            return "0";
-        }
-        uint256 j = _i;
-        uint256 len;
-        while (j != 0) {
-            len++;
-            j /= 10;
-        }
-        bytes memory bstr = new bytes(len);
-        uint256 k = len;
-        while (_i != 0) {
-            k = k - 1;
-            uint8 temp = (48 + uint8(_i - (_i / 10) * 10));
-            bytes1 b1 = bytes1(temp);
-            bstr[k] = b1;
-            _i /= 10;
-        }
-        return string(bstr);
+    function fixedtype() public onlyRole(GM_ROLE) {
+        supportLandtypes[vipland4x4fixed] = true;
     }
 
     function uri(uint256 id)

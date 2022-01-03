@@ -39,10 +39,11 @@ module.exports = {
 
     // polygon main network
     matic: {
-      provider: () => new HDWalletProvider(mnemonic, `wss://hidden-hidden-dew.matic.quiknode.pro/320f34c61dd7ff8e73083de2c90f4159844990b6`),
+      provider: () => new HDWalletProvider(mnemonic, `wss://hidden-hidden-dew.matic.quiknode.pro/320f34c61dd7ff8e73083de2c90f4159844990b6/`),
       network_id: 137,
       confirmations: 2,
       timeoutBlocks: 200,
+      gasPrice: 200000000000,
       skipDryRun: true
     },
 

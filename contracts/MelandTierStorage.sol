@@ -240,6 +240,18 @@ contract MelandTierStorage is ContextUpgradeable {
         emit RewaardPoolUpdate(cid);
     }
 
+    function fixed100PercentReward(
+        uint256 cid,
+        ERC1155Reward[] memory erc1155rewards,
+        ERC721Reward[] memory erc721rewards,
+        ERC20Reward[] memory erc20rewards
+    ) public {
+        saleNFTPoolFor100PercentByCId[cid].push(
+            _createReward(erc1155rewards, erc721rewards, erc20rewards)
+        );
+        emit RewaardPoolUpdate(cid);
+    }
+
     // Add bonus items in bulk to save gas fee
     // note: that the token associated with adding the reward must be approved in advance.
     function add100PercentReward(

@@ -28,19 +28,27 @@ const promiseOpen = (filePath, mode = 'w') => {
 
 const networkFilenameMap = {
     'develop': 'local.json',
-    'mumbai': 'mumbai.json'
+    'mumbai': 'mumbai.json',
+    'matic': 'matic.json'
 };
 
 const networkStartBlockMap = {
     'develop': "0",
-    'mumbai': "23090652"
+    'mumbai': "23090652",
+    'matic': "23029177",
 }
 
 module.exports = async function (_) {
     let network = config.network;
     const configPath = path.join(process.env.indexerConfigDir || process.cwd(), `${networkFilenameMap[network]}`);
 
-    const existsMELD = await MELD.deployed();
+    let MELDAddress = '0x48844ddba89799dc40ec31728dac629802d407f3';
+
+    if (network == "mumbai") {
+        const existsMELD = await MELD.deployed();
+        MELDAddress = existsMELD.address;
+    }
+
     // const existsVipLand = await VipLand.deployed();
     const LandI = await Land.deployed();
     const existsNFTStore = await NFTStore.deployed();
@@ -80,7 +88,7 @@ module.exports = async function (_) {
     "Land_address": "${LandI.address}",
     "NFTStore_address": "${existsNFTStore.address}",
     "Marketplace_address": "${existsMarketplace.address}",
-    "MELD_address": "${existsMELD.address}",
+    "MELD_address": "${MELDAddress}",
     "NFTFactory_address": "${existsNFTFactory.address}",
     "Faucet_address": "${faucetAddress}",
     "VestPool_address": "${vestPoolAddress}",

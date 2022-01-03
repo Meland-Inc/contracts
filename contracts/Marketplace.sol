@@ -353,7 +353,12 @@ contract Marketplace is
             // The last 20% are official earnings
             uint256 officialAmount = saleShareAmount.mul(20).div(100);
 
-            acceptedToken.burnFrom(sender, burnAmount);
+            // transfer to bidback wallet when burn failed.
+            acceptedToken.transferFrom(
+                sender,
+                address(0x01B375Aa81EC7595ff61094A022d09eC17Da4AbA),
+                burnAmount
+            );
             require(
                 acceptedToken.transferFrom(
                     sender,

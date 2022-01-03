@@ -174,20 +174,12 @@ contract NFTStore is
             // The last 20% are official earnings
             uint256 officialAmount = saleShareAmount.mul(20).div(100);
 
-            {
-                IERC20MELD mabyeMELD = IERC20MELD(address(acceptedToken));
-                try mabyeMELD.burnFrom(buyer, burnAmount) {
-
-                } catch(bytes memory) {
-
-                    // transfer to bidback wallet when burn failed.
-                    acceptedToken.transferFrom(
-                        buyer,
-                        bidbackWallet,
-                        burnAmount
-                    );
-                }
-            }
+            // transfer to bidback wallet when burn failed.
+            acceptedToken.transferFrom(
+                buyer,
+                bidbackWallet,
+                burnAmount
+            );
 
             require(
                 acceptedToken.transferFrom(
