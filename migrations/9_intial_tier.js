@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 const { deployProxy } = require('@openzeppelin/truffle-upgrades');
-
+const { getEnvBuyNetwork } = require('../utils');
 const MelandTier = artifacts.require("MelandTier");
 
 module.exports = async function (deployer, network) {
@@ -14,7 +14,7 @@ module.exports = async function (deployer, network) {
         return;
     }
 
-    const env = 'release';
+    const env = getEnvBuyNetwork(network);
 
     await deployProxy(MelandTier, [
         `https://token-metadata-${env}.melandworld.com/tier`

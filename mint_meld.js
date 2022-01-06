@@ -27,7 +27,7 @@ module.exports = async function (callback) {
             callback()
             exit(0);
         }
-
+        
         const MELDI = await MELD.deployed();
 
         await MELDI.mint(BigNumber.from(2000000000).mul(BigNumber.from(10).pow(18)));

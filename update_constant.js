@@ -14,6 +14,8 @@ const Meland1155Wearable = artifacts.require("Meland1155Wearable");
 const Meland1155Placeable = artifacts.require("Meland1155Placeable");
 const MelandTier = artifacts.require("MelandTier");
 const Meland1155LandFuture = artifacts.require("Meland1155LandFuture");
+const Meland1155MELDFuture = artifacts.require("Meland1155MELDFuture");
+const MelandExchange = artifacts.require("MelandExchange");
 
 const promiseOpen = (filePath, mode = 'w') => {
     return new Promise((resolve, reject) => {
@@ -34,7 +36,7 @@ const networkFilenameMap = {
 
 const networkStartBlockMap = {
     'develop': "0",
-    'mumbai': "23090652",
+    'mumbai': "23574402",
     'matic': "23029177",
 }
 
@@ -58,6 +60,8 @@ module.exports = async function (_) {
     // const Meland1155PlaceableI = await Meland1155Placeable.deployed();
     const MelandTierI = await MelandTier.deployed();
     const Meland1155LandFutureI = await Meland1155LandFuture.deployed();
+    const Meland1155MELDFutureI = await Meland1155MELDFuture.deployed();
+    const MelandExchangeI = await MelandExchange.deployed();
 
     let faucetAddress = '';
     if ([
@@ -95,6 +99,8 @@ module.exports = async function (_) {
     "Meland1155Wearable_address": "${Meland1155WearableI.address}",
     "Meland1155Placeable_address": "",
     "Meland1155LandFuture_address": "${Meland1155LandFutureI.address}",
+    "Meland1155MELDFuture_address": "${Meland1155MELDFutureI.address}",
+    "MelandExchange_address": "${MelandExchangeI.address}",
     "MelandTier_address": "${MelandTierI.address}",
     "start_block": "${networkStartBlockMap[network]}"
 }

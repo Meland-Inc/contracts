@@ -16,7 +16,7 @@ import "./MelandTier.sol";
 // Support arbitrary erc20 token packaging
 // MELD Futures
 
-contract Meland1155MELDFutures is
+contract Meland1155MELDFuture is
     Initializable,
     ERC1155Upgradeable,
     MelandAccessRoles,
@@ -35,12 +35,18 @@ contract Meland1155MELDFutures is
         uint256 amount;
     }
 
+    event Claim(
+        uint256 indexed id,
+        address indexed beneficiary,
+        uint256 amount
+    );
+
     // Records the current number of tokens left for each type of token
     mapping(IERC20Upgradeable => uint256) public totalSupplyByERC20;
     mapping(uint256 => ERC20Future) public futureById;
 
-    function initialize(string memory uri) public initializer {
-        __ERC1155_init(uri);
+    function initialize(string memory _uri) public initializer {
+        __ERC1155_init(_uri);
         __ERC1155Burnable_init();
         __UUPSUpgradeable_init();
         __MelandAccessRoles_init();
@@ -59,16 +65,65 @@ contract Meland1155MELDFutures is
         _setURI(newuri);
     }
 
+    function uint2str(uint256 _i)
+        internal
+        pure
+        returns (string memory _uintAsString)
+    {
+        if (_i == 0) {
+            return "0";
+        }
+        uint256 j = _i;
+        uint256 len;
+        while (j != 0) {
+            len++;
+            j /= 10;
+        }
+        bytes memory bstr = new bytes(len);
+        uint256 k = len;
+        while (_i != 0) {
+            k = k - 1;
+            uint8 temp = (48 + uint8(_i - (_i / 10) * 10));
+            bytes1 b1 = bytes1(temp);
+            bstr[k] = b1;
+            _i /= 10;
+        }
+        return string(bstr);
+    }
+
+    function uri(uint256 id)
+        public
+        view
+        virtual
+        override
+        returns (string memory)
+    {
+        ERC20Future memory future = futureById[id];
+        return
+            string(
+                abi.encodePacked(
+                    super.uri(id),
+                    "/",
+                    uint2str(future.amount),
+                    "/",
+                    uint2str(future.unlockAt),
+                    "/",
+                    uint2str(id)
+                )
+            );
+    }
+
     // Anyone can mint futures as long as they have money.
     function mintBatch(
         IERC20Upgradeable token,
+        address to,
         uint256 amount,
         uint8 count,
         uint256 lockseconds
     ) public {
         address sender = _msgSender();
 
-        uint256 allowanceAmount = token.allowance(sender, address(0));
+        uint256 allowanceAmount = token.allowance(sender, address(this));
 
         uint256 totalAmount = amount.mul(count);
         require(
@@ -79,12 +134,12 @@ contract Meland1155MELDFutures is
 
         token.transferFrom(sender, address(this), totalAmount);
 
-        uint256[] memory ids;
-        uint256[] memory amounts;
+        uint256[] memory ids = new uint256[](count);
+        uint256[] memory amounts = new uint256[](count);
 
         for (uint8 i = 0; i < count; i++) {
-            uint256 tokenId = _tokenIdCounter.current();
             _tokenIdCounter.increment();
+            uint256 tokenId = _tokenIdCounter.current();
 
             futureById[tokenId] = ERC20Future(
                 token,
@@ -94,10 +149,10 @@ contract Meland1155MELDFutures is
 
             ids[i] = tokenId;
             amounts[i] = 1;
-        }
 
-        totalSupplyByERC20[token].add(totalAmount);
-        _mintBatch(sender, ids, amounts, "");
+        }
+        totalSupplyByERC20[token] = totalSupplyByERC20[token] + totalAmount;
+        _mintBatch(to, ids, amounts, "");
     }
 
     function setMelandTier(MelandTier _tierAddress) public onlyRole(GM_ROLE) {
@@ -105,13 +160,14 @@ contract Meland1155MELDFutures is
     }
 
     // Converting futures into corresponding token
-    function exchange(uint256 id) public {
+    function claim(uint256 id) public {
         address sender = _msgSender();
-        _burn(sender, id, 1);
         ERC20Future memory future = futureById[id];
-        require(address(future.token) != address(0), "future not found");
+        require(future.unlockAt > 0, "future not found");
         require(future.unlockAt < block.timestamp, "future not unlocked");
+        _burn(sender, id, 1);
         future.token.transfer(sender, future.amount);
+        emit Claim(id, sender, future.amount);
     }
 
     function totalSupply(uint256 id) internal view returns (uint256) {
@@ -163,9 +219,14 @@ contract Meland1155MELDFutures is
             if (to == address(0)) {
                 // clear when burn
                 delete futureById[id];
-                totalSupplyByERC20[future.token] -= future.amount;
+                unchecked {
+                    totalSupplyByERC20[future.token] -= future.amount;
+                }
             } else {
-                require(future.unlockAt > block.timestamp, "Transfers are not allowed for unlocked futures");
+                require(
+                    future.unlockAt > block.timestamp,
+                    "Transfers are not allowed for unlocked futures"
+                );
             }
         }
 
