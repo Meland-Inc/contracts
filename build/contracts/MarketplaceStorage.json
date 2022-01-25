@@ -1715,7 +1715,7 @@
   "sourceMap": "199:1498:44:-:0;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "199:1498:44:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;376:29;;;;;-1:-1:-1;;;;;376:29:44;;;;;;-1:-1:-1;;;;;178:32:67;;;160:51;;148:2;133:18;376:29:44;;;;;;;;481:54;;515:20;481:54;;;;;368:25:67;;;356:2;341:18;481:54:44;222:177:67;248:31:44;;;;;-1:-1:-1;;;;;248:31:44;;;312;;;;;-1:-1:-1;;;;;312:31:44;;;914:33;;;;;;970:34;;;;;;835:68;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;835:68:44;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1519:25:67;;;-1:-1:-1;;;;;1618:15:67;;;1613:2;1598:18;;;1591:43;;;;1650:18;;;1643:34;;;;1717:13;;1713:22;;1708:2;1693:18;;1686:50;1783:15;;;;1777:22;1773:31;;;1767:3;1752:19;;1745:60;1571:3;1821:19;;1814:35;1880:3;1865:19;;1858:35;1506:3;1491:19;835:68:44;1172:727:67;410:66:44;;450:26;410:66;;813:354:67;881:6;889;942:2;930:9;921:7;917:23;913:32;910:52;;;958:1;955;948:12;910:52;984:23;;-1:-1:-1;;;;;1036:31:67;;1026:42;;1016:70;;1082:1;1079;1072:12;1016:70;1105:5;1157:2;1142:18;;;;1129:32;;-1:-1:-1;;;813:354:67:o",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.9;\n\nimport \"@openzeppelin/contracts/token/ERC721/IERC721.sol\";\nimport \"@openzeppelin/contracts/token/ERC1155/IERC1155.sol\";\nimport \"./IMELD.sol\";\n\ncontract MarketplaceStorage {\n  // MELD Token.\n  IERC20MELD public acceptedToken;\n\n  // 40% ownerCutPerMillion\n  address public foundationWallet;\n\n  // 20% ownerCutPerMillion\n  address public officialWallet;\n\n  bytes32 public constant UPGRADER_ROLE = keccak256(\"UPGRADER_ROLE\");\n\n  bytes32 public constant GM_ROLE = keccak256(\"GM_ROLE\");\n\n  struct ERC721Or1155 {\n    IERC1155 erc1155;\n    IERC721 erc721;\n  }\n\n  struct Order {\n    // Order ID\n    bytes32 id;\n\n    address seller;\n\n    // token id\n    uint256 assetId;\n\n    ERC721Or1155 nft;\n\n    uint256 price;\n\n    uint256 expiresAt;\n  }\n\n  // nft address -> (nft token id -> Order)\n  mapping (address => mapping(uint256 => Order)) public orderByAssetId;\n\n  // \n  uint256 public ownerCutPerMillion;\n\n  // uploaded fee\n  uint256 public publicationFeeInWei;\n\n  // EVENTS\n  event OrderCreated(\n    bytes32 id,\n    uint256 indexed assetId,\n    address indexed seller,\n    ERC721Or1155 nft,\n    uint256 priceInWei,\n    uint256 expiresAt\n  );\n  event OrderSuccessful(\n    bytes32 id,\n    uint256 indexed assetId,\n    address indexed seller,\n    ERC721Or1155 nft,\n    uint256 totalPrice,\n    address indexed buyer\n  );\n  event OrderCancelled(\n    bytes32 id,\n    uint256 indexed assetId,\n    address indexed seller,\n    ERC721Or1155 nft\n  );\n  event OrderUpdated(\n    bytes32 id,\n    uint256 priceInWei,\n    uint256 expiresAt\n  );\n\n  event ChangedPublicationFee(uint256 publicationFee);\n  \n  event ChangedOwnerCutPerMillion(uint256 ownerCutPerMillion);\n}",
-  "sourcePath": "/Users/alberthuang/code/icw/meland/contracts/MarketplaceStorage.sol",
+  "sourcePath": "/Users/alberthuang/code/contracts/contracts/MarketplaceStorage.sol",
   "ast": {
     "absolutePath": "project:/contracts/MarketplaceStorage.sol",
     "exportedSymbols": {
@@ -4606,7 +4606,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-06T08:35:55.339Z",
+  "updatedAt": "2022-01-25T07:44:20.408Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

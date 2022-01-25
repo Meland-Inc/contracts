@@ -182,7 +182,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.9;\n\nimport \"@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol\";\n\n// Meland.ai official mall Item contract protocol,\n// Only the implementation of the protocol NFT, can be sold in the mall\n// Only support erc1155\n\ninterface IMelandStoreItems {\n    // Returns acceptedToken\n    function acceptedToken(string memory symbol) view external returns(IERC20Upgradeable);\n\n    // Returns all supported symbols and prices, \n    // Symbols will be returned by melandStoreItemMint when purchased\n    function melandStoreItems() external view returns(string[] memory symbols, uint256[] memory prices);\n\n    // If return true, it means that each person can only buy a certain amount\n    function melandStoreItemsRestrictedPurchase(string memory symbol)\n        external\n        view\n        returns (bool restricted, uint256 restrictLimit);\n\n    // If return ture, means that the mall will only have the specified id\n    // Else otherwise it will be linear mint\n    // The ids Must ensure that you can mint, \n    // If multi-channel sales or mint, you need to filter out the ids that have been minted,\n    // To prevent errors in the sales process\n    function melandStoreItemsRestrictPurchaseNFTIds(string memory symbol) external view returns(bool restricted, uint256[] memory ids);\n\n    // Receipt Account Number\n    function melandStoreReceipt(string memory symbol) view external returns(address receipt);\n\n    // Store to pay NFT to the selling user by calling this function, \n    // For security reasons, be sure to control the permissions to allow only MelandStore contracts to call\n    // If melandStoreItemsRestrictPurchaseNFTIds return false, the id as zero.\n    function melandStoreItemsMint(string memory symbol, uint256 id, address to) external returns(uint256 tokenId);\n\n    // Return Metadata JSON Schema URI\n    function melandStoreItemURI(string memory symbol) view external returns(string memory);\n\n    // If return false, Stores will suspend sales.\n    function melandStoreSellStatus(string memory symbol) external returns(bool isSelling);\n}",
-  "sourcePath": "/Users/alberthuang/code/icw/meland/contracts/IMelandStoreItems.sol",
+  "sourcePath": "/Users/alberthuang/code/contracts/contracts/IMelandStoreItems.sol",
   "ast": {
     "absolutePath": "project:/contracts/IMelandStoreItems.sol",
     "exportedSymbols": {
@@ -1921,7 +1921,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-06T08:35:55.282Z",
+  "updatedAt": "2022-01-25T07:44:20.375Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

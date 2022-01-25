@@ -251,7 +251,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.9;\n\nimport \"@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol\";\n\ninterface IERC20MELD is IERC20Upgradeable {\n    function mint(uint256 amount) external;\n\n    function getMaxMints() external view returns (uint256);\n\n    function burn(uint256 amount) external;\n\n    function burnFrom(address account, uint256 amount) external;\n}\n",
-  "sourcePath": "/Users/alberthuang/code/icw/meland/contracts/IMELD.sol",
+  "sourcePath": "/Users/alberthuang/code/contracts/contracts/IMELD.sol",
   "ast": {
     "absolutePath": "project:/contracts/IMELD.sol",
     "exportedSymbols": {
@@ -900,7 +900,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-06T08:35:55.281Z",
+  "updatedAt": "2022-01-25T07:44:20.374Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

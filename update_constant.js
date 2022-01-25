@@ -57,7 +57,7 @@ module.exports = async function (_) {
     const existsMarketplace = await Marketplace.deployed();
     const existsNFTFactory = await NFTFactory.deployed();
     const Meland1155WearableI = await Meland1155Wearable.deployed();
-    // const Meland1155PlaceableI = await Meland1155Placeable.deployed();
+    const Meland1155PlaceableI = await Meland1155Placeable.deployed();
     const MelandTierI = await MelandTier.deployed();
     const Meland1155LandFutureI = await Meland1155LandFuture.deployed();
     const Meland1155MELDFutureI = await Meland1155MELDFuture.deployed();
@@ -97,7 +97,7 @@ module.exports = async function (_) {
     "Faucet_address": "${faucetAddress}",
     "VestPool_address": "${vestPoolAddress}",
     "Meland1155Wearable_address": "${Meland1155WearableI.address}",
-    "Meland1155Placeable_address": "",
+    "Meland1155Placeable_address": "${Meland1155PlaceableI.address}",
     "Meland1155LandFuture_address": "${Meland1155LandFutureI.address}",
     "Meland1155MELDFuture_address": "${Meland1155MELDFutureI.address}",
     "MelandExchange_address": "${MelandExchangeI.address}",

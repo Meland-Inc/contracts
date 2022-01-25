@@ -53,6 +53,13 @@ contract Meland1155Placeable is
         _setRarity(rarity, mintMax);
     }
 
+    function setCIDRarity(uint256 cid, bytes memory _rarity)
+        public
+        onlyRole(GM_ROLE)
+    {
+        _setCIDRarity(cid, _rarity);
+    }
+
     function _authorizeUpgrade(address newImplementation)
         internal
         override

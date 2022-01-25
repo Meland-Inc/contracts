@@ -34,6 +34,7 @@
     "sendtier": "export $(cat .env | xargs) && truffle exec ./send_tier.js",
     "mintmeld": "export $(cat .env | xargs) && truffle exec ./mint_meld.js",
     "ticketland": "export $(cat .env | xargs) && truffle exec ./upticketland.js",
+    "vipland": "export $(cat .env | xargs) && truffle exec ./send_vipland.js",
     "vcs": "export $(cat .env | xargs) && truffle exec ./up_vcs.js",
     "network:dev": "export $(cat .env | xargs) && truffle develop",
     "network:build": "export $(cat .env | xargs) && truffle compile",

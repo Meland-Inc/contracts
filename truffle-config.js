@@ -30,7 +30,7 @@ module.exports = {
 
     // polygon test network
     mumbai: {
-      provider: () => new HDWalletProvider(mnemonic, `wss://withered-wandering-hill.matic-testnet.quiknode.pro/af53b7562a054293ade8a68b54c44c0a325c018b/`),
+      provider: () => new HDWalletProvider(mnemonic, `wss://polygon-mumbai.g.alchemy.com/v2/fIbA8DRSTQXPAhcHKiPFo19SPqhHNHam`),
       network_id: 80001,
       confirmations: 2,
       timeoutBlocks: 200,
@@ -39,7 +39,7 @@ module.exports = {
 
     // polygon main network
     matic: {
-      provider: () => new HDWalletProvider(mnemonic, `wss://hidden-hidden-dew.matic.quiknode.pro/320f34c61dd7ff8e73083de2c90f4159844990b6/`),
+      provider: () => new HDWalletProvider(mnemonic, `wss://polygon-mainnet.g.alchemy.com/v2/y48IcelCwZwwppoj-CXBEwmIjBOZ2ZLt`),
       network_id: 137,
       confirmations: 2,
       timeoutBlocks: 200,
